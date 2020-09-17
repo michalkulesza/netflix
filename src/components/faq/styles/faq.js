@@ -46,13 +46,17 @@ export const Icon = styled.div`
 	width: 0.8em;
 	filter: invert(1);
 	transform: ${({ active }) => (active ? "rotate(0deg)" : "rotate(45deg)")};
-	transition: all 0.1s ease-in-out;
+	transition: transform 0.25s cubic-bezier(0.5, 0, 0.1, 1);
 `;
 
 export const Body = styled.div`
 	background-color: #333;
-	padding: ${({ active }) => (active ? "1.2em" : "0")};
 	text-align: left;
-	max-height: ${({ active }) => (active ? "auto" : "0px")};
+	max-height: ${({ active }) => (active ? "800px" : "0px")};
 	overflow: hidden;
+	transition: max-height 0.25s cubic-bezier(0.5, 0, 0.1, 1);
+`;
+
+export const Text = styled.div`
+	padding: 1.2em;
 `;

@@ -18,7 +18,9 @@ export default function FaqContainer() {
 										<img src={crossIcon} alt="" />
 									</Faq.Icon>
 								</Faq.Header>
-								<Faq.Body>{item.body}</Faq.Body>
+								<Faq.Body>
+									<Faq.Text>{item.body}</Faq.Text>
+								</Faq.Body>
 							</Faq.Item>
 						))}
 					</Faq.List>

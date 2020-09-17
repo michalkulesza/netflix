@@ -1,5 +1,5 @@
 import React, { useState, useContext, createContext } from "react";
-import { Main, Container, Title, List, Item, Header, Icon, Body } from "./styles/faq";
+import { Main, Container, Title, List, Item, Header, Icon, Body, Text } from "./styles/faq";
 
 const CurrentlyOpenedContext = createContext();
 const CurrentIdContext = createContext();
@@ -70,6 +70,10 @@ Faq.Body = function FaqBody({ children, ...restProps }) {
 			{children}
 		</Body>
 	);
+};
+
+Faq.Text = function FaqText({ children, ...restProps }) {
+	return <Text {...restProps}>{children}</Text>;
 };
 
 export default Faq;
