@@ -9,4 +9,9 @@ html, body {
    color: #333333;
    font-size: 16px;
    }
+
+ul,li{
+   margin: 0;
+   padding: 0
+}
 `;
