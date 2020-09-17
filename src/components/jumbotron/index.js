@@ -2,7 +2,7 @@ import React from "react";
 import { Main, Container, Half, Title, SubTitle, Image } from "./styles/jumbotron";
 
 const Jumbotron = ({ children, ...restProps }) => {
-	return <Main>{children}</Main>;
+	return <Main {...restProps}>{children}</Main>;
 };
 
 Jumbotron.Container = function JumbotronContainer({ children, direction = "row", ...restProps }) {

@@ -14,4 +14,9 @@ ul,li{
    margin: 0;
    padding: 0
 }
+
+input{
+   padding: 0;
+	border: 0;
+}
 `;
