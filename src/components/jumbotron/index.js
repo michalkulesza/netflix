@@ -1,16 +1,24 @@
 import React from "react";
 import { Main, Container, Half, Title, SubTitle, Image } from "./styles/jumbotron";
 
-const Jumbotron = ({ children, direction = "row", ...restProps }) => {
-	return <Main direction={direction}>{children}</Main>;
+const Jumbotron = ({ children, ...restProps }) => {
+	return <Main>{children}</Main>;
 };
 
-Jumbotron.Container = function JumbotronContainer({ children, ...restProps }) {
-	return <Container {...restProps}>{children}</Container>;
+Jumbotron.Container = function JumbotronContainer({ children, direction = "row", ...restProps }) {
+	return (
+		<Container direction={direction} {...restProps}>
+			{children}
+		</Container>
+	);
 };
 
-Jumbotron.Half = function JumbotronContainer({ children, ...restProps }) {
-	return <Half {...restProps}>{children}</Half>;
+Jumbotron.Half = function JumbotronContainer({ children, direction = "row", ...restProps }) {
+	return (
+		<Half direction={direction} {...restProps}>
+			{children}
+		</Half>
+	);
 };
 Jumbotron.Title = function JumbotronContainer({ children, ...restProps }) {
 	return <Title {...restProps}>{children}</Title>;

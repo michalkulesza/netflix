@@ -1,53 +1,46 @@
 import styled from "styled-components/macro";
 
 export const Main = styled.div`
-	width: 100%;
 	border-bottom: 8px solid #333;
 	padding: 50px 5%;
 	margin-bottom: 0;
 	background: 0 0;
 	color: #fff;
-
-	@media only screen and (max-width: 949px) and (min-width: 550px),
-		only screen and (max-width: 1449px) and (min-width: 950px),
-		only screen and (min-width: 1450px) {
-		padding: 70px 45px;
-	}
 `;
 
-export const Container = styled.div``;
+export const Container = styled.div`
+	max-width: 1100px;
+	margin: 0 auto;
+	display: flex;
+	justify-content: space-between;
+	flex-direction: ${({ direction }) => direction};
+`;
 
 export const Half = styled.div`
-	width: 50%;
+	width: ${({ direction }) => (direction === "row" ? "52%" : "48%")};
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
 
-	@media (max-width: 1000px) {
-		width: 100%;
-		padding: 0 45px;
-		text-align: center;
+	&::last-of-type {
+		width: ${({ direction }) => (direction === "row" ? "48%" : "52%")};
 	}
 `;
 
 export const Title = styled.h1`
-	font-size: 50px;
+	font-size: 3.125rem;
 	line-height: 1.1;
-	margin-bottom: 8px;
-
-	@media (max-width: 600px) {
-		font-size: 35px;
-	}
+	margin-bottom: 0.5rem;
 `;
 
 export const SubTitle = styled.h2`
 	font-size: 26px;
 	font-weight: normal;
 	line-height: normal;
-
-	@media (max-width: 600px) {
-		font-size: 18px;
-	}
 `;
 
 export const Image = styled.img`
 	max-width: 100%;
-	height: auto;
+	height: 100%;
+	object-fit: scale-down;
 `;
