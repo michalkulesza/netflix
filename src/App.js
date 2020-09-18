@@ -1,15 +1,8 @@
 import React from "react";
-import { HeaderContainer, JumbotronContainer, FaqContainer, FooterContainer } from "./containers";
+import { Home } from "./pages";
 
 function App() {
-	return (
-		<>
-			<HeaderContainer />
-			<JumbotronContainer />
-			<FaqContainer />
-			<FooterContainer />
-		</>
-	);
+	return <Home />;
 }
 
 export default App;
