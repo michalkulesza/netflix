@@ -22,8 +22,8 @@ export const FormWrapper = styled.div`
 `;
 
 export const InputContainer = styled.div`
+	position: relative;
 	display: flex;
-	overflow: hidden;
 
 	@media only screen and (max-width: 949px) and (min-width: 550px),
 		only screen and (max-width: 399px) and (min-width: 350px),
@@ -93,11 +93,21 @@ export const Button = styled.button`
 		margin: 0 auto;
 		margin-top: 0.2em;
 	}
+
+	@media only screen and (max-width: 590px) {
+		margin-top: 1.2em;
+	}
 `;
 
 export const Error = styled.div`
+	position: absolute;
+	top: 100%;
 	text-align: left;
 	color: #ffa00a;
 	padding: 6px 3px;
 	font-size: 14px;
+
+	@media only screen and (max-width: 590px) {
+		top: 4.2em;
+	}
 `;
