@@ -15,9 +15,33 @@ export const Container = styled.div`
 	height: 100%;
 	display: flex;
 	justify-content: space-between;
+
+	@media only screen and (max-width: 949px) and (min-width: 550px) {
+		margin: 0 45px;
+	}
+
+	@media only screen and (max-width: 549px) and (min-width: 400px),
+		only screen and (max-width: 399px) and (min-width: 350px),
+		only screen and (max-width: 349px) {
+		margin: 0 5%;
+	}
 `;
 
 export const Logo = styled.img`
 	height: 45px;
 	padding-top: 0.5em;
+
+	@media only screen and (max-width: 1449px) and (min-width: 950px) {
+		height: 36px;
+	}
+
+	@media only screen and (max-width: 949px) and (min-width: 550px) {
+		height: 32px;
+	}
+
+	@media only screen and (max-width: 549px) and (min-width: 400px),
+		only screen and (max-width: 399px) and (min-width: 350px),
+		only screen and (max-width: 349px) {
+		height: 24px;
+	}
 `;
