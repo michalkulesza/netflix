@@ -17,8 +17,19 @@ export const FormWrapper = styled.div`
 	justify-content: center;
 `;
 
-export const InputWrapper = styled.div`
+export const InputContainer = styled.div`
 	display: flex;
+	overflow: hidden;
+
+	@media only screen and (max-width: 949px) and (min-width: 550px),
+		only screen and (max-width: 399px) and (min-width: 350px),
+		only screen and (max-width: 549px) and (min-width: 400px),
+		only screen and (max-width: 349px) {
+		flex-direction: column;
+	}
+`;
+
+export const InputWrapper = styled.div`
 	position: relative;
 `;
 
@@ -28,9 +39,17 @@ export const Input = styled.input`
 	padding: 10px 10px 0;
 	width: 100%;
 	border-radius: 3px 0 0 3px;
+	box-sizing: border-box;
 
 	&:focus {
 		outline: none;
+	}
+
+	@media only screen and (max-width: 949px) and (min-width: 550px),
+		only screen and (max-width: 399px) and (min-width: 350px),
+		only screen and (max-width: 549px) and (min-width: 400px),
+		only screen and (max-width: 349px) {
+		min-width: auto;
 	}
 `;
 
@@ -47,9 +66,9 @@ export const Label = styled.label`
 
 export const Button = styled.button`
 	height: 100%;
-	padding: 0 1em;
+	padding: 16px 1em;
 	font-size: 1.625rem;
-	min-height: 70px;
+	height: fit-content;
 	white-space: nowrap;
 	text-align: center;
 	border: 0;
@@ -60,6 +79,15 @@ export const Button = styled.button`
 
 	&:hover {
 		background: #f40612;
+	}
+
+	@media only screen and (max-width: 949px) and (min-width: 550px),
+		only screen and (max-width: 399px) and (min-width: 350px),
+		only screen and (max-width: 549px) and (min-width: 400px),
+		only screen and (max-width: 349px) {
+		width: fit-content;
+		margin: 0 auto;
+		margin-top: 0.2em;
 	}
 `;
 

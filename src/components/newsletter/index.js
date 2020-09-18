@@ -1,5 +1,15 @@
 import React, { useState, useContext, createContext } from "react";
-import { Main, Title, FormWrapper, InputWrapper, Input, Label, Button, Error } from "./styles/newsletter";
+import {
+	Main,
+	Title,
+	FormWrapper,
+	InputContainer,
+	InputWrapper,
+	Input,
+	Label,
+	Button,
+	Error,
+} from "./styles/newsletter";
 import { emailValidation } from "../../helpers/email-validation";
 
 const NewsletterContext = createContext();
@@ -22,6 +32,10 @@ Newsletter.Title = function NewsletterTitle({ children, ...restProps }) {
 
 Newsletter.FormWrapper = function NewsletterFormWrapper({ children, ...restProps }) {
 	return <FormWrapper {...restProps}>{children}</FormWrapper>;
+};
+
+Newsletter.InputContainer = function NewsletterInputContainer({ children, ...restProps }) {
+	return <InputContainer {...restProps}>{children}</InputContainer>;
 };
 
 Newsletter.InputWrapper = function NewsletterInputWrapper({ children, ...restProps }) {
