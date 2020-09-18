@@ -1,5 +1,6 @@
 import React from "react";
+import { HeaderContainer } from "../containers";
 
 export default function SignIn() {
-	return <h1>Helloo</h1>;
+	return <HeaderContainer></HeaderContainer>;
 }
