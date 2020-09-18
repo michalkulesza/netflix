@@ -48,6 +48,10 @@ export const Container = styled.div`
 	padding: 70px 45px;
 	color: #fff;
 	z-index: 1;
+
+	@media only screen and (max-width: 590px) {
+		padding: 55px 35px;
+	}
 `;
 
 export const Inner = styled.div`
@@ -56,15 +60,27 @@ export const Inner = styled.div`
 	max-width: 950px;
 	margin: 0 auto;
 	text-align: center;
+
+	@media only screen and (max-width: 590px) {
+		padding: 0 0 50px 0;
+	}
 `;
 
 export const Heading = styled.h1`
 	font-size: 4rem;
 	max-width: 800px;
 	margin: 0 auto;
+
+	@media only screen and (max-width: 590px) {
+		font-size: 3rem;
+	}
 `;
 
 export const SubHeading = styled.h2`
 	font-size: 1.625rem;
 	font-weight: 400;
+
+	@media only screen and (max-width: 590px) {
+		font-size: 1.4rem;
+	}
 `;

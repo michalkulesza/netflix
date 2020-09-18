@@ -9,6 +9,10 @@ export const Main = styled.div`
 export const Title = styled.h3`
 	font-size: 1.2rem;
 	font-weight: 400;
+
+	@media only screen and (max-width: 590px) {
+		font-size: 1em;
+	}
 `;
 
 export const FormWrapper = styled.div`

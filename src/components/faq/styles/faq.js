@@ -15,13 +15,21 @@ export const Container = styled.div`
 	text-align: center;
 `;
 
-export const Title = styled.h1``;
+export const Title = styled.h1`
+	@media only screen and (max-width: 550px) {
+		font-size: 2rem;
+	}
+`;
 
 export const List = styled.ul`
 	width: 75%;
 	margin: 2em auto;
 	max-width: 815px;
 	list-style: none;
+
+	@media only screen and (max-width: 550px) {
+		width: 100%;
+	}
 `;
 
 export const Item = styled.li`
@@ -39,6 +47,10 @@ export const Header = styled.div`
 	display: flex;
 	justify-content: space-between;
 	user-select: none;
+
+	@media only screen and (max-width: 550px) {
+		font-size: 0.7em;
+	}
 `;
 
 export const Icon = styled.div`
@@ -55,6 +67,10 @@ export const Body = styled.div`
 	max-height: ${({ active }) => (active ? "800px" : "0px")};
 	overflow: hidden;
 	transition: max-height 0.25s cubic-bezier(0.5, 0, 0.1, 1);
+
+	@media only screen and (max-width: 550px) {
+		font-size: 0.7em;
+	}
 `;
 
 export const Text = styled.div`

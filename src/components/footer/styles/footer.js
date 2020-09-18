@@ -4,6 +4,10 @@ export const Main = styled.div`
 	max-width: 900px;
 	margin: 0 auto;
 	padding: 0px 45px;
+
+	@media only screen and (max-width: 550px) {
+		padding: 0px 25px;
+	}
 `;
 
 export const Container = styled.div`
@@ -26,6 +30,12 @@ export const Grid = styled.div`
 	width: 100%;
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
+
+	@media only screen and (max-width: 550px) {
+		grid-template-rows: repeat(2, 1fr);
+		grid-template-columns: repeat(2, 1fr);
+		row-gap: 1em;
+	}
 `;
 
 export const Ul = styled.ul``;

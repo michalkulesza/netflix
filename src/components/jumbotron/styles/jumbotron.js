@@ -6,6 +6,10 @@ export const Main = styled.div`
 	margin-bottom: 0;
 	background: 0 0;
 	color: #fff;
+
+	@media only screen and (max-width: 590px) {
+		padding: 35px 3%;
+	}
 `;
 
 export const Container = styled.div`
@@ -14,6 +18,10 @@ export const Container = styled.div`
 	display: flex;
 	justify-content: space-between;
 	flex-direction: ${({ direction }) => direction};
+
+	@media only screen and (max-width: 949px) {
+		flex-direction: column;
+	}
 `;
 
 export const Half = styled.div`
@@ -25,18 +33,39 @@ export const Half = styled.div`
 	&::last-of-type {
 		width: ${({ direction }) => (direction === "row" ? "48%" : "52%")};
 	}
+
+	@media only screen and (max-width: 949px) {
+		width: 90%;
+		margin: 0 auto;
+	}
 `;
 
 export const Title = styled.h1`
 	font-size: 3.125rem;
 	line-height: 1.1;
 	margin-bottom: 0.5rem;
+
+	@media only screen and (max-width: 949px) {
+		text-align: center;
+	}
+
+	@media only screen and (max-width: 550px) {
+		font-size: 3rem;
+	}
 `;
 
 export const SubTitle = styled.h2`
 	font-size: 26px;
 	font-weight: normal;
 	line-height: normal;
+
+	@media only screen and (max-width: 949px) {
+		text-align: center;
+	}
+
+	@media only screen and (max-width: 550px) {
+		font-size: 20px;
+	}
 `;
 
 export const Image = styled.img`
