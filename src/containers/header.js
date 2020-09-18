@@ -1,10 +1,11 @@
 import React from "react";
 import { Header } from "../components";
-import { NewsletterContainer } from "../containers/";
+import { NavbarContainer, NewsletterContainer } from "../containers/";
 
 export default function HeaderContainer() {
 	return (
 		<Header>
+			<NavbarContainer></NavbarContainer>
 			<Header.Container>
 				<Header.Inner>
 					<Header.Heading>Unlimited movies, TV shows, and more.</Header.Heading>
