@@ -7,7 +7,7 @@ const NewsletterContext = createContext();
 const Newsletter = ({ children, ...restProps }) => {
 	const [inputFocused, setInputFocused] = useState(false);
 	const [email, setEmail] = useState("");
-	const [error, setError] = useState(null);
+	const [error, setError] = useState(" ");
 
 	return (
 		<NewsletterContext.Provider value={{ inputFocused, setInputFocused, email, setEmail, error, setError }}>
@@ -33,7 +33,7 @@ Newsletter.Input = function NewsletterInput({ children, ...restProps }) {
 	return (
 		<Input
 			onChange={({ target }) => {
-				setEmail(target.value);
+				setEmail(target.value.trim());
 			}}
 			onKeyUp={() => setError(emailValidation(email))}
 			value={email}
@@ -56,7 +56,12 @@ Newsletter.Label = function NewsletterLabel({ children, ...restProps }) {
 };
 
 Newsletter.Button = function NewsletterButton({ children, ...restProps }) {
-	return <Button {...restProps}>{children}</Button>;
+	const { error } = useContext(NewsletterContext);
+	return (
+		<Button disabled={error} {...restProps}>
+			{children}
+		</Button>
+	);
 };
 
 Newsletter.Error = function NewsletterError({ ...restProps }) {
