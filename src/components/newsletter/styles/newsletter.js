@@ -7,7 +7,6 @@ export const Main = styled.div`
 `;
 
 export const Title = styled.h3`
-	padding-bottom: 20px;
 	font-size: 1.2rem;
 	font-weight: 400;
 `;

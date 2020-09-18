@@ -1,5 +1,6 @@
 import React, { useState, useContext, createContext } from "react";
 import { Main, Title, FormWrapper, InputWrapper, Input, Label, Button, Error } from "./styles/newsletter";
+import { emailValidation } from "../../helpers/email-validation";
 
 const NewsletterContext = createContext();
 
@@ -7,9 +8,6 @@ const Newsletter = ({ children, ...restProps }) => {
 	const [inputFocused, setInputFocused] = useState(false);
 	const [email, setEmail] = useState("");
 	const [error, setError] = useState(null);
-
-	//MAKE FUNCTION TO VALIDATE THE EMAIL
-	//THEN IT SETS THE ERROR STATE
 
 	return (
 		<NewsletterContext.Provider value={{ inputFocused, setInputFocused, email, setEmail, error, setError }}>
@@ -31,10 +29,13 @@ Newsletter.InputWrapper = function NewsletterInputWrapper({ children, ...restPro
 };
 
 Newsletter.Input = function NewsletterInput({ children, ...restProps }) {
-	const { setInputFocused, email, setEmail } = useContext(NewsletterContext);
+	const { setInputFocused, email, setEmail, setError } = useContext(NewsletterContext);
 	return (
 		<Input
-			onChange={({ target }) => setEmail(target.value)}
+			onChange={({ target }) => {
+				setEmail(target.value);
+			}}
+			onKeyUp={() => setError(emailValidation(email))}
 			value={email}
 			onFocus={() => setInputFocused(true)}
 			onBlur={() => setInputFocused(false)}
