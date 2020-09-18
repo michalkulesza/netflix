@@ -1,0 +1,113 @@
+{
+	"data": {
+		"headerText": "Questions? Call 0800-000-9677",
+		"footerText": "Netflix Germany"
+	},
+	"columns": [
+		{
+			"columnId": 1,
+			"links": [
+				{
+					"id": 1,
+					"text": "FAQ",
+					"url": "/"
+				},
+				{
+					"id": 2,
+					"text": "Investors Relations",
+					"url": "/"
+				},
+				{
+					"id": 3,
+					"text": "Ways to Watch",
+					"url": "/"
+				},
+				{
+					"id": 4,
+					"text": "Impressum",
+					"url": "/"
+				},
+				{
+					"id": 5,
+					"text": "Netflix Originals",
+					"url": "/"
+				}
+			]
+		},
+		{
+			"columnId": 2,
+			"links": [
+				{
+					"id": 6,
+					"text": "Help Center",
+					"url": "/"
+				},
+				{
+					"id": 7,
+					"text": "Jobs",
+					"url": "/"
+				},
+				{
+					"id": 8,
+					"text": "Terms of Use",
+					"url": "/"
+				},
+				{
+					"id": 9,
+					"text": "Contact Us",
+					"url": "/"
+				}
+			]
+		},
+		{
+			"columnId": 3,
+			"links": [
+				{
+					"id": 10,
+					"text": "Account",
+					"url": "/"
+				},
+				{
+					"id": 11,
+					"text": "Redeem Gift Cards",
+					"url": "/"
+				},
+				{
+					"id": 12,
+					"text": "Privacy",
+					"url": "/"
+				},
+				{
+					"id": 13,
+					"text": "Speed Test",
+					"url": "/"
+				}
+			]
+		},
+		{
+			"columnId": 4,
+			"links": [
+				{
+					"id": 14,
+					"text": "Media Center",
+					"url": "/"
+				},
+				{
+					"id": 15,
+					"text": "Buy Gift Cards",
+					"url": "/"
+				},
+				{
+					"id": 16,
+					"text": "Cookie Preferences",
+					"url": "/"
+				},
+				{
+					"id": 17,
+					"text": "Legal Notices",
+					"url": "/"
+				}
+			]
+		}
+	]
+}
