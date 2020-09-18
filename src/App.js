@@ -1,9 +1,10 @@
 import React from "react";
-import { JumbotronContainer, FaqContainer, FooterContainer } from "./containers";
+import { HeaderContainer, JumbotronContainer, FaqContainer, FooterContainer } from "./containers";
 
 function App() {
 	return (
 		<>
+			<HeaderContainer />
 			<JumbotronContainer />
 			<FaqContainer />
 			<FooterContainer />
