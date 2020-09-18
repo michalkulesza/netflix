@@ -1,6 +1,6 @@
 import React from "react";
 import { Header } from "../components";
-import Newsletter from "../containers/";
+import { NewsletterContainer } from "../containers/";
 
 export default function HeaderContainer() {
 	return (
@@ -9,7 +9,7 @@ export default function HeaderContainer() {
 				<Header.Inner>
 					<Header.Heading>Unlimited movies, TV shows, and more.</Header.Heading>
 					<Header.SubHeading>Watch anywhere. Cancel anytime.</Header.SubHeading>
-					<Newsletter></Newsletter>
+					<NewsletterContainer></NewsletterContainer>
 				</Header.Inner>
 			</Header.Container>
 		</Header>
