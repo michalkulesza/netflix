@@ -1,0 +1,1 @@
+# Cleanup props (...restProps)
