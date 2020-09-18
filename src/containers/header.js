@@ -1,25 +1,19 @@
 import React from "react";
 import { Header } from "../components";
-import { NavbarContainer, NewsletterContainer } from "../containers/";
+import { NavbarContainer } from "../containers/";
 import Background from "../res/home-bg.jpg";
 
-export default function HeaderContainer() {
+export default function HeaderContainer({ children, largeLogo, button, buttonText }) {
 	return (
 		<Header>
-			<NavbarContainer />
+			<NavbarContainer largeLogo={largeLogo} button={button} buttonText={buttonText} />
 			<Header.BackgroundWrapper>
 				<Header.Background>
 					<Header.BackgroundImg src={Background} />
 				</Header.Background>
 				<Header.BackgroundGradient />
 			</Header.BackgroundWrapper>
-			<Header.Container>
-				<Header.Inner>
-					<Header.Heading>Unlimited movies, TV shows, and more.</Header.Heading>
-					<Header.SubHeading>Watch anywhere. Cancel anytime.</Header.SubHeading>
-					<NewsletterContainer></NewsletterContainer>
-				</Header.Inner>
-			</Header.Container>
+			<Header.Container>{children}</Header.Container>
 		</Header>
 	);
 }

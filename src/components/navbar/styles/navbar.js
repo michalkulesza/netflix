@@ -32,20 +32,20 @@ export const Container = styled.div`
 `;
 
 export const Logo = styled.img`
-	height: 45px;
+	height: ${({ largeLogo }) => (largeLogo ? "55px" : "45px")};
 	padding-top: 0.5em;
 
 	@media only screen and (max-width: 1449px) and (min-width: 950px) {
-		height: 36px;
+		height: ${({ largeLogo }) => (largeLogo ? "46px" : "36px")};
 	}
 
 	@media only screen and (max-width: 949px) and (min-width: 550px) {
-		height: 32px;
+		height: ${({ largeLogo }) => (largeLogo ? "42px" : "32px")};
 	}
 
 	@media only screen and (max-width: 549px) and (min-width: 400px),
 		only screen and (max-width: 399px) and (min-width: 350px),
 		only screen and (max-width: 349px) {
-		height: 24px;
+		height: ${({ largeLogo }) => (largeLogo ? "34px" : "24px")};
 	}
 `;

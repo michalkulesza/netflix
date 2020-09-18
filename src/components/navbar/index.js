@@ -9,8 +9,12 @@ Navbar.Container = function ({ children, ...restProps }) {
 	return <Container {...restProps}>{children}</Container>;
 };
 
-Navbar.Logo = function ({ children, ...restProps }) {
-	return <Logo {...restProps}>{children}</Logo>;
+Navbar.Logo = function ({ largeLogo, children, ...restProps }) {
+	return (
+		<Logo largeLogo={largeLogo} {...restProps}>
+			{children}
+		</Logo>
+	);
 };
 
 export default Navbar;
