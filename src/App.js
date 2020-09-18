@@ -1,15 +1,14 @@
 import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import { HOME } from "./constants/routes";
+import { HOME, SIGN_IN } from "./constants/routes";
 
-import { Home } from "./pages";
+import { Home, SignIn } from "./pages";
 
 function App() {
 	return (
 		<Router>
-			<Route exact path={HOME}>
-				<Home />
-			</Route>
+			<Route exact path={HOME} component={Home} />
+			<Route exact path={SIGN_IN} component={SignIn} />
 		</Router>
 	);
 }
