@@ -72,7 +72,7 @@ export const Button = styled.button`
 	border: none;
 	color: #fff;
 	font-weight: 600;
-	cursor: pointer;
+	cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
 `;
 
 export const Redirect = styled.div`

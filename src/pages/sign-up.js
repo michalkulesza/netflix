@@ -63,7 +63,20 @@ export default function SignUp() {
 								type={"password"}
 								error={secondPasswordError}
 							/>
-							<Form.Button>Sign Up</Form.Button>
+							<Form.Button
+								disabled={
+									name === "" ||
+									email === "" ||
+									password === "" ||
+									secondPassword === "" ||
+									nameError ||
+									emailError ||
+									passwordError ||
+									secondPasswordError
+								}
+							>
+								Sign Up
+							</Form.Button>
 							<Form.Redirect>
 								Already a Netflix user? <Link to={SIGN_IN}>Sign in</Link>.
 							</Form.Redirect>

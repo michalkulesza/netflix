@@ -41,7 +41,9 @@ export default function SignIn() {
 								type={"password"}
 								error={passwordError}
 							/>
-							<Form.Button>Sign In</Form.Button>
+							<Form.Button disabled={password === "" || passwordError || email === "" || emailError}>
+								Sign In
+							</Form.Button>
 							<Form.Redirect>
 								New to Netflix? <Link to={SIGN_UP}>Sign up now</Link>.
 							</Form.Redirect>
