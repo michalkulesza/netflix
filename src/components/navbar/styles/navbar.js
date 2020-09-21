@@ -1,13 +1,13 @@
 import styled from "styled-components/macro";
 
 export const Main = styled.div`
-	position: relative;
+	position: absolute;
 	max-width: 1920px;
 	margin: 0 auto;
 	padding-top: 20px;
 	width: 100%;
 	height: 5rem;
-	z-index: 1;
+	z-index: 2;
 
 	@media only screen and (max-width: 590px) {
 		padding-top: 10px;

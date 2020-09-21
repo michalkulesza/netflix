@@ -60,6 +60,7 @@ export const Inner = styled.div`
 	max-width: 950px;
 	margin: 0 auto;
 	text-align: center;
+	margin-top: 5em;
 
 	@media only screen and (max-width: 590px) {
 		padding: 0 0 50px 0;
