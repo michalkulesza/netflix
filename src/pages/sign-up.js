@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { HeaderContainer, NavbarContainer, FooterContainer } from "../containers";
 import { Navbar, Form, Header } from "../components";
 import { emailValidation, passwordValidation } from "../helpers/validators";
-import { SIGN_IN, SIGN_UP } from "../constants/routes";
+import { SIGN_IN } from "../constants/routes";
 
 import Background from "../res/home-bg.jpg";
 
