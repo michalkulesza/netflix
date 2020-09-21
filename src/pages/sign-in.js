@@ -1,12 +1,16 @@
 import React from "react";
-import { HeaderContainer, FooterContainer } from "../containers";
+import { HeaderContainer, NavbarContainer, FooterContainer } from "../containers";
+import { Header, Navbar } from "../components";
 import Background from "../res/home-bg.jpg";
 
 export default function SignIn() {
 	return (
 		<>
-			<HeaderContainer largeLogo={true} button={null} bg={Background}>
-				//CREATE SIGNIN AND SIGNUP FORMS
+			<NavbarContainer>
+				<Navbar.Logo largeLogo={true} />
+			</NavbarContainer>
+			<HeaderContainer bg={Background}>
+				<Header.Inner></Header.Inner>
 			</HeaderContainer>
 			<FooterContainer></FooterContainer>
 		</>

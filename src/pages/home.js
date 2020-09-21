@@ -18,7 +18,7 @@ export default function Home() {
 				<Navbar.Logo />
 				<Button route={SIGN_IN}>Sign In</Button>
 			</NavbarContainer>
-			<HeaderContainer button={SIGN_IN} buttonText={"Sign In"} bg={Background}>
+			<HeaderContainer bg={Background}>
 				<Header.Inner>
 					<Header.Heading>Unlimited movies, TV shows, and more.</Header.Heading>
 					<Header.SubHeading>Watch anywhere. Cancel anytime.</Header.SubHeading>

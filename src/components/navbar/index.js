@@ -13,7 +13,7 @@ Navbar.Container = function ({ children, ...restProps }) {
 
 Navbar.Logo = function ({ largeLogo = false, children, ...restProps }) {
 	return (
-		<Logo largeLogo={largeLogo} src={LogoSVG} {...restProps}>
+		<Logo largeLogo={largeLogo} src={LogoSVG} alt={"Netflix"} {...restProps}>
 			{children}
 		</Logo>
 	);
