@@ -1,5 +1,7 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { Main, Container, Logo } from "./styles/navbar";
+import { HOME } from "../../constants/routes";
 
 import LogoSVG from "../../res/logo.svg";
 
@@ -13,9 +15,11 @@ Navbar.Container = function ({ children, ...restProps }) {
 
 Navbar.Logo = function ({ largeLogo = false, children, ...restProps }) {
 	return (
-		<Logo largeLogo={largeLogo} src={LogoSVG} alt={"Netflix"} {...restProps}>
-			{children}
-		</Logo>
+		<Link to={HOME}>
+			<Logo largeLogo={largeLogo} src={LogoSVG} alt={"Netflix"} {...restProps}>
+				{children}
+			</Logo>
+		</Link>
 	);
 };
 

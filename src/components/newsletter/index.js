@@ -70,9 +70,9 @@ Newsletter.Label = function NewsletterLabel({ children, ...restProps }) {
 };
 
 Newsletter.Button = function NewsletterButton({ children, ...restProps }) {
-	const { error } = useContext(NewsletterContext);
+	const { error, email } = useContext(NewsletterContext);
 	return (
-		<Button disabled={error} {...restProps}>
+		<Button disabled={error || email === ""} {...restProps}>
 			{children}
 		</Button>
 	);

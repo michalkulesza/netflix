@@ -78,7 +78,7 @@ export const Button = styled.button`
 	border: 0;
 	background-color: #e50914;
 	color: #fff;
-	cursor: pointer;
+	cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
 	border-radius: 0 3px 3px 0;
 
 	&:hover {
