@@ -10,7 +10,7 @@ import {
 	Button,
 	Error,
 } from "./styles/newsletter";
-import { emailValidation } from "../../helpers/email-validation";
+import { emailValidation } from "../../helpers/validators";
 
 const NewsletterContext = createContext();
 
