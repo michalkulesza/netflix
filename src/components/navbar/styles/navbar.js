@@ -6,7 +6,7 @@ export const Main = styled.div`
 	margin: 0 auto;
 	padding-top: 20px;
 	width: 100%;
-	height: 5rem;
+	height: auto;
 	z-index: 2;
 
 	@media only screen and (max-width: 590px) {
@@ -48,4 +48,25 @@ export const Logo = styled.img`
 		only screen and (max-width: 349px) {
 		height: ${({ largeLogo, smallLogo }) => (largeLogo ? "34px" : smallLogo ? "20px" : "24px")};
 	}
+`;
+
+export const Menu = styled.ul`
+	display: flex;
+	align-items: center;
+`;
+
+export const MenuItem = styled.li`
+	color: #e5e5e5;
+	cursor: pointer;
+	transition: color 0.4s;
+	margin-left: 1.1em;
+	font-size: 0.8em;
+
+	&:hover {
+		color: #b3b3b3;
+	}
+`;
+
+export const Divide = styled.div`
+	display: flex;
 `;
