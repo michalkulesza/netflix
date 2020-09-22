@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { firebase } from "../firebase";
 import { HeaderContainer, NavbarContainer, FooterContainer } from "../containers";
 import { Navbar, Form, Header } from "../components";
 import { emailValidation, passwordValidation } from "../helpers/validators";
@@ -16,6 +17,7 @@ const SignUp = () => {
 	const [passwordError, setPasswordError] = useState(null);
 	const [secondPassword, setSecondPassword] = useState("");
 	const [secondPasswordError, setSecondPasswordError] = useState(null);
+	const [error, setError] = useState("I am an error");
 
 	const handleName = value => {
 		setName(value);
@@ -37,6 +39,22 @@ const SignUp = () => {
 		setSecondPasswordError(value !== password ? "Passwords must match" : null);
 	};
 
+	const handleSubmit = e => {
+		e.preventDefault();
+
+		firebase
+			.auth()
+			.createUserWithEmailAndPassword(email, password)
+			.then()
+			.catch(err => {
+				setError(err.message);
+				setName("");
+				setEmail("");
+				setPassword("");
+				setSecondPassword("");
+			});
+	};
+
 	return (
 		<>
 			<NavbarContainer>
@@ -45,12 +63,26 @@ const SignUp = () => {
 			<HeaderContainer bg={Background}>
 				<Header.Inner>
 					<Form>
-						<Form.Container>
+						<Form.Container onSubmit={e => handleSubmit(e)}>
 							<Form.Title>Sign Up</Form.Title>
-							<Form.Input placeholder={"Name"} onChange={handleName} value={name} type={"text"} error={nameError} />
-							<Form.Input placeholder={"Email"} onChange={handleEmail} value={email} error={emailError} />
+							<Form.Input
+								placeholder={"Name"}
+								onMouseDown={() => setError(null)}
+								onChange={handleName}
+								value={name}
+								type={"text"}
+								error={nameError}
+							/>
+							<Form.Input
+								placeholder={"Email"}
+								onMouseDown={() => setError(null)}
+								onChange={handleEmail}
+								value={email}
+								error={emailError}
+							/>
 							<Form.Input
 								placeholder={"Password"}
+								onMouseDown={() => setError(null)}
 								onChange={handlePassword}
 								value={password}
 								type={"password"}
@@ -58,11 +90,13 @@ const SignUp = () => {
 							/>
 							<Form.Input
 								placeholder={"Re-type Password"}
+								onMouseDown={() => setError(null)}
 								onChange={handleSecondPassword}
 								value={secondPassword}
 								type={"password"}
 								error={secondPasswordError}
 							/>
+							<Form.Error onMouseDown={() => setError(null)}>{error}</Form.Error>
 							<Form.Button
 								disabled={
 									name === "" ||
