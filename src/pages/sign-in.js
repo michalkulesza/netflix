@@ -2,16 +2,18 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { HeaderContainer, NavbarContainer, FooterContainer } from "../containers";
 import { Navbar, Form, Header } from "../components";
-import { SIGN_UP } from "../constants/routes";
+import { firebase } from "../firebase";
+import { HOME, SIGN_UP } from "../constants/routes";
 import { emailValidation, passwordValidation } from "../helpers/validators";
 
 import Background from "../res/home-bg.jpg";
 
-const SignIn = () => {
+const SignIn = ({ history }) => {
 	const [email, setEmail] = useState("");
 	const [emailError, setEmailError] = useState(null);
 	const [password, setPassword] = useState("");
 	const [passwordError, setPasswordError] = useState(null);
+	const [error, setError] = useState(null);
 
 	const handleEmail = value => {
 		setEmail(value);
@@ -23,6 +25,23 @@ const SignIn = () => {
 		setPasswordError(passwordValidation(value));
 	};
 
+	const handleSubmit = e => {
+		e.preventDefault();
+
+		firebase
+			.auth()
+			.signInWithEmailAndPassword(email, password)
+			.then(data => {
+				history.push(HOME);
+				console.log(data);
+			})
+			.catch(err => {
+				setError(err.message);
+				setEmail("");
+				setPassword("");
+			});
+	};
+
 	return (
 		<>
 			<NavbarContainer>
@@ -31,16 +50,24 @@ const SignIn = () => {
 			<HeaderContainer bg={Background}>
 				<Header.Inner>
 					<Form>
-						<Form.Container>
+						<Form.Container onSubmit={event => handleSubmit(event)}>
 							<Form.Title>Sign In</Form.Title>
-							<Form.Input placeholder={"Email"} onChange={handleEmail} value={email} error={emailError} />
+							<Form.Input
+								placeholder={"Email"}
+								onChange={handleEmail}
+								onMouseDown={() => setError(null)}
+								value={email}
+								error={emailError}
+							/>
 							<Form.Input
 								placeholder={"Password"}
 								onChange={handlePassword}
+								onMouseDown={() => setError(null)}
 								value={password}
 								type={"password"}
 								error={passwordError}
 							/>
+							<Form.Error>{error}</Form.Error>
 							<Form.Button disabled={password === "" || passwordError || email === "" || emailError}>
 								Sign In
 							</Form.Button>
