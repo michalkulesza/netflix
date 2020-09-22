@@ -1,3 +1,5 @@
+# FIX FUNCTION NANMES IN COMPONENTS DSOME OF THEM ARE MISSING
+
 # Cleanup props (...restProps)
 
 # Cleanup return()
