@@ -5,7 +5,7 @@ import { NewsletterContainer } from "../containers/";
 
 import crossIcon from "../res/icons/cross.svg";
 
-export default function FaqContainer() {
+const FaqContainer = () => {
 	return (
 		<>
 			<Faq>
@@ -31,4 +31,6 @@ export default function FaqContainer() {
 			</Faq>
 		</>
 	);
-}
+};
+
+export default FaqContainer;

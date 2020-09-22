@@ -1,7 +1,7 @@
 import React from "react";
 import { Newsletter } from "../components/";
 
-export default function NewsletterContainer() {
+const NewsletterContainer = () => {
 	return (
 		<Newsletter>
 			<Newsletter.Title>Ready to watch? Enter your email to create or restart your membership.</Newsletter.Title>
@@ -17,4 +17,6 @@ export default function NewsletterContainer() {
 			</Newsletter.FormWrapper>
 		</Newsletter>
 	);
-}
+};
+
+export default NewsletterContainer;

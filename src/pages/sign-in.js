@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { HeaderContainer, NavbarContainer, FooterContainer } from "../containers";
 import { Navbar, Form, Header } from "../components";
-import { emailValidation, passwordValidation } from "../helpers/validators";
 import { SIGN_UP } from "../constants/routes";
+import { emailValidation, passwordValidation } from "../helpers/validators";
 
 import Background from "../res/home-bg.jpg";
 
-export default function SignIn() {
+const SignIn = () => {
 	const [email, setEmail] = useState("");
 	const [emailError, setEmailError] = useState(null);
 	const [password, setPassword] = useState("");
@@ -55,4 +55,6 @@ export default function SignIn() {
 			<FooterContainer></FooterContainer>
 		</>
 	);
-}
+};
+
+export default SignIn;

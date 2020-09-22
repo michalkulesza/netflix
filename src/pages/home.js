@@ -9,9 +9,10 @@ import {
 } from "../containers";
 import { Header, Navbar, Button } from "../components";
 import { SIGN_IN } from "../constants/routes";
+
 import Background from "../res/home-bg.jpg";
 
-export default function Home() {
+const Home = () => {
 	return (
 		<>
 			<NavbarContainer>
@@ -30,4 +31,6 @@ export default function Home() {
 			<FooterContainer />
 		</>
 	);
-}
+};
+
+export default Home;

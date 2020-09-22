@@ -1,7 +1,7 @@
 import React from "react";
 import { Header } from "../components";
 
-export default function HeaderContainer({ children, largeLogo, button, buttonText, bg }) {
+const HeaderContainer = ({ children, largeLogo, button, buttonText, bg }) => {
 	return (
 		<Header>
 			<Header.BackgroundWrapper>
@@ -13,4 +13,6 @@ export default function HeaderContainer({ children, largeLogo, button, buttonTex
 			<Header.Container>{children}</Header.Container>
 		</Header>
 	);
-}
+};
+
+export default HeaderContainer;

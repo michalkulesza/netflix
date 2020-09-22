@@ -2,7 +2,7 @@ import React from "react";
 import footerData from "../fixtures/footer-links.json";
 import Footer from "../components/footer";
 
-export default function FooterContainer() {
+const FooterContainer = () => {
 	return (
 		<Footer>
 			<Footer.Container>
@@ -20,4 +20,6 @@ export default function FooterContainer() {
 			</Footer.Container>
 		</Footer>
 	);
-}
+};
+
+export default FooterContainer;

@@ -7,7 +7,7 @@ import { SIGN_IN } from "../constants/routes";
 
 import Background from "../res/home-bg.jpg";
 
-export default function SignUp() {
+const SignUp = () => {
 	const [name, setName] = useState("");
 	const [nameError, setNameError] = useState(null);
 	const [email, setEmail] = useState("");
@@ -88,4 +88,6 @@ export default function SignUp() {
 			<FooterContainer></FooterContainer>
 		</>
 	);
-}
+};
+
+export default SignUp;

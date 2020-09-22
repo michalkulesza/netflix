@@ -4,7 +4,7 @@ import { HOME, SIGN_IN, SIGN_UP } from "./constants/routes";
 
 import { Home, SignIn, SignUp } from "./pages";
 
-function App() {
+const App = () => {
 	return (
 		<Router>
 			<Route exact path={HOME} component={Home} />
@@ -12,6 +12,6 @@ function App() {
 			<Route exact path={SIGN_UP} component={SignUp} />
 		</Router>
 	);
-}
+};
 
 export default App;
