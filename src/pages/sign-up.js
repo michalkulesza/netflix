@@ -4,11 +4,11 @@ import { firebase } from "../firebase";
 import { HeaderContainer, NavbarContainer, FooterContainer } from "../containers";
 import { Navbar, Form, Header } from "../components";
 import { emailValidation, passwordValidation } from "../helpers/validators";
-import { SIGN_IN } from "../constants/routes";
+import { SIGN_IN, BROWSE } from "../constants/routes";
 
 import Background from "../res/home-bg.jpg";
 
-const SignUp = () => {
+const SignUp = ({ history }) => {
 	const [name, setName] = useState("");
 	const [nameError, setNameError] = useState(null);
 	const [email, setEmail] = useState("");
@@ -17,7 +17,7 @@ const SignUp = () => {
 	const [passwordError, setPasswordError] = useState(null);
 	const [secondPassword, setSecondPassword] = useState("");
 	const [secondPasswordError, setSecondPasswordError] = useState(null);
-	const [error, setError] = useState("I am an error");
+	const [error, setError] = useState(null);
 
 	const handleName = value => {
 		setName(value);
@@ -45,7 +45,12 @@ const SignUp = () => {
 		firebase
 			.auth()
 			.createUserWithEmailAndPassword(email, password)
-			.then()
+			.then(({ user }) => {
+				user.updateProfile({
+					displayName: name,
+				});
+				history.push(BROWSE);
+			})
 			.catch(err => {
 				setError(err.message);
 				setName("");

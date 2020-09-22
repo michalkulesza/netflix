@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { HeaderContainer, NavbarContainer, FooterContainer } from "../containers";
 import { Navbar, Form, Header } from "../components";
 import { firebase } from "../firebase";
-import { HOME, SIGN_UP } from "../constants/routes";
+import { SIGN_UP, BROWSE } from "../constants/routes";
 import { emailValidation, passwordValidation } from "../helpers/validators";
 
 import Background from "../res/home-bg.jpg";
@@ -32,8 +32,7 @@ const SignIn = ({ history }) => {
 			.auth()
 			.signInWithEmailAndPassword(email, password)
 			.then(data => {
-				history.push(HOME);
-				console.log(data);
+				history.push(BROWSE);
 			})
 			.catch(err => {
 				setError(err.message);
