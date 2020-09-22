@@ -8,7 +8,7 @@ export const Main = styled.div`
 	margin-top: -6em;
 `;
 
-export const Container = styled.div`
+export const Container = styled.form`
 	padding: 60px 68px 40px;
 	background-color: rgba(0, 0, 0, 0.75);
 	border-radius: 4px;
@@ -94,4 +94,11 @@ export const Redirect = styled.div`
 export const Text = styled.span`
 	color: #8c8c8c;
 	font-size: 0.9em;
+`;
+
+export const MainError = styled.div`
+	background-color: #e87c03;
+	padding: ${({ children }) => (children ? "1em 1em" : "0em 1em")};
+	border-radius: 3px;
+	box-sizing: border-box;
 `;
