@@ -164,11 +164,15 @@ export const AgeRestriction = styled.div`
 	border-left: 4px solid #dcdcdc;
 `;
 
+export const VideoMuteContainer = styled.div`
+	display: flex;
+	align-items: center;
+`;
+
 export const VideoMuteButton = styled.button`
-	margin-bottom: -5px;
 	border: 2px solid #fff;
-	height: 30px;
-	width: 30px;
+	height: 40px;
+	width: 40px;
 	border-radius: 50%;
 	margin-right: 1em;
 	display: flex;
@@ -179,7 +183,7 @@ export const VideoMuteButton = styled.button`
 	cursor: pointer;
 
 	svg {
-		transform: scale(1.4);
+		transform: scale(1.8);
 		fill: #fff;
 	}
 
@@ -190,17 +194,33 @@ export const VideoMuteButton = styled.button`
 	&:active {
 		background-color: rgba(255, 255, 255, 0.6);
 	}
+
+	@media only screen and (max-width: 1149px) {
+		height: 30px;
+		width: 30px;
+
+		svg {
+			transform: scale(1.4);
+			fill: #fff;
+		}
+	}
 `;
 
 export const VideoLogo = styled.img`
 	object-fit: cover;
-	max-width: 300px;
-	margin-bottom: 1em;
+	width: 30vw;
+	min-width: 200px;
+	margin-bottom: 1.5vw;
 `;
 
 export const VideoDescription = styled.div`
 	text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.45);
-	margin-bottom: 1em;
+	margin-bottom: 1.5vw;
+	font-size: 1.5vw;
+
+	@media only screen and (max-width: 549px) {
+		font-size: 2.5vw;
+	}
 `;
 
 export const VideoButtonsContainer = styled.div`
@@ -209,13 +229,15 @@ export const VideoButtonsContainer = styled.div`
 
 export const VideoButton = styled.button`
 	border: none;
-	padding: 0.7em 2em 0.7em 1.6em;
+	/* padding: 0.7em 2em 0.7em 1.6em; */
+	padding: 1vw 2.3vw 1vw 1.9vw;
 	border-radius: 4px;
 	font-weight: 600;
 	font-size: 0.9em;
 	cursor: pointer;
 	display: flex;
 	align-items: center;
+	outline: none;
 
 	&:nth-of-type(1) {
 		background-color: #fff;
@@ -247,5 +269,9 @@ export const VideoButton = styled.button`
 		&:hover {
 			background-color: rgba(109, 109, 110, 0.4);
 		}
+	}
+
+	@media only screen and (max-width: 949px) {
+		padding: 1.5vw 2.8vw 1.5vw 2.3vw;
 	}
 `;

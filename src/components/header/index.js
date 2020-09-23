@@ -20,6 +20,7 @@ import {
 	VideoDescription,
 	VideoButtonsContainer,
 	VideoButton,
+	VideoMuteContainer,
 	VideoMuteButton,
 } from "./styles/header";
 
@@ -100,6 +101,10 @@ Header.VideoButtonsContainer = function ({ children, ...restProps }) {
 
 Header.VideoButton = function ({ children, ...restProps }) {
 	return <VideoButton {...restProps}>{children}</VideoButton>;
+};
+
+Header.VideoMuteContainer = function ({ children, ...restProps }) {
+	return <VideoMuteContainer {...restProps}>{children}</VideoMuteContainer>;
 };
 
 Header.VideoMuteButton = function ({ children, ...restProps }) {

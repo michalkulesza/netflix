@@ -3,7 +3,16 @@ import { Header } from "../components";
 import { GiSpeaker, GiSpeakerOff } from "react-icons/gi";
 import { GrPlayFill, GrCircleInformation } from "react-icons/gr";
 
-const HeaderContainer = ({ children, bg, videoUrl, ageRestriction = "-", videoLogo, alt, ...restProps }) => {
+const HeaderContainer = ({
+	children,
+	bg,
+	videoUrl,
+	ageRestriction = "-",
+	videoLogo,
+	videoDescription,
+	alt,
+	...restProps
+}) => {
 	const [videoMuted, setVideoMuted] = useState(false);
 
 	return (
@@ -28,10 +37,7 @@ const HeaderContainer = ({ children, bg, videoUrl, ageRestriction = "-", videoLo
 					<Header.ContainerInVideo>
 						<Header.ContainerInVideoHalf>
 							<Header.VideoLogo src={videoLogo} alt={alt} />
-							<Header.VideoDescription>
-								In 1977, frustrated FBI hostage negotiator Holden Ford finds an unlikely ally in veteran agent Bill
-								Tench and begins studying a new class of murderer.
-							</Header.VideoDescription>
+							<Header.VideoDescription>{videoDescription}</Header.VideoDescription>
 							<Header.VideoButtonsContainer>
 								<Header.VideoButton>
 									<GrPlayFill /> Play
@@ -42,10 +48,12 @@ const HeaderContainer = ({ children, bg, videoUrl, ageRestriction = "-", videoLo
 							</Header.VideoButtonsContainer>
 						</Header.ContainerInVideoHalf>
 						<Header.ContainerInVideoHalf>
-							<Header.VideoMuteButton onMouseDown={() => setVideoMuted(!videoMuted)}>
-								{videoMuted ? <GiSpeakerOff /> : <GiSpeaker />}
-							</Header.VideoMuteButton>
-							<Header.AgeRestriction>{ageRestriction}</Header.AgeRestriction>
+							<Header.VideoMuteContainer>
+								<Header.VideoMuteButton onMouseDown={() => setVideoMuted(!videoMuted)}>
+									{videoMuted ? <GiSpeakerOff /> : <GiSpeaker />}
+								</Header.VideoMuteButton>
+								<Header.AgeRestriction>{ageRestriction}</Header.AgeRestriction>
+							</Header.VideoMuteContainer>
 						</Header.ContainerInVideoHalf>
 					</Header.ContainerInVideo>
 				</>

@@ -20,10 +20,17 @@ const Browse = () => {
 					</Navbar.Menu>
 				</Navbar.Divide>
 			</NavbarContainer>
-			<HeaderContainer videoUrl={VideoFile} loop muted ageRestriction={12} videoLogo={VideoLogo} alt={"Mindhunter"}>
-				<h1>Hello folks</h1>
-				<h1>Hello folks</h1>
-			</HeaderContainer>
+			<HeaderContainer
+				videoUrl={VideoFile}
+				loop
+				muted
+				ageRestriction={12}
+				videoLogo={VideoLogo}
+				videoDescription={
+					"In 1977, frustrated FBI hostage negotiator Holden Ford finds an unlikely ally in veteran agent Bill Tench and begins studying a new class of murderer."
+				}
+				alt={"Mindhunter"}
+			></HeaderContainer>
 		</>
 	);
 };

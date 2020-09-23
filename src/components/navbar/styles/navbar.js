@@ -34,6 +34,7 @@ export const Container = styled.div`
 export const Logo = styled.img`
 	height: ${({ largeLogo, smallLogo }) => (largeLogo ? "55px" : smallLogo ? "30px" : "45px")};
 	padding-top: 0.5em;
+	margin-right: 1.5em;
 
 	@media only screen and (max-width: 1449px) and (min-width: 950px) {
 		height: ${({ largeLogo, smallLogo }) => (largeLogo ? "46px" : smallLogo ? "30px" : "36px")};
@@ -60,10 +61,14 @@ export const MenuItem = styled.li`
 	cursor: pointer;
 	transition: color 0.4s;
 	margin-left: 1.1em;
-	font-size: 0.8em;
+	font-size: 1em;
 
 	&:hover {
 		color: #b3b3b3;
+	}
+
+	@media only screen and (max-width: 949px) {
+		font-size: 0.8em;
 	}
 `;
 
