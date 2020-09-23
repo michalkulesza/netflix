@@ -5,14 +5,8 @@ import { Home, SignIn, SignUp, Browse } from "./pages";
 import { IfUserRedirect, ProtectedRoute } from "./helpers/protectedRoutes";
 import { useAuthListener } from "./hooks/";
 
-// const query = "/genre/movie/list";
-
 const App = () => {
 	const { user } = useAuthListener();
-
-	// const { error, data } = useFetch(query);
-	// console.log("Data: ", data);
-	// console.log("Error: ", error);
 
 	return (
 		<Router>

@@ -6,3 +6,4 @@ export { default as Newsletter } from "./newsletter";
 export { default as Footer } from "./footer";
 export { default as Button } from "./button";
 export { default as Form } from "./form";
+export { default as Carousel } from "./carousel";

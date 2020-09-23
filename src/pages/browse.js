@@ -1,11 +1,18 @@
 import React from "react";
 import { Navbar } from "../components/";
-import { NavbarContainer, HeaderContainer } from "../containers";
+import { NavbarContainer, HeaderContainer, CarouselContainer } from "../containers";
+import useFetch from "../hooks/use-fetch";
 
 import VideoFile from "../res/videos/mindhunter_trailer.mp4";
 import VideoLogo from "../res/images/mindhunter-logo.png";
 
+const query = "/genre/movie/list";
+
 const Browse = () => {
+	const { error, data } = useFetch(query);
+	console.log("Data: ", data);
+	console.log("Error: ", error);
+
 	return (
 		<>
 			<NavbarContainer>
@@ -31,6 +38,7 @@ const Browse = () => {
 				}
 				alt={"Mindhunter"}
 			></HeaderContainer>
+			<CarouselContainer></CarouselContainer>
 		</>
 	);
 };
