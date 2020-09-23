@@ -1,4 +1,4 @@
-import React, { useState, useContext, createContext } from "react";
+import React from "react";
 import {
 	Main,
 	Title,
@@ -10,20 +10,9 @@ import {
 	Button,
 	Error,
 } from "./styles/newsletter";
-import { emailValidation } from "../../helpers/validators";
-
-const NewsletterContext = createContext();
 
 const Newsletter = ({ children, ...restProps }) => {
-	const [inputFocused, setInputFocused] = useState(false);
-	const [email, setEmail] = useState("");
-	const [error, setError] = useState(" ");
-
-	return (
-		<NewsletterContext.Provider value={{ inputFocused, setInputFocused, email, setEmail, error, setError }}>
-			<Main {...restProps}>{children}</Main>
-		</NewsletterContext.Provider>
-	);
+	return <Main {...restProps}>{children}</Main>;
 };
 
 Newsletter.Title = function NewsletterTitle({ children, ...restProps }) {
@@ -43,44 +32,19 @@ Newsletter.InputWrapper = function NewsletterInputWrapper({ children, ...restPro
 };
 
 Newsletter.Input = function NewsletterInput({ children, ...restProps }) {
-	const { setInputFocused, email, setEmail, setError } = useContext(NewsletterContext);
-	return (
-		<Input
-			onChange={({ target }) => {
-				setEmail(target.value.trim());
-			}}
-			onKeyUp={() => setError(emailValidation(email))}
-			value={email}
-			onFocus={() => setInputFocused(true)}
-			onBlur={() => setInputFocused(false)}
-			{...restProps}
-		>
-			{children}
-		</Input>
-	);
+	return <Input {...restProps}>{children}</Input>;
 };
 
 Newsletter.Label = function NewsletterLabel({ children, ...restProps }) {
-	const { inputFocused, email } = useContext(NewsletterContext);
-	return (
-		<Label focused={inputFocused || email.length > 0} {...restProps}>
-			{children}
-		</Label>
-	);
+	return <Label {...restProps}>{children}</Label>;
 };
 
 Newsletter.Button = function NewsletterButton({ children, ...restProps }) {
-	const { error, email } = useContext(NewsletterContext);
-	return (
-		<Button disabled={error || email === ""} {...restProps}>
-			{children}
-		</Button>
-	);
+	return <Button {...restProps}>{children}</Button>;
 };
 
-Newsletter.Error = function NewsletterError({ ...restProps }) {
-	const { error } = useContext(NewsletterContext);
-	return <Error {...restProps}>{error}</Error>;
+Newsletter.Error = function NewsletterError({ children, ...restProps }) {
+	return <Error {...restProps}>{children}</Error>;
 };
 
 export default Newsletter;
