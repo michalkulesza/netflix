@@ -53,14 +53,14 @@ const SignIn = ({ history }) => {
 							<Form.Title>Sign In</Form.Title>
 							<Form.Input
 								placeholder={"Email"}
-								onChange={handleEmail}
+								onChange={({ target }) => handleEmail(target.value)}
 								onMouseDown={() => setError(null)}
 								value={email}
 								error={emailError}
 							/>
 							<Form.Input
 								placeholder={"Password"}
-								onChange={handlePassword}
+								onChange={({ target }) => handlePassword(target.value)}
 								onMouseDown={() => setError(null)}
 								value={password}
 								type={"password"}

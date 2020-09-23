@@ -25,7 +25,7 @@ Form.Title = ({ children, ...restProps }) => {
 	return <Title {...restProps}>{children}</Title>;
 };
 
-Form.Input = function FormInput({ error, placeholder, onChange, value, ...restProps }) {
+Form.Input = function FormInput({ error, placeholder, value, ...restProps }) {
 	const [activeInput, setActiveInput] = useState(false);
 
 	return (
@@ -33,7 +33,6 @@ Form.Input = function FormInput({ error, placeholder, onChange, value, ...restPr
 			<InputWrapper>
 				<Input
 					{...restProps}
-					onChange={({ target }) => onChange(target.value)}
 					onFocus={() => setActiveInput(true)}
 					onBlur={({ target }) => target.value.length === 0 && setActiveInput(false)}
 					value={value}
