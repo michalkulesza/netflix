@@ -23,4 +23,5 @@ yarn-debug.log*
 yarn-error.log*
 
 API_KEY.js
-todo.md
+todo.txt
+src/res/videos/mindhunter_trailer.mp4
