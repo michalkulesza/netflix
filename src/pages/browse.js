@@ -1,7 +1,9 @@
 import React from "react";
-import { Navbar, Header } from "../components/";
+import { Navbar } from "../components/";
 import { NavbarContainer, HeaderContainer } from "../containers";
+
 import VideoFile from "../res/videos/mindhunter_trailer.mp4";
+import VideoLogo from "../res/images/mindhunter-logo.png";
 
 const Browse = () => {
 	return (
@@ -18,7 +20,10 @@ const Browse = () => {
 					</Navbar.Menu>
 				</Navbar.Divide>
 			</NavbarContainer>
-			<HeaderContainer videoUrl={VideoFile}></HeaderContainer>
+			<HeaderContainer videoUrl={VideoFile} loop muted ageRestriction={12} videoLogo={VideoLogo} alt={"Mindhunter"}>
+				<h1>Hello folks</h1>
+				<h1>Hello folks</h1>
+			</HeaderContainer>
 		</>
 	);
 };
