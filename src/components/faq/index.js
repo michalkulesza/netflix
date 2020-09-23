@@ -1,78 +1,39 @@
-import React, { useState, useContext, createContext } from "react";
+import React from "react";
 import { Main, Container, Title, List, Item, Header, Icon, Body, Text } from "./styles/faq";
-
-const CurrentlyOpenedContext = createContext();
-const CurrentIdContext = createContext();
 
 const Faq = ({ children, ...restProps }) => {
 	return <Main {...restProps}>{children}</Main>;
 };
 
-Faq.Container = function FaqContainer({ children, ...restProps }) {
-	const [currentlyOpened, setCurrentlyOpened] = useState(null);
-
-	return (
-		<CurrentlyOpenedContext.Provider value={{ currentlyOpened, setCurrentlyOpened }}>
-			<Container {...restProps}>{children}</Container>
-		</CurrentlyOpenedContext.Provider>
-	);
+Faq.Container = function ({ children, ...restProps }) {
+	return <Container {...restProps}>{children}</Container>;
 };
 
-Faq.Title = function FaqTitle({ children, ...restProps }) {
+Faq.Title = function ({ children, ...restProps }) {
 	return <Title {...restProps}>{children}</Title>;
 };
 
-Faq.List = function FaqList({ children, ...restProps }) {
+Faq.List = function ({ children, ...restProps }) {
 	return <List {...restProps}>{children}</List>;
 };
 
-Faq.Item = function FaqItem({ id, children, ...restProps }) {
-	return (
-		<CurrentIdContext.Provider value={{ id }}>
-			<Item {...restProps}>{children}</Item>
-		</CurrentIdContext.Provider>
-	);
+Faq.Item = function ({ children, ...restProps }) {
+	return <Item {...restProps}>{children}</Item>;
 };
 
-Faq.Header = function FaqHeader({ children, ...restProps }) {
-	const { currentlyOpened, setCurrentlyOpened } = useContext(CurrentlyOpenedContext);
-	const { id } = useContext(CurrentIdContext);
-
-	return (
-		<Header
-			onClick={() => {
-				currentlyOpened === id ? setCurrentlyOpened(null) : setCurrentlyOpened(id);
-			}}
-			{...restProps}
-		>
-			{children}
-		</Header>
-	);
+Faq.Header = function ({ children, ...restProps }) {
+	return <Header {...restProps}>{children}</Header>;
 };
 
-Faq.Icon = function FaqIcon({ children, ...restProps }) {
-	const { currentlyOpened } = useContext(CurrentlyOpenedContext);
-	const { id } = useContext(CurrentIdContext);
-
-	return (
-		<Icon active={currentlyOpened === id} {...restProps}>
-			{children}
-		</Icon>
-	);
+Faq.Icon = function ({ children, ...restProps }) {
+	return <Icon {...restProps}>{children}</Icon>;
 };
 
-Faq.Body = function FaqBody({ children, ...restProps }) {
-	const { currentlyOpened } = useContext(CurrentlyOpenedContext);
-	const { id } = useContext(CurrentIdContext);
-
-	return (
-		<Body active={currentlyOpened === id} {...restProps}>
-			{children}
-		</Body>
-	);
+Faq.Body = function ({ children, ...restProps }) {
+	return <Body {...restProps}>{children}</Body>;
 };
 
-Faq.Text = function FaqText({ children, ...restProps }) {
+Faq.Text = function ({ children, ...restProps }) {
 	return <Text {...restProps}>{children}</Text>;
 };
 
