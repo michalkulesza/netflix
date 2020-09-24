@@ -141,10 +141,10 @@ export const ContainerInVideo = styled.div`
 export const ContainerInVideoHalf = styled.div`
 	height: 50%;
 	display: flex;
-	margin-top: 7em;
 
 	&:nth-of-type(1) {
 		width: calc(50% - 3.5em);
+		margin-top: 8vw;
 		margin-left: 3.5em;
 		flex-direction: column;
 		justify-content: center;
@@ -152,9 +152,15 @@ export const ContainerInVideoHalf = styled.div`
 
 	&:nth-of-type(2) {
 		width: 50%;
+		margin-top: 12vw;
 		align-items: flex-end;
 		justify-content: flex-end;
 	}
+`;
+
+export const VideoMuteContainer = styled.div`
+	display: flex;
+	align-items: center;
 `;
 
 export const AgeRestriction = styled.div`
@@ -162,11 +168,6 @@ export const AgeRestriction = styled.div`
 	font-size: 0.8em;
 	padding: 0.5vw 3.5vw 0.5vw 0.8vw;
 	border-left: 4px solid #dcdcdc;
-`;
-
-export const VideoMuteContainer = styled.div`
-	display: flex;
-	align-items: center;
 `;
 
 export const VideoMuteButton = styled.button`
