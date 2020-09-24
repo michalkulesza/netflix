@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Navbar } from "../components/";
 import { NavbarContainer, HeaderContainer, CarouselContainer } from "../containers";
-import getInitData from "../hooks/getInitData";
+import getInitData from "../helpers/getInitData";
 
 import VideoFile from "../res/videos/mindhunter_trailer.mp4";
 import VideoLogo from "../res/images/mindhunter-logo.png";
