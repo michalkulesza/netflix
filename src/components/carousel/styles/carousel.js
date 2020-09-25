@@ -8,12 +8,14 @@ export const Main = styled.div`
 `;
 
 export const Container = styled.div`
+	position: relative;
 	display: flex;
 	flex-direction: column;
-	position: relative;
 `;
 
 export const Category = styled.h1`
+	position: absolute;
+	top: -3em;
 	margin-left: 2.5vw;
 	font-size: 1.5em;
 	color: #fff;
@@ -35,18 +37,31 @@ export const Overlay = styled.div`
 export const Button = styled.button`
 	pointer-events: auto;
 	cursor: pointer;
-	height: calc(100% - 2.84em);
-	background: none;
+	height: 100%;
+	width: ${({ tileWidth }) => `${(tileWidth - 0.5) / 2}vw`};
+	background: rgba(20, 20, 20, 0.5);
 	border: none;
-	margin-top: 2.84em;
-	padding: 0 3vw;
+	padding: 0;
 
 	&:focus {
 		outline: none;
 	}
 
-	&:hover > svg {
-		transform: scale(3.2);
+	&:hover {
+		background: rgba(20, 20, 20, 0.7);
+
+		svg {
+			transform: scale(3.2);
+		}
+	}
+
+	&:nth-of-type(1) {
+		border-radius: 0 5px 5px 0;
+		visibility: ${({ firstSlide }) => (firstSlide ? "hidden" : "visible")};
+	}
+
+	&:nth-of-type(2) {
+		border-radius: 5px 0 0 5px;
 	}
 
 	svg {
@@ -61,9 +76,10 @@ export const Wrapper = styled.div`
 	width: 100%;
 	display: flex;
 	overflow-x: scroll;
+	height: fit-content;
 
 	::-webkit-scrollbar {
-		width: 0px;
+		height: 0px;
 		background: transparent;
 	}
 `;
@@ -76,7 +92,6 @@ export const ItemsContainer = styled.div`
 `;
 
 export const ItemWrapper = styled.div`
-	/* margin-right: 0.5vw; */
 	height: auto;
 	width: 15vw;
 
@@ -85,7 +100,7 @@ export const ItemWrapper = styled.div`
 		margin-right: 0.5vw;
 
 		&:nth-of-type(1) {
-			margin-left: calc(((100vw / 4) - 0.5vw) / 2);
+			margin-left: calc(((100vw / 4) + 0.5vw) / 2);
 		}
 	}
 
@@ -94,7 +109,7 @@ export const ItemWrapper = styled.div`
 		margin-right: 0.5vw;
 
 		&:nth-of-type(1) {
-			margin-left: calc(((100vw / 5) - 0.5vw) / 2);
+			margin-left: calc(((100vw / 5) + 0.5vw) / 2);
 		}
 	}
 
@@ -103,7 +118,7 @@ export const ItemWrapper = styled.div`
 		margin-right: 0.5vw;
 
 		&:nth-of-type(1) {
-			margin-left: calc(((100vw / 6) - 0.5vw) / 2);
+			margin-left: calc(((100vw / 6) + 0.5vw) / 2);
 		}
 	}
 
@@ -112,18 +127,18 @@ export const ItemWrapper = styled.div`
 		margin-right: 0.5vw;
 
 		&:nth-of-type(1) {
-			margin-left: calc(((100vw / 8) - 0.5vw) / 2);
+			margin-left: calc(((100vw / 8) + 0.5vw) / 2);
 		}
 	}
 
 	@media only screen and (min-width: 1800px) {
-		width: calc((100vw / 9) - (1 * 0.5vw));
+		width: calc((100vw / 9) - 0.5vw); /* Width of one tile */
 		margin-right: 0.5vw;
 
 		&:nth-of-type(1) {
-			margin-left: calc(((100vw / 9) / 2) - 1 * 0.5vw);
+			margin-left: calc(((100vw / 9) + 0.5vw) / 2);
 		}
-	} */
+	}
 `;
 
 export const Item = styled.img`
