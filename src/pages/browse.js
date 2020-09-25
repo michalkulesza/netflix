@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Navbar } from "../components/";
-import { NavbarContainer, HeaderContainer, CarouselContainer } from "../containers";
+import { NavbarContainer, HeaderContainer, CarouselsContainer } from "../containers";
 import getInitData from "../helpers/getInitData";
 
 import VideoFile from "../res/videos/mindhunter_trailer.mp4";
@@ -40,7 +40,7 @@ const Browse = () => {
 				}
 				alt={"Mindhunter"}
 			></HeaderContainer>
-			<CarouselContainer data={data} />
+			<CarouselsContainer data={data} />
 		</>
 	);
 };
