@@ -15,8 +15,6 @@ const CarouselContainer = ({ data, title, i }) => {
 	// const [currentlyDisplayedTiles, setCurrentlyDisplayedTiles] = useState(0);
 	const [margin, setMargin] = useState(0);
 
-	console.log(totalTilesInVievport);
-
 	useEffect(() => {
 		setBuffer(data);
 	}, [data]);
