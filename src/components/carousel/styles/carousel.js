@@ -8,6 +8,7 @@ export const Main = styled.div`
 `;
 
 export const Container = styled.div`
+	margin-bottom: 500px;
 	position: relative;
 	display: flex;
 	flex-direction: column;
@@ -19,6 +20,7 @@ export const Category = styled.h1`
 	margin-left: 2.5vw;
 	font-size: 1.5em;
 	color: #fff;
+	z-index: 10;
 `;
 
 export const Overlay = styled.div`
@@ -92,12 +94,13 @@ export const ItemsContainer = styled.div`
 `;
 
 export const ItemWrapper = styled.div`
-	height: auto;
-	width: 15vw;
-
 	@media only screen and (min-width: 0px) {
 		width: calc((100vw / 4) - 0.5vw); /* Width of one tile */
+		height: calc(((100vw / 4) - 0.5vw) * 1.518712025909371);
 		margin-right: 0.5vw;
+		display: flex;
+		justify-content: center;
+		align-items: center;
 
 		&:nth-of-type(1) {
 			margin-left: calc(((100vw / 4) + 0.5vw) / 2);
@@ -106,6 +109,7 @@ export const ItemWrapper = styled.div`
 
 	@media only screen and (min-width: 768px) {
 		width: calc((100vw / 5) - 0.5vw); /* Width of one tile */
+		height: calc(((100vw / 5) - 0.5vw) * 1.518712025909371);
 		margin-right: 0.5vw;
 
 		&:nth-of-type(1) {
@@ -115,6 +119,7 @@ export const ItemWrapper = styled.div`
 
 	@media only screen and (min-width: 980px) {
 		width: calc((100vw / 6) - 0.5vw); /* Width of one tile */
+		height: calc(((100vw / 6) - 0.5vw) * 1.518712025909371);
 		margin-right: 0.5vw;
 
 		&:nth-of-type(1) {
@@ -124,6 +129,7 @@ export const ItemWrapper = styled.div`
 
 	@media only screen and (min-width: 1260px) {
 		width: calc((100vw / 8) - 0.5vw); /* Width of one tile */
+		height: calc(((100vw / 8) - 0.5vw) * 1.518712025909371);
 		margin-right: 0.5vw;
 
 		&:nth-of-type(1) {
@@ -133,6 +139,7 @@ export const ItemWrapper = styled.div`
 
 	@media only screen and (min-width: 1800px) {
 		width: calc((100vw / 9) - 0.5vw); /* Width of one tile */
+		height: calc(((100vw / 9) - 0.5vw) * 1.518712025909371);
 		margin-right: 0.5vw;
 
 		&:nth-of-type(1) {
@@ -147,4 +154,8 @@ export const Item = styled.img`
 	width: 100%;
 	background-color: blue;
 	box-sizing: content-box;
+`;
+
+export const Loader = styled.img`
+	max-height: 25%;
 `;

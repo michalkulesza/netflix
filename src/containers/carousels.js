@@ -11,7 +11,7 @@ const CarouselsContainer = ({ data }) => {
 						const title = `${categoryName[0].toUpperCase()}${categoryName.slice(1)}`;
 						return <CarouselContainer title={title} i={i} data={category[categoryName]} key={i} />;
 				  })
-				: "Loading..."}
+				: null}
 		</Carousels>
 	);
 };

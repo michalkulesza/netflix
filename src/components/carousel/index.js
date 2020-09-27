@@ -9,6 +9,7 @@ import {
 	ItemsContainer,
 	ItemWrapper,
 	Item,
+	Loader,
 } from "./styles/carousel";
 
 const Carousel = ({ children, ...restProps }) => {
@@ -45,6 +46,10 @@ Carousel.ItemWrapper = ({ children, ...restProps }) => {
 
 Carousel.Item = ({ children, ...restProps }) => {
 	return <Item {...restProps}>{children}</Item>;
+};
+
+Carousel.Loader = ({ children, ...restProps }) => {
+	return <Loader {...restProps}>{children}</Loader>;
 };
 
 export default Carousel;
