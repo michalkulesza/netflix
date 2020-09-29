@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { CarouselItem } from "../components";
 import LazyLoad from "react-lazyload";
+import { PopupContext } from "../contexts/popup";
 
 import Loader from "../res/icons/spinner.gif";
 
 const CarouselItemContainer = ({ item, i, scrolled, isFirstSlide, totalTilesInVievport }) => {
-	//Used for expanding tile, away from the edge of window
 	const markItemsPosition = i => {
 		const offset = isFirstSlide ? 0 : 1;
 		const items = totalTilesInVievport - 2;
@@ -26,11 +26,21 @@ const CarouselItemContainer = ({ item, i, scrolled, isFirstSlide, totalTilesInVi
 	};
 
 	return (
-		<CarouselItem.Wrapper key={item.id} scrolled={scrolled} className={markItemsPosition(i)}>
-			<LazyLoad placeholder={<CarouselItem.Loader src={Loader} alt="Loading" />}>
-				<CarouselItem src={`https://image.tmdb.org/t/p/w300${item.poster_path}`} alt="logo" />
-			</LazyLoad>
-		</CarouselItem.Wrapper>
+		<PopupContext.Consumer>
+			{setPopup => (
+				<CarouselItem.Wrapper
+					key={item.id}
+					scrolled={scrolled}
+					className={markItemsPosition(i)}
+					onMouseEnter={({ target }) => setPopup(target.getBoundingClientRect())}
+					onMouseLeave={({ target }) => setPopup(null)}
+				>
+					<LazyLoad placeholder={<CarouselItem.Loader src={Loader} alt="Loading" />}>
+						<CarouselItem src={`https://image.tmdb.org/t/p/w300${item.poster_path}`} alt="logo" />
+					</LazyLoad>
+				</CarouselItem.Wrapper>
+			)}
+		</PopupContext.Consumer>
 	);
 };
 
