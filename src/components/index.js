@@ -8,3 +8,4 @@ export { default as Button } from "./button";
 export { default as Form } from "./form";
 export { default as Carousel } from "./carousel";
 export { default as Carousels } from "./carousels";
+export { default as CarouselItem } from "./carousel-item";

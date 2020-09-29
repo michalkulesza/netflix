@@ -1,19 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { Carousel } from "../components";
+import { CarouselItemContainer } from "../containers";
 import { useTilesInViewport } from "../hooks";
-import LazyLoad from "react-lazyload";
 
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
-import Loader from "../res/icons/spinner.gif";
-
-//RATIO 1.518712025909371
 
 const CarouselContainer = ({ data, title, i }) => {
 	const [buffer, setBuffer] = useState([]);
 	const { totalTilesInVievport } = useTilesInViewport();
 	const tileWidth = 100 / totalTilesInVievport;
 	const tilesToScroll = totalTilesInVievport - 1;
-	const [firstSlide, setFirstSlide] = useState(true);
+	const [isFirstSlide, setisFirstSlide] = useState(true);
 	const [scrolled, setScrolled] = useState(0);
 	const [scrolling, setScrolling] = useState(false);
 	const [margin, setMargin] = useState(0);
@@ -46,10 +43,10 @@ const CarouselContainer = ({ data, title, i }) => {
 			setTimeout(() => {
 				let bufferCopy = [...buffer];
 				let pre;
-				if (firstSlide) {
+				if (isFirstSlide) {
 					pre = bufferCopy.slice(0, totalTilesInVievport - 2);
 					bufferCopy.splice(0, totalTilesInVievport - 2);
-					setFirstSlide(false);
+					setisFirstSlide(false);
 				} else {
 					pre = buffer.slice(0, totalTilesInVievport - 1);
 					bufferCopy.splice(0, totalTilesInVievport - 1);
@@ -68,7 +65,7 @@ const CarouselContainer = ({ data, title, i }) => {
 		<Carousel.Container key={i}>
 			<Carousel.Category>{title}</Carousel.Category>
 			<Carousel.Overlay>
-				<Carousel.Button onMouseDown={handleArrowBack} tileWidth={tileWidth} firstSlide={firstSlide}>
+				<Carousel.Button onMouseDown={handleArrowBack} tileWidth={tileWidth} isFirstSlide={isFirstSlide}>
 					<IoIosArrowBack />
 				</Carousel.Button>
 				<Carousel.Button onMouseDown={handleArrowForward} tileWidth={tileWidth}>
@@ -78,12 +75,15 @@ const CarouselContainer = ({ data, title, i }) => {
 			<Carousel.Wrapper onScroll={e => console.log("scroll", e.nativeEvent)}>
 				<Carousel.ItemsContainer style={{ transform: `translate3d(${scrolled}vw, 0, 0)`, marginLeft: `${margin}vw` }}>
 					{buffer
-						? buffer.map(item => (
-								<Carousel.ItemWrapper key={item.id} scrolled={scrolled}>
-									<LazyLoad placeholder={<Carousel.Loader src={Loader} alt="Loading" />}>
-										<Carousel.Item src={`https://image.tmdb.org/t/p/w300${item.poster_path}`} alt="logo" />
-									</LazyLoad>
-								</Carousel.ItemWrapper>
+						? buffer.map((item, i) => (
+								<CarouselItemContainer
+									key={item.id}
+									item={item}
+									i={i}
+									scrolled={scrolled}
+									isFirstSlide={isFirstSlide}
+									totalTilesInVievport={totalTilesInVievport}
+								/>
 						  ))
 						: "Error"}
 				</Carousel.ItemsContainer>
