@@ -7,4 +7,3 @@ export { default as FooterContainer } from "./footer";
 export { default as CarouselsContainer } from "./carousels";
 export { default as CarouselContainer } from "./carousel";
 export { default as CarouselItemContainer } from "./carousel-item";
-export { default as PopupContainer } from "./popup";

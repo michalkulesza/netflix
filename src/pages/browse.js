@@ -1,16 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Navbar } from "../components/";
-import { NavbarContainer, HeaderContainer, CarouselsContainer, PopupContainer } from "../containers";
+import { NavbarContainer, HeaderContainer, CarouselsContainer } from "../containers";
 import getInitData from "../helpers/getInitData";
-import { PopupContext } from "../contexts/popup";
 
 import VideoFile from "../res/videos/mindhunter_trailer.mp4";
 import VideoLogo from "../res/images/mindhunter-logo.png";
 
 const Browse = () => {
-	let popupTimer;
-
-	const [popup, setPopup] = useState(null);
 	const [data, setData] = useState(null);
 
 	useEffect(() => {
@@ -44,10 +40,7 @@ const Browse = () => {
 				}
 				alt={"Mindhunter"}
 			></HeaderContainer>
-			<PopupContext.Provider value={{ popup, setPopup, popupTimer }}>
-				<CarouselsContainer data={data} />
-				<PopupContainer />
-			</PopupContext.Provider>
+			<CarouselsContainer data={data} />
 		</>
 	);
 };
