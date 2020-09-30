@@ -8,6 +8,8 @@ import VideoFile from "../res/videos/mindhunter_trailer.mp4";
 import VideoLogo from "../res/images/mindhunter-logo.png";
 
 const Browse = () => {
+	let popupTimer;
+
 	const [popup, setPopup] = useState(null);
 	const [data, setData] = useState(null);
 
@@ -16,8 +18,6 @@ const Browse = () => {
 			.then(data => setData(data))
 			.catch(err => console.error(err));
 	}, []);
-
-	console.log(popup);
 
 	return (
 		<>
@@ -44,7 +44,7 @@ const Browse = () => {
 				}
 				alt={"Mindhunter"}
 			></HeaderContainer>
-			<PopupContext.Provider value={(popup, setPopup)}>
+			<PopupContext.Provider value={{ popup, setPopup, popupTimer }}>
 				<CarouselsContainer data={data} />
 				<PopupContainer />
 			</PopupContext.Provider>

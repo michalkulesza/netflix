@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { CarouselItem } from "../components";
 import LazyLoad from "react-lazyload";
 import { PopupContext } from "../contexts/popup";
@@ -27,16 +27,19 @@ const CarouselItemContainer = ({ item, i, scrolled, isFirstSlide, totalTilesInVi
 
 	return (
 		<PopupContext.Consumer>
-			{setPopup => (
-				<CarouselItem.Wrapper
-					key={item.id}
-					scrolled={scrolled}
-					className={markItemsPosition(i)}
-					onMouseEnter={({ target }) => setPopup(target.getBoundingClientRect())}
-					onMouseLeave={({ target }) => setPopup(null)}
-				>
+			{({ setPopup, popupTimer }) => (
+				<CarouselItem.Wrapper key={item.id} scrolled={scrolled} className={markItemsPosition(i)}>
 					<LazyLoad placeholder={<CarouselItem.Loader src={Loader} alt="Loading" />}>
-						<CarouselItem src={`https://image.tmdb.org/t/p/w300${item.poster_path}`} alt="logo" />
+						<CarouselItem
+							src={`https://image.tmdb.org/t/p/w300${item.poster_path}`}
+							alt="logo"
+							onMouseEnter={({ target }) => {
+								popupTimer = setTimeout(() => {
+									setPopup(target.getBoundingClientRect());
+								}, 1000);
+							}}
+							onMouseLeave={() => clearTimeout(popupTimer)}
+						/>
 					</LazyLoad>
 				</CarouselItem.Wrapper>
 			)}

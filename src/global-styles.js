@@ -27,4 +27,27 @@ input{
    padding: 0;
 	border: 0;
 }
+
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1)
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, calc(-50% - 50px)) scale(1.2)
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, calc(-50% - 50px)) scale(1.2)
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1)
+  }
+}
 `;
