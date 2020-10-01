@@ -7,3 +7,4 @@ export { default as FooterContainer } from "./footer";
 export { default as CarouselsContainer } from "./carousels";
 export { default as CarouselContainer } from "./carousel";
 export { default as ItemContainer } from "./item";
+export { default as ItemExpandedContainer } from "./item-expanded";

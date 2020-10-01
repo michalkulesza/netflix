@@ -9,3 +9,4 @@ export { default as Form } from "./form";
 export { default as Carousel } from "./carousel";
 export { default as Carousels } from "./carousels";
 export { default as Item } from "./item";
+export { default as ItemExpanded } from "./item-expanded";

@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { Item } from "../components";
+import { ItemExpandedContainer } from "../containers/";
 import { markItemsPosition } from "../helpers/markItemsPosition";
 import LazyLoad from "react-lazyload";
 
 import VideoFile from "../res/videos/mindhunter_trailer.mp4";
-import { BiPlay, BiPlus, BiLike, BiDislike, BiChevronDown } from "react-icons/bi";
 
 // import Loader from "../res/icons/spinner.gif";
 let hoverTimer;
@@ -37,50 +37,13 @@ const ItemContainer = ({ item, i, scrolled, isFirstSlide, totalTilesInVievport }
 		>
 			<LazyLoad once>
 				<Item src={`https://image.tmdb.org/t/p/w300${item.poster_path}`} alt="Poster" />
-				<Item.ExpandedSmall isExpanded={isExpanded} position={position} onMouseLeave={() => console.log("bobo")}>
-					<Item.ExpandedSmallHeader>
-						<Item.ExpandedSmallPlaceholder
-							src={`https://image.tmdb.org/t/p/w500${item.poster_path}`}
-							alt="Poster"
-							showVideo={showVideo}
-						/>
-						{isExpanded && (
-							<LazyLoad>
-								<Item.ExpandedSmallVideo src={VideoFile} muted={!showVideo} loop showVideo={showVideo} />
-							</LazyLoad>
-						)}
-					</Item.ExpandedSmallHeader>
-					<Item.ExpandedSmallMain>
-						<Item.ExpandedSmallButtons>
-							<Item.ExpandedSmallButtonsHalf>
-								<Item.ExpandedSmallButton inverted>
-									<BiPlay />
-								</Item.ExpandedSmallButton>
-								<Item.ExpandedSmallButton>
-									<BiPlus />
-								</Item.ExpandedSmallButton>
-								<Item.ExpandedSmallButton>
-									<BiLike />
-								</Item.ExpandedSmallButton>
-								<Item.ExpandedSmallButton>
-									<BiDislike />
-								</Item.ExpandedSmallButton>
-							</Item.ExpandedSmallButtonsHalf>
-							<Item.ExpandedSmallButtonsHalf>
-								<Item.ExpandedSmallButton>
-									<BiChevronDown />
-								</Item.ExpandedSmallButton>
-							</Item.ExpandedSmallButtonsHalf>
-						</Item.ExpandedSmallButtons>
-						<Item.ExpandedSmallInfo>
-							<p>96% Match</p>
-							<span>{`12 `}</span>2 Seasons
-						</Item.ExpandedSmallInfo>
-						<Item.ExpandedSmallGenre>
-							Casual <span>•</span> Drama
-						</Item.ExpandedSmallGenre>
-					</Item.ExpandedSmallMain>
-				</Item.ExpandedSmall>
+				<ItemExpandedContainer
+					isExpanded={isExpanded}
+					showVideo={showVideo}
+					position={position}
+					item={item}
+					videoFile={VideoFile}
+				/>
 			</LazyLoad>
 		</Item.Wrapper>
 	);
