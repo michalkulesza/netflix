@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { Item } from "../components";
+import { markItemsPosition } from "../helpers/markItemsPosition";
 import LazyLoad from "react-lazyload";
-import VideoFile from "../res/videos/mindhunter_trailer.mp4";
 
+import VideoFile from "../res/videos/mindhunter_trailer.mp4";
 import { BiPlay, BiPlus, BiLike, BiDislike, BiChevronDown } from "react-icons/bi";
 
 // import Loader from "../res/icons/spinner.gif";
@@ -12,27 +13,7 @@ let videoTimer;
 const ItemContainer = ({ item, i, scrolled, isFirstSlide, totalTilesInVievport }) => {
 	const [isExpanded, setIsExpanded] = useState(false);
 	const [showVideo, setShowVideo] = useState(false);
-
-	const markItemsPosition = i => {
-		const offset = isFirstSlide ? 0 : 1;
-		const items = totalTilesInVievport - 2;
-
-		if (i === 0 + offset) {
-			return "first";
-		}
-
-		if (i > 0 + offset && i < items + offset) {
-			return "middle";
-		}
-
-		if (i === items + offset) {
-			return "last";
-		}
-
-		return "outside";
-	};
-
-	const position = markItemsPosition(i);
+	const position = markItemsPosition(i, isFirstSlide, totalTilesInVievport);
 
 	return (
 		<Item.Wrapper
@@ -45,7 +26,6 @@ const ItemContainer = ({ item, i, scrolled, isFirstSlide, totalTilesInVievport }
 				}, 500);
 			}}
 			onMouseLeave={() => {
-				console.log("jojo");
 				setIsExpanded(false);
 				setShowVideo(false);
 				clearTimeout(hoverTimer);
