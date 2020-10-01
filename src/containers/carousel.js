@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Carousel } from "../components";
-import { CarouselItemContainer } from "../containers";
+import { ItemContainer } from "../containers";
 import { useTilesInViewport } from "../hooks";
 
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
@@ -76,7 +76,7 @@ const CarouselContainer = ({ data, title, i }) => {
 				<Carousel.ItemsContainer style={{ transform: `translate3d(${scrolled}vw, 0, 0)`, marginLeft: `${margin}vw` }}>
 					{buffer
 						? buffer.map((item, i) => (
-								<CarouselItemContainer
+								<ItemContainer
 									key={item.id}
 									item={item}
 									i={i}
