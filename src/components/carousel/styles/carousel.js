@@ -20,7 +20,6 @@ export const Category = styled.h1`
 	margin-left: 2.5vw;
 	font-size: 1.5em;
 	color: #fff;
-	z-index: 10;
 `;
 
 export const Overlay = styled.div`
@@ -77,7 +76,6 @@ export const Button = styled.button`
 export const Wrapper = styled.div`
 	width: 100%;
 	display: flex;
-	overflow-x: scroll;
 	height: fit-content;
 
 	::-webkit-scrollbar {

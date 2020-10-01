@@ -72,7 +72,7 @@ const CarouselContainer = ({ data, title, i }) => {
 					<IoIosArrowForward />
 				</Carousel.Button>
 			</Carousel.Overlay>
-			<Carousel.Wrapper onScroll={e => console.log("scroll", e.nativeEvent)}>
+			<Carousel.Wrapper>
 				<Carousel.ItemsContainer style={{ transform: `translate3d(${scrolled}vw, 0, 0)`, marginLeft: `${margin}vw` }}>
 					{buffer
 						? buffer.map((item, i) => (

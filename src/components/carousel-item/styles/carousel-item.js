@@ -8,6 +8,8 @@ export const Container = styled.div`
 `;
 
 export const Wrapper = styled.div`
+	position: relative;
+
 	@media only screen and (min-width: 0px) {
 		width: calc((100vw / 4) - 0.5vw); /* Width of one tile */
 		height: calc(((100vw / 4) - 0.5vw) * 1.518712025909371);
@@ -72,4 +74,19 @@ export const Item = styled.img`
 
 export const Loader = styled.img`
 	max-height: 25%;
+`;
+
+export const ExpandedSmall = styled.div`
+	position: absolute;
+	z-index: 15;
+	top: 0;
+	left: 0;
+	height: calc(100% + 100px);
+	width: 100%;
+	background-color: pink;
+	transform: ${({ isExpanded }) => (isExpanded ? `scale(1.3)` : `scale(1)`)};
+	transform-origin: ${({ position }) => (position === "first" ? "left" : position === "last" ? "right" : "center")};
+	pointer-events: ${({ position }) => (position === "outside" ? "none" : "all")};
+	opacity: ${({ isExpanded }) => (isExpanded ? `1` : `0`)};
+	transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
 `;

@@ -10,6 +10,7 @@ html, body {
    background-color: #000000;
    color: #333333;
    font-size: 16px;
+   overflow-x: hidden;
 
    ::-webkit-scrollbar {
 		width: 0px;

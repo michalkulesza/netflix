@@ -1,5 +1,5 @@
 import React from "react";
-import { Item, Container, Wrapper, Loader } from "./styles/carousel-item";
+import { Item, Container, Wrapper, Loader, ExpandedSmall } from "./styles/carousel-item";
 
 const CarouselItem = ({ children, ...restProps }) => {
 	return <Item {...restProps}>{children}</Item>;
@@ -15,6 +15,10 @@ CarouselItem.Wrapper = ({ children, ...restProps }) => {
 
 CarouselItem.Loader = ({ children, ...restProps }) => {
 	return <Loader {...restProps}>{children}</Loader>;
+};
+
+CarouselItem.ExpandedSmall = ({ children, ...restProps }) => {
+	return <ExpandedSmall {...restProps}>{children}</ExpandedSmall>;
 };
 
 export default CarouselItem;
