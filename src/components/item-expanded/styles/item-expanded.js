@@ -15,7 +15,8 @@ export const Item = styled.div`
 	border-radius: 3px;
 	overflow: hidden;
 	background-color: #181818;
-	pointer-events: ${({ isExpanded }) => (isExpanded ? `all` : `none`)}; ;
+	pointer-events: ${({ isExpanded }) => (isExpanded ? `all` : `none`)};
+	box-shadow: rgba(0, 0, 0, 0.75) 0px 3px 10px;
 `;
 
 export const Header = styled.div`
@@ -44,6 +45,7 @@ export const Video = styled.video`
 	width: 100%;
 	opacity: ${({ showVideo }) => (showVideo ? "1" : "0")};
 	transition: opacity 500ms ease-in-out;
+	z-index: -1;
 `;
 
 export const Main = styled.div`
@@ -59,7 +61,34 @@ export const Half = styled.div`
 	display: flex;
 `;
 
+export const Label = styled.div`
+	position: absolute;
+	top: -22px;
+	transform: translateX(-50%);
+	left: 50%;
+	width: max-content;
+	background-color: #e2e2e2;
+	font-size: 0.55em;
+	padding: 0.3em 0.6em;
+	opacity: 0;
+	transition: opacity 200ms ease-in-out;
+	box-shadow: rgba(0, 0, 0, 0.75) 0px 3px 10px;
+
+	&::after {
+		content: "";
+		position: absolute;
+		left: 50%;
+		transform: translateX(-50%) rotate(45deg);
+		bottom: -2px;
+		height: 10px;
+		width: 10px;
+		background-color: #e2e2e2;
+		z-index: -1;
+	}
+`;
+
 export const Button = styled.button`
+	position: relative;
 	background-color: ${({ inverted }) => (inverted ? "#fff" : "#232323")};
 	border: ${({ inverted }) => (inverted ? "1px solid #fff" : "1px solid #919191")};
 	border-radius: 50%;
@@ -71,10 +100,15 @@ export const Button = styled.button`
 	margin-right: 4%;
 	cursor: pointer;
 	margin-bottom: 5%;
+	outline: none;
 
 	&:hover {
 		background-color: ${({ inverted }) => inverted && "#e2e2e2"};
 		border-color: ${({ inverted }) => (inverted ? "#e2e2e2" : "#fff")};
+
+		> ${Label} {
+			opacity: 1;
+		}
 	}
 
 	&:nth-last-of-type() {

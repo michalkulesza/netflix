@@ -5,6 +5,7 @@ import { ItemExpanded } from "../components";
 import { BiPlay, BiPlus, BiLike, BiDislike, BiChevronDown } from "react-icons/bi";
 
 const ItemExpandedContainer = ({ isExpanded, showVideo, position, item, videoFile }) => {
+	console.log(item);
 	return (
 		<ItemExpanded isExpanded={isExpanded} position={position}>
 			<ItemExpanded.Header>
@@ -27,23 +28,28 @@ const ItemExpandedContainer = ({ isExpanded, showVideo, position, item, videoFil
 						</ItemExpanded.Button>
 						<ItemExpanded.Button>
 							<BiPlus />
+							<ItemExpanded.Label>Add to My List</ItemExpanded.Label>
 						</ItemExpanded.Button>
 						<ItemExpanded.Button>
 							<BiLike />
+							<ItemExpanded.Label>I like this</ItemExpanded.Label>
 						</ItemExpanded.Button>
 						<ItemExpanded.Button>
 							<BiDislike />
+							<ItemExpanded.Label>Not for me</ItemExpanded.Label>
 						</ItemExpanded.Button>
 					</ItemExpanded.Half>
 					<ItemExpanded.Half>
 						<ItemExpanded.Button>
 							<BiChevronDown />
+							<ItemExpanded.Label>{item.media_type === "movie" ? "More info" : "Episodes & Info"}</ItemExpanded.Label>
 						</ItemExpanded.Button>
 					</ItemExpanded.Half>
 				</ItemExpanded.Buttons>
 				<ItemExpanded.Info>
 					<p>96% Match</p>
-					<span>{`12 `}</span>2 Seasons
+					<span>{`12 `}</span>
+					{item.media_type === "movie" ? "1h 40m" : "3 Seasons"}
 				</ItemExpanded.Info>
 				<ItemExpanded.Genre>
 					Casual <span>•</span> Drama

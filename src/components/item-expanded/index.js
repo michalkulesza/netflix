@@ -1,5 +1,17 @@
 import React from "react";
-import { Item, Header, Placeholder, Video, Main, Buttons, Half, Button, Info, Genre } from "./styles/item-expanded";
+import {
+	Item,
+	Header,
+	Placeholder,
+	Video,
+	Main,
+	Buttons,
+	Half,
+	Button,
+	Label,
+	Info,
+	Genre,
+} from "./styles/item-expanded";
 
 const ItemExpanded = ({ children, ...restProps }) => {
 	return <Item {...restProps}>{children}</Item>;
@@ -31,6 +43,10 @@ ItemExpanded.Half = ({ children, ...restProps }) => {
 
 ItemExpanded.Button = ({ children, ...restProps }) => {
 	return <Button {...restProps}>{children}</Button>;
+};
+
+ItemExpanded.Label = ({ children, ...restProps }) => {
+	return <Label {...restProps}>{children}</Label>;
 };
 
 ItemExpanded.Info = ({ children, ...restProps }) => {
