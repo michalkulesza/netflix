@@ -7,7 +7,22 @@ const getInitData = async () => {
 			.then(data => data.results)
 			.catch(err => console.error(err));
 
-		return [{ trending }];
+		const popular = await fetch(`https:/api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`)
+			.then(response => response.json())
+			.then(data => data.results)
+			.catch(err => console.error(err));
+
+		const toprated = await fetch(`https:/api.themoviedb.org/3/movie/top_rated?api_key=${API_KEY}`)
+			.then(response => response.json())
+			.then(data => data.results)
+			.catch(err => console.error(err));
+
+		const upcoming = await fetch(`https:/api.themoviedb.org/3/movie/upcoming?api_key=${API_KEY}`)
+			.then(response => response.json())
+			.then(data => data.results)
+			.catch(err => console.error(err));
+
+		return [{ trending }, { popular }, { toprated }, { upcoming }, { trending }];
 	} catch (err) {
 		const error = err.message;
 		return { error };
