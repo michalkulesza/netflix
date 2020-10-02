@@ -1,11 +1,11 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import { Item } from "../components";
 import { ItemExpandedContainer } from "../containers/";
 import { markItemsPosition } from "../helpers/markItemsPosition";
 
 import VideoFile from "../res/videos/mindhunter_trailer.mp4";
 
-// import Loader from "../res/icons/spinner.gif";
 let hoverTimer;
 let videoTimer;
 
@@ -13,6 +13,7 @@ const ItemContainer = ({ item, i, scrolled, isFirstSlide, totalTilesInVievport }
 	const [isExpanded, setIsExpanded] = useState(false);
 	const [showVideo, setShowVideo] = useState(false);
 	const position = markItemsPosition(i, isFirstSlide, totalTilesInVievport);
+	const baseUrl = useSelector(state => state.configuration.images.base_url);
 
 	return (
 		<Item.Wrapper
@@ -34,7 +35,7 @@ const ItemContainer = ({ item, i, scrolled, isFirstSlide, totalTilesInVievport }
 			scrolled={scrolled}
 			className={position}
 		>
-			<Item src={`https://image.tmdb.org/t/p/w300${item.poster_path}`} alt="Poster" />
+			<Item src={`${baseUrl}w300${item.poster_path}`} alt="Poster" />
 			<ItemExpandedContainer
 				isExpanded={isExpanded}
 				showVideo={showVideo}

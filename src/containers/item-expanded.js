@@ -1,18 +1,17 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import LazyLoad from "react-lazyload";
 import { ItemExpanded } from "../components";
 
 import { BiPlay, BiPlus, BiLike, BiDislike, BiChevronDown } from "react-icons/bi";
 
 const ItemExpandedContainer = ({ isExpanded, showVideo, position, item, videoFile }) => {
+	const baseUrl = useSelector(state => state.configuration.images.base_url);
+
 	return (
 		<ItemExpanded isExpanded={isExpanded} position={position}>
 			<ItemExpanded.Header>
-				<ItemExpanded.Placeholder
-					src={`https://image.tmdb.org/t/p/w500${item.poster_path}`}
-					alt="Poster"
-					showVideo={showVideo}
-				/>
+				<ItemExpanded.Placeholder src={`${baseUrl}w500${item.poster_path}`} alt="Poster" showVideo={showVideo} />
 				{isExpanded && (
 					<LazyLoad>
 						<ItemExpanded.Video src={videoFile} autoPlay muted={!showVideo} loop showVideo={showVideo} />
