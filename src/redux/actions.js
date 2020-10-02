@@ -1,4 +1,4 @@
-import { FETCH_CONFIGURATION, FETCH_INITIAL_DATA } from "./types";
+import { FETCH_CONFIGURATION, FETCH_GENRES, FETCH_INITIAL_DATA, DECODE_GENRES } from "./types";
 import { API_KEY } from "../API_KEY";
 import axios from "axios";
 
@@ -6,11 +6,25 @@ export const fetchConfiguration = () => {
 	return async dispatch => {
 		try {
 			const configData = await axios.get(`https:/api.themoviedb.org/3/configuration?api_key=${API_KEY}`);
-			const genreData = await axios.get(`https:/api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}`);
 
 			dispatch({
 				type: FETCH_CONFIGURATION,
-				payload: { ...configData.data, ...genreData.data },
+				payload: configData.data,
+			});
+		} catch (error) {
+			console.error(error.message);
+		}
+	};
+};
+
+export const fetchGenres = () => {
+	return async dispatch => {
+		try {
+			const genreData = await axios.get(`https:/api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}`);
+
+			dispatch({
+				type: FETCH_GENRES,
+				payload: genreData.data.genres,
 			});
 		} catch (error) {
 			console.error(error.message);
@@ -40,3 +54,8 @@ export const fetchInitialData = () => {
 		}
 	};
 };
+
+export const decodeGenres = arrayOfGenres => ({
+	type: DECODE_GENRES,
+	payload: arrayOfGenres,
+});
