@@ -3,8 +3,12 @@ import App from "./App";
 import { render } from "react-dom";
 import { Provider } from "react-redux";
 import store from "./redux/store";
+import { fetchConfiguration, fetchInitialData } from "./redux/actions";
 import { GlobalStyles } from "./global-styles";
 import "normalize.css";
+
+store.dispatch(fetchConfiguration());
+store.dispatch(fetchInitialData());
 
 render(
 	<Provider store={store}>
