@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Item } from "../components";
 import { ItemExpandedContainer } from "../containers/";
 import { markItemsPosition } from "../helpers/markItemsPosition";
-import LazyLoad from "react-lazyload";
 
 import VideoFile from "../res/videos/mindhunter_trailer.mp4";
 
@@ -35,16 +34,14 @@ const ItemContainer = ({ item, i, scrolled, isFirstSlide, totalTilesInVievport }
 			scrolled={scrolled}
 			className={position}
 		>
-			<LazyLoad once>
-				<Item src={`https://image.tmdb.org/t/p/w300${item.poster_path}`} alt="Poster" />
-				<ItemExpandedContainer
-					isExpanded={isExpanded}
-					showVideo={showVideo}
-					position={position}
-					item={item}
-					videoFile={VideoFile}
-				/>
-			</LazyLoad>
+			<Item src={`https://image.tmdb.org/t/p/w300${item.poster_path}`} alt="Poster" />
+			<ItemExpandedContainer
+				isExpanded={isExpanded}
+				showVideo={showVideo}
+				position={position}
+				item={item}
+				videoFile={VideoFile}
+			/>
 		</Item.Wrapper>
 	);
 };

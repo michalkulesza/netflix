@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Carousel } from "../components";
 import { ItemContainer } from "../containers";
 import { useTilesInViewport } from "../hooks";
+import LazyLoad from "react-lazyload";
 
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
@@ -62,33 +63,35 @@ const CarouselContainer = ({ data, title, i }) => {
 	};
 
 	return (
-		<Carousel.Container key={i}>
-			<Carousel.Category>{title}</Carousel.Category>
-			<Carousel.Overlay>
-				<Carousel.Button onMouseDown={handleArrowBack} tileWidth={tileWidth} isFirstSlide={isFirstSlide}>
-					<IoIosArrowBack />
-				</Carousel.Button>
-				<Carousel.Button onMouseDown={handleArrowForward} tileWidth={tileWidth}>
-					<IoIosArrowForward />
-				</Carousel.Button>
-			</Carousel.Overlay>
-			<Carousel.Wrapper>
-				<Carousel.ItemsContainer style={{ transform: `translate3d(${scrolled}vw, 0, 0)`, marginLeft: `${margin}vw` }}>
-					{buffer
-						? buffer.map((item, i) => (
-								<ItemContainer
-									key={item.id}
-									item={item}
-									i={i}
-									scrolled={scrolled}
-									isFirstSlide={isFirstSlide}
-									totalTilesInVievport={totalTilesInVievport}
-								/>
-						  ))
-						: "Error"}
-				</Carousel.ItemsContainer>
-			</Carousel.Wrapper>
-		</Carousel.Container>
+		<LazyLoad>
+			<Carousel.Container key={i}>
+				<Carousel.Category>{title}</Carousel.Category>
+				<Carousel.Overlay>
+					<Carousel.Button onMouseDown={handleArrowBack} tileWidth={tileWidth} isFirstSlide={isFirstSlide}>
+						<IoIosArrowBack />
+					</Carousel.Button>
+					<Carousel.Button onMouseDown={handleArrowForward} tileWidth={tileWidth}>
+						<IoIosArrowForward />
+					</Carousel.Button>
+				</Carousel.Overlay>
+				<Carousel.Wrapper>
+					<Carousel.ItemsContainer style={{ transform: `translate3d(${scrolled}vw, 0, 0)`, marginLeft: `${margin}vw` }}>
+						{buffer
+							? buffer.map((item, i) => (
+									<ItemContainer
+										key={item.id}
+										item={item}
+										i={i}
+										scrolled={scrolled}
+										isFirstSlide={isFirstSlide}
+										totalTilesInVievport={totalTilesInVievport}
+									/>
+							  ))
+							: "Error"}
+					</Carousel.ItemsContainer>
+				</Carousel.Wrapper>
+			</Carousel.Container>
+		</LazyLoad>
 	);
 };
 

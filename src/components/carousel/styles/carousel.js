@@ -8,18 +8,18 @@ export const Main = styled.div`
 `;
 
 export const Container = styled.div`
-	margin-bottom: 500px;
 	position: relative;
 	display: flex;
 	flex-direction: column;
+	margin-bottom: 8%;
 `;
 
 export const Category = styled.h1`
 	position: absolute;
 	top: -3em;
-	margin-left: 2.5vw;
-	font-size: 1.5em;
-	color: #fff;
+	margin-left: 5%;
+	font-size: 1.5vw;
+	color: #e5e5e5;
 `;
 
 export const Overlay = styled.div`

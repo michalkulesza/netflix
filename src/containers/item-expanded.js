@@ -15,7 +15,7 @@ const ItemExpandedContainer = ({ isExpanded, showVideo, position, item, videoFil
 				/>
 				{isExpanded && (
 					<LazyLoad>
-						<ItemExpanded.Video src={videoFile} muted={!showVideo} loop showVideo={showVideo} />
+						<ItemExpanded.Video src={videoFile} autoPlay muted={!showVideo} loop showVideo={showVideo} />
 					</LazyLoad>
 				)}
 			</ItemExpanded.Header>
