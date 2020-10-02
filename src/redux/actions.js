@@ -28,12 +28,12 @@ export const fetchInitialData = () => {
 
 			dispatch({
 				type: FETCH_INITIAL_DATA,
-				payload: {
-					trending: trending.data.results,
-					popular: popular.data.results,
-					top_rated: toprated.data.results,
-					upcoming: upcoming.data.results,
-				},
+				payload: [
+					{ trending: trending.data.results },
+					{ popular: popular.data.results },
+					{ top_rated: toprated.data.results },
+					{ upcoming: upcoming.data.results },
+				],
 			});
 		} catch (error) {
 			console.error(error.message);
