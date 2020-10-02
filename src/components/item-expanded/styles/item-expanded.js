@@ -13,7 +13,6 @@ export const Item = styled.div`
 	opacity: ${({ isExpanded }) => (isExpanded ? `1` : `0`)};
 	transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
 	border-radius: 3px;
-	overflow: hidden;
 	background-color: #181818;
 	pointer-events: ${({ isExpanded }) => (isExpanded ? `all` : `none`)};
 	box-shadow: rgba(0, 0, 0, 0.75) 0px 3px 10px;
@@ -64,20 +63,22 @@ export const Half = styled.div`
 export const Label = styled.div`
 	position: absolute;
 	top: -22px;
-	transform: translateX(-50%);
-	left: 50%;
+	transform: ${({ lastButton }) => !lastButton && "translateX(-50%)"};
+	left: ${({ lastButton }) => !lastButton && "50%"};
+	right: ${({ lastButton }) => lastButton && "-30%"};
 	width: max-content;
 	background-color: #e2e2e2;
 	font-size: 0.55em;
 	padding: 0.3em 0.6em;
 	opacity: 0;
 	transition: opacity 200ms ease-in-out;
-	box-shadow: rgba(0, 0, 0, 0.75) 0px 3px 10px;
+	box-shadow: ${({ lastButton }) => !lastButton && "rgba(0, 0, 0, 0.75) 0px 3px 10px"};
 
 	&::after {
 		content: "";
 		position: absolute;
-		left: 50%;
+		left: ${({ lastButton }) => !lastButton && "50%"};
+		right: ${({ lastButton }) => lastButton && "8px"};
 		transform: translateX(-50%) rotate(45deg);
 		bottom: -2px;
 		height: 10px;

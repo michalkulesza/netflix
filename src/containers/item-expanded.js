@@ -5,7 +5,6 @@ import { ItemExpanded } from "../components";
 import { BiPlay, BiPlus, BiLike, BiDislike, BiChevronDown } from "react-icons/bi";
 
 const ItemExpandedContainer = ({ isExpanded, showVideo, position, item, videoFile }) => {
-	console.log(item);
 	return (
 		<ItemExpanded isExpanded={isExpanded} position={position}>
 			<ItemExpanded.Header>
@@ -42,7 +41,9 @@ const ItemExpandedContainer = ({ isExpanded, showVideo, position, item, videoFil
 					<ItemExpanded.Half>
 						<ItemExpanded.Button>
 							<BiChevronDown />
-							<ItemExpanded.Label>{item.media_type === "movie" ? "More info" : "Episodes & Info"}</ItemExpanded.Label>
+							<ItemExpanded.Label lastButton>
+								{item.media_type === "movie" ? "More info" : "Episodes & Info"}
+							</ItemExpanded.Label>
 						</ItemExpanded.Button>
 					</ItemExpanded.Half>
 				</ItemExpanded.Buttons>
