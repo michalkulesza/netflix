@@ -1,19 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Navbar } from "../components/";
 import { NavbarContainer, HeaderContainer, CarouselsContainer } from "../containers";
-import getInitData from "../helpers/getInitData";
+import { useSelector } from "react-redux";
 
 import VideoFile from "../res/videos/mindhunter_trailer.mp4";
 import VideoLogo from "../res/images/mindhunter-logo.png";
 
 const Browse = () => {
-	const [data, setData] = useState(null);
-
-	useEffect(() => {
-		getInitData()
-			.then(data => setData(data))
-			.catch(err => console.error(err));
-	}, []);
+	const data = useSelector(state => state.initialData);
 
 	return (
 		<>

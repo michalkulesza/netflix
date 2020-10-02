@@ -8,7 +8,10 @@ const CarouselsContainer = ({ data }) => {
 			{data
 				? data.map((category, i) => {
 						const categoryName = Object.keys(category)[0];
-						const title = `${categoryName[0].toUpperCase()}${categoryName.slice(1)}`;
+						const title = categoryName
+							.split("_")
+							.map(word => word.charAt(0).toUpperCase() + word.slice(1))
+							.join(" ");
 						return <CarouselContainer title={title} i={i} data={category[categoryName]} key={i} />;
 				  })
 				: null}
