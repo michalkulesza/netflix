@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
 import { Item } from "../components";
 import { ItemExpandedContainer } from "../containers/";
 import { markItemsPosition } from "../helpers/markItemsPosition";
@@ -13,7 +12,6 @@ const ItemContainer = ({ item, i, scrolled, isFirstSlide, totalTilesInVievport }
 	const [isExpanded, setIsExpanded] = useState(false);
 	const [showVideo, setShowVideo] = useState(false);
 	const position = markItemsPosition(i, isFirstSlide, totalTilesInVievport);
-	const baseUrl = useSelector(state => state.configuration.images.base_url);
 
 	return (
 		<Item.Wrapper
@@ -35,7 +33,7 @@ const ItemContainer = ({ item, i, scrolled, isFirstSlide, totalTilesInVievport }
 			scrolled={scrolled}
 			className={position}
 		>
-			<Item src={`${baseUrl}w300${item.poster_path}`} alt="Poster" />
+			<Item src={item.poster_url_300} alt="Poster" />
 			<ItemExpandedContainer
 				isExpanded={isExpanded}
 				showVideo={showVideo}

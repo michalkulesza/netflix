@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Carousel } from "../components";
 import { ItemContainer } from "../containers";
 import { useTilesInViewport } from "../hooks";
-import LazyLoad from "react-lazyload";
 
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
@@ -63,7 +62,7 @@ const CarouselContainer = ({ data, title, i }) => {
 	};
 
 	return (
-		<LazyLoad>
+		data && (
 			<Carousel.Container key={i}>
 				<Carousel.Category>{title}</Carousel.Category>
 				<Carousel.Overlay>
@@ -91,7 +90,7 @@ const CarouselContainer = ({ data, title, i }) => {
 					</Carousel.ItemsContainer>
 				</Carousel.Wrapper>
 			</Carousel.Container>
-		</LazyLoad>
+		)
 	);
 };
 
