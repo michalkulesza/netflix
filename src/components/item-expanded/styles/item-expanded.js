@@ -141,11 +141,16 @@ export const Info = styled.div`
 	}
 `;
 
-export const Genre = styled.div`
+export const GenreWrapper = styled.div`
 	font-size: 0.6em;
 	color: #fff;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
 
 	span {
 		color: #646464;
 	}
 `;
+
+export const Genre = styled.div``;

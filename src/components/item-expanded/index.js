@@ -11,6 +11,7 @@ import {
 	Label,
 	Info,
 	Genre,
+	GenreWrapper,
 } from "./styles/item-expanded";
 
 const ItemExpanded = ({ children, ...restProps }) => {
@@ -55,6 +56,10 @@ ItemExpanded.Info = ({ children, ...restProps }) => {
 
 ItemExpanded.Genre = ({ children, ...restProps }) => {
 	return <Genre {...restProps}>{children}</Genre>;
+};
+
+ItemExpanded.GenreWrapper = ({ children, ...restProps }) => {
+	return <GenreWrapper {...restProps}>{children}</GenreWrapper>;
 };
 
 export default ItemExpanded;

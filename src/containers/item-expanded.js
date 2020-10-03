@@ -48,14 +48,14 @@ const ItemExpandedContainer = ({ isExpanded, showVideo, position, item, videoFil
 					<span>{`12 `}</span>
 					{item.media_type === "movie" ? "1h 40m" : "3 Seasons"}
 				</ItemExpanded.Info>
-				<ItemExpanded.Genre>
-					{item.genre_ids.map((genre, i) => (
-						<div key={i}>
+				<ItemExpanded.GenreWrapper>
+					{item.genre_ids.slice(0, 2).map((genre, i) => (
+						<ItemExpanded.Genre key={i}>
 							{genre}
-							{item.genre_ids.length - 1 !== i && <span> • </span>}
-						</div>
+							{i !== 1 && <span> • </span>}
+						</ItemExpanded.Genre>
 					))}
-				</ItemExpanded.Genre>
+				</ItemExpanded.GenreWrapper>
 			</ItemExpanded.Main>
 		</ItemExpanded>
 	);
