@@ -33,7 +33,7 @@ const ItemContainer = ({ item, i, scrolled, isFirstSlide, totalTilesInVievport }
 			scrolled={scrolled}
 			className={position}
 		>
-			<Item src={item.poster_url_300} alt="Poster" />
+			<Item src={item.poster_path_300} alt="Poster" />
 			<ItemExpandedContainer
 				isExpanded={isExpanded}
 				showVideo={showVideo}

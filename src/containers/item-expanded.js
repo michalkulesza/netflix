@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { fetchDetailsMovie, fetchDetailsTv } from "../redux/actions";
+import { fetchDetailsMovie, fetchDetailsTv, fetchEpisodes } from "../redux/actions";
 import LazyLoad from "react-lazyload";
 import { ItemExpanded } from "../components";
 
@@ -12,7 +12,7 @@ const ItemExpandedContainer = ({ isExpanded, showVideo, position, item, videoFil
 	return (
 		<ItemExpanded isExpanded={isExpanded} position={position}>
 			<ItemExpanded.Header>
-				<ItemExpanded.Placeholder src={item.poster_url_500} alt="Poster" showVideo={showVideo} />
+				<ItemExpanded.Placeholder src={item.poster_path_500} alt="Poster" showVideo={showVideo} />
 				{isExpanded && (
 					<LazyLoad>
 						<ItemExpanded.Video src={videoFile} autoPlay muted={!showVideo} loop showVideo={showVideo} />
