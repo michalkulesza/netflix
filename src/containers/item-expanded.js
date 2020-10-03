@@ -1,10 +1,14 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { fetchDetailsMovie, fetchDetailsTv } from "../redux/actions";
 import LazyLoad from "react-lazyload";
 import { ItemExpanded } from "../components";
 
 import { BiPlay, BiPlus, BiLike, BiDislike, BiChevronDown } from "react-icons/bi";
 
 const ItemExpandedContainer = ({ isExpanded, showVideo, position, item, videoFile }) => {
+	const dispatch = useDispatch();
+
 	return (
 		<ItemExpanded isExpanded={isExpanded} position={position}>
 			<ItemExpanded.Header>
@@ -35,7 +39,11 @@ const ItemExpandedContainer = ({ isExpanded, showVideo, position, item, videoFil
 						</ItemExpanded.Button>
 					</ItemExpanded.Half>
 					<ItemExpanded.Half>
-						<ItemExpanded.Button>
+						<ItemExpanded.Button
+							onClick={() =>
+								item.media_type === "movie" ? dispatch(fetchDetailsMovie(item.id)) : dispatch(fetchDetailsTv(item.id))
+							}
+						>
 							<BiChevronDown />
 							<ItemExpanded.Label lastButton>
 								{item.media_type === "movie" ? "More info" : "Episodes & Info"}
