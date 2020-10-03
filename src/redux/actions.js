@@ -35,10 +35,15 @@ export const fetchDetailsTv = id => {
 	return async dispatch => {
 		try {
 			const response = await axios.post("http://localhost:8888/details/tv", { id });
+			const responseEpisodes = await axios.post("http://localhost:8888/episodes", { id, season: 1 });
 
 			dispatch({
 				type: FETCH_DETAILS,
 				payload: response.data,
+			});
+			dispatch({
+				type: FETCH_EPISODES,
+				payload: responseEpisodes.data,
 			});
 		} catch (error) {
 			console.error(error.message);
@@ -50,7 +55,6 @@ export const fetchEpisodes = (id, season) => {
 	return async dispatch => {
 		try {
 			const response = await axios.post("http://localhost:8888/episodes", { id, season });
-
 			dispatch({
 				type: FETCH_EPISODES,
 				payload: response.data,
