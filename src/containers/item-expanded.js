@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { fetchDetailsMovie, fetchDetailsTv, fetchEpisodes } from "../redux/actions";
+// import { fetchDetailsMovie, fetchDetailsTv } from "../redux/actions";
+import { setDetails, setDetailsPosition } from "../redux/actions";
 import LazyLoad from "react-lazyload";
 import { ItemExpanded } from "../components";
 
@@ -15,7 +16,7 @@ const ItemExpandedContainer = ({ isExpanded, showVideo, position, item, videoFil
 				<ItemExpanded.Placeholder src={item.poster_path_500} alt="Poster" showVideo={showVideo} />
 				{isExpanded && (
 					<LazyLoad>
-						<ItemExpanded.Video src={videoFile} autoPlay muted={!showVideo} loop showVideo={showVideo} />
+						<ItemExpanded.Video src={videoFile} muted={!showVideo} loop showVideo={showVideo} />
 					</LazyLoad>
 				)}
 			</ItemExpanded.Header>
@@ -40,9 +41,15 @@ const ItemExpandedContainer = ({ isExpanded, showVideo, position, item, videoFil
 					</ItemExpanded.Half>
 					<ItemExpanded.Half>
 						<ItemExpanded.Button
-							onClick={() =>
-								item.media_type === "movie" ? dispatch(fetchDetailsMovie(item.id)) : dispatch(fetchDetailsTv(item.id))
-							}
+							onMouseDown={({ currentTarget }) => {
+								const elemPos = currentTarget.parentNode.parentNode.parentNode.parentNode.getBoundingClientRect();
+								dispatch(setDetailsPosition(elemPos.x, elemPos.y, elemPos.width, elemPos.height));
+								dispatch(setDetails(true));
+							}}
+
+							// onClick={() =>
+							// 	item.media_type === "movie" ? dispatch(fetchDetailsMovie(item.id)) : dispatch(fetchDetailsTv(item.id))
+							// }
 						>
 							<BiChevronDown />
 							<ItemExpanded.Label lastButton>
