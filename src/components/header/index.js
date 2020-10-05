@@ -22,6 +22,8 @@ import {
 	VideoButton,
 	VideoMuteContainer,
 	VideoMuteButton,
+	Loading,
+	Placeholder,
 } from "./styles/header";
 
 const Header = ({ children, ...restProps }) => {
@@ -109,6 +111,14 @@ Header.VideoMuteContainer = function ({ children, ...restProps }) {
 
 Header.VideoMuteButton = function ({ children, ...restProps }) {
 	return <VideoMuteButton {...restProps}>{children}</VideoMuteButton>;
+};
+
+Header.Loading = function () {
+	return (
+		<Loading>
+			<Placeholder />
+		</Loading>
+	);
 };
 
 export default Header;

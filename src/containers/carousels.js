@@ -1,4 +1,5 @@
 import React from "react";
+import LazyLoad from "react-lazyload";
 import { Carousels } from "../components";
 import CarouselContainer from "../containers/carousel";
 
@@ -12,7 +13,11 @@ const CarouselsContainer = ({ data }) => {
 						.split("_")
 						.map(word => word.charAt(0).toUpperCase() + word.slice(1))
 						.join(" ");
-					return <CarouselContainer title={title} i={i} data={category[categoryName]} key={i} />;
+					return (
+						<LazyLoad height={600} key={i}>
+							<CarouselContainer title={title} i={i} data={category[categoryName]} />
+						</LazyLoad>
+					);
 				})}
 		</Carousels>
 	);
