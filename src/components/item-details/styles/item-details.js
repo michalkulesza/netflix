@@ -1,7 +1,7 @@
 import styled, { css, keyframes } from "styled-components/macro";
 
 export const Container = styled.div`
-	position: absolute;
+	position: fixed;
 	overflow-y: ${({ isDetails }) => (isDetails ? "scroll" : "hidden")};
 	overflow-x: hidden;
 	height: 100%;

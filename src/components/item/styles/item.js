@@ -68,7 +68,7 @@ export const Main = styled.img`
 	border-radius: 5px;
 	height: 100%;
 	width: 100%;
-	background-color: blue;
+	background-color: #1b1b1b;
 	box-sizing: content-box;
 `;
 

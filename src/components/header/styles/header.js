@@ -1,13 +1,12 @@
-import styled from "styled-components/macro";
+import styled, { keyframes } from "styled-components/macro";
 
 export const Main = styled.div`
 	position: relative;
-	width: 100vw;
+	width: 100%;
 `;
 
 export const Border = styled.div`
 	height: 8px;
-	background-color: pink;
 	width: 100%;
 `;
 
@@ -27,7 +26,6 @@ export const Background = styled.div`
 	left: 0;
 	height: 100%;
 	width: 100%;
-	background-color: pink;
 `;
 
 export const BackgroundImg = styled.img`
@@ -274,5 +272,50 @@ export const VideoButton = styled.button`
 
 	@media only screen and (max-width: 949px) {
 		padding: 1.5vw 2.8vw 1.5vw 2.3vw;
+	}
+`;
+
+const LoadingAnimation = keyframes`
+	from {
+		background-position-x: 0vw;
+	}
+	to {
+		background-position-x: 100vw;
+	}
+`;
+
+export const Loading = styled.div`
+	padding-left: 3.5em;
+	width: 100%;
+	height: 30vw;
+	background: rgb(18, 18, 18);
+	padding-top: 1em;
+	background: linear-gradient(
+		90deg,
+		rgba(18, 18, 18, 1) 0%,
+		rgba(27, 27, 27, 1) 39%,
+		rgba(40, 40, 40, 1) 50%,
+		rgba(27, 27, 27, 1) 55%,
+		rgba(18, 18, 18, 1) 100%
+	);
+	animation: ${LoadingAnimation} 1.5s linear infinite;
+	display: flex;
+	align-items: center;
+`;
+
+export const Placeholder = styled.div`
+	height: 10%;
+	width: 40%;
+	background-color: #1b1b1b;
+	border-radius: 5px;
+
+	&:after {
+		content: "";
+		height: 100%;
+		width: 60%;
+		margin-top: 10%;
+		display: block;
+		background-color: #1b1b1b;
+		border-radius: 5px;
 	}
 `;

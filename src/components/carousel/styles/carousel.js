@@ -12,6 +12,7 @@ export const Container = styled.div`
 	display: flex;
 	flex-direction: column;
 	margin-bottom: 8%;
+	min-height: 250px;
 `;
 
 export const Category = styled.h1`

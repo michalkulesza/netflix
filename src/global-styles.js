@@ -11,11 +11,7 @@ html, body {
    color: #333333;
    font-size: 16px;
    overflow-x: hidden;
-
-   ::-webkit-scrollbar {
-		width: 0px;
-		background: transparent;
-	}
+   overflow-y: ${({ disableScrolling }) => disableScrolling && "hidden"};
    }
 
 ul,li{
@@ -27,24 +23,5 @@ ul,li{
 input{
    padding: 0;
 	border: 0;
-}
-
-
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-@keyframes fadeOut {
-  0% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
 }
 `;

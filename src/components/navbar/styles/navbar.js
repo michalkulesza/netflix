@@ -1,7 +1,7 @@
 import styled from "styled-components/macro";
 
 export const Main = styled.div`
-	position: absolute;
+	position: fixed;
 	max-width: 1920px;
 	margin: 0 auto;
 	padding-top: 20px;
