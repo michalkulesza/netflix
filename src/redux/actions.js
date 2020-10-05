@@ -1,4 +1,11 @@
-import { FETCH_INITIAL_DATA, FETCH_DETAILS, FETCH_EPISODES, SET_DETAILS, SET_DETAILS_POSITION } from "./types";
+import {
+	FETCH_INITIAL_DATA,
+	FETCH_DETAILS,
+	FETCH_EPISODES,
+	SET_DETAILS,
+	SET_DETAILS_POSITION,
+	SET_SCROLLED,
+} from "./types";
 import axios from "axios";
 
 export const fetchInitialData = () => {
@@ -76,5 +83,12 @@ export const setDetailsPosition = (x, y, width, height) => {
 	return {
 		type: SET_DETAILS_POSITION,
 		payload: { detailsPosition: { x, y, width, height } },
+	};
+};
+
+export const setScrolled = scrolled => {
+	return {
+		type: SET_SCROLLED,
+		payload: { scrolled },
 	};
 };
