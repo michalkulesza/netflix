@@ -1,4 +1,4 @@
-import { FETCH_INITIAL_DATA, FETCH_DETAILS, FETCH_EPISODES } from "./types";
+import { FETCH_INITIAL_DATA, FETCH_DETAILS, FETCH_EPISODES, SET_DETAILS, SET_DETAILS_POSITION } from "./types";
 import axios from "axios";
 
 export const fetchInitialData = () => {
@@ -62,5 +62,19 @@ export const fetchEpisodes = (id, season) => {
 		} catch (error) {
 			console.error(error.message);
 		}
+	};
+};
+
+export const setDetails = bool => {
+	return {
+		type: SET_DETAILS,
+		payload: { isDetails: bool },
+	};
+};
+
+export const setDetailsPosition = (x, y, width, height) => {
+	return {
+		type: SET_DETAILS_POSITION,
+		payload: { detailsPosition: { x, y, width, height } },
 	};
 };
