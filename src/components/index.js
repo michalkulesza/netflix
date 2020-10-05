@@ -10,3 +10,4 @@ export { default as Carousel } from "./carousel";
 export { default as Carousels } from "./carousels";
 export { default as Item } from "./item";
 export { default as ItemExpanded } from "./item-expanded";
+export { default as ItemDetails } from "./item-details";
