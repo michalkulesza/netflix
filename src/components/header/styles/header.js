@@ -2,7 +2,7 @@ import styled from "styled-components/macro";
 
 export const Main = styled.div`
 	position: relative;
-	width: 100%;
+	width: 100vw;
 `;
 
 export const Border = styled.div`

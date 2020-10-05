@@ -25,7 +25,7 @@ export const Category = styled.h1`
 export const Overlay = styled.div`
 	position: absolute;
 	height: 100%;
-	width: 100%;
+	width: 100vw;
 	top: 0;
 	left: 0;
 	display: flex;
@@ -36,6 +36,7 @@ export const Overlay = styled.div`
 `;
 
 export const Button = styled.button`
+	position: absolute;
 	pointer-events: auto;
 	cursor: pointer;
 	height: 100%;
@@ -59,10 +60,12 @@ export const Button = styled.button`
 	&:nth-of-type(1) {
 		border-radius: 0 5px 5px 0;
 		visibility: ${({ isFirstSlide }) => (isFirstSlide ? "hidden" : "visible")};
+		left: 0;
 	}
 
 	&:nth-of-type(2) {
 		border-radius: 5px 0 0 5px;
+		right: 0;
 	}
 
 	svg {

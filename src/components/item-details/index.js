@@ -1,8 +1,13 @@
 import React from "react";
-import { Main, Something } from "./styles/item-details";
+
+import { Main, Container, Something } from "./styles/item-details";
 
 const ItemDetails = ({ children, ...restProps }) => {
 	return <Main {...restProps}>{children}</Main>;
+};
+
+ItemDetails.Container = ({ children, ...restProps }) => {
+	return <Container {...restProps}>{children}</Container>;
 };
 
 ItemDetails.Something = ({ children, ...restProps }) => {
