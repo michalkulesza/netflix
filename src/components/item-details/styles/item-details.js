@@ -107,7 +107,6 @@ export const Overlay = styled.div`
 	background: rgb(27, 27, 27);
 	background: linear-gradient(180deg, rgba(27, 27, 27, 0) 50%, rgba(24, 24, 24, 1) 100%);
 	padding: 2vw 2vw 4vw 5vw;
-	box-sizing: border-box;
 `;
 
 export const OverlayHalf = styled.div`
@@ -319,7 +318,6 @@ export const Episodes = styled.div`
 	width: 100%;
 	height: fit-content;
 	padding: 0 3em;
-	box-sizing: border-box;
 	margin-bottom: 3em;
 `;
 
@@ -351,8 +349,8 @@ export const EpisodesSeasonsButton = styled.button`
 		seasonsDropdownActive ? "0.1em solid #fff" : "0.1em solid rgb(77, 77, 77)"};
 	border-radius: 0.2em;
 
-	span {
-		margin-right: 1em;
+	svg {
+		margin-left: 1em;
 	}
 `;
 
@@ -378,14 +376,147 @@ export const EpisodesSeason = styled.li`
 
 export const EpisodesList = styled.div``;
 
-export const Episode = styled.div`
+export const EpisodeWrapper = styled.div`
 	width: 100%;
 	height: 130px;
 	border-radius: 5px;
 	background-color: transparent;
 	border-bottom: 1px solid #404040;
+	user-select: none;
+	cursor: pointer;
 
 	&:nth-of-type(1) {
 		background-color: #333333;
+	}
+
+	&:active {
+		outline: 2px solid #fff;
+	}
+`;
+
+export const Episode = styled.div`
+	height: 100%;
+	width: 85%;
+	display: flex;
+	margin: 0 auto;
+	align-items: center;
+`;
+
+export const EpisodeNum = styled.div`
+	font-size: 1.8em;
+	margin-right: 1em;
+`;
+
+export const EpisodeImage = styled.img`
+	height: 70%;
+	border-radius: 5px;
+	margin-right: 1em;
+`;
+
+export const EpisodeMain = styled.div``;
+
+export const EpisodeHalf = styled.div`
+	display: flex;
+	justify-content: space-between;
+`;
+
+export const EpisodeTitle = styled.div`
+	font-size: 0.9em;
+	font-weight: 600;
+	margin-bottom: 0.5em;
+`;
+
+export const EpisodeTime = styled.div``;
+
+export const EpisodeDescription = styled.div`
+	font-size: 0.9em;
+	color: #d2d2d2;
+`;
+
+export const Related = styled.div`
+	width: 100%;
+	padding: 0 3em;
+	margin-bottom: 3em;
+`;
+
+export const RelatedHeader = styled.div`
+	font-size: 1.4em;
+	font-weight: 600;
+	margin-bottom: 1em;
+`;
+
+export const RelatedItems = styled.div`
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 1em;
+`;
+
+export const RelatedItem = styled.div`
+	width: 100%;
+	background-color: #2f2f2f;
+	border-radius: 5px;
+	overflow: hidden;
+`;
+
+export const RelatedItemImage = styled.img`
+	width: 100%;
+`;
+
+export const RelatedItemMain = styled.div`
+	padding: 1em 1em 2em 1em;
+`;
+
+export const RelatedItemTitle = styled.div`
+	margin-bottom: 0.3em;
+	font-weight: 600;
+`;
+
+export const RelatedItemInfo = styled.div`
+	margin-bottom: 1em;
+	color: #e9e9e9;
+
+	span {
+		border: 1px solid #636363;
+		padding: 0.1em 0.3em;
+	}
+`;
+
+export const RelatedItemDescription = styled.div`
+	font-size: 0.9em;
+	line-height: 1.3em;
+	color: #e9e9e9;
+`;
+
+export const About = styled.div`
+	width: 100%;
+	padding: 0 3em;
+	margin-bottom: 3em;
+`;
+
+export const AboutHeader = styled.div`
+	font-size: 1.5em;
+	font-weight: 600;
+	margin-bottom: 1em;
+`;
+
+export const AboutPiece = styled.div`
+	display: flex;
+	color: #777777;
+	font-size: 0.95em;
+	margin-bottom: 1em;
+
+	p {
+		margin: 0;
+		color: #fff;
+
+		&:nth-of-type(1) {
+			margin-left: 0.5em;
+		}
+	}
+	span {
+		border: 1px solid #636363;
+		padding: 0.1em 0.3em;
+		margin-left: 0.5em;
+		color: #fff;
 	}
 `;

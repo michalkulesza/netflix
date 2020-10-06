@@ -13,7 +13,7 @@ html, body {
    overflow-x: hidden;
    overflow-y: ${({ disableScrolling }) => disableScrolling && "hidden"};
    margin-right: ${({ disableScrolling }) => disableScrolling && "8px"};
-   box-sizing: border-box;
+   
    }
 
 ul,li{
@@ -33,5 +33,10 @@ button{
    &:focus{
       outline: none;
    }
+}
+
+*{
+   box-sizing: border-box;
+   user-select: none;
 }
 `;

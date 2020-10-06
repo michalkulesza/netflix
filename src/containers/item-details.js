@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setDetails, clearDetails } from "../redux/actions";
+import { setDetails, clearDetails, fetchEpisodes } from "../redux/actions";
 import { ItemDetails } from "../components";
 
 import { GlobalStyles } from "../global-styles";
@@ -16,6 +16,8 @@ const ItemDetailsContainer = () => {
 	const isDetails = useSelector(state => state.toggles.isDetails);
 	const position = useSelector(state => state.toggles.detailsPosition);
 	const item = useSelector(state => state.fetchDetails);
+	const episodes = useSelector(state => state.fetchEpisodes);
+
 	const [shouldRender, setRender] = useState(isDetails);
 	const [seasonsDropdownDisabled, setSeasonsDropdownDisabled] = useState(true);
 	const [seasonsDropdownActive, setSeasonsDropdownActive] = useState(false);
@@ -40,6 +42,7 @@ const ItemDetailsContainer = () => {
 	const handleSeasonClick = seasonNum => {
 		setSelectedSeason(seasonNum);
 		setSeasonsDropdownActive(false);
+		dispatch(fetchEpisodes(item.details.id, seasonNum));
 	};
 
 	return shouldRender ? (
@@ -106,11 +109,16 @@ const ItemDetailsContainer = () => {
 						Episodes
 						<ItemDetails.EpisodesSeasons>
 							<ItemDetails.EpisodesSeasonsButton
-								onMouseDown={() => setSeasonsDropdownActive(!seasonsDropdownActive)}
+								onMouseDown={() => !seasonsDropdownDisabled && setSeasonsDropdownActive(!seasonsDropdownActive)}
 								seasonsDropdownActive={seasonsDropdownActive}
+								seasonsDropdownDisabled={seasonsDropdownDisabled}
 							>
 								<span>Season {selectedSeason}</span>
-								{seasonsDropdownActive ? <BiCaretUp /> : <BiCaretDown />}
+								{seasonsDropdownActive && !seasonsDropdownDisabled ? (
+									<BiCaretUp />
+								) : !seasonsDropdownActive && !seasonsDropdownDisabled ? (
+									<BiCaretDown />
+								) : null}
 							</ItemDetails.EpisodesSeasonsButton>
 							<ItemDetails.EpisodesSeasonsList seasonsDropdownActive={seasonsDropdownActive}>
 								{Array.from(Array(item.details.number_of_seasons), (_, i) => (
@@ -123,17 +131,70 @@ const ItemDetailsContainer = () => {
 					</ItemDetails.EpisodesHeader>
 
 					<ItemDetails.EpisodesList>
-						<ItemDetails.Episode></ItemDetails.Episode>
-						<ItemDetails.Episode></ItemDetails.Episode>
-						<ItemDetails.Episode></ItemDetails.Episode>
-						<ItemDetails.Episode></ItemDetails.Episode>
-						<ItemDetails.Episode></ItemDetails.Episode>
-						<ItemDetails.Episode></ItemDetails.Episode>
-						<ItemDetails.Episode></ItemDetails.Episode>
-						<ItemDetails.Episode></ItemDetails.Episode>
-						<ItemDetails.Episode></ItemDetails.Episode>
+						{episodes.episodes.map(item => (
+							<ItemDetails.EpisodeWrapper>
+								<ItemDetails.Episode>
+									<ItemDetails.EpisodeNum>{item.episode_number ? item.episode_number : "-"}</ItemDetails.EpisodeNum>
+									<ItemDetails.EpisodeImage src={item.still_path_300} alt="Episode preview" />
+									<ItemDetails.EpisodeMain>
+										<ItemDetails.EpisodeHalf>
+											<ItemDetails.EpisodeTitle>{item.name}</ItemDetails.EpisodeTitle>
+											<ItemDetails.EpisodeTime>57m</ItemDetails.EpisodeTime>
+										</ItemDetails.EpisodeHalf>
+										<ItemDetails.EpisodeHalf>
+											<ItemDetails.EpisodeDescription>{item.overview.slice(0, 200)}</ItemDetails.EpisodeDescription>
+										</ItemDetails.EpisodeHalf>
+									</ItemDetails.EpisodeMain>
+								</ItemDetails.Episode>
+							</ItemDetails.EpisodeWrapper>
+						))}
 					</ItemDetails.EpisodesList>
 				</ItemDetails.Episodes>
+				<ItemDetails.Related>
+					<ItemDetails.RelatedHeader>More Like This</ItemDetails.RelatedHeader>
+					<ItemDetails.RelatedItems>
+						{item.related.map(el => (
+							<ItemDetails.RelatedItem>
+								<ItemDetails.RelatedItemImage src={el.backdrop_path_500} alt="Video preview" />
+								<ItemDetails.RelatedItemMain>
+									<ItemDetails.RelatedItemTitle>{el.name}</ItemDetails.RelatedItemTitle>
+									<ItemDetails.RelatedItemInfo>
+										<span>12</span> {el.first_air_date ? el.first_air_date.slice(0, 4) : "-"}
+									</ItemDetails.RelatedItemInfo>
+									<ItemDetails.RelatedItemDescription>{el.overview.slice(0, 100)}</ItemDetails.RelatedItemDescription>
+								</ItemDetails.RelatedItemMain>
+							</ItemDetails.RelatedItem>
+						))}
+					</ItemDetails.RelatedItems>
+				</ItemDetails.Related>
+
+				<ItemDetails.About>
+					<ItemDetails.AboutHeader>About {item.details.name}</ItemDetails.AboutHeader>
+					<ItemDetails.AboutPiece>
+						Creators:
+						<p>
+							{item.details.created_by.map((el, i) =>
+								i + 1 === item.details.created_by.length ? el.name : `${el.name}, `
+							)}
+						</p>
+					</ItemDetails.AboutPiece>
+					<ItemDetails.AboutPiece>
+						Cast:
+						<p>{item.cast.map((el, i) => (i + 1 === item.cast.length ? el.name : `${el.name}, `))}</p>
+					</ItemDetails.AboutPiece>
+					<ItemDetails.AboutPiece>
+						Genres:
+						<p>
+							{item.details.genres.map((el, i) => (i + 1 === item.details.genres.length ? el.name : `${el.name}, `))}
+						</p>
+					</ItemDetails.AboutPiece>
+					<ItemDetails.AboutPiece>
+						Maturity rating <span>{item.ageRestriction}</span>
+						<p>
+							{item.details.genres.map((el, i) => (i + 1 === item.details.genres.length ? el.name : `${el.name}, `))}
+						</p>
+					</ItemDetails.AboutPiece>
+				</ItemDetails.About>
 			</ItemDetails>
 			<GlobalStyles disableScrolling={isDetails} />
 		</ItemDetails.Container>
