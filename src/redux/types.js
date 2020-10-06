@@ -1,5 +1,6 @@
 export const FETCH_INITIAL_DATA = "FETCH_INITIAL_DATA";
 export const FETCH_DETAILS = "FETCH_DETAILS";
+export const CLEAR_DETAILS = "CLEAR_DETAILS";
 export const FETCH_EPISODES = "FETCH_EPISODES";
 
 export const SET_DETAILS = "SET_DETAILS";

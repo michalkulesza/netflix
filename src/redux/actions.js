@@ -1,6 +1,7 @@
 import {
 	FETCH_INITIAL_DATA,
 	FETCH_DETAILS,
+	CLEAR_DETAILS,
 	FETCH_EPISODES,
 	SET_DETAILS,
 	SET_DETAILS_POSITION,
@@ -55,6 +56,12 @@ export const fetchDetailsTv = id => {
 		} catch (error) {
 			console.error(error.message);
 		}
+	};
+};
+
+export const clearDetails = () => {
+	return {
+		type: CLEAR_DETAILS,
 	};
 };
 
