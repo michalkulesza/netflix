@@ -6,6 +6,7 @@ import {
 	SET_DETAILS,
 	SET_DETAILS_POSITION,
 	SET_SCROLLED,
+	CLEAR_EPISODES,
 } from "./types";
 import axios from "axios";
 
@@ -76,6 +77,12 @@ export const fetchEpisodes = (id, season) => {
 		} catch (error) {
 			console.error(error.message);
 		}
+	};
+};
+
+export const clearEpisodes = () => {
+	return {
+		type: CLEAR_EPISODES,
 	};
 };
 
