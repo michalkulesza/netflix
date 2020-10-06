@@ -12,6 +12,7 @@ html, body {
    font-size: 16px;
    overflow-x: hidden;
    overflow-y: ${({ disableScrolling }) => disableScrolling && "hidden"};
+   margin-right: ${({ disableScrolling }) => disableScrolling && "8px"};
    }
 
 ul,li{
@@ -23,5 +24,13 @@ ul,li{
 input{
    padding: 0;
 	border: 0;
+}
+
+button{
+   cursor: pointer;
+   border: none;
+   &:focus{
+      outline: none;
+   }
 }
 `;

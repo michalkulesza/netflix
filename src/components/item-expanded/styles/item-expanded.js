@@ -32,7 +32,6 @@ export const Placeholder = styled.img`
 	left: 0;
 	object-fit: cover;
 	max-width: calc(100% - 1px);
-	transform: translateY(-50%);
 	opacity: ${({ showVideo }) => (showVideo ? "0" : "1")};
 	transition: opacity 500ms ease-in-out;
 `;

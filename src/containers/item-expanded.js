@@ -1,7 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-// import { fetchDetailsMovie, fetchDetailsTv } from "../redux/actions";
-import { setDetails, setDetailsPosition } from "../redux/actions";
+import { setDetails, setDetailsPosition, fetchDetailsMovie, fetchDetailsTv } from "../redux/actions";
 import LazyLoad from "react-lazyload";
 import { ItemExpanded } from "../components";
 
@@ -10,10 +9,20 @@ import { BiPlay, BiPlus, BiLike, BiDislike, BiChevronDown } from "react-icons/bi
 const ItemExpandedContainer = ({ isExpanded, showVideo, position, item, videoFile }) => {
 	const dispatch = useDispatch();
 
+	const handleClickMoreDetails = ({ currentTarget }) => {
+		const elemPos = currentTarget.parentNode.parentNode.parentNode.parentNode.getBoundingClientRect();
+		dispatch(setDetailsPosition(elemPos.x, elemPos.y, elemPos.width, elemPos.height));
+		dispatch(setDetails(true));
+	};
+
+	const preloadDetailsData = () => {
+		item.media_type === "movie" ? dispatch(fetchDetailsMovie(item.id)) : dispatch(fetchDetailsTv(item.id));
+	};
+
 	return (
-		<ItemExpanded isExpanded={isExpanded} position={position}>
+		<ItemExpanded isExpanded={isExpanded} position={position} onMouseEnter={preloadDetailsData}>
 			<ItemExpanded.Header>
-				<ItemExpanded.Placeholder src={item.poster_path_500} alt="Poster" showVideo={showVideo} />
+				<ItemExpanded.Placeholder src={item.backdrop_path_500} alt="Poster" showVideo={showVideo} />
 				{isExpanded && (
 					<LazyLoad>
 						<ItemExpanded.Video src={videoFile} muted={!showVideo} loop showVideo={showVideo} />
@@ -40,17 +49,7 @@ const ItemExpandedContainer = ({ isExpanded, showVideo, position, item, videoFil
 						</ItemExpanded.Button>
 					</ItemExpanded.Half>
 					<ItemExpanded.Half>
-						<ItemExpanded.Button
-							onMouseDown={({ currentTarget }) => {
-								const elemPos = currentTarget.parentNode.parentNode.parentNode.parentNode.getBoundingClientRect();
-								dispatch(setDetailsPosition(elemPos.x, elemPos.y, elemPos.width, elemPos.height));
-								dispatch(setDetails(true));
-							}}
-
-							// onClick={() =>
-							// 	item.media_type === "movie" ? dispatch(fetchDetailsMovie(item.id)) : dispatch(fetchDetailsTv(item.id))
-							// }
-						>
+						<ItemExpanded.Button onMouseDown={e => handleClickMoreDetails(e)}>
 							<BiChevronDown />
 							<ItemExpanded.Label lastButton>
 								{item.media_type === "movie" ? "More info" : "Episodes & Info"}
