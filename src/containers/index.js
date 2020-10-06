@@ -9,3 +9,4 @@ export { default as CarouselContainer } from "./carousel";
 export { default as ItemContainer } from "./item";
 export { default as ItemExpandedContainer } from "./item-expanded";
 export { default as ItemDetailsContainer } from "./item-details";
+export { default as ItemDetailsHeaderContainer } from "./item-details-header";
