@@ -269,11 +269,10 @@ export const Info = styled.div`
 	padding: 2vw 5vw;
 	display: flex;
 	gap: 2em;
+	margin-bottom: 2em;
 `;
 
 export const InfoHalf = styled.div`
-	height: 300px;
-
 	&:nth-of-type(1) {
 		width: 65%;
 	}
@@ -313,5 +312,80 @@ export const InfoCast = styled.div`
 	line-height: 1.5em;
 	span {
 		color: #777777;
+	}
+`;
+
+export const Episodes = styled.div`
+	width: 100%;
+	height: fit-content;
+	padding: 0 3em;
+	box-sizing: border-box;
+	margin-bottom: 3em;
+`;
+
+export const EpisodesHeader = styled.div`
+	font-size: 1.4em;
+	font-weight: 600;
+	margin-bottom: 1em;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+`;
+
+export const EpisodesSeasons = styled.div`
+	position: relative;
+`;
+
+export const EpisodesSeasonsButton = styled.button`
+	display: flex;
+	align-items: center;
+	min-width: 4em;
+	position: relative;
+	font-size: 0.8em;
+	font-weight: 600;
+	background-color: rgb(36, 36, 36);
+	padding: 0.5em 1em;
+	color: white;
+	cursor: pointer;
+	border: ${({ seasonsDropdownActive }) =>
+		seasonsDropdownActive ? "0.1em solid #fff" : "0.1em solid rgb(77, 77, 77)"};
+	border-radius: 0.2em;
+
+	span {
+		margin-right: 1em;
+	}
+`;
+
+export const EpisodesSeasonsList = styled.ul`
+	position: absolute;
+	width: 90%;
+	top: 100%;
+	right: 0;
+	border: 0.1em solid rgb(77, 77, 77);
+	background-color: rgb(36, 36, 36);
+	margin-top: 0.1em;
+	visibility: ${({ seasonsDropdownActive }) => (seasonsDropdownActive ? "visible" : "hidden")};
+`;
+
+export const EpisodesSeason = styled.li`
+	padding: 0.5em 0.8em;
+	font-size: 0.8em;
+	cursor: pointer;
+	&:hover {
+		background-color: rgb(66, 66, 66);
+	}
+`;
+
+export const EpisodesList = styled.div``;
+
+export const Episode = styled.div`
+	width: 100%;
+	height: 130px;
+	border-radius: 5px;
+	background-color: transparent;
+	border-bottom: 1px solid #404040;
+
+	&:nth-of-type(1) {
+		background-color: #333333;
 	}
 `;

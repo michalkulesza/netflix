@@ -6,7 +6,7 @@ import { ItemDetails } from "../components";
 import { GlobalStyles } from "../global-styles";
 import { GrClose, GrPlayFill } from "react-icons/gr";
 import { GiSpeaker } from "react-icons/gi";
-import { BiPlus, BiLike, BiDislike } from "react-icons/bi";
+import { BiPlus, BiLike, BiDislike, BiCaretDown, BiCaretUp } from "react-icons/bi";
 
 import VideoFile from "../res/videos/mindhunter_trailer.mp4";
 import VideoLogo from "../res/images/mindhunter-logo.png";
@@ -17,9 +17,13 @@ const ItemDetailsContainer = () => {
 	const position = useSelector(state => state.toggles.detailsPosition);
 	const item = useSelector(state => state.fetchDetails);
 	const [shouldRender, setRender] = useState(isDetails);
+	const [seasonsDropdownDisabled, setSeasonsDropdownDisabled] = useState(true);
+	const [seasonsDropdownActive, setSeasonsDropdownActive] = useState(false);
+	const [selectedSeason, setSelectedSeason] = useState(1);
 
 	useEffect(() => {
 		if (isDetails && item) setRender(true);
+		if (item && item.details.number_of_seasons > 1) setSeasonsDropdownDisabled(false);
 	}, [isDetails, item]);
 
 	const onAnimationEnd = () => {
@@ -31,6 +35,11 @@ const ItemDetailsContainer = () => {
 
 	const handleClose = () => {
 		dispatch(setDetails(false));
+	};
+
+	const handleSeasonClick = seasonNum => {
+		setSelectedSeason(seasonNum);
+		setSeasonsDropdownActive(false);
 	};
 
 	return shouldRender ? (
@@ -92,6 +101,39 @@ const ItemDetailsContainer = () => {
 						</ItemDetails.InfoCast>
 					</ItemDetails.InfoHalf>
 				</ItemDetails.Info>
+				<ItemDetails.Episodes>
+					<ItemDetails.EpisodesHeader>
+						Episodes
+						<ItemDetails.EpisodesSeasons>
+							<ItemDetails.EpisodesSeasonsButton
+								onMouseDown={() => setSeasonsDropdownActive(!seasonsDropdownActive)}
+								seasonsDropdownActive={seasonsDropdownActive}
+							>
+								<span>Season {selectedSeason}</span>
+								{seasonsDropdownActive ? <BiCaretUp /> : <BiCaretDown />}
+							</ItemDetails.EpisodesSeasonsButton>
+							<ItemDetails.EpisodesSeasonsList seasonsDropdownActive={seasonsDropdownActive}>
+								{Array.from(Array(item.details.number_of_seasons), (_, i) => (
+									<ItemDetails.EpisodesSeason onMouseDown={() => handleSeasonClick(i + 1)}>
+										Season {i + 1}
+									</ItemDetails.EpisodesSeason>
+								))}
+							</ItemDetails.EpisodesSeasonsList>
+						</ItemDetails.EpisodesSeasons>
+					</ItemDetails.EpisodesHeader>
+
+					<ItemDetails.EpisodesList>
+						<ItemDetails.Episode></ItemDetails.Episode>
+						<ItemDetails.Episode></ItemDetails.Episode>
+						<ItemDetails.Episode></ItemDetails.Episode>
+						<ItemDetails.Episode></ItemDetails.Episode>
+						<ItemDetails.Episode></ItemDetails.Episode>
+						<ItemDetails.Episode></ItemDetails.Episode>
+						<ItemDetails.Episode></ItemDetails.Episode>
+						<ItemDetails.Episode></ItemDetails.Episode>
+						<ItemDetails.Episode></ItemDetails.Episode>
+					</ItemDetails.EpisodesList>
+				</ItemDetails.Episodes>
 			</ItemDetails>
 			<GlobalStyles disableScrolling={isDetails} />
 		</ItemDetails.Container>

@@ -19,6 +19,14 @@ import {
 	InfoContent,
 	InfoDescription,
 	InfoCast,
+	Episodes,
+	EpisodesHeader,
+	EpisodesSeasons,
+	EpisodesSeasonsButton,
+	EpisodesSeasonsList,
+	EpisodesSeason,
+	EpisodesList,
+	Episode,
 } from "./styles/item-details";
 
 const ItemDetails = ({ children, ...restProps }) => {
@@ -91,6 +99,38 @@ ItemDetails.InfoDescription = ({ children, ...restProps }) => {
 
 ItemDetails.InfoCast = ({ children, ...restProps }) => {
 	return <InfoCast {...restProps}>{children}</InfoCast>;
+};
+
+ItemDetails.Episodes = ({ children, ...restProps }) => {
+	return <Episodes {...restProps}>{children}</Episodes>;
+};
+
+ItemDetails.EpisodesHeader = ({ children, ...restProps }) => {
+	return <EpisodesHeader {...restProps}>{children}</EpisodesHeader>;
+};
+
+ItemDetails.EpisodesSeasons = ({ children, ...restProps }) => {
+	return <EpisodesSeasons {...restProps}>{children}</EpisodesSeasons>;
+};
+
+ItemDetails.EpisodesSeasonsButton = ({ children, ...restProps }) => {
+	return <EpisodesSeasonsButton {...restProps}>{children}</EpisodesSeasonsButton>;
+};
+
+ItemDetails.EpisodesSeasonsList = ({ children, ...restProps }) => {
+	return <EpisodesSeasonsList {...restProps}>{children}</EpisodesSeasonsList>;
+};
+
+ItemDetails.EpisodesSeason = ({ children, ...restProps }) => {
+	return <EpisodesSeason {...restProps}>{children}</EpisodesSeason>;
+};
+
+ItemDetails.EpisodesList = ({ children, ...restProps }) => {
+	return <EpisodesList {...restProps}>{children}</EpisodesList>;
+};
+
+ItemDetails.Episode = ({ children, ...restProps }) => {
+	return <Episode {...restProps}>{children}</Episode>;
 };
 
 export default ItemDetails;
