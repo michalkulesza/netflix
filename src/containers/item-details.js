@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { clearDetails, fetchEpisodes, clearEpisodes } from "../redux/actions";
 import { ItemDetails } from "../components";
-import { ItemDetailsHeaderContainer } from "../containers";
+import { ItemDetailsHeaderContainer, ItemDetailsInfoContainer } from "../containers";
 
 import { GlobalStyles } from "../global-styles";
 import { GrPlayFill } from "react-icons/gr";
@@ -46,32 +46,7 @@ const ItemDetailsContainer = () => {
 		<ItemDetails.Container isDetails={isDetails}>
 			<ItemDetails isDetails={isDetails} position={position} onAnimationEnd={onAnimationEnd}>
 				<ItemDetailsHeaderContainer VideoFile={VideoFile} VideoLogo={VideoLogo} item={item} />
-
-				<ItemDetails.Info>
-					<ItemDetails.InfoHalf>
-						<ItemDetails.InfoContent>
-							<p>96% Match</p>{" "}
-							{item.details.first_air_date
-								? item.details.first_air_date.slice(0, 4)
-								: item.details.release_date.slice(0, 4)}{" "}
-							<span>{item.ageRestriction}</span>{" "}
-							{item.details.number_of_seasons
-								? `${item.details.number_of_seasons} Seasons`
-								: `${item.details.runtime}min`}
-							{item.details.number_of_seasons > 1 && "s"}
-						</ItemDetails.InfoContent>
-						<ItemDetails.InfoDescription>{item.details.overview}</ItemDetails.InfoDescription>
-					</ItemDetails.InfoHalf>
-					<ItemDetails.InfoHalf>
-						<ItemDetails.InfoCast>
-							<span>Cast:</span> {item.cast.map((el, i) => `${el.name}${item.cast.length - 1 !== i ? ", " : ""}`)}
-						</ItemDetails.InfoCast>
-						<ItemDetails.InfoCast>
-							<span>Genres:</span>{" "}
-							{item.details.genres.map((el, i) => `${el.name}${item.details.genres.length - 1 !== i ? ", " : ""}`)}
-						</ItemDetails.InfoCast>
-					</ItemDetails.InfoHalf>
-				</ItemDetails.Info>
+				<ItemDetailsInfoContainer item={item} />
 
 				{episodes && (
 					<ItemDetails.Episodes>

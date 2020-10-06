@@ -3,11 +3,6 @@ import React from "react";
 import {
 	Main,
 	Container,
-	Info,
-	InfoHalf,
-	InfoContent,
-	InfoDescription,
-	InfoCast,
 	Episodes,
 	EpisodesHeader,
 	EpisodesSeasons,
@@ -47,26 +42,6 @@ const ItemDetails = ({ children, ...restProps }) => {
 
 ItemDetails.Container = ({ children, ...restProps }) => {
 	return <Container {...restProps}>{children}</Container>;
-};
-
-ItemDetails.Info = ({ children, ...restProps }) => {
-	return <Info {...restProps}>{children}</Info>;
-};
-
-ItemDetails.InfoHalf = ({ children, ...restProps }) => {
-	return <InfoHalf {...restProps}>{children}</InfoHalf>;
-};
-
-ItemDetails.InfoContent = ({ children, ...restProps }) => {
-	return <InfoContent {...restProps}>{children}</InfoContent>;
-};
-
-ItemDetails.InfoDescription = ({ children, ...restProps }) => {
-	return <InfoDescription {...restProps}>{children}</InfoDescription>;
-};
-
-ItemDetails.InfoCast = ({ children, ...restProps }) => {
-	return <InfoCast {...restProps}>{children}</InfoCast>;
 };
 
 ItemDetails.Episodes = ({ children, ...restProps }) => {

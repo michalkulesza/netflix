@@ -79,56 +79,6 @@ const fadeOutAnim = (x, y, width) => css`
 	${fadeOut(x, y, width)} 0.5s;
 `;
 
-export const Info = styled.div`
-	padding: 2vw 5vw;
-	display: flex;
-	gap: 2em;
-	margin-bottom: 2em;
-`;
-
-export const InfoHalf = styled.div`
-	&:nth-of-type(1) {
-		width: 65%;
-	}
-
-	&:nth-of-type(2) {
-		width: 35%;
-	}
-`;
-
-export const InfoContent = styled.div`
-	display: flex;
-	align-items: center;
-	gap: 0.6em;
-	color: #fff;
-	font-size: 1.1em;
-	margin-bottom: 1em;
-
-	p {
-		color: #46d369;
-		font-weight: 600;
-		margin: 0;
-	}
-	span {
-		border: 1px solid #6b6b6b;
-		padding: 0.1em 0.3em;
-	}
-`;
-
-export const InfoDescription = styled.div`
-	font-size: 1.15em;
-	line-height: 1.5em;
-`;
-
-export const InfoCast = styled.div`
-	margin-bottom: 1em;
-	font-size: 0.9em;
-	line-height: 1.5em;
-	span {
-		color: #777777;
-	}
-`;
-
 export const Episodes = styled.div`
 	width: 100%;
 	height: fit-content;

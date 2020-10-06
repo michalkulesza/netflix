@@ -12,3 +12,4 @@ export { default as Item } from "./item";
 export { default as ItemExpanded } from "./item-expanded";
 export { default as ItemDetails } from "./item-details";
 export { default as ItemDetailsHeader } from "./item-details-header";
+export { default as ItemDetailsInfo } from "./item-details-info";
