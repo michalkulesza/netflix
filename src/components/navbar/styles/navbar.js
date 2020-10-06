@@ -4,10 +4,12 @@ export const Main = styled.div`
 	position: fixed;
 	max-width: 1920px;
 	margin: 0 auto;
-	padding-top: 20px;
+	padding: 12px 0;
 	width: 100%;
 	height: auto;
-	z-index: 2;
+	z-index: 100;
+	background-color: ${({ scrolled }) => (scrolled > 0 ? "#0D0D0D" : "transparent")};
+	transition: background-color 0.3s ease-in-out;
 
 	@media only screen and (max-width: 590px) {
 		padding-top: 10px;
