@@ -5,7 +5,7 @@ import { ItemDetails } from "../components";
 
 import { GlobalStyles } from "../global-styles";
 import { GrClose, GrPlayFill } from "react-icons/gr";
-import { GiSpeaker, GiSpeakerOff } from "react-icons/gi";
+import { GiSpeaker } from "react-icons/gi";
 import { BiPlus, BiLike, BiDislike } from "react-icons/bi";
 
 import VideoFile from "../res/videos/mindhunter_trailer.mp4";
@@ -70,6 +70,28 @@ const ItemDetailsContainer = () => {
 						</ItemDetails.OverlayHalf>
 					</ItemDetails.Overlay>
 				</ItemDetails.Header>
+				<ItemDetails.Info>
+					<ItemDetails.InfoHalf>
+						<ItemDetails.InfoContent>
+							<p>96% Match</p>{" "}
+							{item.details.first_air_date
+								? item.details.first_air_date.slice(0, 4)
+								: item.details.release_date.slice(0, 4)}{" "}
+							<span>{item.ageRestriction}</span> {item.details.number_of_seasons} Season
+							{item.details.number_of_seasons > 1 && "s"}
+						</ItemDetails.InfoContent>
+						<ItemDetails.InfoDescription>{item.details.overview}</ItemDetails.InfoDescription>
+					</ItemDetails.InfoHalf>
+					<ItemDetails.InfoHalf>
+						<ItemDetails.InfoCast>
+							<span>Cast:</span> {item.cast.map((el, i) => `${el.name}${item.cast.length - 1 !== i ? ", " : ""}`)}
+						</ItemDetails.InfoCast>
+						<ItemDetails.InfoCast>
+							<span>Genres:</span>{" "}
+							{item.details.genres.map((el, i) => `${el.name}${item.details.genres.length - 1 !== i ? ", " : ""}`)}
+						</ItemDetails.InfoCast>
+					</ItemDetails.InfoHalf>
+				</ItemDetails.Info>
 			</ItemDetails>
 			<GlobalStyles disableScrolling={isDetails} />
 		</ItemDetails.Container>

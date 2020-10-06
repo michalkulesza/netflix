@@ -14,6 +14,11 @@ import {
 	Logo,
 	VideoButton,
 	ButtonsContainer,
+	Info,
+	InfoHalf,
+	InfoContent,
+	InfoDescription,
+	InfoCast,
 } from "./styles/item-details";
 
 const ItemDetails = ({ children, ...restProps }) => {
@@ -66,6 +71,26 @@ ItemDetails.VideoButton = ({ children, ...restProps }) => {
 
 ItemDetails.ButtonsContainer = ({ children, ...restProps }) => {
 	return <ButtonsContainer {...restProps}>{children}</ButtonsContainer>;
+};
+
+ItemDetails.Info = ({ children, ...restProps }) => {
+	return <Info {...restProps}>{children}</Info>;
+};
+
+ItemDetails.InfoHalf = ({ children, ...restProps }) => {
+	return <InfoHalf {...restProps}>{children}</InfoHalf>;
+};
+
+ItemDetails.InfoContent = ({ children, ...restProps }) => {
+	return <InfoContent {...restProps}>{children}</InfoContent>;
+};
+
+ItemDetails.InfoDescription = ({ children, ...restProps }) => {
+	return <InfoDescription {...restProps}>{children}</InfoDescription>;
+};
+
+ItemDetails.InfoCast = ({ children, ...restProps }) => {
+	return <InfoCast {...restProps}>{children}</InfoCast>;
 };
 
 export default ItemDetails;

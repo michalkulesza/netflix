@@ -105,8 +105,8 @@ export const Overlay = styled.div`
 	height: 100%;
 	width: 100%;
 	background: rgb(27, 27, 27);
-	background: linear-gradient(180deg, rgba(27, 27, 27, 0) 40%, rgba(24, 24, 24, 1) 80%);
-	padding: 2vw 2vw 15vw 2vw;
+	background: linear-gradient(180deg, rgba(27, 27, 27, 0) 50%, rgba(24, 24, 24, 1) 100%);
+	padding: 2vw 2vw 4vw 5vw;
 	box-sizing: border-box;
 `;
 
@@ -204,11 +204,6 @@ export const Button = styled.button`
 	}
 `;
 
-export const Info = styled.div`
-	width: 100%;
-	height: 300px;
-`;
-
 export const Logo = styled.img`
 	object-fit: cover;
 	width: 30vw;
@@ -268,4 +263,55 @@ export const VideoButton = styled.button`
 export const ButtonsContainer = styled.div`
 	display: flex;
 	align-items: center;
+`;
+
+export const Info = styled.div`
+	padding: 2vw 5vw;
+	display: flex;
+	gap: 2em;
+`;
+
+export const InfoHalf = styled.div`
+	height: 300px;
+
+	&:nth-of-type(1) {
+		width: 65%;
+	}
+
+	&:nth-of-type(2) {
+		width: 35%;
+	}
+`;
+
+export const InfoContent = styled.div`
+	display: flex;
+	align-items: center;
+	gap: 0.6em;
+	color: #fff;
+	font-size: 1.1em;
+	margin-bottom: 1em;
+
+	p {
+		color: #46d369;
+		font-weight: 600;
+		margin: 0;
+	}
+	span {
+		border: 1px solid #6b6b6b;
+		padding: 0.1em 0.3em;
+	}
+`;
+
+export const InfoDescription = styled.div`
+	font-size: 1.15em;
+	line-height: 1.5em;
+`;
+
+export const InfoCast = styled.div`
+	margin-bottom: 1em;
+	font-size: 0.9em;
+	line-height: 1.5em;
+	span {
+		color: #777777;
+	}
 `;
