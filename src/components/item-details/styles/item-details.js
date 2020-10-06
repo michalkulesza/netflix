@@ -456,6 +456,7 @@ export const RelatedItem = styled.div`
 	background-color: #2f2f2f;
 	border-radius: 5px;
 	overflow: hidden;
+	cursor: pointer;
 `;
 
 export const RelatedItemImage = styled.img`
