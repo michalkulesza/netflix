@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { clearDetails, clearEpisodes } from "../redux/actions";
 import { Details } from "../components";
-import { ItemDetailsHeaderContainer, ItemDetailsInfoContainer, ItemDetailsEpisodesContainer } from "./";
+import { DetailsHeaderContainer, DetailsInfoContainer, DetailsEpisodesContainer } from "./";
 
 import { GlobalStyles } from "../global-styles";
 import { GrPlayFill } from "react-icons/gr";
@@ -33,9 +33,9 @@ const DetailsContainer = () => {
 	return shouldRender ? (
 		<Details.Container isDetails={isDetails}>
 			<Details isDetails={isDetails} position={position} onAnimationEnd={onAnimationEnd}>
-				<ItemDetailsHeaderContainer VideoFile={VideoFile} VideoLogo={VideoLogo} item={item} />
-				<ItemDetailsInfoContainer item={item} />
-				<ItemDetailsEpisodesContainer item={item} />
+				<DetailsHeaderContainer VideoFile={VideoFile} VideoLogo={VideoLogo} item={item} />
+				<DetailsInfoContainer item={item} />
+				<DetailsEpisodesContainer item={item} />
 
 				{item.related && (
 					<Details.Related>

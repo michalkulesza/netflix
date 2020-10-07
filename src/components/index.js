@@ -11,8 +11,7 @@ export { default as Carousels } from "./carousels";
 export { default as Item } from "./item";
 export { default as ItemExpanded } from "./item-expanded";
 export { default as Details } from "./item-details/details";
-
-export { default as ItemDetailsHeader } from "./item-details-header";
-export { default as ItemDetailsInfo } from "./item-details-info";
-export { ItemDetailsEpisodes } from "./item-details-episodes";
-export { ItemDetailsEpisode } from "./item-details-episodes";
+export { DetailsEpisodes } from "./item-details/details-episodes";
+export { DetailsEpisode } from "./item-details/details-episodes";
+export { default as DetailsHeader } from "./item-details/details-header";
+export { default as DetailsInfo } from "./item-details/details-info";

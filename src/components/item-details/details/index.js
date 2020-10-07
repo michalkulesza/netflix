@@ -18,7 +18,7 @@ import {
 	About,
 	AboutHeader,
 	AboutPiece,
-} from "./styles/item-details";
+} from "./styles/details";
 
 const Details = ({ children, ...restProps }) => {
 	return <Main {...restProps}>{children}</Main>;

@@ -16,68 +16,68 @@ import {
 	EpisodeTitle,
 	EpisodeTime,
 	EpisodeDescription,
-} from "./styles/item-details-episodes";
+} from "./styles/details-episodes";
 
-export const ItemDetailsEpisodes = ({ children, ...restProps }) => {
+export const DetailsEpisodes = ({ children, ...restProps }) => {
 	return <Episodes {...restProps}>{children}</Episodes>;
 };
 
-ItemDetailsEpisodes.Header = ({ children, ...restProps }) => {
+DetailsEpisodes.Header = ({ children, ...restProps }) => {
 	return <EpisodesHeader {...restProps}>{children}</EpisodesHeader>;
 };
 
-ItemDetailsEpisodes.Seasons = ({ children, ...restProps }) => {
+DetailsEpisodes.Seasons = ({ children, ...restProps }) => {
 	return <EpisodesSeasons {...restProps}>{children}</EpisodesSeasons>;
 };
 
-ItemDetailsEpisodes.SeasonsButton = ({ children, ...restProps }) => {
+DetailsEpisodes.SeasonsButton = ({ children, ...restProps }) => {
 	return <EpisodesSeasonsButton {...restProps}>{children}</EpisodesSeasonsButton>;
 };
 
-ItemDetailsEpisodes.SeasonsList = ({ children, ...restProps }) => {
+DetailsEpisodes.SeasonsList = ({ children, ...restProps }) => {
 	return <EpisodesSeasonsList {...restProps}>{children}</EpisodesSeasonsList>;
 };
 
-ItemDetailsEpisodes.Season = ({ children, ...restProps }) => {
+DetailsEpisodes.Season = ({ children, ...restProps }) => {
 	return <EpisodesSeason {...restProps}>{children}</EpisodesSeason>;
 };
 
-ItemDetailsEpisodes.List = ({ children, ...restProps }) => {
+DetailsEpisodes.List = ({ children, ...restProps }) => {
 	return <EpisodesList {...restProps}>{children}</EpisodesList>;
 };
 
-export const ItemDetailsEpisode = ({ children, ...restProps }) => {
+export const DetailsEpisode = ({ children, ...restProps }) => {
 	return <Episode {...restProps}>{children}</Episode>;
 };
 
-ItemDetailsEpisode.Wrapper = ({ children, ...restProps }) => {
+DetailsEpisode.Wrapper = ({ children, ...restProps }) => {
 	return <EpisodeWrapper {...restProps}>{children}</EpisodeWrapper>;
 };
 
-ItemDetailsEpisode.Num = ({ children, ...restProps }) => {
+DetailsEpisode.Num = ({ children, ...restProps }) => {
 	return <EpisodeNum {...restProps}>{children}</EpisodeNum>;
 };
 
-ItemDetailsEpisode.Image = ({ children, ...restProps }) => {
+DetailsEpisode.Image = ({ children, ...restProps }) => {
 	return <EpisodeImage {...restProps}>{children}</EpisodeImage>;
 };
 
-ItemDetailsEpisode.Main = ({ children, ...restProps }) => {
+DetailsEpisode.Main = ({ children, ...restProps }) => {
 	return <EpisodeMain {...restProps}>{children}</EpisodeMain>;
 };
 
-ItemDetailsEpisode.Half = ({ children, ...restProps }) => {
+DetailsEpisode.Half = ({ children, ...restProps }) => {
 	return <EpisodeHalf {...restProps}>{children}</EpisodeHalf>;
 };
 
-ItemDetailsEpisode.Title = ({ children, ...restProps }) => {
+DetailsEpisode.Title = ({ children, ...restProps }) => {
 	return <EpisodeTitle {...restProps}>{children}</EpisodeTitle>;
 };
 
-ItemDetailsEpisode.Time = ({ children, ...restProps }) => {
+DetailsEpisode.Time = ({ children, ...restProps }) => {
 	return <EpisodeTime {...restProps}>{children}</EpisodeTime>;
 };
 
-ItemDetailsEpisode.Description = ({ children, ...restProps }) => {
+DetailsEpisode.Description = ({ children, ...restProps }) => {
 	return <EpisodeDescription {...restProps}>{children}</EpisodeDescription>;
 };
