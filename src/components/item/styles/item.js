@@ -9,6 +9,7 @@ export const Container = styled.div`
 
 export const Wrapper = styled.div`
 	position: relative;
+	cursor: pointer;
 
 	@media only screen and (min-width: 0px) {
 		width: calc((100vw / 4) - 0.5vw); /* Width of one tile */

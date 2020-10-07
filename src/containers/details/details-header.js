@@ -1,16 +1,22 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { DetailsHeader, Button } from "../../components";
-import { setDetails } from "../../redux/actions";
+import { setDetails, setGlobalMute } from "../../redux/actions";
 
 import { GrPlayFill, GrClose } from "react-icons/gr";
-import { GiSpeaker } from "react-icons/gi";
+import { GiSpeaker, GiSpeakerOff } from "react-icons/gi";
 import { BiPlus, BiLike, BiDislike } from "react-icons/bi";
 
 const DetailsHeaderContainer = ({ VideoFile, VideoLogo, item }) => {
 	const dispatch = useDispatch();
+	const muted = useSelector(state => state.misc.globalMute);
+
 	const handleClose = () => {
 		dispatch(setDetails(false));
+	};
+
+	const handleMute = () => {
+		dispatch(setGlobalMute(!muted));
 	};
 
 	return (
@@ -39,9 +45,7 @@ const DetailsHeaderContainer = ({ VideoFile, VideoLogo, item }) => {
 					<Button.Round dark onMouseDown={handleClose}>
 						<GrClose />
 					</Button.Round>
-					<Button.Round onMouseDown={handleClose}>
-						<GiSpeaker />
-					</Button.Round>
+					<Button.Round onMouseDown={handleMute}>{muted ? <GiSpeakerOff /> : <GiSpeaker />}</Button.Round>
 				</DetailsHeader.OverlayHalf>
 			</DetailsHeader.Overlay>
 		</DetailsHeader>

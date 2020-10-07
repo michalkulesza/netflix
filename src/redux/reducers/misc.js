@@ -1,13 +1,13 @@
-import { SET_SCROLLED } from "../types";
+import { SET_GLOBAL_MUTE } from "../types";
 
 const initState = {
-	scrolled: 0,
+	globalMute: false,
 };
 
 const misc = (state = initState, action) => {
 	switch (action.type) {
-		case SET_SCROLLED:
-			return { ...state, ...action.payload };
+		case SET_GLOBAL_MUTE:
+			return { ...state, globalMute: action.payload };
 		default:
 			return state;
 	}

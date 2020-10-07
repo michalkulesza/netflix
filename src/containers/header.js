@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { setGlobalMute } from "../redux/actions";
 import { Header } from "../components";
 import { Button } from "../components";
 import { GiSpeaker, GiSpeakerOff } from "react-icons/gi";
@@ -14,7 +16,12 @@ const HeaderContainer = ({
 	alt,
 	...restProps
 }) => {
-	const [videoMuted, setVideoMuted] = useState(false);
+	const dispatch = useDispatch();
+	const muted = useSelector(state => state.misc.globalMute);
+
+	const handleMute = () => {
+		dispatch(setGlobalMute(!muted));
+	};
 
 	return (
 		<Header>
@@ -33,7 +40,7 @@ const HeaderContainer = ({
 				<>
 					<Header.VideoWrapper>
 						<Header.VideoGradient />
-						<Header.Video src={videoUrl} type="video/mp4" {...restProps} muted={videoMuted ? true : false} />
+						<Header.Video src={videoUrl} type="video/mp4" {...restProps} muted={muted} />
 					</Header.VideoWrapper>
 					<Header.ContainerInVideo>
 						<Header.ContainerInVideoHalf>
@@ -50,9 +57,7 @@ const HeaderContainer = ({
 						</Header.ContainerInVideoHalf>
 						<Header.ContainerInVideoHalf>
 							<Header.VideoMuteContainer>
-								<Button.Round onMouseDown={() => setVideoMuted(!videoMuted)}>
-									{videoMuted ? <GiSpeakerOff /> : <GiSpeaker />}
-								</Button.Round>
+								<Button.Round onMouseDown={handleMute}>{muted ? <GiSpeakerOff /> : <GiSpeaker />}</Button.Round>
 								<Header.AgeRestriction>{ageRestriction}</Header.AgeRestriction>
 							</Header.VideoMuteContainer>
 						</Header.ContainerInVideoHalf>

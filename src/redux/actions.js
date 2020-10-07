@@ -5,8 +5,8 @@ import {
 	FETCH_EPISODES,
 	SET_DETAILS,
 	SET_DETAILS_POSITION,
-	SET_SCROLLED,
 	CLEAR_EPISODES,
+	SET_GLOBAL_MUTE,
 } from "./types";
 import axios from "axios";
 
@@ -100,9 +100,9 @@ export const setDetailsPosition = (x, y, width, height) => {
 	};
 };
 
-export const setScrolled = scrolled => {
+export const setGlobalMute = bool => {
 	return {
-		type: SET_SCROLLED,
-		payload: { scrolled },
+		type: SET_GLOBAL_MUTE,
+		payload: bool,
 	};
 };
