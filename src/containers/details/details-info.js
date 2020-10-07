@@ -1,5 +1,5 @@
 import React from "react";
-import { DetailsInfo } from "../components";
+import { DetailsInfo } from "../../components";
 
 const DetailsInfoContainer = ({ item }) => {
 	return (

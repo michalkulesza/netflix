@@ -177,9 +177,7 @@ export const VideoMuteButton = styled.button`
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	outline: none;
 	background-color: transparent;
-	cursor: pointer;
 
 	svg {
 		transform: scale(1.8);
@@ -233,10 +231,8 @@ export const VideoButton = styled.button`
 	border-radius: 4px;
 	font-weight: 600;
 	font-size: 0.9em;
-	cursor: pointer;
 	display: flex;
 	align-items: center;
-	outline: none;
 
 	&:nth-of-type(1) {
 		background-color: #fff;

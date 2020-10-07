@@ -30,7 +30,6 @@ export const EpisodesSeasonsButton = styled.button`
 	background-color: rgb(36, 36, 36);
 	padding: 0.5em 1em;
 	color: white;
-	cursor: pointer;
 	border: ${({ seasonsDropdownActive }) =>
 		seasonsDropdownActive ? "0.1em solid #fff" : "0.1em solid rgb(77, 77, 77)"};
 	border-radius: 0.2em;

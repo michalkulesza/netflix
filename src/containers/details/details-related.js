@@ -1,5 +1,5 @@
 import React from "react";
-import { DetailsRelated } from "../components";
+import { DetailsRelated } from "../../components";
 
 import { GrPlayFill } from "react-icons/gr";
 

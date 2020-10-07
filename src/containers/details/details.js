@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { clearDetails, clearEpisodes } from "../redux/actions";
-import { Details } from "../components";
-import { DetailsHeaderContainer, DetailsInfoContainer, DetailsEpisodesContainer, DetailsRelatedContainer } from "./";
+import { clearDetails, clearEpisodes } from "../../redux/actions";
+import { Details } from "../../components";
+import { DetailsHeaderContainer, DetailsInfoContainer, DetailsEpisodesContainer, DetailsRelatedContainer } from "../";
+import { GlobalStyles } from "../../global-styles";
 
-import { GlobalStyles } from "../global-styles";
-
-import VideoFile from "../res/videos/mindhunter_trailer.mp4";
-import VideoLogo from "../res/images/mindhunter-logo.png";
+import VideoFile from "../../res/videos/mindhunter_trailer.mp4";
+import VideoLogo from "../../res/images/mindhunter-logo.png";
 
 const DetailsContainer = () => {
 	const dispatch = useDispatch();

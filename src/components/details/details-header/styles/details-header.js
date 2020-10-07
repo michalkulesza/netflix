@@ -100,9 +100,7 @@ export const Button = styled.button`
 	justify-content: center;
 	align-items: center;
 	margin-right: 2%; /* from 4% */
-	cursor: pointer;
 	/* margin-bottom: 5%; */
-	outline: none;
 
 	&:hover {
 		background-color: ${({ inverted }) => inverted && "#e2e2e2"};
@@ -138,10 +136,8 @@ export const VideoButton = styled.button`
 	border-radius: 4px;
 	font-weight: 600;
 	font-size: 0.9em;
-	cursor: pointer;
 	display: flex;
 	align-items: center;
-	outline: none;
 
 	&:nth-of-type(1) {
 		background-color: #fff;

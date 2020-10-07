@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { DetailsHeader } from "../components";
-import { setDetails } from "../redux/actions";
+import { DetailsHeader } from "../../components";
+import { setDetails } from "../../redux/actions";
 
 import { GrPlayFill, GrClose } from "react-icons/gr";
 import { GiSpeaker } from "react-icons/gi";

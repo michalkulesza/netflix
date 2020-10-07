@@ -43,11 +43,6 @@ export const Input = styled.input`
 	padding: 10px 10px 0;
 	width: 100%;
 	border-radius: 3px 0 0 3px;
-	box-sizing: border-box;
-
-	&:focus {
-		outline: none;
-	}
 
 	@media only screen and (max-width: 949px) and (min-width: 550px),
 		only screen and (max-width: 399px) and (min-width: 350px),

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchEpisodes } from "../redux/actions";
+import { fetchEpisodes } from "../../redux/actions";
 
-import { DetailsEpisodes, DetailsEpisode } from "../components";
+import { DetailsEpisodes, DetailsEpisode } from "../../components";
 
 import { BiCaretDown, BiCaretUp } from "react-icons/bi";
 

@@ -39,7 +39,6 @@ export const Overlay = styled.div`
 export const Button = styled.button`
 	position: absolute;
 	pointer-events: auto;
-	cursor: pointer;
 	height: 100%;
 	width: ${({ tileWidth }) => `${(tileWidth - 0.5) / 2}vw`};
 	background: rgba(20, 20, 20, 0.5);

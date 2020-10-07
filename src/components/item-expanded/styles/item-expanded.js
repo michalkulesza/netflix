@@ -98,9 +98,7 @@ export const Button = styled.button`
 	justify-content: center;
 	align-items: center;
 	margin-right: 4%;
-	cursor: pointer;
 	margin-bottom: 5%;
-	outline: none;
 
 	&:hover {
 		background-color: ${({ inverted }) => inverted && "#e2e2e2"};

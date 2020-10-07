@@ -27,13 +27,11 @@ export const Input = styled.input`
 	line-height: 50px;
 	padding: 16px 20px 0;
 	width: 100%;
-	box-sizing: border-box;
 	color: #fff;
 	background-color: #333333;
 	z-index: 10;
 
 	&:focus {
-		outline: none;
 		background-color: #454545;
 	}
 `;
@@ -100,5 +98,4 @@ export const MainError = styled.div`
 	background-color: #e87c03;
 	padding: ${({ children }) => (children ? "1em 1em" : "0em 1em")};
 	border-radius: 3px;
-	box-sizing: border-box;
 `;
