@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { DetailsHeader } from "../../components";
+import { DetailsHeader, Button } from "../../components";
 import { setDetails } from "../../redux/actions";
 
 import { GrPlayFill, GrClose } from "react-icons/gr";
@@ -21,9 +21,9 @@ const DetailsHeaderContainer = ({ VideoFile, VideoLogo, item }) => {
 				<DetailsHeader.OverlayHalf>
 					<DetailsHeader.Logo src={VideoLogo} alt="Video Logo" />
 					<DetailsHeader.ButtonsContainer>
-						<DetailsHeader.VideoButton>
+						<Button.Square>
 							<GrPlayFill /> Play
-						</DetailsHeader.VideoButton>
+						</Button.Square>
 						<DetailsHeader.Button>
 							<BiPlus />
 							<DetailsHeader.Label>Add to My List</DetailsHeader.Label>

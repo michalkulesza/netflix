@@ -224,53 +224,6 @@ export const VideoButtonsContainer = styled.div`
 	display: flex;
 `;
 
-export const VideoButton = styled.button`
-	border: none;
-	/* padding: 0.7em 2em 0.7em 1.6em; */
-	padding: 1vw 2.3vw 1vw 1.9vw;
-	border-radius: 4px;
-	font-weight: 600;
-	font-size: 0.9em;
-	display: flex;
-	align-items: center;
-
-	&:nth-of-type(1) {
-		background-color: #fff;
-		color: #000;
-		margin-right: 0.5em;
-
-		svg {
-			margin-right: 0.5em;
-		}
-
-		&:hover {
-			background-color: rgba(255, 255, 255, 0.7);
-		}
-	}
-
-	&:nth-of-type(2) {
-		background-color: #616f6d;
-		color: #fff;
-
-		svg {
-			transform: scale(1.4);
-			margin-right: 0.7em;
-
-			path {
-				stroke: #fff;
-			}
-		}
-
-		&:hover {
-			background-color: rgba(109, 109, 110, 0.4);
-		}
-	}
-
-	@media only screen and (max-width: 949px) {
-		padding: 1.5vw 2.8vw 1.5vw 2.3vw;
-	}
-`;
-
 const LoadingAnimation = keyframes`
 	from {
 		background-position-x: 0vw;

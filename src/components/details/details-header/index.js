@@ -9,7 +9,6 @@ import {
 	Button,
 	Label,
 	Logo,
-	VideoButton,
 	ButtonsContainer,
 } from "./styles/details-header";
 
@@ -47,10 +46,6 @@ DetailsHeader.Label = ({ children, ...restProps }) => {
 
 DetailsHeader.Logo = ({ children, ...restProps }) => {
 	return <Logo {...restProps}>{children}</Logo>;
-};
-
-DetailsHeader.VideoButton = ({ children, ...restProps }) => {
-	return <VideoButton {...restProps}>{children}</VideoButton>;
 };
 
 DetailsHeader.ButtonsContainer = ({ children, ...restProps }) => {

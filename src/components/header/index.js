@@ -19,7 +19,6 @@ import {
 	VideoLogo,
 	VideoDescription,
 	VideoButtonsContainer,
-	VideoButton,
 	VideoMuteContainer,
 	VideoMuteButton,
 	Loading,
@@ -99,10 +98,6 @@ Header.VideoDescription = function ({ children, ...restProps }) {
 };
 Header.VideoButtonsContainer = function ({ children, ...restProps }) {
 	return <VideoButtonsContainer {...restProps}>{children}</VideoButtonsContainer>;
-};
-
-Header.VideoButton = function ({ children, ...restProps }) {
-	return <VideoButton {...restProps}>{children}</VideoButton>;
 };
 
 Header.VideoMuteContainer = function ({ children, ...restProps }) {

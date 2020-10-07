@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Header } from "../components";
+import { Button } from "../components";
 import { GiSpeaker, GiSpeakerOff } from "react-icons/gi";
 import { GrPlayFill, GrCircleInformation } from "react-icons/gr";
 
@@ -39,12 +40,12 @@ const HeaderContainer = ({
 							<Header.VideoLogo src={videoLogo} alt={alt} />
 							<Header.VideoDescription>{videoDescription}</Header.VideoDescription>
 							<Header.VideoButtonsContainer>
-								<Header.VideoButton>
+								<Button.Square>
 									<GrPlayFill /> Play
-								</Header.VideoButton>
-								<Header.VideoButton>
+								</Button.Square>
+								<Button.Square iconScale="1.4" dark>
 									<GrCircleInformation /> More Info
-								</Header.VideoButton>
+								</Button.Square>
 							</Header.VideoButtonsContainer>
 						</Header.ContainerInVideoHalf>
 						<Header.ContainerInVideoHalf>
