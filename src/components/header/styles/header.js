@@ -3,6 +3,7 @@ import styled, { keyframes } from "styled-components/macro";
 export const Main = styled.div`
 	position: relative;
 	width: 100%;
+	margin-bottom: -10%;
 `;
 
 export const Border = styled.div`

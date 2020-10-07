@@ -3,7 +3,6 @@ import styled, { keyframes } from "styled-components/macro";
 export const Main = styled.div`
 	position: relative;
 	z-index: 15;
-	margin-top: -10%;
 `;
 
 export const Loading = styled.div`
