@@ -8,8 +8,9 @@ export const Main = styled.div`
 	width: 100%;
 	height: auto;
 	z-index: 100;
-	background-color: ${({ scrolled }) => (scrolled > 0 ? "#0D0D0D" : "transparent")};
-	transition: background-color 0.3s ease-in-out;
+	background: ${({ scrolled }) =>
+		scrolled > 0 ? "#141414" : "linear-gradient(to bottom,rgba(0,0,0,.7) 10%,rgba(0,0,0,0));"};
+	transition: background 0.5s ease-in-out;
 
 	@media only screen and (max-width: 590px) {
 		padding-top: 10px;

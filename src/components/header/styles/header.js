@@ -3,6 +3,7 @@ import styled, { keyframes } from "styled-components/macro";
 export const Main = styled.div`
 	position: relative;
 	width: 100%;
+	margin-bottom: -22%;
 `;
 
 export const Border = styled.div`
@@ -118,10 +119,10 @@ export const VideoGradient = styled.div`
 	background: rgb(2, 0, 36);
 	background: linear-gradient(
 		180deg,
-		rgba(0, 0, 0, 0.6) 0%,
-		rgba(0, 0, 0, 0) 13%,
-		rgba(0, 0, 0, 0) 90%,
-		rgba(0, 0, 0, 1) 100%
+		rgba(20, 20, 20, 0.6) 0%,
+		rgba(20, 20, 20, 0) 13%,
+		rgba(20, 20, 20, 0) 90%,
+		rgba(20, 20, 20, 1) 100%
 	);
 `;
 

@@ -7,7 +7,7 @@ html, body {
    font-family: 'Open Sans', sans-serif;
    -webkit-font-smoothing: antialiased;
    -moz-osx-font-smoothing: grayscale;
-   background-color: #000000;
+   background-color: #141414;
    color: #fff;
    font-size: 16px;
    overflow-x: hidden;
