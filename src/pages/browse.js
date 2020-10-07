@@ -41,8 +41,6 @@ const Browse = () => {
 					<LazyLoad placeholder={<Header.Loading />}>
 						<HeaderContainer
 							videoUrl={VideoFile}
-							loop
-							muted
 							ageRestriction={12}
 							videoLogo={VideoLogo}
 							videoDescription={

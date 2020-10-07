@@ -1,4 +1,5 @@
 import initialData from "./fetch-initial-data";
+import cacheInitialData from "./cache-initial-data";
 import fetchDetails from "./fetch-details";
 import fetchEpisodes from "./fetch-episodes";
 import toggles from "./toggles";
@@ -11,6 +12,7 @@ const rootReducer = combineReducers({
 	fetchEpisodes,
 	toggles,
 	misc,
+	cacheInitialData,
 });
 
 export default rootReducer;

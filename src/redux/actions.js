@@ -9,6 +9,10 @@ import {
 	SET_GLOBAL_MUTE,
 	SET_HEADER_VIDEO_CAN_PLAY,
 	SET_SECONDARY_VIDEO_IS_PLAYING,
+	SET_CACHE_BROWSE,
+	SET_CACHE_SERIES,
+	SET_CACHE_FILMS,
+	SET_CACHE_LATEST,
 } from "./types";
 import axios from "axios";
 
@@ -120,5 +124,33 @@ export const setSecondaryVideoIsPlaying = bool => {
 	return {
 		type: SET_SECONDARY_VIDEO_IS_PLAYING,
 		payload: bool,
+	};
+};
+
+export const setCacheBrowse = data => {
+	return {
+		type: SET_CACHE_BROWSE,
+		payload: { browseCache: data },
+	};
+};
+
+export const setCacheSeries = data => {
+	return {
+		type: SET_CACHE_SERIES,
+		payload: { seriesCache: data },
+	};
+};
+
+export const setCacheFilms = data => {
+	return {
+		type: SET_CACHE_FILMS,
+		payload: { filmsCache: data },
+	};
+};
+
+export const setCacheLatest = data => {
+	return {
+		type: SET_CACHE_LATEST,
+		payload: { latestCache: data },
 	};
 };
