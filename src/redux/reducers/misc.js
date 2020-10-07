@@ -2,7 +2,7 @@ import { SET_GLOBAL_MUTE, SET_HEADER_VIDEO_CAN_PLAY, SET_SECONDARY_VIDEO_IS_PLAY
 
 const initState = {
 	globalMute: false,
-	headerVideoCanPlay: true,
+	headerVideoCanPlay: false,
 	secondaryVideoIsPlaying: false,
 };
 

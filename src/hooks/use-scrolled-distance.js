@@ -10,7 +10,7 @@ const useScrolledDistance = () => {
 		};
 
 		window.addEventListener("scroll", onScroll);
-		return window.addEventListener("scroll", onScroll);
+		return () => window.removeEventListener("scroll", onScroll);
 	}, [scrolled]);
 
 	return scrolled;

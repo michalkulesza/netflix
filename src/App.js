@@ -1,15 +1,17 @@
 import React from "react";
-import { BrowserRouter as Router } from "react-router-dom";
 import { HOME, SIGN_IN, SIGN_UP, BROWSE, SERIES, FILMS, LATEST, MYLIST } from "./constants/routes";
+import { useLocation } from "react-router-dom";
 import { Home, SignIn, SignUp, Browse, Latest, MyList } from "./pages";
 import { IfUserRedirect, ProtectedRoute } from "./helpers/protectedRoutes";
-import { useAuthListener } from "./hooks/";
+import { useAuthListener, useFetchInitData } from "./hooks/";
 
 const App = () => {
 	const { user } = useAuthListener();
+	const id = useLocation();
+	useFetchInitData(id);
 
 	return (
-		<Router>
+		<>
 			<IfUserRedirect exact path={HOME} ifUserRedirectTo={BROWSE} user={user}>
 				<Home />
 			</IfUserRedirect>
@@ -34,7 +36,7 @@ const App = () => {
 			<ProtectedRoute exact path={MYLIST} user={user}>
 				<MyList />
 			</ProtectedRoute>
-		</Router>
+		</>
 	);
 };
 
