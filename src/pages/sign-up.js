@@ -19,24 +19,24 @@ const SignUp = ({ history }) => {
 	const [secondPasswordError, setSecondPasswordError] = useState(null);
 	const [error, setError] = useState(null);
 
-	const handleName = value => {
-		setName(value);
-		setNameError(value === "" ? "Name cannot be empty" : null);
+	const handleName = ({ target }) => {
+		setName(target.value);
+		setNameError(target.value === "" ? "Name cannot be empty" : null);
 	};
 
-	const handleEmail = value => {
-		setEmail(value);
-		setEmailError(emailValidation(value));
+	const handleEmail = ({ target }) => {
+		setEmail(target.value);
+		setEmailError(emailValidation(target.value));
 	};
 
-	const handlePassword = value => {
-		setPassword(value);
-		setPasswordError(passwordValidation(value));
+	const handlePassword = ({ target }) => {
+		setPassword(target.value);
+		setPasswordError(passwordValidation(target.value));
 	};
 
-	const handleSecondPassword = value => {
-		setSecondPassword(value);
-		setSecondPasswordError(value !== password ? "Passwords must match" : null);
+	const handleSecondPassword = ({ target }) => {
+		setSecondPassword(target.value);
+		setSecondPasswordError(target.value !== password ? "Passwords must match" : null);
 	};
 
 	const handleSubmit = e => {
@@ -73,7 +73,7 @@ const SignUp = ({ history }) => {
 							<Form.Input
 								placeholder={"Name"}
 								onMouseDown={() => setError(null)}
-								onChange={handleName}
+								onChange={e => handleName(e)}
 								value={name}
 								type={"text"}
 								error={nameError}
@@ -81,14 +81,14 @@ const SignUp = ({ history }) => {
 							<Form.Input
 								placeholder={"Email"}
 								onMouseDown={() => setError(null)}
-								onChange={handleEmail}
+								onChange={e => handleEmail(e)}
 								value={email}
 								error={emailError}
 							/>
 							<Form.Input
 								placeholder={"Password"}
 								onMouseDown={() => setError(null)}
-								onChange={handlePassword}
+								onChange={e => handlePassword(e)}
 								value={password}
 								type={"password"}
 								error={passwordError}
@@ -96,7 +96,7 @@ const SignUp = ({ history }) => {
 							<Form.Input
 								placeholder={"Re-type Password"}
 								onMouseDown={() => setError(null)}
-								onChange={handleSecondPassword}
+								onChange={e => handleSecondPassword(e)}
 								value={secondPassword}
 								type={"password"}
 								error={secondPasswordError}
