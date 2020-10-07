@@ -1,41 +1,23 @@
-import React from "react";
-import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import { BROWSE, FILMS, SERIES, LATEST, MYLIST } from "../constants/routes";
-import { Navbar, Header, Carousels } from "../components/";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { Header, Carousels } from "../components/";
 import { NavbarContainer, HeaderContainer, CarouselsContainer, DetailsContainer } from "../containers";
+import { setInitialData } from "../redux/actions";
 import LazyLoad from "react-lazyload";
-
 import VideoFile from "../res/videos/mindhunter_trailer.mp4";
 import VideoLogo from "../res/images/mindhunter-logo.png";
 
 const Browse = () => {
+	const dispatch = useDispatch();
 	const data = useSelector(state => state.initialData);
+
+	useEffect(() => {
+		dispatch(setInitialData(null));
+	}, [dispatch]);
 
 	return (
 		<>
-			<NavbarContainer>
-				<Navbar.Divide>
-					<Navbar.Logo smallLogo={true} />
-					<Navbar.Menu>
-						<Link to={BROWSE}>
-							<Navbar.MenuItem>Home</Navbar.MenuItem>
-						</Link>
-						<Link to={SERIES}>
-							<Navbar.MenuItem>Series</Navbar.MenuItem>
-						</Link>
-						<Link to={FILMS}>
-							<Navbar.MenuItem>Films</Navbar.MenuItem>
-						</Link>
-						<Link to={LATEST}>
-							<Navbar.MenuItem>Latest</Navbar.MenuItem>
-						</Link>
-						<Link to={MYLIST}>
-							<Navbar.MenuItem>My List</Navbar.MenuItem>
-						</Link>
-					</Navbar.Menu>
-				</Navbar.Divide>
-			</NavbarContainer>
+			<NavbarContainer />
 			{data ? (
 				<>
 					<LazyLoad placeholder={<Header.Loading />}>
