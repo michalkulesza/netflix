@@ -15,3 +15,4 @@ export { DetailsEpisodes } from "./item-details/details-episodes";
 export { DetailsEpisode } from "./item-details/details-episodes";
 export { default as DetailsHeader } from "./item-details/details-header";
 export { default as DetailsInfo } from "./item-details/details-info";
+export { default as DetailsRelated } from "./item-details/details-related";

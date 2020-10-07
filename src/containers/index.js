@@ -12,3 +12,4 @@ export { default as DetailsContainer } from "./details";
 export { default as DetailsEpisodesContainer } from "./details-episodes";
 export { default as DetailsHeaderContainer } from "./details-header";
 export { default as DetailsInfoContainer } from "./details-info";
+export { default as DetailsRelatedContainer } from "./details-related";

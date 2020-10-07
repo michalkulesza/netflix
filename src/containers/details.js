@@ -2,10 +2,9 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { clearDetails, clearEpisodes } from "../redux/actions";
 import { Details } from "../components";
-import { DetailsHeaderContainer, DetailsInfoContainer, DetailsEpisodesContainer } from "./";
+import { DetailsHeaderContainer, DetailsInfoContainer, DetailsEpisodesContainer, DetailsRelatedContainer } from "./";
 
 import { GlobalStyles } from "../global-styles";
-import { GrPlayFill } from "react-icons/gr";
 
 import VideoFile from "../res/videos/mindhunter_trailer.mp4";
 import VideoLogo from "../res/images/mindhunter-logo.png";
@@ -36,34 +35,7 @@ const DetailsContainer = () => {
 				<DetailsHeaderContainer VideoFile={VideoFile} VideoLogo={VideoLogo} item={item} />
 				<DetailsInfoContainer item={item} />
 				<DetailsEpisodesContainer item={item} />
-
-				{item.related && (
-					<Details.Related>
-						<Details.RelatedHeader>More Like This</Details.RelatedHeader>
-						<Details.RelatedItems>
-							{item.related.map(el => (
-								<Details.RelatedItem key={el.id}>
-									<Details.RelatedItemImageWrapper>
-										<Details.RelatedItemImage src={el.backdrop_path_500} alt="Video preview" />
-										<Details.RelatedItemImageOverlay>
-											<Details.RelatedItemImageOverlayButton>
-												<GrPlayFill />
-											</Details.RelatedItemImageOverlayButton>
-										</Details.RelatedItemImageOverlay>
-									</Details.RelatedItemImageWrapper>
-									<Details.RelatedItemMain>
-										<Details.RelatedItemTitle>{el.name ? el.name : el.title}</Details.RelatedItemTitle>
-										<Details.RelatedItemInfo>
-											<span>12</span> {el.first_air_date ? el.first_air_date.slice(0, 4) : el.release_date.slice(0, 4)}
-										</Details.RelatedItemInfo>
-										<Details.RelatedItemDescription>{el.overview.slice(0, 100)}</Details.RelatedItemDescription>
-									</Details.RelatedItemMain>
-								</Details.RelatedItem>
-							))}
-						</Details.RelatedItems>
-					</Details.Related>
-				)}
-
+				<DetailsRelatedContainer item={item} />
 				<Details.About>
 					<Details.AboutHeader>About {item.details.name ? item.details.name : item.details.title}</Details.AboutHeader>
 
