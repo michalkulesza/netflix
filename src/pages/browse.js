@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Navbar, Header, Carousels } from "../components/";
-import { NavbarContainer, HeaderContainer, CarouselsContainer, ItemDetailsContainer } from "../containers";
+import { NavbarContainer, HeaderContainer, CarouselsContainer, DetailsContainer } from "../containers";
 import LazyLoad from "react-lazyload";
 
 import VideoFile from "../res/videos/mindhunter_trailer.mp4";
@@ -40,7 +40,7 @@ const Browse = () => {
 						></HeaderContainer>
 					</LazyLoad>
 					<CarouselsContainer data={data} />
-					<ItemDetailsContainer />
+					<DetailsContainer />
 				</>
 			) : (
 				<>
