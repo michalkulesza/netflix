@@ -10,13 +10,13 @@ const initState = {
 const cacheInitialData = (state = initState, action) => {
 	switch (action.type) {
 		case SET_CACHE_BROWSE:
-			return { ...state, ...action.payload };
+			return { ...state, browseCache: action.payload };
 		case SET_CACHE_SERIES:
-			return { ...state, ...action.payload };
+			return { ...state, seriesCache: action.payload };
 		case SET_CACHE_FILMS:
-			return { ...state, ...action.payload };
+			return { ...state, filmsCache: action.payload };
 		case SET_CACHE_LATEST:
-			return { ...state, ...action.payload };
+			return { ...state, latestCache: action.payload };
 		default:
 			return state;
 	}

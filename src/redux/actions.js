@@ -1,5 +1,5 @@
 import {
-	FETCH_INITIAL_DATA,
+	SET_INITIAL_DATA,
 	FETCH_DETAILS,
 	CLEAR_DETAILS,
 	FETCH_EPISODES,
@@ -16,13 +16,75 @@ import {
 } from "./types";
 import axios from "axios";
 
-export const fetchInitialData = () => {
+export const setInitialData = data => {
+	return {
+		type: SET_INITIAL_DATA,
+		payload: data,
+	};
+};
+
+export const fetchInitialDataBrowse = () => {
 	return async dispatch => {
 		try {
-			const response = await axios.get("http://localhost:8888/initial");
+			const response = await axios.get("http://localhost:8888/initial/browse");
 
 			dispatch({
-				type: FETCH_INITIAL_DATA,
+				type: SET_INITIAL_DATA,
+				payload: response.data,
+			});
+
+			dispatch({
+				type: SET_CACHE_BROWSE,
+				payload: response.data,
+			});
+		} catch (error) {
+			console.error(error.message);
+		}
+	};
+};
+
+export const fetchInitialDataSeries = () => {
+	return async dispatch => {
+		try {
+			const response = await axios.get("http://localhost:8888/initial/series");
+
+			dispatch({
+				type: SET_INITIAL_DATA,
+				payload: response.data,
+			});
+
+			dispatch({
+				type: SET_CACHE_SERIES,
+				payload: response.data,
+			});
+		} catch (error) {
+			console.error(error.message);
+		}
+	};
+};
+
+export const fetchInitialDataFilms = () => {
+	return async dispatch => {
+		try {
+			const response = await axios.get("http://localhost:8888/initial/films");
+
+			dispatch({
+				type: SET_INITIAL_DATA,
+				payload: response.data,
+			});
+		} catch (error) {
+			console.error(error.message);
+		}
+	};
+};
+
+export const fetchInitialDataLatest = () => {
+	return async dispatch => {
+		try {
+			const response = await axios.get("http://localhost:8888/initial/latest");
+
+			dispatch({
+				type: SET_INITIAL_DATA,
 				payload: response.data,
 			});
 		} catch (error) {
