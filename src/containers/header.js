@@ -18,6 +18,7 @@ const HeaderContainer = ({
 }) => {
 	const dispatch = useDispatch();
 	const muted = useSelector(state => state.misc.globalMute);
+	const canPlay = useSelector(state => state.misc.headerVideoCanPlay);
 
 	const handleMute = () => {
 		dispatch(setGlobalMute(!muted));
@@ -40,7 +41,7 @@ const HeaderContainer = ({
 				<>
 					<Header.VideoWrapper>
 						<Header.VideoGradient />
-						<Header.Video src={videoUrl} type="video/mp4" {...restProps} muted={muted} />
+						<Header.Video src={videoUrl} autoPlay={canPlay} muted={muted} {...restProps} />
 					</Header.VideoWrapper>
 					<Header.ContainerInVideo>
 						<Header.ContainerInVideoHalf>

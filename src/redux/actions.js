@@ -7,6 +7,8 @@ import {
 	SET_DETAILS_POSITION,
 	CLEAR_EPISODES,
 	SET_GLOBAL_MUTE,
+	SET_HEADER_VIDEO_CAN_PLAY,
+	SET_SECONDARY_VIDEO_IS_PLAYING,
 } from "./types";
 import axios from "axios";
 
@@ -103,6 +105,20 @@ export const setDetailsPosition = (x, y, width, height) => {
 export const setGlobalMute = bool => {
 	return {
 		type: SET_GLOBAL_MUTE,
+		payload: bool,
+	};
+};
+
+export const setHeaderVideoCanPlay = bool => {
+	return {
+		type: SET_HEADER_VIDEO_CAN_PLAY,
+		payload: bool,
+	};
+};
+
+export const setSecondaryVideoIsPlaying = bool => {
+	return {
+		type: SET_SECONDARY_VIDEO_IS_PLAYING,
 		payload: bool,
 	};
 };

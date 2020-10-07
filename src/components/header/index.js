@@ -65,7 +65,11 @@ Header.SubHeading = function ({ children, ...restProps }) {
 };
 
 Header.Video = function ({ children, ...restProps }) {
-	return <Video {...restProps}>{children}</Video>;
+	return (
+		<Video type="video/mp4" {...restProps}>
+			{children}
+		</Video>
+	);
 };
 
 Header.VideoWrapper = function ({ children, ...restProps }) {
