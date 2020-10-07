@@ -142,9 +142,9 @@ export const ContainerInVideoHalf = styled.div`
 	display: flex;
 
 	&:nth-of-type(1) {
-		width: calc(50% - 3.5em);
+		width: calc(50% - 2.5em);
 		margin-top: 8vw;
-		margin-left: 3.5em;
+		margin-left: 2.5em;
 		flex-direction: column;
 		justify-content: center;
 	}

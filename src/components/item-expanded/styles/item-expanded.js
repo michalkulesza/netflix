@@ -3,10 +3,12 @@ import styled from "styled-components/macro";
 export const Item = styled.div`
 	position: absolute;
 	z-index: 20;
-	left: 50%;
+	left: ${({ position }) => (position === "first" ? "0" : position === "middle" ? "50%" : "")};
+	right: ${({ position }) => position === "last" && "0"};
 	min-height: 60%;
-	width: 200%;
-	transform: ${({ isExpanded }) => `translateX(-50%) ${isExpanded ? "scale(1)" : "scale(.7)"}`};
+	width: 170%;
+	transform: ${({ isExpanded, position }) =>
+		`translateX(${position === "middle" ? "-50%" : "0"}) ${isExpanded ? "scale(1)" : "scale(.7)"}`};
 	transform-origin: ${({ position }) => (position === "first" ? "left" : position === "last" ? "right" : "center")};
 	pointer-events: ${({ position }) => (position === "outside" ? "none" : "all")};
 	opacity: ${({ isExpanded }) => (isExpanded ? `1` : `0`)};
@@ -15,6 +17,7 @@ export const Item = styled.div`
 	background-color: #181818;
 	pointer-events: ${({ isExpanded }) => (isExpanded ? `all` : `none`)};
 	box-shadow: rgba(0, 0, 0, 0.75) 0px 3px 10px;
+	overflow: hidden;
 `;
 
 export const Header = styled.div`
