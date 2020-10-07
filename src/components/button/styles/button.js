@@ -21,7 +21,7 @@ export const Square = styled.button`
 	align-items: center;
 	background-color: ${({ dark }) => (dark ? "#616f6d" : "#fff")};
 	color: ${({ dark }) => (dark ? "#fff" : "#000")};
-	margin-right: ${({ marginRight = "0.5em" }) => marginRight};
+	margin-right: ${({ marginRight = "4%" }) => marginRight};
 
 	svg {
 		margin-right: 0.5em;
@@ -44,13 +44,12 @@ export const Square = styled.button`
 
 export const Label = styled.div`
 	position: absolute;
-	top: -22px;
+	top: -35px;
 	transform: translateX(-50%);
 	left: 50%;
 	width: max-content;
 	background-color: #e2e2e2;
 	color: #000;
-	font-size: 0.55em;
 	padding: 0.3em 0.6em;
 	opacity: 0;
 	transition: opacity 200ms ease-in-out;
@@ -72,7 +71,7 @@ export const Label = styled.div`
 
 export const Container = styled.div`
 	position: relative;
-	margin-right: 4%;
+	margin-right: ${({ marginRight = "3%" }) => marginRight};
 
 	&:hover {
 		> ${Label} {
@@ -83,7 +82,7 @@ export const Container = styled.div`
 
 export const Round = styled.button`
 	background-color: ${({ inverted }) => (inverted ? "#fff" : "#232323")};
-	border: ${({ inverted }) => (inverted ? "1px solid #fff" : "1px solid #919191")};
+	border: ${({ inverted, dark }) => (inverted ? "1px solid #fff" : dark ? "none" : "1px solid #919191")};
 	border-radius: 50%;
 	height: 40px;
 	width: 40px;
@@ -93,7 +92,7 @@ export const Round = styled.button`
 
 	&:hover {
 		background-color: ${({ inverted }) => inverted && "#e2e2e2"};
-		border-color: ${({ inverted }) => (inverted ? "#e2e2e2" : "#fff")};
+		border-color: ${({ inverted, dark }) => (inverted ? "#e2e2e2" : dark ? "none" : "#fff")};
 	}
 
 	svg {

@@ -3,11 +3,10 @@ import styled from "styled-components/macro";
 export const Item = styled.div`
 	position: absolute;
 	z-index: 20;
-	top: 15%;
-	left: 0;
+	left: 50%;
 	min-height: 60%;
-	width: 100%;
-	transform: ${({ isExpanded }) => (isExpanded ? `scale(1.7)` : `scale(1)`)};
+	width: 200%;
+	transform: ${({ isExpanded }) => `translateX(-50%) ${isExpanded ? "scale(1)" : "scale(.7)"}`};
 	transform-origin: ${({ position }) => (position === "first" ? "left" : position === "last" ? "right" : "center")};
 	pointer-events: ${({ position }) => (position === "outside" ? "none" : "all")};
 	opacity: ${({ isExpanded }) => (isExpanded ? `1` : `0`)};
@@ -21,7 +20,6 @@ export const Item = styled.div`
 export const Header = styled.div`
 	position: relative;
 	width: 100%;
-	height: 0;
 	padding-top: 56.25%;
 	overflow: hidden;
 `;
@@ -62,7 +60,6 @@ export const Half = styled.div`
 export const Info = styled.div`
 	display: flex;
 	align-items: center;
-	font-size: 0.55em;
 	color: #fff;
 
 	p {
@@ -79,7 +76,6 @@ export const Info = styled.div`
 `;
 
 export const GenreWrapper = styled.div`
-	font-size: 0.6em;
 	color: #fff;
 	display: flex;
 	flex-direction: row;

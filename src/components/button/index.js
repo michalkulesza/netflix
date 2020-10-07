@@ -9,18 +9,18 @@ const Button = ({ route, children, ...restProps }) => {
 	);
 };
 
-Button.Square = ({ iconScale, inverted, children, ...restProps }) => {
+Button.Square = ({ iconScale, inverted, marginRight, children, ...restProps }) => {
 	return (
-		<Square iconScale={iconScale} inverted={inverted} {...restProps}>
+		<Square iconScale={iconScale} inverted={inverted} marginRight={marginRight} {...restProps}>
 			{children}
 		</Square>
 	);
 };
 
-Button.Round = ({ label, inverted, children, ...restProps }) => {
+Button.Round = ({ label, inverted, dark, marginRight, children, ...restProps }) => {
 	return (
 		<Container>
-			<Round inverted={inverted} {...restProps}>
+			<Round inverted={inverted} marginRight={marginRight} dark={dark} {...restProps}>
 				{children}
 			</Round>
 			{label && <Label>{label}</Label>}

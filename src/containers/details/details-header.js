@@ -36,7 +36,7 @@ const DetailsHeaderContainer = ({ VideoFile, VideoLogo, item }) => {
 					</DetailsHeader.ButtonsContainer>
 				</DetailsHeader.OverlayHalf>
 				<DetailsHeader.OverlayHalf>
-					<Button.Round onMouseDown={handleClose}>
+					<Button.Round dark onMouseDown={handleClose}>
 						<GrClose />
 					</Button.Round>
 					<Button.Round onMouseDown={handleClose}>
