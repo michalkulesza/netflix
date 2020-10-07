@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router } from "react-router-dom";
-import { HOME, SIGN_IN, SIGN_UP, BROWSE } from "./constants/routes";
-import { Home, SignIn, SignUp, Browse } from "./pages";
+import { HOME, SIGN_IN, SIGN_UP, BROWSE, SERIES, FILMS, LATEST, MYLIST } from "./constants/routes";
+import { Home, SignIn, SignUp, Browse, Latest, MyList } from "./pages";
 import { IfUserRedirect, ProtectedRoute } from "./helpers/protectedRoutes";
 import { useAuthListener } from "./hooks/";
 
@@ -21,6 +21,18 @@ const App = () => {
 			</IfUserRedirect>
 			<ProtectedRoute exact path={BROWSE} user={user}>
 				<Browse />
+			</ProtectedRoute>
+			<ProtectedRoute exact path={SERIES} user={user}>
+				<Browse />
+			</ProtectedRoute>
+			<ProtectedRoute exact path={FILMS} user={user}>
+				<Browse />
+			</ProtectedRoute>
+			<ProtectedRoute exact path={LATEST} user={user}>
+				<Latest />
+			</ProtectedRoute>
+			<ProtectedRoute exact path={MYLIST} user={user}>
+				<MyList />
 			</ProtectedRoute>
 		</Router>
 	);

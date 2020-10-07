@@ -1,5 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { BROWSE, FILMS, SERIES, LATEST, MYLIST } from "../constants/routes";
 import { Navbar, Header, Carousels } from "../components/";
 import { NavbarContainer, HeaderContainer, CarouselsContainer, DetailsContainer } from "../containers";
 import LazyLoad from "react-lazyload";
@@ -16,11 +18,21 @@ const Browse = () => {
 				<Navbar.Divide>
 					<Navbar.Logo smallLogo={true} />
 					<Navbar.Menu>
-						<Navbar.MenuItem>Home</Navbar.MenuItem>
-						<Navbar.MenuItem>Series</Navbar.MenuItem>
-						<Navbar.MenuItem>Films</Navbar.MenuItem>
-						<Navbar.MenuItem>Latest</Navbar.MenuItem>
-						<Navbar.MenuItem>My List</Navbar.MenuItem>
+						<Link to={BROWSE}>
+							<Navbar.MenuItem>Home</Navbar.MenuItem>
+						</Link>
+						<Link to={SERIES}>
+							<Navbar.MenuItem>Series</Navbar.MenuItem>
+						</Link>
+						<Link to={FILMS}>
+							<Navbar.MenuItem>Films</Navbar.MenuItem>
+						</Link>
+						<Link to={LATEST}>
+							<Navbar.MenuItem>Latest</Navbar.MenuItem>
+						</Link>
+						<Link to={MYLIST}>
+							<Navbar.MenuItem>My List</Navbar.MenuItem>
+						</Link>
 					</Navbar.Menu>
 				</Navbar.Divide>
 			</NavbarContainer>
