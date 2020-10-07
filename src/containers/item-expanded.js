@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { setDetails, setDetailsPosition, fetchDetailsMovie, fetchDetailsTv } from "../redux/actions";
 import LazyLoad from "react-lazyload";
-import { ItemExpanded } from "../components";
+import { ItemExpanded, Button } from "../components";
 
 import { BiPlay, BiPlus, BiLike, BiDislike, BiChevronDown } from "react-icons/bi";
 
@@ -32,29 +32,26 @@ const ItemExpandedContainer = ({ isExpanded, showVideo, position, item, videoFil
 			<ItemExpanded.Main>
 				<ItemExpanded.Buttons>
 					<ItemExpanded.Half>
-						<ItemExpanded.Button inverted>
+						<Button.Round inverted>
 							<BiPlay />
-						</ItemExpanded.Button>
-						<ItemExpanded.Button>
+						</Button.Round>
+						<Button.Round label="Add to My List">
 							<BiPlus />
-							<ItemExpanded.Label>Add to My List</ItemExpanded.Label>
-						</ItemExpanded.Button>
-						<ItemExpanded.Button>
+						</Button.Round>
+						<Button.Round label="I like this">
 							<BiLike />
-							<ItemExpanded.Label>I like this</ItemExpanded.Label>
-						</ItemExpanded.Button>
-						<ItemExpanded.Button>
+						</Button.Round>
+						<Button.Round label="Not for me">
 							<BiDislike />
-							<ItemExpanded.Label>Not for me</ItemExpanded.Label>
-						</ItemExpanded.Button>
+						</Button.Round>
 					</ItemExpanded.Half>
 					<ItemExpanded.Half>
-						<ItemExpanded.Button onMouseDown={e => handleClickMoreDetails(e)}>
+						<Button.Round
+							label={item.media_type === "movie" ? "More info" : "Episodes & Info"}
+							onMouseDown={e => handleClickMoreDetails(e)}
+						>
 							<BiChevronDown />
-							<ItemExpanded.Label lastButton>
-								{item.media_type === "movie" ? "More info" : "Episodes & Info"}
-							</ItemExpanded.Label>
-						</ItemExpanded.Button>
+						</Button.Round>
 					</ItemExpanded.Half>
 				</ItemExpanded.Buttons>
 				<ItemExpanded.Info>

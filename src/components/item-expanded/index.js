@@ -7,8 +7,6 @@ import {
 	Main,
 	Buttons,
 	Half,
-	Button,
-	Label,
 	Info,
 	Genre,
 	GenreWrapper,
@@ -40,14 +38,6 @@ ItemExpanded.Buttons = ({ children, ...restProps }) => {
 
 ItemExpanded.Half = ({ children, ...restProps }) => {
 	return <Half {...restProps}>{children}</Half>;
-};
-
-ItemExpanded.Button = ({ children, ...restProps }) => {
-	return <Button {...restProps}>{children}</Button>;
-};
-
-ItemExpanded.Label = ({ children, ...restProps }) => {
-	return <Label {...restProps}>{children}</Label>;
 };
 
 ItemExpanded.Info = ({ children, ...restProps }) => {

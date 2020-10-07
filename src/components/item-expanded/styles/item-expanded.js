@@ -59,66 +59,6 @@ export const Half = styled.div`
 	display: flex;
 `;
 
-export const Label = styled.div`
-	position: absolute;
-	top: -22px;
-	transform: ${({ lastButton }) => !lastButton && "translateX(-50%)"};
-	left: ${({ lastButton }) => !lastButton && "50%"};
-	right: ${({ lastButton }) => lastButton && "-30%"};
-	width: max-content;
-	background-color: #e2e2e2;
-	font-size: 0.55em;
-	padding: 0.3em 0.6em;
-	opacity: 0;
-	transition: opacity 200ms ease-in-out;
-	box-shadow: ${({ lastButton }) => !lastButton && "rgba(0, 0, 0, 0.75) 0px 3px 10px"};
-
-	&::after {
-		content: "";
-		position: absolute;
-		left: ${({ lastButton }) => !lastButton && "50%"};
-		right: ${({ lastButton }) => lastButton && "8px"};
-		transform: translateX(-50%) rotate(45deg);
-		bottom: -2px;
-		height: 10px;
-		width: 10px;
-		background-color: #e2e2e2;
-		z-index: -1;
-	}
-`;
-
-export const Button = styled.button`
-	position: relative;
-	background-color: ${({ inverted }) => (inverted ? "#fff" : "#232323")};
-	border: ${({ inverted }) => (inverted ? "1px solid #fff" : "1px solid #919191")};
-	border-radius: 50%;
-	height: 1.5em;
-	width: 1.5em;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	margin-right: 4%;
-	margin-bottom: 5%;
-
-	&:hover {
-		background-color: ${({ inverted }) => inverted && "#e2e2e2"};
-		border-color: ${({ inverted }) => (inverted ? "#e2e2e2" : "#fff")};
-
-		> ${Label} {
-			opacity: 1;
-		}
-	}
-
-	&:nth-last-of-type() {
-		margin-right: 0;
-	}
-
-	svg {
-		fill: ${({ inverted }) => (inverted ? "#232323" : "#fff")};
-		transform: ${({ inverted }) => (inverted ? "scale(1.5)" : "scale(1.2)")};
-	}
-`;
-
 export const Info = styled.div`
 	display: flex;
 	align-items: center;
