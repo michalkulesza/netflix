@@ -14,7 +14,7 @@ const CarouselsContainer = ({ data }) => {
 						.map(word => word.charAt(0).toUpperCase() + word.slice(1))
 						.join(" ");
 					return (
-						<LazyLoad height={600} key={i}>
+						<LazyLoad height={200} key={i}>
 							<CarouselContainer title={title} i={i} data={category[categoryName]} />
 						</LazyLoad>
 					);

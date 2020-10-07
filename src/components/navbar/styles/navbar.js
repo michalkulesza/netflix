@@ -57,6 +57,13 @@ export const Logo = styled.img`
 export const Menu = styled.ul`
 	display: flex;
 	align-items: center;
+
+	a.active {
+		font-weight: 600;
+		li {
+			color: #fff;
+		}
+	}
 `;
 
 export const MenuItem = styled.li`
