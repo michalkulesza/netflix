@@ -1,16 +1,5 @@
 import React from "react";
-import {
-	Header,
-	Video,
-	Cover,
-	Overlay,
-	OverlayHalf,
-	OverlayButtonClose,
-	Button,
-	Label,
-	Logo,
-	ButtonsContainer,
-} from "./styles/details-header";
+import { Header, Video, Cover, Overlay, OverlayHalf, Logo, ButtonsContainer } from "./styles/details-header";
 
 const DetailsHeader = ({ children, ...restProps }) => {
 	return <Header {...restProps}>{children}</Header>;
@@ -30,18 +19,6 @@ DetailsHeader.Overlay = ({ children, ...restProps }) => {
 
 DetailsHeader.OverlayHalf = ({ children, ...restProps }) => {
 	return <OverlayHalf {...restProps}>{children}</OverlayHalf>;
-};
-
-DetailsHeader.OverlayButtonClose = ({ children, ...restProps }) => {
-	return <OverlayButtonClose {...restProps}>{children}</OverlayButtonClose>;
-};
-
-DetailsHeader.Button = ({ children, ...restProps }) => {
-	return <Button {...restProps}>{children}</Button>;
-};
-
-DetailsHeader.Label = ({ children, ...restProps }) => {
-	return <Label {...restProps}>{children}</Label>;
 };
 
 DetailsHeader.Logo = ({ children, ...restProps }) => {

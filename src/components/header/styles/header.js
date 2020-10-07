@@ -168,41 +168,6 @@ export const AgeRestriction = styled.div`
 	border-left: 4px solid #dcdcdc;
 `;
 
-export const VideoMuteButton = styled.button`
-	border: 2px solid #fff;
-	height: 40px;
-	width: 40px;
-	border-radius: 50%;
-	margin-right: 1em;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	background-color: transparent;
-
-	svg {
-		transform: scale(1.8);
-		fill: #fff;
-	}
-
-	&:hover {
-		background-color: rgba(255, 255, 255, 0.15);
-	}
-
-	&:active {
-		background-color: rgba(255, 255, 255, 0.6);
-	}
-
-	@media only screen and (max-width: 1149px) {
-		height: 30px;
-		width: 30px;
-
-		svg {
-			transform: scale(1.4);
-			fill: #fff;
-		}
-	}
-`;
-
 export const VideoLogo = styled.img`
 	object-fit: cover;
 	width: 30vw;

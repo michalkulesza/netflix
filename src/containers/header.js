@@ -50,9 +50,9 @@ const HeaderContainer = ({
 						</Header.ContainerInVideoHalf>
 						<Header.ContainerInVideoHalf>
 							<Header.VideoMuteContainer>
-								<Header.VideoMuteButton onMouseDown={() => setVideoMuted(!videoMuted)}>
+								<Button.Round onMouseDown={() => setVideoMuted(!videoMuted)}>
 									{videoMuted ? <GiSpeakerOff /> : <GiSpeaker />}
-								</Header.VideoMuteButton>
+								</Button.Round>
 								<Header.AgeRestriction>{ageRestriction}</Header.AgeRestriction>
 							</Header.VideoMuteContainer>
 						</Header.ContainerInVideoHalf>

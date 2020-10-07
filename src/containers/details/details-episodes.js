@@ -44,7 +44,7 @@ const DetailsEpisodesContainer = ({ item }) => {
 						</DetailsEpisodes.SeasonsButton>
 						<DetailsEpisodes.SeasonsList seasonsDropdownActive={seasonsDropdownActive}>
 							{Array.from(Array(item.details.number_of_seasons), (_, i) => (
-								<DetailsEpisodes.Season onMouseDown={() => handleSeasonClick(i + 1)}>
+								<DetailsEpisodes.Season key={i} onMouseDown={() => handleSeasonClick(i + 1)}>
 									Season {i + 1}
 								</DetailsEpisodes.Season>
 							))}
@@ -53,7 +53,7 @@ const DetailsEpisodesContainer = ({ item }) => {
 				</DetailsEpisodes.Header>{" "}
 				<DetailsEpisodes.List>
 					{episodes.episodes.map(item => (
-						<DetailsEpisode.Wrapper>
+						<DetailsEpisode.Wrapper key={item.id}>
 							<DetailsEpisode>
 								<DetailsEpisode.Num>{item.episode_number ? item.episode_number : "-"}</DetailsEpisode.Num>
 								<DetailsEpisode.Image src={item.still_path_300} alt="Episode preview" />

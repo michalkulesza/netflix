@@ -24,27 +24,24 @@ const DetailsHeaderContainer = ({ VideoFile, VideoLogo, item }) => {
 						<Button.Square>
 							<GrPlayFill /> Play
 						</Button.Square>
-						<DetailsHeader.Button>
+						<Button.Round label="Add to My List">
 							<BiPlus />
-							<DetailsHeader.Label>Add to My List</DetailsHeader.Label>
-						</DetailsHeader.Button>
-						<DetailsHeader.Button>
+						</Button.Round>
+						<Button.Round label="I like this">
 							<BiLike />
-							<DetailsHeader.Label>I like this</DetailsHeader.Label>
-						</DetailsHeader.Button>
-						<DetailsHeader.Button>
+						</Button.Round>
+						<Button.Round label="Not for me">
 							<BiDislike />
-							<DetailsHeader.Label>Not for me</DetailsHeader.Label>
-						</DetailsHeader.Button>
+						</Button.Round>
 					</DetailsHeader.ButtonsContainer>
 				</DetailsHeader.OverlayHalf>
 				<DetailsHeader.OverlayHalf>
-					<DetailsHeader.OverlayButtonClose onMouseDown={handleClose}>
+					<Button.Round onMouseDown={handleClose}>
 						<GrClose />
-					</DetailsHeader.OverlayButtonClose>
-					<DetailsHeader.Button>
+					</Button.Round>
+					<Button.Round onMouseDown={handleClose}>
 						<GiSpeaker />
-					</DetailsHeader.Button>
+					</Button.Round>
 				</DetailsHeader.OverlayHalf>
 			</DetailsHeader.Overlay>
 		</DetailsHeader>

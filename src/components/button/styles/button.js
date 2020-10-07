@@ -85,8 +85,8 @@ export const Round = styled.button`
 	background-color: ${({ inverted }) => (inverted ? "#fff" : "#232323")};
 	border: ${({ inverted }) => (inverted ? "1px solid #fff" : "1px solid #919191")};
 	border-radius: 50%;
-	height: 1.5em;
-	width: 1.5em;
+	height: 40px;
+	width: 40px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
