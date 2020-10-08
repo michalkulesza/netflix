@@ -72,6 +72,10 @@ export const fetchInitialDataFilms = () => {
 				type: SET_INITIAL_DATA,
 				payload: response.data,
 			});
+			dispatch({
+				type: SET_CACHE_FILMS,
+				payload: response.data,
+			});
 		} catch (error) {
 			console.error(error.message);
 		}
@@ -85,6 +89,10 @@ export const fetchInitialDataLatest = () => {
 
 			dispatch({
 				type: SET_INITIAL_DATA,
+				payload: response.data,
+			});
+			dispatch({
+				type: SET_CACHE_LATEST,
 				payload: response.data,
 			});
 		} catch (error) {
