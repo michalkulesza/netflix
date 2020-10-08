@@ -137,12 +137,12 @@ export const ContainerInVideo = styled.div`
 `;
 
 export const ContainerInVideoHalf = styled.div`
-	height: 50%;
+	height: calc(40%);
 	display: flex;
 
 	&:nth-of-type(1) {
 		width: calc(50% - 2.5em);
-		margin-top: 8vw;
+		margin-top: 12vw;
 		margin-left: 2.5em;
 		flex-direction: column;
 		justify-content: center;

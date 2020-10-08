@@ -6,6 +6,7 @@ import { Button } from "../components";
 import { GiSpeaker, GiSpeakerOff } from "react-icons/gi";
 import { GrPlayFill, GrCircleInformation } from "react-icons/gr";
 import useScrolledDistance from "../hooks/use-scrolled-distance";
+import useViewportWidth from "../hooks/use-viewport-width";
 
 const HeaderContainer = ({ headerData, bg, children, ...restProps }) => {
 	const videoPlayer = useRef(null);
@@ -13,8 +14,9 @@ const HeaderContainer = ({ headerData, bg, children, ...restProps }) => {
 	const muted = useSelector(state => state.misc.globalMute);
 	const isExpanded = useSelector(state => state.toggles.isExpanded);
 	const scrolled = useScrolledDistance();
-	const canPlay = scrolled < 200 && !isExpanded;
-
+	const viewPortWidth = useViewportWidth();
+	const canPlay = scrolled < (viewPortWidth * 0.5625) / 3 && !isExpanded;
+	console.log(viewPortWidth);
 	useEffect(() => {
 		if (videoPlayer) {
 			videoPlayer.current.volume = 0.4;
