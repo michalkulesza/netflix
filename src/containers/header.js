@@ -1,15 +1,26 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setGlobalMute } from "../redux/actions";
 import { Header } from "../components";
 import { Button } from "../components";
 import { GiSpeaker, GiSpeakerOff } from "react-icons/gi";
 import { GrPlayFill, GrCircleInformation } from "react-icons/gr";
+import useScrolledDistance from "../hooks/use-scrolled-distance";
 
 const HeaderContainer = ({ headerData, bg, children, ...restProps }) => {
+	const videoPlayer = useRef(null);
 	const dispatch = useDispatch();
 	const muted = useSelector(state => state.misc.globalMute);
-	const canPlay = useSelector(state => state.misc.headerVideoCanPlay);
+	const isExpanded = useSelector(state => state.toggles.isExpanded);
+	const scrolled = useScrolledDistance();
+	const canPlay = scrolled < 200 && !isExpanded;
+
+	useEffect(() => {
+		if (videoPlayer) {
+			videoPlayer.current.volume = 0.4;
+			canPlay ? videoPlayer.current.play() : videoPlayer.current.pause();
+		}
+	}, [canPlay]);
 
 	const handleMute = () => {
 		dispatch(setGlobalMute(!muted));
@@ -37,6 +48,7 @@ const HeaderContainer = ({ headerData, bg, children, ...restProps }) => {
 							poster={headerData.backdrop}
 							autoPlay={canPlay}
 							muted={muted}
+							ref={videoPlayer}
 							{...restProps}
 						/>
 					</Header.VideoWrapper>

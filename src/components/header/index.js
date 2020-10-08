@@ -64,13 +64,18 @@ Header.SubHeading = function ({ children, ...restProps }) {
 	return <SubHeading {...restProps}>{children}</SubHeading>;
 };
 
-Header.Video = function ({ children, ...restProps }) {
+Header.Video = React.forwardRef((props, ref) => {
 	return (
-		<Video type="video/mp4" {...restProps}>
-			{children}
-		</Video>
+		<Video
+			type="video/mp4"
+			ref={ref}
+			src={props.src}
+			poster={props.poster}
+			autoPlay={props.autoPlay}
+			muted={props.muted}
+		></Video>
 	);
-};
+});
 
 Header.VideoWrapper = function ({ children, ...restProps }) {
 	return <VideoWrapper {...restProps}>{children}</VideoWrapper>;

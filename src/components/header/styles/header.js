@@ -102,11 +102,10 @@ export const Video = styled.video`
 	top: 50%;
 	left: 50%;
 	transform: translateX(-50%) translateY(-50%);
-	min-width: 100%;
-	min-height: 100%;
-	width: auto;
-	height: auto;
+	width: 100%;
+	height: 100%;
 	overflow: hidden;
+	object-fit: fill;
 `;
 
 export const VideoGradient = styled.div`
@@ -177,7 +176,7 @@ export const VideoLogo = styled.img`
 `;
 
 export const VideoDescription = styled.div`
-	text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.45);
+	text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
 	margin-bottom: 1.5vw;
 	font-size: 1.5vw;
 
