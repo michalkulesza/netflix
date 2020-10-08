@@ -6,16 +6,7 @@ import { Button } from "../components";
 import { GiSpeaker, GiSpeakerOff } from "react-icons/gi";
 import { GrPlayFill, GrCircleInformation } from "react-icons/gr";
 
-const HeaderContainer = ({
-	children,
-	bg,
-	videoUrl,
-	ageRestriction = "-",
-	videoLogo,
-	videoDescription,
-	alt,
-	...restProps
-}) => {
+const HeaderContainer = ({ headerData, bg, children, ...restProps }) => {
 	const dispatch = useDispatch();
 	const muted = useSelector(state => state.misc.globalMute);
 	const canPlay = useSelector(state => state.misc.headerVideoCanPlay);
@@ -37,16 +28,22 @@ const HeaderContainer = ({
 					<Header.Container>{children}</Header.Container>
 					<Header.Border />
 				</>
-			) : videoUrl ? (
+			) : headerData ? (
 				<>
 					<Header.VideoWrapper>
 						<Header.VideoGradient />
-						<Header.Video src={videoUrl} autoPlay={canPlay} muted={muted} {...restProps} />
+						<Header.Video
+							src={headerData.src}
+							poster={headerData.backdrop}
+							autoPlay={canPlay}
+							muted={muted}
+							{...restProps}
+						/>
 					</Header.VideoWrapper>
 					<Header.ContainerInVideo>
 						<Header.ContainerInVideoHalf>
-							<Header.VideoLogo src={videoLogo} alt={alt} />
-							<Header.VideoDescription>{videoDescription}</Header.VideoDescription>
+							<Header.VideoLogo src={headerData.logo} alt={headerData.title} />
+							<Header.VideoDescription>{headerData.description}</Header.VideoDescription>
 							<Header.VideoButtonsContainer>
 								<Button.Square>
 									<GrPlayFill /> Play
@@ -59,7 +56,7 @@ const HeaderContainer = ({
 						<Header.ContainerInVideoHalf>
 							<Header.VideoMuteContainer>
 								<Button.Round onMouseDown={handleMute}>{muted ? <GiSpeakerOff /> : <GiSpeaker />}</Button.Round>
-								<Header.AgeRestriction>{ageRestriction}</Header.AgeRestriction>
+								<Header.AgeRestriction>{headerData.ageRestriction}</Header.AgeRestriction>
 							</Header.VideoMuteContainer>
 						</Header.ContainerInVideoHalf>
 					</Header.ContainerInVideo>

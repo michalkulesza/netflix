@@ -6,7 +6,10 @@ import {
 	fetchInitialDataSeries,
 	fetchInitialDataFilms,
 	fetchInitialDataLatest,
+	setHeaderVideo,
 } from "../redux/actions";
+
+import { BrowseVideo, FilmsVideo, SeriesVideo } from "../fixtures/videos";
 
 const useFetchInitData = id => {
 	const dispatch = useDispatch();
@@ -39,6 +42,7 @@ const useFetchInitData = id => {
 		}
 
 		if (/^\/browse\/films/.test(id.pathname)) {
+			dispatch(setHeaderVideo(FilmsVideo));
 			if (!initialData) {
 				if (cachedFilmsData) {
 					if (cachedFilmsData !== initialData) {
@@ -55,6 +59,8 @@ const useFetchInitData = id => {
 		}
 
 		if (/^\/browse\/series/.test(id.pathname)) {
+			dispatch(setHeaderVideo(SeriesVideo));
+
 			if (!initialData) {
 				if (cachedSeriesData) {
 					if (cachedSeriesData !== initialData) {
@@ -71,6 +77,8 @@ const useFetchInitData = id => {
 		}
 
 		if (/^\/browse/.test(id.pathname)) {
+			dispatch(setHeaderVideo(BrowseVideo));
+
 			if (!initialData) {
 				if (cachedBrowseData) {
 					if (cachedBrowseData !== initialData) {

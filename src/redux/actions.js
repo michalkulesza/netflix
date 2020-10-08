@@ -13,6 +13,7 @@ import {
 	SET_CACHE_SERIES,
 	SET_CACHE_FILMS,
 	SET_CACHE_LATEST,
+	SET_HEADER_VIDEO,
 } from "./types";
 import axios from "axios";
 
@@ -222,5 +223,12 @@ export const setCacheLatest = data => {
 	return {
 		type: SET_CACHE_LATEST,
 		payload: { latestCache: data },
+	};
+};
+
+export const setHeaderVideo = data => {
+	return {
+		type: SET_HEADER_VIDEO,
+		payload: data,
 	};
 };

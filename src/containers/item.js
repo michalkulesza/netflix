@@ -1,9 +1,8 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import { Item } from "../components";
 import { ItemExpandedContainer } from "../containers/";
 import { markItemsPosition } from "../helpers/markItemsPosition";
-
-import VideoFile from "../res/videos/mindhunter_trailer.mp4";
 
 let hoverTimer;
 let videoTimer;
@@ -12,6 +11,7 @@ const ItemContainer = ({ item, i, scrolled, isFirstSlide, totalTilesInVievport }
 	const [isExpanded, setIsExpanded] = useState(false);
 	const [showVideo, setShowVideo] = useState(false);
 	const position = markItemsPosition(i, isFirstSlide, totalTilesInVievport);
+	const headerData = useSelector(state => state.misc.headerVideo);
 
 	return (
 		<Item.Wrapper
@@ -39,7 +39,7 @@ const ItemContainer = ({ item, i, scrolled, isFirstSlide, totalTilesInVievport }
 				showVideo={showVideo}
 				position={position}
 				item={item}
-				videoFile={VideoFile}
+				videoFile={headerData.src}
 			/>
 		</Item.Wrapper>
 	);

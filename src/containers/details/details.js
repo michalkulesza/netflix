@@ -5,10 +5,7 @@ import { Details } from "../../components";
 import { DetailsHeaderContainer, DetailsInfoContainer, DetailsEpisodesContainer, DetailsRelatedContainer } from "../";
 import { GlobalStyles } from "../../global-styles";
 
-import VideoFile from "../../res/videos/mindhunter_trailer.mp4";
-import VideoLogo from "../../res/images/mindhunter-logo.png";
-
-const DetailsContainer = () => {
+const DetailsContainer = headerData => {
 	const dispatch = useDispatch();
 	const isDetails = useSelector(state => state.toggles.isDetails);
 	const position = useSelector(state => state.toggles.detailsPosition);
@@ -31,7 +28,7 @@ const DetailsContainer = () => {
 	return shouldRender ? (
 		<Details.Container isDetails={isDetails}>
 			<Details isDetails={isDetails} position={position} onAnimationEnd={onAnimationEnd}>
-				<DetailsHeaderContainer VideoFile={VideoFile} VideoLogo={VideoLogo} item={item} />
+				<DetailsHeaderContainer VideoFile={headerData.src} VideoLogo={headerData.logo} item={item} />
 				<DetailsInfoContainer item={item} />
 				<DetailsEpisodesContainer item={item} />
 				<DetailsRelatedContainer item={item} />
