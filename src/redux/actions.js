@@ -3,7 +3,8 @@ import {
 	FETCH_DETAILS,
 	CLEAR_DETAILS,
 	FETCH_EPISODES,
-	SET_DETAILS,
+	SET_IS_DETAILS,
+	SET_IS_EXPANDED,
 	SET_DETAILS_POSITION,
 	CLEAR_EPISODES,
 	SET_GLOBAL_MUTE,
@@ -163,10 +164,17 @@ export const clearEpisodes = () => {
 	};
 };
 
-export const setDetails = bool => {
+export const setIsDetails = bool => {
 	return {
-		type: SET_DETAILS,
+		type: SET_IS_DETAILS,
 		payload: { isDetails: bool },
+	};
+};
+
+export const setIsExpanded = bool => {
+	return {
+		type: SET_IS_EXPANDED,
+		payload: bool,
 	};
 };
 

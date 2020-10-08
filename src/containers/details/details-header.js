@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { DetailsHeader, Button } from "../../components";
-import { setDetails, setGlobalMute } from "../../redux/actions";
+import { setIsDetails, setGlobalMute } from "../../redux/actions";
 
 import { GrPlayFill, GrClose } from "react-icons/gr";
 import { GiSpeaker, GiSpeakerOff } from "react-icons/gi";
@@ -12,7 +12,7 @@ const DetailsHeaderContainer = ({ VideoFile, VideoLogo, item }) => {
 	const muted = useSelector(state => state.misc.globalMute);
 
 	const handleClose = () => {
-		dispatch(setDetails(false));
+		dispatch(setIsDetails(false));
 	};
 
 	const handleMute = () => {

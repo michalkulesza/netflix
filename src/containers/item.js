@@ -1,14 +1,16 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Item } from "../components";
 import { ItemExpandedContainer } from "../containers/";
 import { markItemsPosition } from "../helpers/markItemsPosition";
+import { setIsExpanded } from "../redux/actions";
 
 let hoverTimer;
 let videoTimer;
 
 const ItemContainer = ({ item, i, scrolled, isFirstSlide, totalTilesInVievport }) => {
-	const [isExpanded, setIsExpanded] = useState(false);
+	const dispatch = useDispatch();
+	const [isExpandedLocal, setIsExpandedLocal] = useState(false);
 	const [showVideo, setShowVideo] = useState(false);
 	const position = markItemsPosition(i, isFirstSlide, totalTilesInVievport);
 	const headerData = useSelector(state => state.misc.headerVideo);
@@ -17,14 +19,15 @@ const ItemContainer = ({ item, i, scrolled, isFirstSlide, totalTilesInVievport }
 		<Item.Wrapper
 			onMouseEnter={() => {
 				hoverTimer = setTimeout(() => {
-					setIsExpanded(true);
+					setIsExpandedLocal(true);
+					dispatch(setIsExpanded(true));
 					videoTimer = setTimeout(() => {
 						setShowVideo(true);
 					}, 2000);
 				}, 500);
 			}}
 			onMouseLeave={() => {
-				setIsExpanded(false);
+				setIsExpandedLocal(false);
 				setShowVideo(false);
 				clearTimeout(hoverTimer);
 				clearTimeout(videoTimer);
@@ -35,7 +38,7 @@ const ItemContainer = ({ item, i, scrolled, isFirstSlide, totalTilesInVievport }
 		>
 			<Item src={item.poster_path_300} alt="Poster" />
 			<ItemExpandedContainer
-				isExpanded={isExpanded}
+				isExpanded={isExpandedLocal}
 				showVideo={showVideo}
 				position={position}
 				item={item}

@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { setDetails, setDetailsPosition, fetchDetailsMovie, fetchDetailsTv } from "../redux/actions";
+import { setIsDetails, setDetailsPosition, fetchDetailsMovie, fetchDetailsTv, setIsExpanded } from "../redux/actions";
 import LazyLoad from "react-lazyload";
 import { ItemExpanded, Button } from "../components";
 
@@ -12,15 +12,24 @@ const ItemExpandedContainer = ({ isExpanded, showVideo, position, item, videoFil
 	const handleClickMoreDetails = ({ currentTarget }) => {
 		const elemPos = currentTarget.parentNode.parentNode.parentNode.parentNode.getBoundingClientRect();
 		dispatch(setDetailsPosition(elemPos.x, elemPos.y, elemPos.width, elemPos.height));
-		dispatch(setDetails(true));
+		dispatch(setIsDetails(true));
 	};
 
-	const preloadDetailsData = () => {
+	const handleMouseEnter = () => {
 		item.media_type === "movie" ? dispatch(fetchDetailsMovie(item.id)) : dispatch(fetchDetailsTv(item.id));
 	};
 
+	const handleMouseLeave = () => {
+		dispatch(setIsExpanded(false));
+	};
+
 	return (
-		<ItemExpanded isExpanded={isExpanded} position={position} onMouseEnter={preloadDetailsData}>
+		<ItemExpanded
+			isExpanded={isExpanded}
+			position={position}
+			onMouseEnter={handleMouseEnter}
+			onMouseLeave={handleMouseLeave}
+		>
 			<ItemExpanded.Header>
 				<ItemExpanded.Placeholder src={item.backdrop_path_500} alt="Poster" showVideo={showVideo} />
 				{isExpanded && (
