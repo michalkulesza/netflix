@@ -1,4 +1,5 @@
-import styled, { keyframes } from "styled-components/macro";
+import styled from "styled-components/macro";
+import { LoadingAnimation } from "../../common-styles";
 
 export const Main = styled.div`
 	position: relative;
@@ -9,15 +10,6 @@ export const Main = styled.div`
 export const Loading = styled.div`
 	padding: 2em 3.5em;
 	display: flex;
-`;
-
-const LoadingAnimation = keyframes`
-	from {
-		background-position-x: 0vw;
-	}
-	to {
-		background-position-x: 100vw;
-	}
 `;
 
 export const LoadingItem = styled.div`
