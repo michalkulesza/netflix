@@ -1,6 +1,8 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setIsDetails, setDetailsPosition, fetchDetailsMovie, fetchDetailsTv, setIsExpanded } from "../redux/actions";
+import { setIsDetails, setDetailsPosition, setIsExpanded } from "../redux/actions/toggles";
+import { fetchDetailsMovie, fetchDetailsTv } from "../redux/actions/fetch-details";
+
 import LazyLoad from "react-lazyload";
 import { ItemExpanded, Button } from "../components";
 

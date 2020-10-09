@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchEpisodes } from "../../redux/actions";
+import { fetchEpisodes } from "../../redux/actions/fetch-episodes";
 
 import { DetailsEpisodes, DetailsEpisode } from "../../components";
 

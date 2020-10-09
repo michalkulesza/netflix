@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { setGlobalMute } from "../redux/actions";
+import { setGlobalMute } from "../redux/actions/misc";
 import { Header, Button } from "../components";
 import useScrolledDistance from "../hooks/use-scrolled-distance";
 import useViewportWidth from "../hooks/use-viewport-width";

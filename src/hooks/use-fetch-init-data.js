@@ -6,8 +6,8 @@ import {
 	fetchInitialDataSeries,
 	fetchInitialDataFilms,
 	fetchInitialDataLatest,
-	setHeaderVideo,
-} from "../redux/actions";
+} from "../redux/actions/fetch-initial-data";
+import { setHeaderVideo } from "../redux/actions/misc";
 
 import { BrowseVideo, FilmsVideo, SeriesVideo } from "../fixtures/videos";
 

@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Item } from "../components";
 import { ItemExpandedContainer } from "../containers/";
 import { markItemsPosition } from "../helpers/markItemsPosition";
-import { setIsExpanded } from "../redux/actions";
+import { setIsExpanded } from "../redux/actions/toggles";
 
 let hoverTimer;
 let videoTimer;

@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Header, Carousels } from "../components/";
 import { NavbarContainer, HeaderContainer, CarouselsContainer, DetailsContainer } from "../containers";
-import { setInitialData } from "../redux/actions";
+import { setInitialData } from "../redux/actions/fetch-initial-data";
 import LazyLoad from "react-lazyload";
 
 const Browse = () => {

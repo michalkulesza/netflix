@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { setPressedKey } from "../redux/actions";
+import { setPressedKey } from "../redux/actions/misc";
 
 const useKeyDownListener = () => {
 	const [pressKey, setPressKey] = useState(null);

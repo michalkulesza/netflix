@@ -1,6 +1,9 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { clearDetails, clearEpisodes, setIsDetails, setPressedKey } from "../../redux/actions";
+import { clearDetails } from "../../redux/actions/fetch-details";
+import { clearEpisodes } from "../../redux/actions/fetch-episodes";
+import { setIsDetails } from "../../redux/actions/toggles";
+import { setPressedKey } from "../../redux/actions/misc";
 import { Details } from "../../components";
 import { DetailsHeaderContainer, DetailsInfoContainer, DetailsEpisodesContainer, DetailsRelatedContainer } from "../";
 import { GlobalStyles } from "../../global-styles";

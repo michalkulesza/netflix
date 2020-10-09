@@ -1,7 +1,8 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { DetailsHeader, Button } from "../../components";
-import { setIsDetails, setGlobalMute } from "../../redux/actions";
+import { setIsDetails } from "../../redux/actions/toggles";
+import { setGlobalMute } from "../../redux/actions/misc";
 
 import { GrPlayFill, GrClose } from "react-icons/gr";
 import { GiSpeaker, GiSpeakerOff } from "react-icons/gi";
