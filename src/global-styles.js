@@ -42,5 +42,6 @@ button{
 
 a{
    text-decoration: none;
+   color: #fff
 }
 `;

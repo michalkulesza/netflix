@@ -1,7 +1,7 @@
 import React from "react";
 import { HOME, SIGN_IN, SIGN_UP, BROWSE, SERIES, FILMS, LATEST, MYLIST } from "./constants/routes";
-import { useLocation } from "react-router-dom";
-import { Home, SignIn, SignUp, Browse, Latest, MyList } from "./pages";
+import { useLocation, Route, Switch } from "react-router-dom";
+import { Home, SignIn, SignUp, Browse, Latest, MyList, Page404 } from "./pages";
 import { IfUserRedirect, ProtectedRoute } from "./helpers/protectedRoutes";
 import { useAuthListener, useFetchInitData } from "./hooks/";
 
@@ -12,30 +12,35 @@ const App = () => {
 
 	return (
 		<>
-			<IfUserRedirect exact path={HOME} ifUserRedirectTo={BROWSE} user={user}>
-				<Home />
-			</IfUserRedirect>
-			<IfUserRedirect exact path={SIGN_IN} ifUserRedirectTo={BROWSE} user={user}>
-				<SignIn />
-			</IfUserRedirect>
-			<IfUserRedirect exact path={SIGN_UP} ifUserRedirectTo={BROWSE} user={user}>
-				<SignUp />
-			</IfUserRedirect>
-			<ProtectedRoute exact path={BROWSE} user={user}>
-				<Browse />
-			</ProtectedRoute>
-			<ProtectedRoute exact path={SERIES} user={user}>
-				<Browse />
-			</ProtectedRoute>
-			<ProtectedRoute exact path={FILMS} user={user}>
-				<Browse />
-			</ProtectedRoute>
-			<ProtectedRoute exact path={LATEST} user={user}>
-				<Latest />
-			</ProtectedRoute>
-			<ProtectedRoute exact path={MYLIST} user={user}>
-				<MyList />
-			</ProtectedRoute>
+			<Switch>
+				<IfUserRedirect exact path={HOME} ifUserRedirectTo={BROWSE} user={user}>
+					<Home />
+				</IfUserRedirect>
+				<IfUserRedirect exact path={SIGN_IN} ifUserRedirectTo={BROWSE} user={user}>
+					<SignIn />
+				</IfUserRedirect>
+				<IfUserRedirect exact path={SIGN_UP} ifUserRedirectTo={BROWSE} user={user}>
+					<SignUp />
+				</IfUserRedirect>
+				<ProtectedRoute exact path={BROWSE} user={user}>
+					<Browse />
+				</ProtectedRoute>
+				<ProtectedRoute exact path={SERIES} user={user}>
+					<Browse />
+				</ProtectedRoute>
+				<ProtectedRoute exact path={FILMS} user={user}>
+					<Browse />
+				</ProtectedRoute>
+				<ProtectedRoute exact path={LATEST} user={user}>
+					<Latest />
+				</ProtectedRoute>
+				<ProtectedRoute exact path={MYLIST} user={user}>
+					<MyList />
+				</ProtectedRoute>
+				<Route>
+					<Page404 />
+				</Route>
+			</Switch>
 		</>
 	);
 };
