@@ -1,4 +1,5 @@
 import styled from "styled-components/macro";
+import { LoadingAnimation } from "../../../common-styles";
 
 export const Header = styled.div`
 	position: relative;
@@ -56,4 +57,19 @@ export const Logo = styled.img`
 export const ButtonsContainer = styled.div`
 	display: flex;
 	align-items: center;
+`;
+
+export const Loading = styled.div`
+	width: 100%;
+	height: calc(95vw * 0.5625);
+	max-height: calc(1190px * 0.5625);
+	background: linear-gradient(
+		90deg,
+		rgba(18, 18, 18, 1) 0%,
+		rgba(27, 27, 27, 1) 39%,
+		rgba(40, 40, 40, 1) 50%,
+		rgba(27, 27, 27, 1) 55%,
+		rgba(18, 18, 18, 1) 100%
+	);
+	animation: ${LoadingAnimation} 2s linear infinite;
 `;

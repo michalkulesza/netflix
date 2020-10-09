@@ -1,5 +1,5 @@
 import React from "react";
-import { Header, Video, Cover, Overlay, OverlayHalf, Logo, ButtonsContainer } from "./styles/details-header";
+import { Header, Video, Cover, Overlay, OverlayHalf, Logo, ButtonsContainer, Loading } from "./styles/details-header";
 
 const DetailsHeader = ({ children, ...restProps }) => {
 	return <Header {...restProps}>{children}</Header>;
@@ -27,6 +27,10 @@ DetailsHeader.Logo = ({ children, ...restProps }) => {
 
 DetailsHeader.ButtonsContainer = ({ children, ...restProps }) => {
 	return <ButtonsContainer {...restProps}>{children}</ButtonsContainer>;
+};
+
+DetailsHeader.Loading = ({ children, ...restProps }) => {
+	return <Loading {...restProps}>{children}</Loading>;
 };
 
 export default DetailsHeader;

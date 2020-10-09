@@ -1,5 +1,5 @@
 import React from "react";
-import { Main, Half, Content, Description, Cast } from "./styles/details-info";
+import { Main, Half, Content, Description, Cast, Loading } from "./styles/details-info";
 
 const DetailsInfo = ({ children, ...restProps }) => {
 	return <Main {...restProps}>{children}</Main>;
@@ -19,6 +19,10 @@ DetailsInfo.Description = ({ children, ...restProps }) => {
 
 DetailsInfo.Cast = ({ children, ...restProps }) => {
 	return <Cast {...restProps}>{children}</Cast>;
+};
+
+DetailsInfo.Loading = ({ children, ...restProps }) => {
+	return <Loading {...restProps}>{children}</Loading>;
 };
 
 export default DetailsInfo;

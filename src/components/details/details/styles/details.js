@@ -2,15 +2,15 @@ import styled, { css, keyframes } from "styled-components/macro";
 
 export const Container = styled.div`
 	position: fixed;
-	overflow-y: ${({ isDetails }) => (isDetails ? "scroll" : "hidden")};
+	overflow-y: ${({ shouldRender }) => (shouldRender ? "scroll" : "hidden")};
 	overflow-x: hidden;
 	height: 100%;
 	width: 100%;
 	top: 0;
 	left: 0;
 	z-index: 999;
-	pointer-events: ${({ isDetails }) => (isDetails ? "all" : "none")};
-	background-color: ${({ isDetails }) => `rgba(0, 0, 0, ${isDetails ? "0.4" : "0"})`};
+	pointer-events: ${({ shouldRender }) => (shouldRender ? "all" : "none")};
+	background-color: ${({ shouldRender }) => `rgba(0, 0, 0, ${shouldRender ? "0.4" : "0"})`};
 	transition: background-color 0.5s ease-in-out;
 `;
 

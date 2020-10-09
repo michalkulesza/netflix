@@ -14,8 +14,8 @@ const DetailsContainer = headerData => {
 	const [shouldRender, setRender] = useState(isDetails);
 
 	useEffect(() => {
-		if (isDetails && item) setRender(true);
-	}, [isDetails, item]);
+		if (isDetails) setRender(true);
+	}, [isDetails]);
 
 	const onAnimationEnd = () => {
 		if (!isDetails) {
@@ -26,48 +26,52 @@ const DetailsContainer = headerData => {
 	};
 
 	return shouldRender ? (
-		<Details.Container isDetails={isDetails}>
+		<Details.Container shouldRender={shouldRender}>
 			<Details isDetails={isDetails} position={position} onAnimationEnd={onAnimationEnd}>
 				<DetailsHeaderContainer headerData={headerData} src={headerData.src} item={item} />
 				<DetailsInfoContainer item={item} />
 				<DetailsEpisodesContainer item={item} />
 				<DetailsRelatedContainer item={item} />
 				<Details.About>
-					<Details.AboutHeader>About {item.details.name ? item.details.name : item.details.title}</Details.AboutHeader>
-
-					{item.details.created_by && (
-						<Details.AboutPiece>
-							Creators:
-							<p>
-								{item.details.created_by.map((el, i) =>
-									i + 1 === item.details.created_by.length ? el.name : `${el.name}, `
-								)}
-							</p>
-						</Details.AboutPiece>
-					)}
-
-					{item.cast && (
-						<Details.AboutPiece>
-							Cast:
-							<p>{item.cast.map((el, i) => (i + 1 === item.cast.length ? el.name : `${el.name}, `))}</p>
-						</Details.AboutPiece>
-					)}
-
-					{item.details.genres && (
-						<Details.AboutPiece>
-							Genres:
-							<p>
-								{item.details.genres.map((el, i) => (i + 1 === item.details.genres.length ? el.name : `${el.name}, `))}
-							</p>
-						</Details.AboutPiece>
-					)}
-
-					{item.ageRestriction && (
-						<Details.AboutPiece>
-							Maturity rating <span>{item.ageRestriction}</span>
-							<p>Suitable for ages {item.ageRestriction} and up</p>
-						</Details.AboutPiece>
-					)}
+					{item ? (
+						<>
+							<Details.AboutHeader>
+								About {item.details.name ? item.details.name : item.details.title}
+							</Details.AboutHeader>
+							{item.details.created_by && (
+								<Details.AboutPiece>
+									Creators:
+									<p>
+										{item.details.created_by.map((el, i) =>
+											i + 1 === item.details.created_by.length ? el.name : `${el.name}, `
+										)}
+									</p>
+								</Details.AboutPiece>
+							)}
+							{item.cast && (
+								<Details.AboutPiece>
+									Cast:
+									<p>{item.cast.map((el, i) => (i + 1 === item.cast.length ? el.name : `${el.name}, `))}</p>
+								</Details.AboutPiece>
+							)}
+							{item.details.genres && (
+								<Details.AboutPiece>
+									Genres:
+									<p>
+										{item.details.genres.map((el, i) =>
+											i + 1 === item.details.genres.length ? el.name : `${el.name}, `
+										)}
+									</p>
+								</Details.AboutPiece>
+							)}
+							{item.ageRestriction && (
+								<Details.AboutPiece>
+									Maturity rating <span>{item.ageRestriction}</span>
+									<p>Suitable for ages {item.ageRestriction} and up</p>
+								</Details.AboutPiece>
+							)}
+						</>
+					) : null}
 				</Details.About>
 			</Details>
 			<GlobalStyles disableScrolling={isDetails} />
