@@ -15,6 +15,7 @@ import {
 	SET_CACHE_FILMS,
 	SET_CACHE_LATEST,
 	SET_HEADER_VIDEO,
+	SET_PRESSED_KEY,
 } from "./types";
 import axios from "axios";
 
@@ -189,6 +190,13 @@ export const setDetailsPosition = (x, y, width, height) => {
 	return {
 		type: SET_DETAILS_POSITION,
 		payload: { detailsPosition: { x, y, width, height } },
+	};
+};
+
+export const setPressedKey = key => {
+	return {
+		type: SET_PRESSED_KEY,
+		payload: key,
 	};
 };
 

@@ -3,12 +3,13 @@ import { HOME, SIGN_IN, SIGN_UP, BROWSE, SERIES, FILMS, LATEST, MYLIST } from ".
 import { useLocation, Route, Switch } from "react-router-dom";
 import { Home, SignIn, SignUp, Browse, Latest, MyList, Page404 } from "./pages";
 import { IfUserRedirect, ProtectedRoute } from "./helpers/protectedRoutes";
-import { useAuthListener, useFetchInitData } from "./hooks/";
+import { useAuthListener, useFetchInitData, useKeyDownListener } from "./hooks/";
 
 const App = () => {
 	const { user } = useAuthListener();
 	const id = useLocation();
 	useFetchInitData(id);
+	useKeyDownListener();
 
 	return (
 		<>

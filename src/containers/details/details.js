@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { clearDetails, clearEpisodes } from "../../redux/actions";
+import { clearDetails, clearEpisodes, setIsDetails, setPressedKey } from "../../redux/actions";
 import { Details } from "../../components";
 import { DetailsHeaderContainer, DetailsInfoContainer, DetailsEpisodesContainer, DetailsRelatedContainer } from "../";
 import { GlobalStyles } from "../../global-styles";
@@ -10,12 +10,28 @@ const DetailsContainer = headerData => {
 	const isDetails = useSelector(state => state.toggles.isDetails);
 	const position = useSelector(state => state.toggles.detailsPosition);
 	const item = useSelector(state => state.fetchDetails);
+	const pressedKey = useSelector(state => state.misc.pressedKey);
 
 	const [shouldRender, setRender] = useState(isDetails);
+
+	const handleCloseCallback = useCallback(() => {
+		const handleClose = () => {
+			dispatch(setIsDetails(false));
+		};
+
+		handleClose();
+	}, [dispatch]);
 
 	useEffect(() => {
 		if (isDetails) setRender(true);
 	}, [isDetails]);
+
+	useEffect(() => {
+		if (pressedKey === "Escape") {
+			handleCloseCallback();
+			dispatch(setPressedKey(null));
+		}
+	}, [pressedKey, dispatch, handleCloseCallback]);
 
 	const onAnimationEnd = () => {
 		if (!isDetails) {
@@ -26,7 +42,11 @@ const DetailsContainer = headerData => {
 	};
 
 	return shouldRender ? (
-		<Details.Container shouldRender={shouldRender}>
+		<Details.Container
+			shouldRender={shouldRender}
+			onMouseDown={handleCloseCallback}
+			onKeyDown={e => console.log("lol")}
+		>
 			<Details isDetails={isDetails} position={position} onAnimationEnd={onAnimationEnd}>
 				<DetailsHeaderContainer headerData={headerData} src={headerData.src} item={item} />
 				<DetailsInfoContainer item={item} />
