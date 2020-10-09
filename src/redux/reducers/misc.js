@@ -1,7 +1,7 @@
 import { SET_GLOBAL_MUTE, SET_HEADER_VIDEO, SET_HEADER_VIDEO_CAN_PLAY, SET_SECONDARY_VIDEO_IS_PLAYING } from "../types";
 
 const initState = {
-	globalMute: false,
+	globalMute: true,
 	headerVideoCanPssslay: false,
 	secondaryVideoIsPlaying: false,
 	headerVideo: null,

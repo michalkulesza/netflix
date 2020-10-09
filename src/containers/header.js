@@ -16,7 +16,7 @@ const HeaderContainer = ({ headerData, bg, children, ...restProps }) => {
 	const scrolled = useScrolledDistance();
 	const viewPortWidth = useViewportWidth();
 	const canPlay = scrolled < (viewPortWidth * 0.5625) / 3 && !isExpanded;
-	console.log(viewPortWidth);
+
 	useEffect(() => {
 		if (videoPlayer) {
 			videoPlayer.current.volume = 0.4;
