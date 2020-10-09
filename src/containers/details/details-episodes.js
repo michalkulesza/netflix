@@ -52,18 +52,18 @@ const DetailsEpisodesContainer = ({ item }) => {
 					</DetailsEpisodes.Seasons>
 				</DetailsEpisodes.Header>{" "}
 				<DetailsEpisodes.List>
-					{episodes.episodes.map(item => (
-						<DetailsEpisode.Wrapper key={item.id}>
+					{episodes.map(episode => (
+						<DetailsEpisode.Wrapper key={episode.id}>
 							<DetailsEpisode>
-								<DetailsEpisode.Num>{item.episode_number ? item.episode_number : "-"}</DetailsEpisode.Num>
-								<DetailsEpisode.Image src={item.still_path_300} alt="Episode preview" />
+								<DetailsEpisode.Num>{episode.episode_number ? episode.episode_number : "-"}</DetailsEpisode.Num>
+								<DetailsEpisode.Image src={episode.still_path_300} alt="Episode preview" />
 								<DetailsEpisode.Main>
 									<DetailsEpisode.Half>
-										<DetailsEpisode.Title>{item.name}</DetailsEpisode.Title>
+										<DetailsEpisode.Title>{episode.name}</DetailsEpisode.Title>
 										<DetailsEpisode.Time>57m</DetailsEpisode.Time>
 									</DetailsEpisode.Half>
 									<DetailsEpisode.Half>
-										<DetailsEpisode.Description>{item.overview.slice(0, 200)}</DetailsEpisode.Description>
+										<DetailsEpisode.Description>{episode.overview.slice(0, 200)}</DetailsEpisode.Description>
 									</DetailsEpisode.Half>
 								</DetailsEpisode.Main>
 							</DetailsEpisode>

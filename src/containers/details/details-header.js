@@ -7,25 +7,28 @@ import { GrPlayFill, GrClose } from "react-icons/gr";
 import { GiSpeaker, GiSpeakerOff } from "react-icons/gi";
 import { BiPlus, BiLike, BiDislike } from "react-icons/bi";
 
-const DetailsHeaderContainer = ({ VideoFile, VideoLogo, item }) => {
+const DetailsHeaderContainer = ({ item }) => {
 	const dispatch = useDispatch();
-	const muted = useSelector(state => state.misc.globalMute);
+	const globalMute = useSelector(state => state.misc.globalMute);
+	const headerData = useSelector(state => state.misc.headerVideo);
 
 	const handleClose = () => {
 		dispatch(setIsDetails(false));
 	};
 
 	const handleMute = () => {
-		dispatch(setGlobalMute(!muted));
+		dispatch(setGlobalMute(!globalMute));
 	};
 
-	return (
+	console.log(headerData);
+
+	return headerData ? (
 		<DetailsHeader>
-			<DetailsHeader.Video src={VideoFile} loop muted></DetailsHeader.Video>
+			<DetailsHeader.Video src={headerData.src} autoPlay muted />
 			<DetailsHeader.Cover src={item && item.details.backdrop_path_1280}></DetailsHeader.Cover>
 			<DetailsHeader.Overlay>
 				<DetailsHeader.OverlayHalf>
-					<DetailsHeader.Logo src={VideoLogo} alt="Video Logo" />
+					<DetailsHeader.Logo src={headerData.logo} alt="Video Logo" />
 					<DetailsHeader.ButtonsContainer>
 						<Button.Square>
 							<GrPlayFill /> Play
@@ -45,11 +48,11 @@ const DetailsHeaderContainer = ({ VideoFile, VideoLogo, item }) => {
 					<Button.Round dark onMouseDown={handleClose}>
 						<GrClose />
 					</Button.Round>
-					<Button.Round onMouseDown={handleMute}>{muted ? <GiSpeakerOff /> : <GiSpeaker />}</Button.Round>
+					<Button.Round onMouseDown={handleMute}>{globalMute ? <GiSpeakerOff /> : <GiSpeaker />}</Button.Round>
 				</DetailsHeader.OverlayHalf>
 			</DetailsHeader.Overlay>
 		</DetailsHeader>
-	);
+	) : null;
 };
 
 export default DetailsHeaderContainer;

@@ -1,5 +1,5 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setIsDetails, setDetailsPosition, fetchDetailsMovie, fetchDetailsTv, setIsExpanded } from "../redux/actions";
 import LazyLoad from "react-lazyload";
 import { ItemExpanded, Button } from "../components";
@@ -8,6 +8,7 @@ import { BiPlay, BiPlus, BiLike, BiDislike, BiChevronDown } from "react-icons/bi
 
 const ItemExpandedContainer = ({ isExpanded, showVideo, position, item, videoFile }) => {
 	const dispatch = useDispatch();
+	const muted = useSelector(state => state.misc.globalMute);
 
 	const handleClickMoreDetails = ({ currentTarget }) => {
 		const elemPos = currentTarget.parentNode.parentNode.parentNode.parentNode.getBoundingClientRect();
@@ -31,10 +32,16 @@ const ItemExpandedContainer = ({ isExpanded, showVideo, position, item, videoFil
 			onMouseLeave={handleMouseLeave}
 		>
 			<ItemExpanded.Header>
-				<ItemExpanded.Placeholder src={item.backdrop_path_500} alt="Poster" showVideo={showVideo} />
+				{/* <ItemExpanded.Placeholder src={item.backdrop_path_500} alt="Poster" showVideo={showVideo} /> */}
 				{isExpanded && (
 					<LazyLoad>
-						<ItemExpanded.Video src={videoFile} autoPlay muted loop showVideo={showVideo} />
+						<ItemExpanded.Video
+							src={videoFile}
+							poster={item.backdrop_path_500}
+							autoPlay
+							muted={muted}
+							showVideo={showVideo}
+						/>
 					</LazyLoad>
 				)}
 			</ItemExpanded.Header>

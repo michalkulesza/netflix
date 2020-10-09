@@ -28,7 +28,7 @@ const DetailsContainer = headerData => {
 	return shouldRender ? (
 		<Details.Container isDetails={isDetails}>
 			<Details isDetails={isDetails} position={position} onAnimationEnd={onAnimationEnd}>
-				<DetailsHeaderContainer VideoFile={headerData.src} VideoLogo={headerData.logo} item={item} />
+				<DetailsHeaderContainer headerData={headerData} src={headerData.src} item={item} />
 				<DetailsInfoContainer item={item} />
 				<DetailsEpisodesContainer item={item} />
 				<DetailsRelatedContainer item={item} />

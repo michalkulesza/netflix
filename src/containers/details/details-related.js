@@ -4,12 +4,12 @@ import { DetailsRelated } from "../../components";
 import { GrPlayFill } from "react-icons/gr";
 
 const DetailsRelatedContainer = ({ item }) => {
-	return (
-		item.related && (
-			<DetailsRelated>
-				<DetailsRelated.Header>More Like This</DetailsRelated.Header>
-				<DetailsRelated.Items>
-					{item.related.map(el => (
+	return item ? (
+		<DetailsRelated>
+			<DetailsRelated.Header>More Like This</DetailsRelated.Header>
+			<DetailsRelated.Items>
+				{item.related &&
+					item.related.map(el => (
 						<DetailsRelated.Item key={el.id}>
 							<DetailsRelated.ItemImageWrapper>
 								<DetailsRelated.ItemImage src={el.backdrop_path_500} alt="Video preview" />
@@ -28,10 +28,9 @@ const DetailsRelatedContainer = ({ item }) => {
 							</DetailsRelated.ItemMain>
 						</DetailsRelated.Item>
 					))}
-				</DetailsRelated.Items>
-			</DetailsRelated>
-		)
-	);
+			</DetailsRelated.Items>
+		</DetailsRelated>
+	) : null;
 };
 
 export default DetailsRelatedContainer;
