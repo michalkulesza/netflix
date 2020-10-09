@@ -3,9 +3,8 @@ import jumboData from "../fixtures/jumbo.json";
 import { Jumbotron } from "../components";
 
 const JumbotronContainer = () => {
-	return (
-		<>
-			{jumboData.map(item => (
+	return jumboData
+		? jumboData.map(item => (
 				<Jumbotron key={item.id}>
 					<Jumbotron.Container direction={item.direction}>
 						<Jumbotron.Half direction={item.direction}>
@@ -17,9 +16,8 @@ const JumbotronContainer = () => {
 						</Jumbotron.Half>
 					</Jumbotron.Container>
 				</Jumbotron>
-			))}
-		</>
-	);
+		  ))
+		: null;
 };
 
 export default JumbotronContainer;

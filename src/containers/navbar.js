@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
+import { NavLink } from "react-router-dom";
 import { Navbar } from "../components";
 import { useScrolledDistance } from "../hooks/";
-import { NavLink } from "react-router-dom";
 import { BROWSE, FILMS, SERIES, LATEST, MYLIST } from "../constants/routes";
 
 const NavbarContainer = ({ children }) => {

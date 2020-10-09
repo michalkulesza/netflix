@@ -42,7 +42,7 @@ export const Video = styled.video`
 	top: 0;
 	left: 0;
 	width: 100%;
-	/* opacity: ${({ showVideo }) => (showVideo ? "1" : "0")}; */
+	opacity: ${({ showVideo }) => (showVideo ? "1" : "0")};
 	transition: opacity 500ms ease-in-out;
 	z-index: -1;
 `;

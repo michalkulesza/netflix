@@ -1,12 +1,12 @@
 import React, { useRef, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setGlobalMute } from "../redux/actions";
-import { Header } from "../components";
-import { Button } from "../components";
-import { GiSpeaker, GiSpeakerOff } from "react-icons/gi";
-import { GrPlayFill, GrCircleInformation } from "react-icons/gr";
+import { Header, Button } from "../components";
 import useScrolledDistance from "../hooks/use-scrolled-distance";
 import useViewportWidth from "../hooks/use-viewport-width";
+
+import { GiSpeaker, GiSpeakerOff } from "react-icons/gi";
+import { GrPlayFill, GrCircleInformation } from "react-icons/gr";
 
 const HeaderContainer = ({ headerData, bg, children, ...restProps }) => {
 	const videoPlayer = useRef(null);

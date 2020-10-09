@@ -15,7 +15,7 @@ const ItemContainer = ({ item, i, scrolled, isFirstSlide, totalTilesInVievport }
 	const position = markItemsPosition(i, isFirstSlide, totalTilesInVievport);
 	const headerData = useSelector(state => state.misc.headerVideo);
 
-	return (
+	return item ? (
 		<Item.Wrapper
 			onMouseEnter={() => {
 				hoverTimer = setTimeout(() => {
@@ -42,10 +42,10 @@ const ItemContainer = ({ item, i, scrolled, isFirstSlide, totalTilesInVievport }
 				showVideo={showVideo}
 				position={position}
 				item={item}
-				videoFile={headerData.src}
+				videoFile={headerData && headerData.src}
 			/>
 		</Item.Wrapper>
-	);
+	) : null;
 };
 
 export default ItemContainer;
