@@ -21,7 +21,7 @@ const DetailsEpisodesContainer = ({ item }) => {
 	};
 
 	useEffect(() => {
-		if (item && item.details.number_of_seasons > 1) setSeasonsDropdownDisabled(false);
+		if (item?.details.number_of_seasons > 1) setSeasonsDropdownDisabled(false);
 	}, [item]);
 
 	return episodes && item ? (

@@ -44,7 +44,7 @@ const ItemContainer = ({ item, i, scrolled, isFirstSlide, totalTilesInVievport }
 				showVideo={showVideo}
 				position={position}
 				item={item}
-				videoFile={headerData && headerData.src}
+				videoFile={headerData?.src}
 			/>
 		</Item.Wrapper>
 	) : null;

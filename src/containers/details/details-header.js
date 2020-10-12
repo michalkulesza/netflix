@@ -26,7 +26,7 @@ const DetailsHeaderContainer = ({ item, scrolled }) => {
 				VideoPlayer.current.volume = 0.4;
 				placeholderTimer = setTimeout(() => {
 					setIsPlaceholder(false);
-					videoTimer = setTimeout(() => VideoPlayer.current && VideoPlayer.current.play(), 500);
+					videoTimer = setTimeout(() => VideoPlayer.current?.play(), 500);
 				}, 2000);
 			} else {
 				clearTimeout(placeholderTimer);

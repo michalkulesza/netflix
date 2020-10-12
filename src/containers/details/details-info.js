@@ -22,7 +22,7 @@ const DetailsInfoContainer = ({ item }) => {
 								</>
 							)}
 						</DetailsInfo.Content>
-						<DetailsInfo.Description>{item.details && item.details.overview}</DetailsInfo.Description>
+						<DetailsInfo.Description>{item.details?.overview}</DetailsInfo.Description>
 					</DetailsInfo.Half>
 					<DetailsInfo.Half>
 						<DetailsInfo.Cast>
