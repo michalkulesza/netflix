@@ -9,11 +9,11 @@ const Navbar = ({ children, ...restProps }) => {
 	return <Main {...restProps}>{children}</Main>;
 };
 
-Navbar.Container = function Navbar({ children, ...restProps }) {
+Navbar.Container = ({ children, ...restProps }) => {
 	return <Container {...restProps}>{children}</Container>;
 };
 
-Navbar.Logo = function ({ children, ...restProps }) {
+Navbar.Logo = ({ children, ...restProps }) => {
 	return (
 		<Link to={HOME}>
 			<Logo src={LogoSVG} alt={"Netflix"} {...restProps}>
@@ -23,15 +23,15 @@ Navbar.Logo = function ({ children, ...restProps }) {
 	);
 };
 
-Navbar.Menu = function ({ children, ...restProps }) {
+Navbar.Menu = ({ children, ...restProps }) => {
 	return <Menu {...restProps}>{children}</Menu>;
 };
 
-Navbar.MenuItem = function ({ children, ...restProps }) {
+Navbar.MenuItem = ({ children, ...restProps }) => {
 	return <MenuItem {...restProps}>{children}</MenuItem>;
 };
 
-Navbar.Divide = function ({ children, ...restProps }) {
+Navbar.Divide = ({ children, ...restProps }) => {
 	return <Divide {...restProps}>{children}</Divide>;
 };
 

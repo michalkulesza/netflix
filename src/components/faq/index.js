@@ -5,35 +5,35 @@ const Faq = ({ children, ...restProps }) => {
 	return <Main {...restProps}>{children}</Main>;
 };
 
-Faq.Container = function ({ children, ...restProps }) {
+Faq.Container = ({ children, ...restProps }) => {
 	return <Container {...restProps}>{children}</Container>;
 };
 
-Faq.Title = function ({ children, ...restProps }) {
+Faq.Title = ({ children, ...restProps }) => {
 	return <Title {...restProps}>{children}</Title>;
 };
 
-Faq.List = function ({ children, ...restProps }) {
+Faq.List = ({ children, ...restProps }) => {
 	return <List {...restProps}>{children}</List>;
 };
 
-Faq.Item = function ({ children, ...restProps }) {
+Faq.Item = ({ children, ...restProps }) => {
 	return <Item {...restProps}>{children}</Item>;
 };
 
-Faq.Header = function ({ children, ...restProps }) {
+Faq.Header = ({ children, ...restProps }) => {
 	return <Header {...restProps}>{children}</Header>;
 };
 
-Faq.Icon = function ({ children, ...restProps }) {
+Faq.Icon = ({ children, ...restProps }) => {
 	return <Icon {...restProps}>{children}</Icon>;
 };
 
-Faq.Body = function ({ children, ...restProps }) {
+Faq.Body = ({ children, ...restProps }) => {
 	return <Body {...restProps}>{children}</Body>;
 };
 
-Faq.Text = function ({ children, ...restProps }) {
+Faq.Text = ({ children, ...restProps }) => {
 	return <Text {...restProps}>{children}</Text>;
 };
 

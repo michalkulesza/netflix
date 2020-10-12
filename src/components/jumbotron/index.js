@@ -5,7 +5,7 @@ const Jumbotron = ({ children, ...restProps }) => {
 	return <Main {...restProps}>{children}</Main>;
 };
 
-Jumbotron.Container = function JumbotronContainer({ children, direction = "row", ...restProps }) {
+Jumbotron.Container = ({ children, direction = "row", ...restProps }) => {
 	return (
 		<Container direction={direction} {...restProps}>
 			{children}
@@ -13,20 +13,20 @@ Jumbotron.Container = function JumbotronContainer({ children, direction = "row",
 	);
 };
 
-Jumbotron.Half = function JumbotronContainer({ children, direction = "row", ...restProps }) {
+Jumbotron.Half = ({ children, direction = "row", ...restProps }) => {
 	return (
 		<Half direction={direction} {...restProps}>
 			{children}
 		</Half>
 	);
 };
-Jumbotron.Title = function JumbotronContainer({ children, ...restProps }) {
+Jumbotron.Title = ({ children, ...restProps }) => {
 	return <Title {...restProps}>{children}</Title>;
 };
-Jumbotron.SubTitle = function JumbotronContainer({ children, ...restProps }) {
+Jumbotron.SubTitle = ({ children, ...restProps }) => {
 	return <SubTitle {...restProps}>{children}</SubTitle>;
 };
-Jumbotron.Image = function JumbotronContainer({ children, ...restProps }) {
+Jumbotron.Image = ({ children, ...restProps }) => {
 	return <Image {...restProps} />;
 };
 

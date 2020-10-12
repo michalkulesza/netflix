@@ -29,39 +29,39 @@ const Header = ({ children, ...restProps }) => {
 	return <Main {...restProps}>{children}</Main>;
 };
 
-Header.Border = function ({ children, ...restProps }) {
+Header.Border = ({ children, ...restProps }) => {
 	return <Border {...restProps}>{children}</Border>;
 };
 
-Header.BackgroundWrapper = function ({ children, ...restProps }) {
+Header.BackgroundWrapper = ({ children, ...restProps }) => {
 	return <BackgroundWrapper {...restProps}>{children}</BackgroundWrapper>;
 };
 
-Header.Background = function ({ children, ...restProps }) {
+Header.Background = ({ children, ...restProps }) => {
 	return <Background {...restProps}>{children}</Background>;
 };
 
-Header.BackgroundImg = function ({ children, ...restProps }) {
+Header.BackgroundImg = ({ children, ...restProps }) => {
 	return <BackgroundImg {...restProps}>{children}</BackgroundImg>;
 };
 
-Header.BackgroundGradient = function ({ children, ...restProps }) {
+Header.BackgroundGradient = ({ children, ...restProps }) => {
 	return <BackgroundGradient {...restProps}>{children}</BackgroundGradient>;
 };
 
-Header.Container = function ({ children, ...restProps }) {
+Header.Container = ({ children, ...restProps }) => {
 	return <Container {...restProps}>{children}</Container>;
 };
 
-Header.Inner = function ({ children, ...restProps }) {
+Header.Inner = ({ children, ...restProps }) => {
 	return <Inner {...restProps}>{children}</Inner>;
 };
 
-Header.Heading = function ({ children, ...restProps }) {
+Header.Heading = ({ children, ...restProps }) => {
 	return <Heading {...restProps}>{children}</Heading>;
 };
 
-Header.SubHeading = function ({ children, ...restProps }) {
+Header.SubHeading = ({ children, ...restProps }) => {
 	return <SubHeading {...restProps}>{children}</SubHeading>;
 };
 
@@ -75,16 +75,16 @@ Header.Video = React.forwardRef((props, ref) => {
 			autoPlay={props.autoPlay}
 			muted={props.muted}
 			onCanPlay={props.onCanPlay}
-			onEnded={props.onEnded}
+			on={props.on}
 		></Video>
 	);
 });
 
-Header.VideoWrapper = function ({ children, ...restProps }) {
+Header.VideoWrapper = ({ children, ...restProps }) => {
 	return <VideoWrapper {...restProps}>{children}</VideoWrapper>;
 };
 
-Header.VideoGradient = function ({ children, ...restProps }) {
+Header.VideoGradient = ({ children, ...restProps }) => {
 	return <VideoGradient {...restProps}>{children}</VideoGradient>;
 };
 
@@ -92,34 +92,34 @@ Header.VideoPoster = ({ children, ...restProps }) => {
 	return <VideoPoster {...restProps}>{children}</VideoPoster>;
 };
 
-Header.ContainerInVideo = function ({ children, ...restProps }) {
+Header.ContainerInVideo = ({ children, ...restProps }) => {
 	return <ContainerInVideo {...restProps}>{children}</ContainerInVideo>;
 };
 
-Header.ContainerInVideoHalf = function ({ children, ...restProps }) {
+Header.ContainerInVideoHalf = ({ children, ...restProps }) => {
 	return <ContainerInVideoHalf {...restProps}>{children}</ContainerInVideoHalf>;
 };
 
-Header.AgeRestriction = function ({ children, ...restProps }) {
+Header.AgeRestriction = ({ children, ...restProps }) => {
 	return <AgeRestriction {...restProps}>{children}</AgeRestriction>;
 };
 
-Header.VideoLogo = function ({ children, ...restProps }) {
+Header.VideoLogo = ({ children, ...restProps }) => {
 	return <VideoLogo {...restProps}>{children}</VideoLogo>;
 };
 
-Header.VideoDescription = function ({ children, ...restProps }) {
+Header.VideoDescription = ({ children, ...restProps }) => {
 	return <VideoDescription {...restProps}>{children}</VideoDescription>;
 };
-Header.VideoButtonsContainer = function ({ children, ...restProps }) {
+Header.VideoButtonsContainer = ({ children, ...restProps }) => {
 	return <VideoButtonsContainer {...restProps}>{children}</VideoButtonsContainer>;
 };
 
-Header.VideoMuteContainer = function ({ children, ...restProps }) {
+Header.VideoMuteContainer = ({ children, ...restProps }) => {
 	return <VideoMuteContainer {...restProps}>{children}</VideoMuteContainer>;
 };
 
-Header.Loading = function () {
+Header.Loading = () => {
 	return (
 		<Loading>
 			<Placeholder />

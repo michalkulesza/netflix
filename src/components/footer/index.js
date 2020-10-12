@@ -5,27 +5,27 @@ const Footer = ({ children, ...restProps }) => {
 	return <Main {...restProps}>{children}</Main>;
 };
 
-Footer.Container = function ({ children, ...restProps }) {
+Footer.Container = ({ children, ...restProps }) => {
 	return <Container {...restProps}>{children}</Container>;
 };
 
-Footer.Heading = function ({ children, ...restProps }) {
+Footer.Heading = ({ children, ...restProps }) => {
 	return <Heading {...restProps}>{children}</Heading>;
 };
 
-Footer.Grid = function ({ children, ...restProps }) {
+Footer.Grid = ({ children, ...restProps }) => {
 	return <Grid {...restProps}>{children}</Grid>;
 };
 
-Footer.Ul = function ({ children, ...restProps }) {
+Footer.Ul = ({ children, ...restProps }) => {
 	return <Ul {...restProps}>{children}</Ul>;
 };
 
-Footer.Li = function ({ children, ...restProps }) {
+Footer.Li = ({ children, ...restProps }) => {
 	return <Li {...restProps}>{children}</Li>;
 };
 
-Footer.Text = function ({ children, ...restProps }) {
+Footer.Text = ({ children, ...restProps }) => {
 	return <Text {...restProps}>{children}</Text>;
 };
 

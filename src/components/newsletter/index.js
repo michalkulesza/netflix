@@ -15,35 +15,35 @@ const Newsletter = ({ children, ...restProps }) => {
 	return <Main {...restProps}>{children}</Main>;
 };
 
-Newsletter.Title = function NewsletterTitle({ children, ...restProps }) {
+Newsletter.Title = ({ children, ...restProps }) => {
 	return <Title {...restProps}>{children}</Title>;
 };
 
-Newsletter.FormWrapper = function NewsletterFormWrapper({ children, ...restProps }) {
+Newsletter.FormWrapper = ({ children, ...restProps }) => {
 	return <FormWrapper {...restProps}>{children}</FormWrapper>;
 };
 
-Newsletter.InputContainer = function NewsletterInputContainer({ children, ...restProps }) {
+Newsletter.InputContainer = ({ children, ...restProps }) => {
 	return <InputContainer {...restProps}>{children}</InputContainer>;
 };
 
-Newsletter.InputWrapper = function NewsletterInputWrapper({ children, ...restProps }) {
+Newsletter.InputWrapper = ({ children, ...restProps }) => {
 	return <InputWrapper {...restProps}>{children}</InputWrapper>;
 };
 
-Newsletter.Input = function NewsletterInput({ children, ...restProps }) {
+Newsletter.Input = ({ children, ...restProps }) => {
 	return <Input {...restProps}>{children}</Input>;
 };
 
-Newsletter.Label = function NewsletterLabel({ children, ...restProps }) {
+Newsletter.Label = ({ children, ...restProps }) => {
 	return <Label {...restProps}>{children}</Label>;
 };
 
-Newsletter.Button = function NewsletterButton({ children, ...restProps }) {
+Newsletter.Button = ({ children, ...restProps }) => {
 	return <Button {...restProps}>{children}</Button>;
 };
 
-Newsletter.Error = function NewsletterError({ children, ...restProps }) {
+Newsletter.Error = ({ children, ...restProps }) => {
 	return <Error {...restProps}>{children}</Error>;
 };
 
