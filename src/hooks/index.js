@@ -5,3 +5,4 @@ export { default as useFetchInitData } from "./use-fetch-init-data";
 export { default as useKeyDownListener } from "./use-key-down-listener";
 export { default as useViewportWidth } from "./use-viewport-width";
 export { default as useWindowFocus } from "./use-window-focus";
+export { default as useCanHeaderPlay } from "./use-can-header-play";

@@ -2,44 +2,40 @@ import React, { useRef, useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setGlobalMute } from "../redux/actions/misc";
 import { Header, Button } from "../components";
-import { useViewportWidth, useScrolledDistance, useWindowFocus } from "../hooks";
 
 import { GiSpeaker, GiSpeakerOff } from "react-icons/gi";
 import { GrPlayFill, GrCircleInformation } from "react-icons/gr";
 import placeholder from "../res/images/placeholder_w.jpg";
+import { useCanHeaderPlay } from "../hooks";
 
 const HeaderContainer = ({ headerData, bg, children, ...restProps }) => {
 	const videoPlayer = useRef(null);
 	const dispatch = useDispatch();
-	const scrolled = useScrolledDistance();
-	const viewPortWidth = useViewportWidth();
+
 	const [videoEnded, setVideoEnded] = useState(false);
 	const [videoCanPlay, setVideoCanPlay] = useState(false);
 	const [posterIsVisible, setPosterIsVisible] = useState(true);
 	const muted = useSelector(state => state.misc.globalMute);
 	const isExpanded = useSelector(state => state.toggles.isExpanded);
-	const isUserAway = useSelector(state => state.toggles.isUserAway);
-	const isWindowFocused = useWindowFocus();
-	const canPlay =
-		scrolled < (viewPortWidth * 0.5625) / 3 &&
-		!isExpanded &&
-		!posterIsVisible &&
-		!videoEnded & !isUserAway & isWindowFocused;
+	const isDetails = useSelector(state => state.toggles.isDetails);
+	const canPlay = useCanHeaderPlay();
 
 	useEffect(() => {
 		if (videoPlayer.current) {
 			videoPlayer.current.volume = 0.4;
-			canPlay ? setTimeout(() => videoPlayer.current.play(), 500) : videoPlayer.current.pause();
+			canPlay && !videoEnded && videoCanPlay
+				? setTimeout(() => videoPlayer.current.play(), 500)
+				: videoPlayer.current.pause();
 		}
-	}, [canPlay]);
+	}, [canPlay, videoCanPlay, videoEnded]);
 
 	useEffect(() => {
-		if (videoCanPlay && !videoEnded && !isExpanded) {
+		if (videoCanPlay && !videoEnded && !isExpanded && !isDetails) {
 			setTimeout(() => setPosterIsVisible(false), 2000);
 		} else {
 			setPosterIsVisible(true);
 		}
-	}, [videoCanPlay, videoEnded, isExpanded]);
+	}, [videoCanPlay, videoEnded, isExpanded, isDetails]);
 
 	const handleMute = () => {
 		dispatch(setGlobalMute(!muted));
