@@ -15,6 +15,14 @@ export const Container = styled.div`
 	transition: background-color 0.5s ease-in-out;
 `;
 
+export const OverlayTrigger = styled.div`
+	position: fixed;
+	height: 100%;
+	width: 100%;
+	top: 0;
+	left: 0;
+`;
+
 export const Main = styled.div`
 	position: absolute;
 	max-width: 1190px;

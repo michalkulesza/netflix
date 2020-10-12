@@ -1,9 +1,13 @@
 import React from "react";
 
-import { Main, Container, About, AboutHeader, AboutPiece } from "./styles/details";
+import { Main, OverlayTrigger, Container, About, AboutHeader, AboutPiece } from "./styles/details";
 
 const Details = ({ children, ...restProps }) => {
 	return <Main {...restProps}>{children}</Main>;
+};
+
+Details.OverlayTrigger = ({ children, ...restProps }) => {
+	return <OverlayTrigger {...restProps}>{children}</OverlayTrigger>;
 };
 
 Details.Container = ({ children, ...restProps }) => {

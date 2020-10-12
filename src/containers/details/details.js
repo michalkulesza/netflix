@@ -45,11 +45,8 @@ const DetailsContainer = headerData => {
 	};
 
 	return shouldRender ? (
-		<Details.Container
-			shouldRender={shouldRender}
-			onMouseDown={handleCloseCallback}
-			onKeyDown={e => console.log("lol")}
-		>
+		<Details.Container shouldRender={shouldRender}>
+			<Details.OverlayTrigger onMouseDown={handleCloseCallback} />
 			<Details isDetails={isDetails} position={position} onAnimationEnd={onAnimationEnd}>
 				<DetailsHeaderContainer headerData={headerData} src={headerData.src} item={item} />
 				<DetailsInfoContainer item={item} />
