@@ -20,6 +20,7 @@ import {
 	VideoDescription,
 	VideoButtonsContainer,
 	VideoMuteContainer,
+	VideoPoster,
 	Loading,
 	Placeholder,
 } from "./styles/header";
@@ -73,6 +74,8 @@ Header.Video = React.forwardRef((props, ref) => {
 			poster={props.poster}
 			autoPlay={props.autoPlay}
 			muted={props.muted}
+			onCanPlay={props.onCanPlay}
+			onEnded={props.onEnded}
 		></Video>
 	);
 });
@@ -83,6 +86,10 @@ Header.VideoWrapper = function ({ children, ...restProps }) {
 
 Header.VideoGradient = function ({ children, ...restProps }) {
 	return <VideoGradient {...restProps}>{children}</VideoGradient>;
+};
+
+Header.VideoPoster = ({ children, ...restProps }) => {
+	return <VideoPoster {...restProps}>{children}</VideoPoster>;
 };
 
 Header.ContainerInVideo = function ({ children, ...restProps }) {

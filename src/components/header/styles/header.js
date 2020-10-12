@@ -115,7 +115,7 @@ export const VideoGradient = styled.div`
 	width: 100%;
 	top: 0;
 	left: 0;
-	z-index: 1;
+	z-index: 2;
 	background: rgb(2, 0, 36);
 	background: linear-gradient(
 		180deg,
@@ -126,6 +126,17 @@ export const VideoGradient = styled.div`
 	);
 `;
 
+export const VideoPoster = styled.img`
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	top: 0;
+	left: 0;
+	z-index: 1;
+	opacity: ${({ visible }) => (visible ? "1" : "0")};
+	transition: opacity 0.5s ease-in-out;
+`;
+
 export const ContainerInVideo = styled.div`
 	position: absolute;
 	height: 100%;
@@ -134,7 +145,7 @@ export const ContainerInVideo = styled.div`
 	left: 0;
 	color: #fff;
 	display: flex;
-	z-index: 1;
+	z-index: 3;
 `;
 
 export const ContainerInVideoHalf = styled.div`

@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setGlobalMute } from "../redux/actions/misc";
 import { Header, Button } from "../components";
@@ -11,11 +11,14 @@ import { GrPlayFill, GrCircleInformation } from "react-icons/gr";
 const HeaderContainer = ({ headerData, bg, children, ...restProps }) => {
 	const videoPlayer = useRef(null);
 	const dispatch = useDispatch();
-	const muted = useSelector(state => state.misc.globalMute);
-	const isExpanded = useSelector(state => state.toggles.isExpanded);
 	const scrolled = useScrolledDistance();
 	const viewPortWidth = useViewportWidth();
-	const canPlay = scrolled < (viewPortWidth * 0.5625) / 3 && !isExpanded;
+	const [videoEnded, setVideoEnded] = useState(false);
+	const [videoCanPlay, setVideoCanPlay] = useState(false);
+	const [posterIsVisible, setPosterIsVisible] = useState(true);
+	const muted = useSelector(state => state.misc.globalMute);
+	const isExpanded = useSelector(state => state.toggles.isExpanded);
+	const canPlay = scrolled < (viewPortWidth * 0.5625) / 3 && !isExpanded && !posterIsVisible && !videoEnded;
 
 	useEffect(() => {
 		if (videoPlayer.current) {
@@ -23,6 +26,16 @@ const HeaderContainer = ({ headerData, bg, children, ...restProps }) => {
 			canPlay ? videoPlayer.current.play() : videoPlayer.current.pause();
 		}
 	}, [canPlay]);
+
+	useEffect(() => {
+		if (videoCanPlay && !videoEnded) {
+			setTimeout(() => {
+				setPosterIsVisible(false);
+			}, 2000);
+		} else {
+			setPosterIsVisible(true);
+		}
+	}, [videoCanPlay, videoEnded]);
 
 	const handleMute = () => {
 		dispatch(setGlobalMute(!muted));
@@ -45,13 +58,14 @@ const HeaderContainer = ({ headerData, bg, children, ...restProps }) => {
 				<>
 					<Header.VideoWrapper>
 						<Header.VideoGradient />
+						<Header.VideoPoster src={headerData.backdrop} visible={posterIsVisible} />
 						<Header.Video
 							src={headerData.src}
-							poster={headerData.backdrop}
 							autoPlay={canPlay}
+							onCanPlay={() => setVideoCanPlay(true)}
+							onEnded={() => setVideoEnded(true)}
 							muted={muted}
 							ref={videoPlayer}
-							{...restProps}
 						/>
 					</Header.VideoWrapper>
 					<Header.ContainerInVideo>
