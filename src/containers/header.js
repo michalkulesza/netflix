@@ -7,6 +7,7 @@ import useViewportWidth from "../hooks/use-viewport-width";
 
 import { GiSpeaker, GiSpeakerOff } from "react-icons/gi";
 import { GrPlayFill, GrCircleInformation } from "react-icons/gr";
+import placeholder from "../res/images/placeholder_w.jpg";
 
 const HeaderContainer = ({ headerData, bg, children, ...restProps }) => {
 	const videoPlayer = useRef(null);
@@ -58,7 +59,10 @@ const HeaderContainer = ({ headerData, bg, children, ...restProps }) => {
 				<>
 					<Header.VideoWrapper>
 						<Header.VideoGradient />
-						<Header.VideoPoster src={headerData.backdrop} visible={posterIsVisible} />
+						<Header.VideoPoster
+							src={headerData.backdrop ? headerData.backdrop : placeholder}
+							visible={posterIsVisible}
+						/>
 						<Header.Video
 							src={headerData.src}
 							autoPlay={canPlay}

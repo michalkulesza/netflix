@@ -7,6 +7,7 @@ import { setGlobalMute } from "../../redux/actions/misc";
 import { GrPlayFill, GrClose } from "react-icons/gr";
 import { GiSpeaker, GiSpeakerOff } from "react-icons/gi";
 import { BiPlus, BiLike, BiDislike } from "react-icons/bi";
+import placeholder from "../../res/images/placeholder_w.jpg";
 
 const DetailsHeaderContainer = ({ item }) => {
 	const dispatch = useDispatch();
@@ -25,8 +26,10 @@ const DetailsHeaderContainer = ({ item }) => {
 		<DetailsHeader>
 			{headerData && item ? (
 				<>
-					<DetailsHeader.Video src={item && headerData.src} autoPlay muted />
-					<DetailsHeader.Cover src={item && item.details.backdrop_path_1280}></DetailsHeader.Cover>
+					<DetailsHeader.Video src={headerData.src} autoPlay muted />
+					<DetailsHeader.Cover
+						src={item.details.backdrop_path_1280 ? item.details.backdrop_path_1280 : placeholder}
+					></DetailsHeader.Cover>
 					<DetailsHeader.Overlay>
 						<DetailsHeader.OverlayHalf>
 							<DetailsHeader.Logo src={headerData.logo} alt="Video Logo" />

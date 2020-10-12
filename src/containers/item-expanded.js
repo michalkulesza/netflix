@@ -2,11 +2,12 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setIsDetails, setDetailsPosition, setIsExpanded } from "../redux/actions/toggles";
 import { fetchDetailsMovie, fetchDetailsTv } from "../redux/actions/fetch-details";
-
 import LazyLoad from "react-lazyload";
+
 import { ItemExpanded, Button } from "../components";
 
 import { BiPlay, BiPlus, BiLike, BiDislike, BiChevronDown } from "react-icons/bi";
+import placeholder from "../res/images/placeholder_h.jpg";
 
 const ItemExpandedContainer = ({ isExpanded, showVideo, position, item, videoFile }) => {
 	const dispatch = useDispatch();
@@ -36,7 +37,13 @@ const ItemExpandedContainer = ({ isExpanded, showVideo, position, item, videoFil
 			>
 				<ItemExpanded.Header>
 					<ItemExpanded.Placeholder
-						src={item.backdrop_path_500 ? item.backdrop_path_500 : item.poster_path_500}
+						src={
+							item.backdrop_path_500
+								? item.backdrop_path_500
+								: item.poster_path_500
+								? item.poster_path_500
+								: placeholder
+						}
 						alt="Poster"
 						showVideo={showVideo}
 					/>

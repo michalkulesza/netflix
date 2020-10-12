@@ -4,6 +4,7 @@ import { fetchEpisodes } from "../../redux/actions/fetch-episodes";
 import { DetailsEpisodes, DetailsEpisode } from "../../components";
 
 import { BiCaretDown, BiCaretUp } from "react-icons/bi";
+import placeholder from "../../res/images/placeholder_w.jpg";
 
 const DetailsEpisodesContainer = ({ item }) => {
 	const dispatch = useDispatch();
@@ -50,7 +51,7 @@ const DetailsEpisodesContainer = ({ item }) => {
 				</DetailsEpisodes.Seasons>
 			</DetailsEpisodes.Header>{" "}
 			<DetailsEpisodes.List>
-				{episodesUpdating ? (
+				{!episodesUpdating ? (
 					<>
 						<DetailsEpisode.WrapperLoading />
 						<DetailsEpisode.WrapperLoading />
@@ -61,7 +62,10 @@ const DetailsEpisodesContainer = ({ item }) => {
 						<DetailsEpisode.Wrapper key={episode.id}>
 							<DetailsEpisode>
 								<DetailsEpisode.Num>{episode.episode_number ? episode.episode_number : "-"}</DetailsEpisode.Num>
-								<DetailsEpisode.Image src={episode.still_path_300} alt="Episode preview" />
+								<DetailsEpisode.Image
+									src={episode.still_path_300 ? episode.still_path_300 : placeholder}
+									alt="Episode preview"
+								/>
 								<DetailsEpisode.Main>
 									<DetailsEpisode.Half>
 										<DetailsEpisode.Title>{episode.name}</DetailsEpisode.Title>

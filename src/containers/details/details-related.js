@@ -2,6 +2,7 @@ import React from "react";
 import { DetailsRelated } from "../../components";
 
 import { GrPlayFill } from "react-icons/gr";
+import placeholder from "../../res/images/placeholder_w.jpg";
 
 const DetailsRelatedContainer = ({ item }) => {
 	return item ? (
@@ -12,7 +13,10 @@ const DetailsRelatedContainer = ({ item }) => {
 					item.related.map((el, i) => (
 						<DetailsRelated.Item key={el.id ? el.id : i}>
 							<DetailsRelated.ItemImageWrapper>
-								<DetailsRelated.ItemImage src={el.backdrop_path_500 && el.backdrop_path_500} alt="Video preview" />
+								<DetailsRelated.ItemImage
+									src={el.backdrop_path_500 ? el.backdrop_path_500 : placeholder}
+									alt="Video preview"
+								/>
 								<DetailsRelated.ItemImageOverlay>
 									<DetailsRelated.ItemImageOverlayButton>
 										<GrPlayFill />

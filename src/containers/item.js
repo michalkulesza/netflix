@@ -5,6 +5,8 @@ import { ItemExpandedContainer } from "../containers/";
 import { markItemsPosition } from "../helpers/markItemsPosition";
 import { setIsExpanded } from "../redux/actions/toggles";
 
+import placeholder from "../res/images/placeholder_h.jpg";
+
 let hoverTimer;
 let videoTimer;
 
@@ -36,7 +38,7 @@ const ItemContainer = ({ item, i, scrolled, isFirstSlide, totalTilesInVievport }
 			scrolled={scrolled}
 			className={position}
 		>
-			<Item src={item.poster_path_300} alt="Poster" />
+			<Item src={item.poster_path_300 ? item.poster_path_300 : placeholder} alt="Poster" />
 			<ItemExpandedContainer
 				isExpanded={isExpandedLocal}
 				showVideo={showVideo}
