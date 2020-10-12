@@ -24,9 +24,9 @@ ItemExpanded.Placeholder = ({ ...restProps }) => {
 	return <Placeholder {...restProps} />;
 };
 
-ItemExpanded.Video = ({ ...restProps }) => {
-	return <Video type="video/mp4" {...restProps} />;
-};
+ItemExpanded.Video = React.forwardRef((props, ref) => {
+	return <Video type="video/mp4" src={props.src} muted={props.muted} onEnded={props.onEnded} ref={ref} />;
+});
 
 ItemExpanded.Main = ({ children, ...restProps }) => {
 	return <Main {...restProps}>{children}</Main>;

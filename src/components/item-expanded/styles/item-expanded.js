@@ -33,8 +33,8 @@ export const Placeholder = styled.img`
 	left: 0;
 	object-fit: cover;
 	max-width: calc(100% - 1px);
-	opacity: ${({ showVideo }) => (showVideo ? "0" : "1")};
-	transition: opacity 500ms ease-in-out;
+	opacity: ${({ isPlaceholder }) => (isPlaceholder ? "1" : "0")};
+	transition: opacity 1s ease-in-out;
 `;
 
 export const Video = styled.video`
@@ -42,8 +42,6 @@ export const Video = styled.video`
 	top: 0;
 	left: 0;
 	width: 100%;
-	opacity: ${({ showVideo }) => (showVideo ? "1" : "0")};
-	transition: opacity 500ms ease-in-out;
 	z-index: -1;
 `;
 

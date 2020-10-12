@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setIsDetails, setDetailsPosition, setIsExpanded } from "../redux/actions/toggles";
 import { fetchDetailsMovie, fetchDetailsTv } from "../redux/actions/fetch-details";
@@ -10,7 +10,10 @@ import { BiPlay, BiPlus, BiLike, BiDislike, BiChevronDown } from "react-icons/bi
 import placeholder from "../res/images/placeholder_h.jpg";
 
 const ItemExpandedContainer = ({ isExpanded, showVideo, position, item, videoFile }) => {
+	const VideoPlayer = useRef(null);
 	const dispatch = useDispatch();
+	const [isPlaceholder, setIsPlaceholder] = useState(true);
+	const [videoEnded, setVideoEnded] = useState(false);
 	const muted = useSelector(state => state.misc.globalMute);
 
 	const handleClickMoreDetails = ({ currentTarget }) => {
@@ -19,12 +22,26 @@ const ItemExpandedContainer = ({ isExpanded, showVideo, position, item, videoFil
 		dispatch(setIsDetails(true));
 	};
 
+	useEffect(() => {
+		if (showVideo) {
+			if (!videoEnded) {
+				if (VideoPlayer.current) VideoPlayer.current.volume = 0.4;
+				setIsPlaceholder(false);
+				setTimeout(() => VideoPlayer?.current?.play(), 500);
+			} else {
+				setIsPlaceholder(true);
+			}
+		}
+	}, [showVideo, videoEnded]);
+
 	const handleMouseEnter = () => {
 		item.media_type === "movie" ? dispatch(fetchDetailsMovie(item.id)) : dispatch(fetchDetailsTv(item.id));
 	};
 
 	const handleMouseLeave = () => {
 		dispatch(setIsExpanded(false));
+		setIsPlaceholder(true);
+		VideoPlayer.current && VideoPlayer.current.pause();
 	};
 
 	return (
@@ -45,13 +62,11 @@ const ItemExpandedContainer = ({ isExpanded, showVideo, position, item, videoFil
 								: placeholder
 						}
 						alt="Poster"
-						showVideo={showVideo}
+						isPlaceholder={isPlaceholder}
 					/>
-					{isExpanded && (
-						<LazyLoad>
-							<ItemExpanded.Video src={videoFile} autoPlay muted={muted} showVideo={showVideo} />
-						</LazyLoad>
-					)}
+					<LazyLoad>
+						<ItemExpanded.Video src={videoFile} muted={muted} ref={VideoPlayer} onEnded={() => setVideoEnded(true)} />
+					</LazyLoad>
 				</ItemExpanded.Header>
 				<ItemExpanded.Main>
 					<ItemExpanded.Buttons>
