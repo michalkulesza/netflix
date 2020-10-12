@@ -89,4 +89,8 @@ export const GenreWrapper = styled.div`
 	}
 `;
 
-export const Genre = styled.div``;
+export const Genre = styled.div`
+	span {
+		margin: 0 0.5em;
+	}
+`;

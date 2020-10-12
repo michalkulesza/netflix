@@ -81,7 +81,7 @@ const ItemExpandedContainer = ({ isExpanded, showVideo, position, item, videoFil
 							item.genre_ids.slice(0, 2).map((genre, i) => (
 								<ItemExpanded.Genre key={i}>
 									{genre}
-									{i !== 1 && <span> • </span>}
+									{i !== 1 && <span>•</span>}
 								</ItemExpanded.Genre>
 							))}
 					</ItemExpanded.GenreWrapper>
