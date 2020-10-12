@@ -9,6 +9,7 @@ import {
 	EpisodesList,
 	Episode,
 	EpisodeWrapper,
+	EpisodeWrapperLoading,
 	EpisodeNum,
 	EpisodeImage,
 	EpisodeMain,
@@ -52,6 +53,10 @@ export const DetailsEpisode = ({ children, ...restProps }) => {
 
 DetailsEpisode.Wrapper = ({ children, ...restProps }) => {
 	return <EpisodeWrapper {...restProps}>{children}</EpisodeWrapper>;
+};
+
+DetailsEpisode.WrapperLoading = ({ children, ...restProps }) => {
+	return <EpisodeWrapperLoading {...restProps}>{children}</EpisodeWrapperLoading>;
 };
 
 DetailsEpisode.Num = ({ children, ...restProps }) => {

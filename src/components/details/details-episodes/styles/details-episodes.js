@@ -1,4 +1,5 @@
 import styled from "styled-components/macro";
+import { LoadingAnimation } from "../../../common-styles";
 
 export const Episodes = styled.div`
 	width: 100%;
@@ -77,6 +78,23 @@ export const EpisodeWrapper = styled.div`
 	&:active {
 		outline: 2px solid #fff;
 	}
+`;
+
+export const EpisodeWrapperLoading = styled.div`
+	width: 100%;
+	height: 130px;
+	border-radius: 5px;
+	border-bottom: 1px solid #404040;
+	user-select: none;
+	background: linear-gradient(
+		90deg,
+		rgba(18, 18, 18, 1) 0%,
+		rgba(27, 27, 27, 1) 39%,
+		rgba(40, 40, 40, 1) 50%,
+		rgba(27, 27, 27, 1) 55%,
+		rgba(18, 18, 18, 1) 100%
+	);
+	animation: ${LoadingAnimation} 3s linear infinite;
 `;
 
 export const Episode = styled.div`

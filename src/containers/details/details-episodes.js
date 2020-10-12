@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchEpisodes } from "../../redux/actions/fetch-episodes";
-
 import { DetailsEpisodes, DetailsEpisode } from "../../components";
 
 import { BiCaretDown, BiCaretUp } from "react-icons/bi";
 
 const DetailsEpisodesContainer = ({ item }) => {
 	const dispatch = useDispatch();
-	const episodes = useSelector(state => state.fetchEpisodes);
+	const episodes = useSelector(state => state.fetchEpisodes.data);
+	const episodesUpdating = useSelector(state => state.fetchEpisodes.isUpdating);
 	const [seasonsDropdownDisabled, setSeasonsDropdownDisabled] = useState(true);
 	const [seasonsDropdownActive, setSeasonsDropdownActive] = useState(false);
 	const [selectedSeason, setSelectedSeason] = useState(1);
@@ -50,23 +50,31 @@ const DetailsEpisodesContainer = ({ item }) => {
 				</DetailsEpisodes.Seasons>
 			</DetailsEpisodes.Header>{" "}
 			<DetailsEpisodes.List>
-				{episodes.map(episode => (
-					<DetailsEpisode.Wrapper key={episode.id}>
-						<DetailsEpisode>
-							<DetailsEpisode.Num>{episode.episode_number ? episode.episode_number : "-"}</DetailsEpisode.Num>
-							<DetailsEpisode.Image src={episode.still_path_300} alt="Episode preview" />
-							<DetailsEpisode.Main>
-								<DetailsEpisode.Half>
-									<DetailsEpisode.Title>{episode.name}</DetailsEpisode.Title>
-									<DetailsEpisode.Time>57m</DetailsEpisode.Time>
-								</DetailsEpisode.Half>
-								<DetailsEpisode.Half>
-									<DetailsEpisode.Description>{episode.overview.slice(0, 200)}</DetailsEpisode.Description>
-								</DetailsEpisode.Half>
-							</DetailsEpisode.Main>
-						</DetailsEpisode>
-					</DetailsEpisode.Wrapper>
-				))}
+				{episodesUpdating ? (
+					<>
+						<DetailsEpisode.WrapperLoading />
+						<DetailsEpisode.WrapperLoading />
+						<DetailsEpisode.WrapperLoading />
+					</>
+				) : (
+					episodes.map(episode => (
+						<DetailsEpisode.Wrapper key={episode.id}>
+							<DetailsEpisode>
+								<DetailsEpisode.Num>{episode.episode_number ? episode.episode_number : "-"}</DetailsEpisode.Num>
+								<DetailsEpisode.Image src={episode.still_path_300} alt="Episode preview" />
+								<DetailsEpisode.Main>
+									<DetailsEpisode.Half>
+										<DetailsEpisode.Title>{episode.name}</DetailsEpisode.Title>
+										<DetailsEpisode.Time>57m</DetailsEpisode.Time>
+									</DetailsEpisode.Half>
+									<DetailsEpisode.Half>
+										<DetailsEpisode.Description>{episode.overview.slice(0, 200)}</DetailsEpisode.Description>
+									</DetailsEpisode.Half>
+								</DetailsEpisode.Main>
+							</DetailsEpisode>
+						</DetailsEpisode.Wrapper>
+					))
+				)}
 			</DetailsEpisodes.List>
 		</DetailsEpisodes>
 	) : null;

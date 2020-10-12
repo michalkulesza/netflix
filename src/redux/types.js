@@ -8,6 +8,7 @@ export const CLEAR_DETAILS = "CLEAR_DETAILS";
 
 //fetch-episodes.js
 export const FETCH_EPISODES = "FETCH_EPISODES";
+export const SET_EPISODES_UPDATING = "SET_EPISODES_UPDATING";
 export const CLEAR_EPISODES = "CLEAR_EPISODES";
 
 //toggles.js
