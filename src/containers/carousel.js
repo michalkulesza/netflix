@@ -5,8 +5,10 @@ import { ItemContainer } from "../containers";
 
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
-const CarouselContainer = ({ data, title, i }) => {
+const CarouselContainer = ({ data, title }) => {
 	const [buffer, setBuffer] = useState([]);
+	const [scrollDeltaX, setScrollDeltaX] = useState(0);
+	const [touchX, setTouchX] = useState(0);
 	const { totalTilesInVievport } = useTilesInViewport();
 	const tileWidth = 100 / totalTilesInVievport;
 	const tilesToScroll = totalTilesInVievport - 1;
@@ -61,32 +63,50 @@ const CarouselContainer = ({ data, title, i }) => {
 		}
 	};
 
+	const handleScroll = ({ deltaX }) => {
+		if (deltaX !== -0) {
+			const newDeltaX = scrollDeltaX + deltaX;
+			newDeltaX > scrollDeltaX ? handleArrowForward() : handleArrowBack();
+			setScrollDeltaX(newDeltaX);
+		}
+	};
+
+	const handleTouch = ({ touches }) => {
+		touches[0]?.screenX > touchX ? handleArrowForward() : handleArrowBack();
+		setTouchX(touches[0]?.screenX);
+	};
+
 	return buffer ? (
-		<Carousel.Container>
-			<Carousel.Category>{title && title}</Carousel.Category>
-			<Carousel.Overlay>
-				<Carousel.Button onMouseDown={handleArrowBack} tileWidth={tileWidth} isFirstSlide={isFirstSlide}>
-					<IoIosArrowBack />
-				</Carousel.Button>
-				<Carousel.Button onMouseDown={handleArrowForward} tileWidth={tileWidth}>
-					<IoIosArrowForward />
-				</Carousel.Button>
-			</Carousel.Overlay>
-			<Carousel.Wrapper>
-				<Carousel.ItemsContainer style={{ transform: `translate3d(${scrolled}vw, 0, 0)`, marginLeft: `${margin}vw` }}>
-					{buffer.map((item, i) => (
-						<ItemContainer
-							key={item.id}
-							item={item}
-							i={i}
-							scrolled={scrolled}
-							isFirstSlide={isFirstSlide}
-							totalTilesInVievport={totalTilesInVievport}
-						/>
-					))}
-				</Carousel.ItemsContainer>
-			</Carousel.Wrapper>
-		</Carousel.Container>
+		<>
+			<Carousel.Container
+				onWheel={({ nativeEvent }) => handleScroll(nativeEvent)}
+				onTouchMove={({ nativeEvent }) => handleTouch(nativeEvent)}
+			>
+				<Carousel.Category>{title && title}</Carousel.Category>
+				<Carousel.Overlay>
+					<Carousel.Button onMouseDown={handleArrowBack} tileWidth={tileWidth} isFirstSlide={isFirstSlide}>
+						<IoIosArrowBack />
+					</Carousel.Button>
+					<Carousel.Button onMouseDown={handleArrowForward} tileWidth={tileWidth}>
+						<IoIosArrowForward />
+					</Carousel.Button>
+				</Carousel.Overlay>
+				<Carousel.Wrapper>
+					<Carousel.ItemsContainer style={{ transform: `translate3d(${scrolled}vw, 0, 0)`, marginLeft: `${margin}vw` }}>
+						{buffer.map((item, i) => (
+							<ItemContainer
+								key={item.id}
+								item={item}
+								i={i}
+								scrolled={scrolled}
+								isFirstSlide={isFirstSlide}
+								totalTilesInVievport={totalTilesInVievport}
+							/>
+						))}
+					</Carousel.ItemsContainer>
+				</Carousel.Wrapper>
+			</Carousel.Container>
+		</>
 	) : null;
 };
 
