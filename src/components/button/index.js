@@ -19,8 +19,8 @@ Button.Square = ({ iconScale, inverted, marginRight, children, ...restProps }) =
 
 Button.Round = ({ label, inverted, dark, marginRight, children, ...restProps }) => {
 	return (
-		<Container>
-			<Round inverted={inverted} marginRight={marginRight} dark={dark} {...restProps}>
+		<Container marginRight={marginRight}>
+			<Round inverted={inverted} dark={dark} {...restProps}>
 				{children}
 			</Round>
 			{label && <Label>{label}</Label>}

@@ -2,8 +2,7 @@ import React, { useRef, useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setGlobalMute } from "../redux/actions/misc";
 import { Header, Button } from "../components";
-import useScrolledDistance from "../hooks/use-scrolled-distance";
-import useViewportWidth from "../hooks/use-viewport-width";
+import { useViewportWidth, useScrolledDistance, useWindowFocus } from "../hooks";
 
 import { GiSpeaker, GiSpeakerOff } from "react-icons/gi";
 import { GrPlayFill, GrCircleInformation } from "react-icons/gr";
@@ -19,7 +18,13 @@ const HeaderContainer = ({ headerData, bg, children, ...restProps }) => {
 	const [posterIsVisible, setPosterIsVisible] = useState(true);
 	const muted = useSelector(state => state.misc.globalMute);
 	const isExpanded = useSelector(state => state.toggles.isExpanded);
-	const canPlay = scrolled < (viewPortWidth * 0.5625) / 3 && !isExpanded && !posterIsVisible && !videoEnded;
+	const isUserAway = useSelector(state => state.toggles.isUserAway);
+	const isWindowFocused = useWindowFocus();
+	const canPlay =
+		scrolled < (viewPortWidth * 0.5625) / 3 &&
+		!isExpanded &&
+		!posterIsVisible &&
+		!videoEnded & !isUserAway & isWindowFocused;
 
 	useEffect(() => {
 		if (videoPlayer.current) {

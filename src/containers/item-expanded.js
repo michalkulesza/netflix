@@ -1,12 +1,13 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setIsDetails, setDetailsPosition, setIsExpanded } from "../redux/actions/toggles";
+import { setGlobalMute } from "../redux/actions/misc";
 import { fetchDetailsMovie, fetchDetailsTv } from "../redux/actions/fetch-details";
 import LazyLoad from "react-lazyload";
-
 import { ItemExpanded, Button } from "../components";
 
 import { BiPlay, BiPlus, BiLike, BiDislike, BiChevronDown } from "react-icons/bi";
+import { GiSpeaker, GiSpeakerOff } from "react-icons/gi";
 import placeholder from "../res/images/placeholder_h.jpg";
 
 const ItemExpandedContainer = ({ isExpanded, showVideo, position, item, videoFile }) => {
@@ -64,6 +65,11 @@ const ItemExpandedContainer = ({ isExpanded, showVideo, position, item, videoFil
 						alt="Poster"
 						isPlaceholder={isPlaceholder}
 					/>
+					<ItemExpanded.Overlay>
+						<Button.Round onMouseDown={() => dispatch(setGlobalMute(!muted))} marginRight={"0"}>
+							{muted ? <GiSpeakerOff /> : <GiSpeaker />}
+						</Button.Round>
+					</ItemExpanded.Overlay>
 					<LazyLoad>
 						<ItemExpanded.Video src={videoFile} muted={muted} ref={VideoPlayer} onEnded={() => setVideoEnded(true)} />
 					</LazyLoad>

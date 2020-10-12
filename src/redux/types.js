@@ -15,6 +15,7 @@ export const CLEAR_EPISODES = "CLEAR_EPISODES";
 export const SET_IS_DETAILS = "SET_IS_DETAILS";
 export const SET_IS_EXPANDED = "SET_IS_EXPANDED";
 export const SET_DETAILS_POSITION = "SET_DETAILS_POSITION";
+export const IS_USER_AWAY = "IS_USER_AWAY";
 
 //misc.js
 export const SET_HEADER_VIDEO = "SET_HEADER_VIDEO";

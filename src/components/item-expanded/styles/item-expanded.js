@@ -18,6 +18,7 @@ export const Item = styled.div`
 	pointer-events: ${({ isExpanded }) => (isExpanded ? `all` : `none`)};
 	box-shadow: rgba(0, 0, 0, 0.75) 0px 3px 10px;
 	overflow: hidden;
+	cursor: default;
 `;
 
 export const Header = styled.div`
@@ -35,6 +36,8 @@ export const Placeholder = styled.img`
 	max-width: calc(100% - 1px);
 	opacity: ${({ isPlaceholder }) => (isPlaceholder ? "1" : "0")};
 	transition: opacity 1s ease-in-out;
+	z-index: 2;
+	pointer-events: none;
 `;
 
 export const Video = styled.video`
@@ -43,6 +46,19 @@ export const Video = styled.video`
 	left: 0;
 	width: 100%;
 	z-index: -1;
+`;
+
+export const Overlay = styled.div`
+	display: flex;
+	justify-content: flex-end;
+	align-items: flex-end;
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	z-index: 1;
+	padding: 5%;
 `;
 
 export const Main = styled.div`

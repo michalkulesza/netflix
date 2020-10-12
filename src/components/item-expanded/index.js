@@ -4,6 +4,7 @@ import {
 	Header,
 	Placeholder,
 	Video,
+	Overlay,
 	Main,
 	Buttons,
 	Half,
@@ -27,6 +28,10 @@ ItemExpanded.Placeholder = ({ ...restProps }) => {
 ItemExpanded.Video = React.forwardRef((props, ref) => {
 	return <Video type="video/mp4" src={props.src} muted={props.muted} onEnded={props.onEnded} ref={ref} />;
 });
+
+ItemExpanded.Overlay = ({ children, ...restProps }) => {
+	return <Overlay {...restProps}>{children}</Overlay>;
+};
 
 ItemExpanded.Main = ({ children, ...restProps }) => {
 	return <Main {...restProps}>{children}</Main>;
