@@ -62,7 +62,7 @@ const CarouselContainer = ({ data, title, i }) => {
 	};
 
 	return buffer ? (
-		<Carousel.Container key={i}>
+		<Carousel.Container>
 			<Carousel.Category>{title && title}</Carousel.Category>
 			<Carousel.Overlay>
 				<Carousel.Button onMouseDown={handleArrowBack} tileWidth={tileWidth} isFirstSlide={isFirstSlide}>

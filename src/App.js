@@ -1,15 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { HOME, SIGN_IN, SIGN_UP, BROWSE, SERIES, FILMS, LATEST, MYLIST } from "./constants/routes";
-import { useLocation, Route, Switch } from "react-router-dom";
+import { useLocation, Route, Switch, useHistory } from "react-router-dom";
 import { Home, SignIn, SignUp, Browse, Latest, MyList, Page404 } from "./pages";
 import { IfUserRedirect, ProtectedRoute } from "./helpers/protectedRoutes";
 import { useAuthListener, useFetchInitData, useKeyDownListener } from "./hooks/";
 
 const App = () => {
+	const history = useHistory();
 	const { user } = useAuthListener();
 	const id = useLocation();
 	useFetchInitData(id);
 	useKeyDownListener();
+
+	useEffect(() => {
+		history.replace(history.location.pathname, null);
+	}, [history]);
 
 	return (
 		<>

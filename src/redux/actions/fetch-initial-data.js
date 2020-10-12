@@ -1,25 +1,39 @@
 import axios from "axios";
-import { SET_INITIAL_DATA, SET_CACHE_BROWSE, SET_CACHE_SERIES, SET_CACHE_FILMS, SET_CACHE_LATEST } from "../types";
+import { SET_INITIAL_DATA, SET_DATA_UPDATING } from "../types";
 
 export const setInitialData = data => {
+	return dispatch => {
+		dispatch({
+			type: SET_DATA_UPDATING,
+			payload: true,
+		});
+
+		dispatch({
+			type: SET_INITIAL_DATA,
+			payload: data,
+		});
+	};
+};
+
+export const setDataUpdating = bool => {
 	return {
-		type: SET_INITIAL_DATA,
-		payload: data,
+		type: SET_DATA_UPDATING,
+		payload: bool,
 	};
 };
 
 export const fetchInitialDataBrowse = () => {
 	return async dispatch => {
 		try {
+			dispatch({
+				type: SET_DATA_UPDATING,
+				payload: true,
+			});
+
 			const response = await axios.get("http://localhost:8888/initial/browse");
 
 			dispatch({
 				type: SET_INITIAL_DATA,
-				payload: response.data,
-			});
-
-			dispatch({
-				type: SET_CACHE_BROWSE,
 				payload: response.data,
 			});
 		} catch (error) {
@@ -31,15 +45,15 @@ export const fetchInitialDataBrowse = () => {
 export const fetchInitialDataSeries = () => {
 	return async dispatch => {
 		try {
+			dispatch({
+				type: SET_DATA_UPDATING,
+				payload: true,
+			});
+
 			const response = await axios.get("http://localhost:8888/initial/series");
 
 			dispatch({
 				type: SET_INITIAL_DATA,
-				payload: response.data,
-			});
-
-			dispatch({
-				type: SET_CACHE_SERIES,
 				payload: response.data,
 			});
 		} catch (error) {
@@ -51,14 +65,15 @@ export const fetchInitialDataSeries = () => {
 export const fetchInitialDataFilms = () => {
 	return async dispatch => {
 		try {
+			dispatch({
+				type: SET_DATA_UPDATING,
+				payload: true,
+			});
+
 			const response = await axios.get("http://localhost:8888/initial/films");
 
 			dispatch({
 				type: SET_INITIAL_DATA,
-				payload: response.data,
-			});
-			dispatch({
-				type: SET_CACHE_FILMS,
 				payload: response.data,
 			});
 		} catch (error) {
@@ -70,14 +85,15 @@ export const fetchInitialDataFilms = () => {
 export const fetchInitialDataLatest = () => {
 	return async dispatch => {
 		try {
+			dispatch({
+				type: SET_DATA_UPDATING,
+				payload: true,
+			});
+
 			const response = await axios.get("http://localhost:8888/initial/latest");
 
 			dispatch({
 				type: SET_INITIAL_DATA,
-				payload: response.data,
-			});
-			dispatch({
-				type: SET_CACHE_LATEST,
 				payload: response.data,
 			});
 		} catch (error) {

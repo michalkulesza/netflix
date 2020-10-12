@@ -17,7 +17,7 @@ const CarouselsContainer = ({ data }) => {
 							.join(" ");
 
 					return (
-						<LazyLoad height={200} key={i}>
+						<LazyLoad height={200} key={category.id}>
 							<CarouselContainer title={title} i={i} data={category[categoryName]} />
 						</LazyLoad>
 					);

@@ -18,7 +18,7 @@ const HeaderContainer = ({ headerData, bg, children, ...restProps }) => {
 	const canPlay = scrolled < (viewPortWidth * 0.5625) / 3 && !isExpanded;
 
 	useEffect(() => {
-		if (videoPlayer) {
+		if (videoPlayer.current) {
 			videoPlayer.current.volume = 0.4;
 			canPlay ? videoPlayer.current.play() : videoPlayer.current.pause();
 		}
