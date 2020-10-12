@@ -14,7 +14,7 @@ const DetailsInfoContainer = ({ item }) => {
 									{item.details.first_air_date
 										? item.details.first_air_date.slice(0, 4)
 										: item.details.release_date.slice(0, 4)}{" "}
-									<span>{item.ageRestriction}</span>{" "}
+									<span>{item.ageRestriction === "" ? "0" : item.ageRestriction}</span>{" "}
 									{item.details.number_of_seasons
 										? `${item.details.number_of_seasons} Season`
 										: `${item.details.runtime}min`}
@@ -26,7 +26,7 @@ const DetailsInfoContainer = ({ item }) => {
 					</DetailsInfo.Half>
 					<DetailsInfo.Half>
 						<DetailsInfo.Cast>
-							{item.cast && (
+							{item.cast && item.cast.length > 0 && (
 								<>
 									<span>Cast:</span> {item.cast.map((el, i) => `${el.name}${item.cast.length - 1 !== i ? ", " : ""}`)}
 								</>

@@ -51,12 +51,8 @@ const DetailsEpisodesContainer = ({ item }) => {
 				</DetailsEpisodes.Seasons>
 			</DetailsEpisodes.Header>{" "}
 			<DetailsEpisodes.List>
-				{!episodesUpdating ? (
-					<>
-						<DetailsEpisode.WrapperLoading />
-						<DetailsEpisode.WrapperLoading />
-						<DetailsEpisode.WrapperLoading />
-					</>
+				{episodesUpdating ? (
+					<DetailsEpisode.WrapperLoading />
 				) : (
 					episodes.map(episode => (
 						<DetailsEpisode.Wrapper key={episode.id}>

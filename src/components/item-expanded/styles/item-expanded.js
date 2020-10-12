@@ -17,7 +17,6 @@ export const Item = styled.div`
 	background-color: #181818;
 	pointer-events: ${({ isExpanded }) => (isExpanded ? `all` : `none`)};
 	box-shadow: rgba(0, 0, 0, 0.75) 0px 3px 10px;
-	overflow: hidden;
 	cursor: default;
 `;
 
@@ -25,6 +24,8 @@ export const Header = styled.div`
 	position: relative;
 	width: 100%;
 	padding-top: 56.25%;
+	z-index: 0;
+	border-radius: 6px 6px 0 0;
 	overflow: hidden;
 `;
 
@@ -63,6 +64,7 @@ export const Overlay = styled.div`
 
 export const Main = styled.div`
 	padding: 5%;
+	z-index: 1;
 `;
 
 export const Buttons = styled.div`

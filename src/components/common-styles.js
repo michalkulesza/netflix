@@ -2,10 +2,10 @@ import { keyframes, css } from "styled-components/macro";
 
 export const LoadingAnimation = keyframes`
 	from {
-		background-position-x: 0vw;
+		background-position-x: 0px;
 	}
 	to {
-		background-position-x: 100vw;
+		background-position-x: 3000px;
 	}
 `;
 

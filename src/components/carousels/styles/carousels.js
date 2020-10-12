@@ -27,7 +27,7 @@ export const LoadingItem = styled.div`
 		rgba(27, 27, 27, 1) 65%,
 		rgba(18, 18, 18, 1) 100%
 	);
-	animation: ${LoadingAnimation} 5s linear infinite;
+	animation: ${LoadingAnimation} 15s linear infinite;
 	display: flex;
 	justify-content: flex-end;
 	padding: 1em;

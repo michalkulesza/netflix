@@ -24,8 +24,8 @@ const HeaderContainer = ({ headerData, bg, children, ...restProps }) => {
 		if (videoPlayer.current) {
 			videoPlayer.current.volume = 0.4;
 			canPlay && !videoEnded && videoCanPlay
-				? setTimeout(() => videoPlayer.current.play(), 500)
-				: videoPlayer.current.pause();
+				? setTimeout(() => videoPlayer.current?.play(), 500)
+				: videoPlayer.current && videoPlayer.current.pause();
 		}
 	}, [canPlay, videoCanPlay, videoEnded]);
 

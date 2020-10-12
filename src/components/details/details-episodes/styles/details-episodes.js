@@ -94,7 +94,7 @@ export const EpisodeWrapperLoading = styled.div`
 		rgba(27, 27, 27, 1) 55%,
 		rgba(18, 18, 18, 1) 100%
 	);
-	animation: ${LoadingAnimation} 3s linear infinite;
+	animation: ${LoadingAnimation} 15s linear infinite;
 `;
 
 export const Episode = styled.div`
@@ -116,7 +116,10 @@ export const EpisodeImage = styled.img`
 	margin-right: 1em;
 `;
 
-export const EpisodeMain = styled.div``;
+export const EpisodeMain = styled.div`
+	width: 100%;
+	height: 70%;
+`;
 
 export const EpisodeHalf = styled.div`
 	display: flex;
