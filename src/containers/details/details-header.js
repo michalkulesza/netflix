@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { DetailsHeader, Button } from "../../components";
 import { setIsDetails } from "../../redux/actions/toggles";
@@ -8,11 +8,33 @@ import { GrPlayFill, GrClose } from "react-icons/gr";
 import { GiSpeaker, GiSpeakerOff } from "react-icons/gi";
 import { BiPlus, BiLike, BiDislike } from "react-icons/bi";
 import placeholder from "../../res/images/placeholder_w.jpg";
+import { useEffect } from "react";
 
-const DetailsHeaderContainer = ({ item }) => {
+let videoTimer;
+let placeholderTimer;
+
+const DetailsHeaderContainer = ({ item, scrolled }) => {
+	const VideoPlayer = useRef(null);
 	const dispatch = useDispatch();
+	const [isPlaceholder, setIsPlaceholder] = useState(true);
 	const globalMute = useSelector(state => state.misc.globalMute);
 	const headerData = useSelector(state => state.misc.headerVideo);
+
+	useEffect(() => {
+		if (VideoPlayer.current) {
+			if (scrolled < 200) {
+				VideoPlayer.current.volume = 0.4;
+				placeholderTimer = setTimeout(() => {
+					setIsPlaceholder(false);
+					videoTimer = setTimeout(() => VideoPlayer.current && VideoPlayer.current.play(), 500);
+				}, 2000);
+			} else {
+				clearTimeout(placeholderTimer);
+				clearTimeout(videoTimer);
+				VideoPlayer.current.pause();
+			}
+		}
+	}, [scrolled]);
 
 	const handleClose = () => {
 		dispatch(setIsDetails(false));
@@ -26,10 +48,11 @@ const DetailsHeaderContainer = ({ item }) => {
 		<DetailsHeader>
 			{headerData && item ? (
 				<>
-					<DetailsHeader.Video src={headerData.src} autoPlay muted />
+					<DetailsHeader.Video src={headerData.src} muted={globalMute} ref={VideoPlayer} />
 					<DetailsHeader.Cover
 						src={item.details.backdrop_path_1280 ? item.details.backdrop_path_1280 : placeholder}
-					></DetailsHeader.Cover>
+						isPlaceholder={isPlaceholder}
+					/>
 					<DetailsHeader.Overlay>
 						<DetailsHeader.OverlayHalf>
 							<DetailsHeader.Logo src={headerData.logo} alt="Video Logo" />

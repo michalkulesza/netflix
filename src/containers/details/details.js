@@ -14,7 +14,7 @@ const DetailsContainer = headerData => {
 	const position = useSelector(state => state.toggles.detailsPosition);
 	const item = useSelector(state => state.fetchDetails);
 	const pressedKey = useSelector(state => state.misc.pressedKey);
-
+	const [scrolled, setScrolled] = useState(0);
 	const [shouldRender, setRender] = useState(isDetails);
 
 	const handleCloseCallback = useCallback(() => {
@@ -44,11 +44,15 @@ const DetailsContainer = headerData => {
 		}
 	};
 
+	const handleScroll = e => {
+		setScrolled(e.nativeEvent.target.scrollTop);
+	};
+
 	return shouldRender ? (
-		<Details.Container shouldRender={shouldRender}>
+		<Details.Container shouldRender={shouldRender} onScroll={e => handleScroll(e)}>
 			<Details.OverlayTrigger onMouseDown={handleCloseCallback} />
 			<Details isDetails={isDetails} position={position} onAnimationEnd={onAnimationEnd}>
-				<DetailsHeaderContainer headerData={headerData} src={headerData.src} item={item} />
+				<DetailsHeaderContainer item={item} scrolled={scrolled} />
 				<DetailsInfoContainer item={item} />
 				<DetailsEpisodesContainer item={item} />
 				<DetailsRelatedContainer item={item} />

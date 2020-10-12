@@ -8,8 +8,10 @@ export const Header = styled.div`
 `;
 
 export const Video = styled.video`
+	position: relative;
 	width: 100%;
 	height: 100%;
+	z-index: 0;
 `;
 
 export const Cover = styled.img`
@@ -18,6 +20,9 @@ export const Cover = styled.img`
 	left: 0;
 	height: 100%;
 	width: 100%;
+	z-index: 1;
+	opacity: ${({ isPlaceholder }) => (isPlaceholder ? "1" : "0")};
+	transition: opacity 1s ease-in-out;
 `;
 
 export const Overlay = styled.div`
@@ -30,6 +35,7 @@ export const Overlay = styled.div`
 	background: rgb(27, 27, 27);
 	background: linear-gradient(180deg, rgba(27, 27, 27, 0) 50%, rgba(24, 24, 24, 1) 100%);
 	padding: 2vw 2vw 4vw 5vw;
+	z-index: 3;
 `;
 
 export const OverlayHalf = styled.div`
