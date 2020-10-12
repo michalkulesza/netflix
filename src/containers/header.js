@@ -24,19 +24,17 @@ const HeaderContainer = ({ headerData, bg, children, ...restProps }) => {
 	useEffect(() => {
 		if (videoPlayer.current) {
 			videoPlayer.current.volume = 0.4;
-			canPlay ? videoPlayer.current.play() : videoPlayer.current.pause();
+			canPlay ? setTimeout(() => videoPlayer.current.play(), 500) : videoPlayer.current.pause();
 		}
 	}, [canPlay]);
 
 	useEffect(() => {
-		if (videoCanPlay && !videoEnded) {
-			setTimeout(() => {
-				setPosterIsVisible(false);
-			}, 2000);
+		if (videoCanPlay && !videoEnded && !isExpanded) {
+			setTimeout(() => setPosterIsVisible(false), 2000);
 		} else {
 			setPosterIsVisible(true);
 		}
-	}, [videoCanPlay, videoEnded]);
+	}, [videoCanPlay, videoEnded, isExpanded]);
 
 	const handleMute = () => {
 		dispatch(setGlobalMute(!muted));

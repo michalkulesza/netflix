@@ -134,7 +134,7 @@ export const VideoPoster = styled.img`
 	left: 0;
 	z-index: 1;
 	opacity: ${({ visible }) => (visible ? "1" : "0")};
-	transition: opacity 0.5s ease-in-out;
+	transition: opacity 1s ease-in-out;
 `;
 
 export const ContainerInVideo = styled.div`
