@@ -1,13 +1,14 @@
 import { SET_GENRES, CLEAR_GENRES } from "../types";
 
 const initState = {
-	genres: null,
+	genres: ["one", "one", "one", "one", "one", "one", "one", "one", "one", "one", "one", "one"],
+	type: "Series",
 };
 
 const genres = (state = initState, action) => {
 	switch (action.type) {
 		case SET_GENRES:
-			return { ...state, genres: action.payload };
+			return { ...state, ...action.payload };
 		case CLEAR_GENRES:
 			return initState;
 		default:
