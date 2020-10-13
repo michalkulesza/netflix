@@ -1,6 +1,19 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Main, Container, Logo, Menu, MenuItem, Divide } from "./styles/navbar";
+import {
+	Main,
+	Container,
+	Logo,
+	Menu,
+	MenuItem,
+	Divide,
+	Genres,
+	GenresButtonWrapper,
+	GenresButton,
+	GenresListWrapper,
+	GenresList,
+	GenresItem,
+} from "./styles/navbar";
 import { HOME } from "../../constants/routes";
 
 import LogoSVG from "../../res/logo.svg";
@@ -33,6 +46,34 @@ Navbar.MenuItem = ({ children, ...restProps }) => {
 
 Navbar.Divide = ({ children, ...restProps }) => {
 	return <Divide {...restProps}>{children}</Divide>;
+};
+
+Navbar.Genres = React.forwardRef((props, ref) => {
+	return (
+		<Genres ref={ref} genres={props.genres} scrolled={props.scrolled}>
+			{props.children}
+		</Genres>
+	);
+});
+
+Navbar.GenresButtonWrapper = ({ children, ...restProps }) => {
+	return <GenresButtonWrapper {...restProps}>{children}</GenresButtonWrapper>;
+};
+
+Navbar.GenresButton = ({ children, ...restProps }) => {
+	return <GenresButton {...restProps}>{children}</GenresButton>;
+};
+
+Navbar.GenresListWrapper = ({ children, ...restProps }) => {
+	return <GenresListWrapper {...restProps}>{children}</GenresListWrapper>;
+};
+
+Navbar.GenresList = ({ children, ...restProps }) => {
+	return <GenresList {...restProps}>{children}</GenresList>;
+};
+
+Navbar.GenresItem = ({ children, ...restProps }) => {
+	return <GenresItem {...restProps}>{children}</GenresItem>;
 };
 
 export default Navbar;

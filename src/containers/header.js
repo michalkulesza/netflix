@@ -29,7 +29,7 @@ const HeaderContainer = ({ headerData, bg, children, ...restProps }) => {
 				posterTimer = setTimeout(() => {
 					setPosterIsVisible(false);
 					videoPlayer.current.play();
-				}, 1500);
+				}, 500);
 			} else {
 				clearTimeout(posterTimer);
 				setPosterIsVisible(true);
