@@ -1,5 +1,5 @@
 import styled from "styled-components/macro";
-import { fadeInAnim, fadeOutAnim } from "../../../common-styles";
+import { fadeInAnim, fadeOutAnim } from "../../../../styles/common-styles";
 
 export const Container = styled.div`
 	position: fixed;

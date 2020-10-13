@@ -1,5 +1,5 @@
 import styled from "styled-components/macro";
-import { LoadingAnimation } from "../../../common-styles";
+import { LoadingAnimation } from "../../../../styles/common-styles";
 
 export const Main = styled.div`
 	padding: 2vw 5vw;

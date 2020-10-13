@@ -1,5 +1,5 @@
 import styled from "styled-components/macro";
-import { LoadingAnimation } from "../../../common-styles";
+import { LoadingAnimation } from "../../../../styles/common-styles";
 
 export const Episodes = styled.div`
 	width: 100%;

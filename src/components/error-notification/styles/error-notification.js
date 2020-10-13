@@ -1,5 +1,5 @@
 import styled from "styled-components/macro";
-import { notificationAnimIn, notificationAnimOut } from "../../common-styles";
+import { notificationAnimIn, notificationAnimOut } from "../../../styles/common-styles";
 
 export const Main = styled.div`
 	background-color: #e53935;
