@@ -14,10 +14,10 @@ export const Main = styled(Link)`
 `;
 
 export const Square = styled.button`
-	padding: 1.5vw 2.8vw 1.5vw 2.3vw;
+	padding: 1.2vw 2.5vw;
 	border-radius: 4px;
 	font-weight: 600;
-	font-size: 0.9em;
+	font-size: 1em;
 	display: flex;
 	align-items: center;
 	background-color: ${({ dark }) => (dark ? "#616f6d" : "#fff")};
@@ -39,7 +39,8 @@ export const Square = styled.button`
 	}
 
 	${respondTo.sm`
-			padding: 1vw 2.3vw 1vw 1.9vw;
+		font-size: 0.9em;
+		padding: 1vw 2.3vw;
 
 	`}
 `;

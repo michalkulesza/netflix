@@ -73,10 +73,6 @@ export const MenuItem = styled.li`
 	&:hover {
 		color: #b3b3b3;
 	}
-
-	${respondTo.md`
-		font-size: 1vw;
-	`};
 `;
 
 export const Divide = styled.div`

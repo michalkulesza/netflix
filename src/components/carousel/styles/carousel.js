@@ -18,8 +18,9 @@ export const Container = styled.div`
 export const Category = styled.h1`
 	position: absolute;
 	top: -3em;
-	margin-left: 5%;
+	margin-left: 2.5em;
 	font-size: 1.5vw;
+	font-weight: 500;
 	color: #e5e5e5;
 `;
 
