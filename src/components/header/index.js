@@ -74,7 +74,7 @@ Header.Video = React.forwardRef((props, ref) => {
 			poster={props.poster}
 			autoPlay={props.autoPlay}
 			muted={props.muted}
-			onCanPlay={props.onCanPlay}
+			onCanPlayThrough={props.onCanPlayThrough}
 		></Video>
 	);
 });

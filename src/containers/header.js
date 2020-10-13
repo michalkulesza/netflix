@@ -2,16 +2,17 @@ import React, { useRef, useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setGlobalMute } from "../redux/actions/misc";
 import { Header, Button } from "../components";
+import { useCanHeaderPlay } from "../hooks";
 
 import { GiSpeaker, GiSpeakerOff } from "react-icons/gi";
 import { GrPlayFill, GrCircleInformation } from "react-icons/gr";
 import placeholder from "../res/images/placeholder_w.jpg";
-import { useCanHeaderPlay } from "../hooks";
+
+let posterTimer;
 
 const HeaderContainer = ({ headerData, bg, children, ...restProps }) => {
 	const videoPlayer = useRef(null);
 	const dispatch = useDispatch();
-
 	const [videoEnded, setVideoEnded] = useState(false);
 	const [videoCanPlay, setVideoCanPlay] = useState(false);
 	const [posterIsVisible, setPosterIsVisible] = useState(true);
@@ -23,19 +24,19 @@ const HeaderContainer = ({ headerData, bg, children, ...restProps }) => {
 	useEffect(() => {
 		if (videoPlayer.current) {
 			videoPlayer.current.volume = 0.4;
-			canPlay && !videoEnded && videoCanPlay
-				? setTimeout(() => videoPlayer.current?.play(), 500)
-				: videoPlayer.current && videoPlayer.current.pause();
-		}
-	}, [canPlay, videoCanPlay, videoEnded]);
 
-	useEffect(() => {
-		if (videoCanPlay && !videoEnded && !isExpanded && !isDetails) {
-			setTimeout(() => setPosterIsVisible(false), 2000);
-		} else {
-			setPosterIsVisible(true);
+			if (canPlay && videoCanPlay && !videoEnded && !isExpanded && !isDetails) {
+				posterTimer = setTimeout(() => {
+					setPosterIsVisible(false);
+					videoPlayer.current.play();
+				}, 1500);
+			} else {
+				clearTimeout(posterTimer);
+				setPosterIsVisible(true);
+				videoPlayer.current.pause();
+			}
 		}
-	}, [videoCanPlay, videoEnded, isExpanded, isDetails]);
+	}, [canPlay, videoCanPlay, videoEnded, isDetails, isExpanded]);
 
 	const handleMute = () => {
 		dispatch(setGlobalMute(!muted));
@@ -65,7 +66,7 @@ const HeaderContainer = ({ headerData, bg, children, ...restProps }) => {
 						<Header.Video
 							src={headerData.src}
 							autoPlay={canPlay}
-							onCanPlay={() => setVideoCanPlay(true)}
+							onCanPlayThrough={() => setVideoCanPlay(true)}
 							onEnded={() => setVideoEnded(true)}
 							muted={muted}
 							ref={videoPlayer}

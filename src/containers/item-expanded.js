@@ -11,29 +11,30 @@ import { GiSpeaker, GiSpeakerOff } from "react-icons/gi";
 import placeholder from "../res/images/placeholder_h.jpg";
 
 const ItemExpandedContainer = ({ isExpanded, showVideo, position, item, videoFile }) => {
-	const VideoPlayer = useRef(null);
 	const dispatch = useDispatch();
+	const VideoPlayer = useRef(null);
 	const [isPlaceholder, setIsPlaceholder] = useState(true);
+	const [videoCanPlay, setVideoCanPlay] = useState(false);
 	const [videoEnded, setVideoEnded] = useState(false);
 	const muted = useSelector(state => state.misc.globalMute);
+
+	useEffect(() => {
+		if (showVideo) {
+			if (!videoEnded && VideoPlayer.current && videoCanPlay) {
+				setIsPlaceholder(false);
+				VideoPlayer.current.volume = 0.4;
+				VideoPlayer.current.play();
+			} else {
+				setIsPlaceholder(true);
+			}
+		}
+	}, [showVideo, videoEnded, videoCanPlay]);
 
 	const handleClickMoreDetails = ({ currentTarget }) => {
 		const elemPos = currentTarget.parentNode.parentNode.parentNode.parentNode.getBoundingClientRect();
 		dispatch(setDetailsPosition(elemPos.x, elemPos.y, elemPos.width, elemPos.height));
 		dispatch(setIsDetails(true));
 	};
-
-	useEffect(() => {
-		if (showVideo) {
-			if (!videoEnded) {
-				if (VideoPlayer.current) VideoPlayer.current.volume = 0.4;
-				setIsPlaceholder(false);
-				setTimeout(() => VideoPlayer?.current?.play(), 500);
-			} else {
-				setIsPlaceholder(true);
-			}
-		}
-	}, [showVideo, videoEnded]);
 
 	const handleMouseEnter = () => {
 		item.media_type === "movie" ? dispatch(fetchDetailsMovie(item.id)) : dispatch(fetchDetailsTv(item.id));
@@ -71,7 +72,13 @@ const ItemExpandedContainer = ({ isExpanded, showVideo, position, item, videoFil
 						</Button.Round>
 					</ItemExpanded.Overlay>
 					<LazyLoad>
-						<ItemExpanded.Video src={videoFile} muted={muted} ref={VideoPlayer} onEnded={() => setVideoEnded(true)} />
+						<ItemExpanded.Video
+							src={videoFile}
+							muted={muted}
+							ref={VideoPlayer}
+							onCanPlayThrough={() => setVideoCanPlay(true)}
+							onEnded={() => setVideoEnded(true)}
+						/>
 					</LazyLoad>
 				</ItemExpanded.Header>
 				<ItemExpanded.Main>

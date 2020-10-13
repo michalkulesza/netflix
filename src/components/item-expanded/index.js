@@ -26,7 +26,16 @@ ItemExpanded.Placeholder = ({ ...restProps }) => {
 };
 
 ItemExpanded.Video = React.forwardRef((props, ref) => {
-	return <Video type="video/mp4" src={props.src} muted={props.muted} onEnded={props.onEnded} ref={ref} />;
+	return (
+		<Video
+			type="video/mp4"
+			src={props.src}
+			muted={props.muted}
+			onEnded={props.onEnded}
+			onCanPlayThrough={props.onCanPlayThrough}
+			ref={ref}
+		/>
+	);
 });
 
 ItemExpanded.Overlay = ({ children, ...restProps }) => {
