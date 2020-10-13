@@ -1,8 +1,7 @@
 import React, { useState, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { DetailsHeader, Button } from "../../components";
-import { setIsDetails } from "../../redux/actions/toggles";
-import { setGlobalMute } from "../../redux/actions/misc";
+import { setGlobalMute, setIsDetails } from "../../redux/actions/toggles";
 
 import { GrPlayFill, GrClose } from "react-icons/gr";
 import { GiSpeaker, GiSpeakerOff } from "react-icons/gi";
@@ -17,7 +16,7 @@ const DetailsHeaderContainer = ({ item, scrolled }) => {
 	const VideoPlayer = useRef(null);
 	const dispatch = useDispatch();
 	const [isPlaceholder, setIsPlaceholder] = useState(true);
-	const globalMute = useSelector(state => state.misc.globalMute);
+	const globalMute = useSelector(state => state.toggles.globalMute);
 	const headerData = useSelector(state => state.misc.headerVideo);
 
 	useEffect(() => {

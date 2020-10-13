@@ -11,7 +11,7 @@ import { GlobalStyles } from "../../global-styles";
 const DetailsContainer = headerData => {
 	const dispatch = useDispatch();
 	const isDetails = useSelector(state => state.toggles.isDetails);
-	const position = useSelector(state => state.toggles.detailsPosition);
+	const position = useSelector(state => state.misc.detailsPosition);
 	const item = useSelector(state => state.fetchDetails);
 	const pressedKey = useSelector(state => state.misc.pressedKey);
 	const [scrolled, setScrolled] = useState(0);

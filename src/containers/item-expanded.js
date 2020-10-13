@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setIsDetails, setDetailsPosition, setIsExpanded } from "../redux/actions/toggles";
-import { setGlobalMute } from "../redux/actions/misc";
+import { setIsDetails, setIsExpanded, setGlobalMute } from "../redux/actions/toggles";
+import { setDetailsPosition } from "../redux/actions/misc";
 import { fetchDetailsMovie, fetchDetailsTv } from "../redux/actions/fetch-details";
 import LazyLoad from "react-lazyload";
 import { ItemExpanded, Button } from "../components";
@@ -16,7 +16,7 @@ const ItemExpandedContainer = ({ isExpanded, showVideo, position, item, videoFil
 	const [isPlaceholder, setIsPlaceholder] = useState(true);
 	const [videoCanPlay, setVideoCanPlay] = useState(false);
 	const [videoEnded, setVideoEnded] = useState(false);
-	const muted = useSelector(state => state.misc.globalMute);
+	const muted = useSelector(state => state.toggles.globalMute);
 
 	useEffect(() => {
 		if (showVideo) {

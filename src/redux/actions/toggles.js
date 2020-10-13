@@ -1,4 +1,4 @@
-import { SET_IS_DETAILS, SET_IS_EXPANDED, SET_DETAILS_POSITION, IS_USER_AWAY } from "../types";
+import { SET_IS_DETAILS, SET_IS_EXPANDED, SET_GLOBAL_MUTE } from "../types";
 
 export const setIsDetails = bool => {
 	return {
@@ -14,16 +14,9 @@ export const setIsExpanded = bool => {
 	};
 };
 
-export const setDetailsPosition = (x, y, width, height) => {
+export const setGlobalMute = bool => {
 	return {
-		type: SET_DETAILS_POSITION,
-		payload: { detailsPosition: { x, y, width, height } },
-	};
-};
-
-export const isUserAway = bool => {
-	return {
-		type: IS_USER_AWAY,
+		type: SET_GLOBAL_MUTE,
 		payload: bool,
 	};
 };

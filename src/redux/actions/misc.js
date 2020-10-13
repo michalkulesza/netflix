@@ -1,10 +1,4 @@
-import {
-	SET_PRESSED_KEY,
-	SET_GLOBAL_MUTE,
-	SET_HEADER_VIDEO_CAN_PLAY,
-	SET_SECONDARY_VIDEO_IS_PLAYING,
-	SET_HEADER_VIDEO,
-} from "../types";
+import { SET_PRESSED_KEY, SET_HEADER_VIDEO, SET_DETAILS_POSITION } from "../types";
 
 export const setPressedKey = key => {
 	return {
@@ -13,30 +7,16 @@ export const setPressedKey = key => {
 	};
 };
 
-export const setGlobalMute = bool => {
-	return {
-		type: SET_GLOBAL_MUTE,
-		payload: bool,
-	};
-};
-
-export const setHeaderVideoCanPlay = bool => {
-	return {
-		type: SET_HEADER_VIDEO_CAN_PLAY,
-		payload: bool,
-	};
-};
-
-export const setSecondaryVideoIsPlaying = bool => {
-	return {
-		type: SET_SECONDARY_VIDEO_IS_PLAYING,
-		payload: bool,
-	};
-};
-
 export const setHeaderVideo = data => {
 	return {
 		type: SET_HEADER_VIDEO,
 		payload: data,
+	};
+};
+
+export const setDetailsPosition = (x, y, width, height) => {
+	return {
+		type: SET_DETAILS_POSITION,
+		payload: { x, y, width, height },
 	};
 };

@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { setGlobalMute } from "../redux/actions/misc";
+import { setGlobalMute } from "../redux/actions/toggles";
 import { Header, Button } from "../components";
 import { useCanHeaderPlay } from "../hooks";
 
@@ -16,7 +16,7 @@ const HeaderContainer = ({ headerData, bg, children, ...restProps }) => {
 	const [videoEnded, setVideoEnded] = useState(false);
 	const [videoCanPlay, setVideoCanPlay] = useState(false);
 	const [posterIsVisible, setPosterIsVisible] = useState(true);
-	const muted = useSelector(state => state.misc.globalMute);
+	const muted = useSelector(state => state.toggles.globalMute);
 	const isExpanded = useSelector(state => state.toggles.isExpanded);
 	const isDetails = useSelector(state => state.toggles.isDetails);
 	const canPlay = useCanHeaderPlay();

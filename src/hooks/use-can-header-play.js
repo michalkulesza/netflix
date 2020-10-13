@@ -7,17 +7,16 @@ const useCanHeaderPlay = () => {
 
 	const scrolled = useScrolledDistance();
 	const viewPortWidth = useViewportWidth();
-	const isUserAway = useSelector(state => state.toggles.isUserAway);
 	const isWindowFocused = useWindowFocus();
 	const isExpanded = useSelector(state => state.toggles.isExpanded);
 	const isDetails = useSelector(state => state.toggles.isDetails);
 	React.useEffect(() => {
-		if (scrolled < (viewPortWidth * 0.5625) / 3 && !isExpanded && !isDetails && !isUserAway & isWindowFocused) {
+		if (scrolled < (viewPortWidth * 0.5625) / 3 && !isExpanded && !isDetails && isWindowFocused) {
 			setCanPlay(true);
 		} else {
 			setCanPlay(false);
 		}
-	}, [isDetails, isExpanded, isUserAway, isWindowFocused, scrolled, viewPortWidth]);
+	}, [isDetails, isExpanded, isWindowFocused, scrolled, viewPortWidth]);
 
 	return canPlay;
 };
