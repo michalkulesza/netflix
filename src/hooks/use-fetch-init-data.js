@@ -9,6 +9,7 @@ import {
 import { setHeaderVideo } from "../redux/actions/misc";
 import { useLocation } from "react-router-dom";
 import { BrowseVideo, FilmsVideo, SeriesVideo } from "../fixtures/videos";
+import { clearGenres, setFilmsGenres, setSeriesGenres } from "../redux/actions/genres";
 
 const useFetchInitData = () => {
 	const location = useLocation();
@@ -18,6 +19,7 @@ const useFetchInitData = () => {
 	useEffect(() => {
 		const handleRoutesData = (fetch, header) => {
 			if (!dataUpdating) {
+				dispatch(clearGenres());
 				dispatch(fetch());
 				dispatch(setHeaderVideo(header));
 			}
@@ -35,11 +37,13 @@ const useFetchInitData = () => {
 
 		if (/^\/browse\/films/.test(location.pathname)) {
 			handleRoutesData(fetchInitialDataFilms, FilmsVideo);
+			dispatch(setFilmsGenres());
 			return;
 		}
 
 		if (/^\/browse\/series/.test(location.pathname)) {
 			handleRoutesData(fetchInitialDataSeries, SeriesVideo);
+			dispatch(setSeriesGenres());
 			return;
 		}
 

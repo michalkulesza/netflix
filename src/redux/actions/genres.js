@@ -1,5 +1,6 @@
 import { SET_GENRES, CLEAR_GENRES } from "../types";
 import { setError } from "./error";
+import axios from "axios";
 
 export const setSeriesGenres = () => {
 	return async dispatch => {

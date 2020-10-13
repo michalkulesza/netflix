@@ -1,8 +1,8 @@
 import { SET_GENRES, CLEAR_GENRES } from "../types";
 
 const initState = {
-	genres: ["one", "one", "one", "one", "one", "one", "one", "one", "one", "one", "one", "one"],
-	type: "Series",
+	genres: null,
+	type: null,
 };
 
 const genres = (state = initState, action) => {
