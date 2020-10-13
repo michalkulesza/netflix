@@ -1,5 +1,6 @@
 import styled from "styled-components/macro";
 import { Link } from "react-router-dom";
+import { respondTo } from "../../../styles/respondTo";
 
 export const Main = styled(Link)`
 	background-color: #e50914;
@@ -13,7 +14,7 @@ export const Main = styled(Link)`
 `;
 
 export const Square = styled.button`
-	padding: 1vw 2.3vw 1vw 1.9vw;
+	padding: 1.5vw 2.8vw 1.5vw 2.3vw;
 	border-radius: 4px;
 	font-weight: 600;
 	font-size: 0.9em;
@@ -37,9 +38,10 @@ export const Square = styled.button`
 		background-color: ${({ dark }) => (dark ? "rgba(109, 109, 110, 0.4);" : "rgba(255, 255, 255, 0.7)")};
 	}
 
-	@media only screen and (max-width: 949px) {
-		padding: 1.5vw 2.8vw 1.5vw 2.3vw;
-	}
+	${respondTo.sm`
+			padding: 1vw 2.3vw 1vw 1.9vw;
+
+	`}
 `;
 
 export const Label = styled.div`

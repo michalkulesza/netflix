@@ -1,5 +1,6 @@
 import styled from "styled-components/macro";
 import { LoadingAnimation } from "../../../styles/common-styles";
+import { respondTo } from "../../../styles/respondTo";
 
 export const Main = styled.div`
 	position: relative;
@@ -50,45 +51,45 @@ export const BackgroundGradient = styled.div`
 
 export const Container = styled.div`
 	position: relative;
-	padding: 70px 45px;
+	padding: 55px 35px;
 	color: #fff;
 	z-index: 1;
 
-	@media only screen and (max-width: 590px) {
-		padding: 55px 35px;
-	}
+	${respondTo.xs`
+		padding: 70px 45px;
+	`}
 `;
 
 export const Inner = styled.div`
 	width: 100%;
-	padding: 75px 0;
+	padding: 0 0 50px 0;
 	max-width: 950px;
 	margin: 0 auto;
 	text-align: center;
 	margin-top: 5em;
 
-	@media only screen and (max-width: 590px) {
-		padding: 0 0 50px 0;
-	}
+	${respondTo.xs`
+		padding: 75px 0;
+	`}
 `;
 
 export const Heading = styled.h1`
-	font-size: 4rem;
+	font-size: 3rem;
 	max-width: 800px;
 	margin: 0 auto;
 
-	@media only screen and (max-width: 590px) {
-		font-size: 3rem;
-	}
+	${respondTo.xs`
+		font-size: 4rem;
+	`}
 `;
 
 export const SubHeading = styled.h2`
-	font-size: 1.625rem;
+	font-size: 1.4rem;
 	font-weight: 400;
 
-	@media only screen and (max-width: 590px) {
-		font-size: 1.4rem;
-	}
+	${respondTo.xs`
+		font-size: 1.625rem;
+	`}
 `;
 
 export const VideoWrapper = styled.div`
@@ -190,11 +191,11 @@ export const VideoLogo = styled.img`
 export const VideoDescription = styled.div`
 	text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
 	margin-bottom: 1.5vw;
-	font-size: 1.5vw;
+	font-size: 2.5vw;
 
-	@media only screen and (max-width: 549px) {
-		font-size: 2.5vw;
-	}
+	${respondTo.xs`
+		font-size: 1.5vw;
+	`}
 `;
 
 export const VideoButtonsContainer = styled.div`

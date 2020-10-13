@@ -1,4 +1,5 @@
 import styled from "styled-components/macro";
+import { respondTo } from "../../../styles/respondTo";
 
 export const Main = styled.div`
 	text-align: center;
@@ -7,12 +8,12 @@ export const Main = styled.div`
 `;
 
 export const Title = styled.h3`
-	font-size: 1.2rem;
+	font-size: 1em;
 	font-weight: 400;
 
-	@media only screen and (max-width: 590px) {
-		font-size: 1em;
-	}
+	${respondTo.xs`
+		font-size: 1.2rem;
+	`};
 `;
 
 export const FormWrapper = styled.div`
@@ -24,13 +25,11 @@ export const FormWrapper = styled.div`
 export const InputContainer = styled.div`
 	position: relative;
 	display: flex;
+	flex-direction: column;
 
-	@media only screen and (max-width: 949px) and (min-width: 550px),
-		only screen and (max-width: 399px) and (min-width: 350px),
-		only screen and (max-width: 549px) and (min-width: 400px),
-		only screen and (max-width: 349px) {
-		flex-direction: column;
-	}
+	${respondTo.md`
+		flex-direction: initial;
+	`};
 `;
 
 export const InputWrapper = styled.div`
@@ -38,18 +37,15 @@ export const InputWrapper = styled.div`
 `;
 
 export const Input = styled.input`
-	min-width: 450px;
+	min-width: auto;
 	height: 60px !important;
 	padding: 10px 10px 0;
 	width: 100%;
 	border-radius: 3px 0 0 3px;
 
-	@media only screen and (max-width: 949px) and (min-width: 550px),
-		only screen and (max-width: 399px) and (min-width: 350px),
-		only screen and (max-width: 549px) and (min-width: 400px),
-		only screen and (max-width: 349px) {
-		min-width: auto;
-	}
+	${respondTo.md`
+		min-width: 450px;
+	`};
 `;
 
 export const Label = styled.label`
@@ -64,6 +60,7 @@ export const Label = styled.label`
 `;
 
 export const Button = styled.button`
+	width: fit-content;
 	height: 100%;
 	padding: 16px 1em;
 	font-size: 1.625rem;
@@ -75,34 +72,33 @@ export const Button = styled.button`
 	color: #fff;
 	cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
 	border-radius: 0 3px 3px 0;
+	margin: 0 auto;
+	margin-top: 1.2em;
 
 	&:hover {
 		background: #f40612;
 	}
 
-	@media only screen and (max-width: 949px) and (min-width: 550px),
-		only screen and (max-width: 399px) and (min-width: 350px),
-		only screen and (max-width: 549px) and (min-width: 400px),
-		only screen and (max-width: 349px) {
-		width: fit-content;
-		margin: 0 auto;
-		margin-top: 0.2em;
-	}
+	${respondTo.md`
+		width: initial;
+		margin: initial;
+		
+		`};
 
-	@media only screen and (max-width: 590px) {
-		margin-top: 1.2em;
-	}
+	${respondTo.xs`
+		margin-top: 0.2em;
+	`};
 `;
 
 export const Error = styled.div`
 	position: absolute;
-	top: 100%;
+	top: 4.2em;
 	text-align: left;
 	color: #ffa00a;
 	padding: 6px 3px;
 	font-size: 14px;
 
-	@media only screen and (max-width: 590px) {
-		top: 4.2em;
-	}
+	${respondTo.xs`
+		top: 100%;
+	`};
 `;

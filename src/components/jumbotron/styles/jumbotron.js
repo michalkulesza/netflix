@@ -1,15 +1,16 @@
 import styled from "styled-components/macro";
+import { respondTo } from "../../../styles/respondTo";
 
 export const Main = styled.div`
 	border-bottom: 8px solid #333;
-	padding: 50px 5%;
+	padding: 35px 3%;
 	margin-bottom: 0;
 	background: 0 0;
 	color: #fff;
 
-	@media only screen and (max-width: 590px) {
-		padding: 35px 3%;
-	}
+	${respondTo.xs`
+		padding: 50px 5%;
+	`};
 `;
 
 export const Container = styled.div`
@@ -17,15 +18,16 @@ export const Container = styled.div`
 	margin: 0 auto;
 	display: flex;
 	justify-content: space-between;
-	flex-direction: ${({ direction }) => direction};
+	flex-direction: column;
 
-	@media only screen and (max-width: 949px) {
-		flex-direction: column;
-	}
+	${respondTo.md`
+		flex-direction: ${({ direction }) => direction};
+	`};
 `;
 
 export const Half = styled.div`
-	width: ${({ direction }) => (direction === "row" ? "52%" : "48%")};
+	width: 90%;
+	margin: 0 auto;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -34,38 +36,40 @@ export const Half = styled.div`
 		width: ${({ direction }) => (direction === "row" ? "48%" : "52%")};
 	}
 
-	@media only screen and (max-width: 949px) {
-		width: 90%;
-		margin: 0 auto;
-	}
+	${respondTo.xs`
+		width: ${({ direction }) => (direction === "row" ? "52%" : "48%")};
+		margin: 0;
+	`};
 `;
 
 export const Title = styled.h1`
-	font-size: 3.125rem;
+	font-size: 3rem;
 	line-height: 1.1;
 	margin-bottom: 0.5rem;
+	text-align: center;
 
-	@media only screen and (max-width: 949px) {
-		text-align: center;
-	}
+	${respondTo.md`
+		text-align: initial;
+	`};
 
-	@media only screen and (max-width: 550px) {
-		font-size: 3rem;
-	}
+	${respondTo.xs`
+		font-size: 3.125rem;
+	`};
 `;
 
 export const SubTitle = styled.h2`
-	font-size: 26px;
+	font-size: 20px;
 	font-weight: normal;
 	line-height: normal;
+	text-align: center;
 
-	@media only screen and (max-width: 949px) {
-		text-align: center;
-	}
+	${respondTo.md`
+		text-align: initial;
+	`};
 
-	@media only screen and (max-width: 550px) {
-		font-size: 20px;
-	}
+	${respondTo.xs`
+		font-size: 26px;
+	`};
 `;
 
 export const Image = styled.img`

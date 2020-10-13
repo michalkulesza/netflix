@@ -1,4 +1,5 @@
 import styled from "styled-components/macro";
+import { respondTo } from "../../../styles/respondTo";
 
 export const Main = styled.div`
 	position: relative;
@@ -10,26 +11,28 @@ export const Main = styled.div`
 `;
 
 export const Container = styled.div`
-	font-size: 1.625rem;
+	font-size: 1.625em;
 	font-weight: 400;
 	text-align: center;
 `;
 
 export const Title = styled.h1`
-	@media only screen and (max-width: 550px) {
-		font-size: 2rem;
-	}
+	font-size: 2em;
+
+	${respondTo.xs`
+		font-size: 1em;
+	`}
 `;
 
 export const List = styled.ul`
-	width: 75%;
+	width: 100%;
 	margin: 2em auto;
 	max-width: 815px;
 	list-style: none;
 
-	@media only screen and (max-width: 550px) {
-		width: 100%;
-	}
+	${respondTo.xs`
+		width: 75%;
+	`}
 `;
 
 export const Item = styled.li`
@@ -44,13 +47,14 @@ export const Header = styled.div`
 	position: relative;
 	border: 0;
 	text-align: left;
+	font-size: 0.7em;
 	display: flex;
 	justify-content: space-between;
 	user-select: none;
 
-	@media only screen and (max-width: 550px) {
-		font-size: 0.7em;
-	}
+	${respondTo.xs`
+		font-size: 1em;
+	`}
 `;
 
 export const Icon = styled.div`
@@ -63,14 +67,15 @@ export const Icon = styled.div`
 
 export const Body = styled.div`
 	background-color: #333;
+	font-size: 0.7em;
 	text-align: left;
 	max-height: ${({ active }) => (active ? "800px" : "0px")};
 	overflow: hidden;
 	transition: max-height 0.25s cubic-bezier(0.5, 0, 0.1, 1);
 
-	@media only screen and (max-width: 550px) {
-		font-size: 0.7em;
-	}
+	${respondTo.xs`
+		font-size: 1em;
+	`}
 `;
 
 export const Text = styled.div`

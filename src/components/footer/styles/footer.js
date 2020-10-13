@@ -1,13 +1,14 @@
 import styled from "styled-components/macro";
+import { respondTo } from "../../../styles/respondTo";
 
 export const Main = styled.div`
 	max-width: 900px;
 	margin: 0 auto;
-	padding: 0px 45px;
+	padding: 0px 25px;
 
-	@media only screen and (max-width: 550px) {
-		padding: 0px 25px;
-	}
+	${respondTo.xs`
+		padding: 0px 45px;
+	`}
 `;
 
 export const Container = styled.div`
@@ -29,13 +30,15 @@ export const Heading = styled.p`
 export const Grid = styled.div`
 	width: 100%;
 	display: grid;
-	grid-template-columns: repeat(4, 1fr);
+	grid-template-rows: repeat(2, 1fr);
+	grid-template-columns: repeat(2, 1fr);
+	gap: 1em;
 
-	@media only screen and (max-width: 550px) {
-		grid-template-rows: repeat(2, 1fr);
-		grid-template-columns: repeat(2, 1fr);
-		row-gap: 1em;
-	}
+	${respondTo.xs`
+		grid-template-rows: none;
+		grid-template-columns: repeat(4, 1fr);
+		gap: normal;
+	`}
 `;
 
 export const Ul = styled.ul``;

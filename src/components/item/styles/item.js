@@ -1,4 +1,5 @@
 import styled from "styled-components/macro";
+import { respondTo } from "../../../styles/respondTo";
 
 export const Container = styled.div`
 	height: 100%;
@@ -10,21 +11,18 @@ export const Container = styled.div`
 export const Wrapper = styled.div`
 	position: relative;
 	cursor: pointer;
+	width: calc((100vw / 4) - 0.5vw); /* Width of one tile */
+	height: calc(((100vw / 4) - 0.5vw) * 1.518712025909371);
+	margin-right: 0.5vw;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 
-	@media only screen and (min-width: 0px) {
-		width: calc((100vw / 4) - 0.5vw); /* Width of one tile */
-		height: calc(((100vw / 4) - 0.5vw) * 1.518712025909371);
-		margin-right: 0.5vw;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-
-		&:nth-of-type(1) {
-			margin-left: calc(((100vw / 4) + 0.5vw) / 2);
-		}
+	&:nth-of-type(1) {
+		margin-left: calc(((100vw / 4) + 0.5vw) / 2);
 	}
 
-	@media only screen and (min-width: 768px) {
+	${respondTo.sm`
 		width: calc((100vw / 5) - 0.5vw); /* Width of one tile */
 		height: calc(((100vw / 5) - 0.5vw) * 1.518712025909371);
 		margin-right: 0.5vw;
@@ -32,9 +30,9 @@ export const Wrapper = styled.div`
 		&:nth-of-type(1) {
 			margin-left: calc(((100vw / 5) + 0.5vw) / 2);
 		}
-	}
+	`};
 
-	@media only screen and (min-width: 980px) {
+	${respondTo.md`
 		width: calc((100vw / 6) - 0.5vw); /* Width of one tile */
 		height: calc(((100vw / 6) - 0.5vw) * 1.518712025909371);
 		margin-right: 0.5vw;
@@ -42,9 +40,9 @@ export const Wrapper = styled.div`
 		&:nth-of-type(1) {
 			margin-left: calc(((100vw / 6) + 0.5vw) / 2);
 		}
-	}
+	`};
 
-	@media only screen and (min-width: 1260px) {
+	${respondTo.lg`
 		width: calc((100vw / 8) - 0.5vw); /* Width of one tile */
 		height: calc(((100vw / 8) - 0.5vw) * 1.518712025909371);
 		margin-right: 0.5vw;
@@ -52,9 +50,9 @@ export const Wrapper = styled.div`
 		&:nth-of-type(1) {
 			margin-left: calc(((100vw / 8) + 0.5vw) / 2);
 		}
-	}
+	`};
 
-	@media only screen and (min-width: 1800px) {
+	${respondTo.xl`
 		width: calc((100vw / 9) - 0.5vw); /* Width of one tile */
 		height: calc(((100vw / 9) - 0.5vw) * 1.518712025909371);
 		margin-right: 0.5vw;
@@ -62,7 +60,7 @@ export const Wrapper = styled.div`
 		&:nth-of-type(1) {
 			margin-left: calc(((100vw / 9) + 0.5vw) / 2);
 		}
-	}
+	`};
 `;
 
 export const Main = styled.img`

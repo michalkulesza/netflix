@@ -1,10 +1,11 @@
 import styled from "styled-components/macro";
+import { respondTo } from "../../../styles/respondTo";
 
 export const Main = styled.div`
 	position: fixed;
 	max-width: 1920px;
 	margin: 0 auto;
-	padding: 12px 0;
+	padding-top: 10px;
 	width: 100%;
 	height: auto;
 	z-index: 100;
@@ -12,46 +13,42 @@ export const Main = styled.div`
 		scrolled > 0 ? "#141414" : "linear-gradient(to bottom,rgba(0,0,0,.7) 10%,rgba(0,0,0,0));"};
 	transition: background 0.5s ease-in-out;
 
-	@media only screen and (max-width: 590px) {
-		padding-top: 10px;
-	}
+	${respondTo.xs`
+		padding: 12px 0;
+	`};
 `;
 
 export const Container = styled.div`
-	margin: 0 2.5rem;
+	margin: 0 5%;
 	height: 100%;
 	display: flex;
 	justify-content: space-between;
 
-	@media only screen and (max-width: 949px) and (min-width: 550px) {
+	${respondTo.sm`
 		margin: 0 45px;
-	}
+	`};
 
-	@media only screen and (max-width: 549px) and (min-width: 400px),
-		only screen and (max-width: 399px) and (min-width: 350px),
-		only screen and (max-width: 349px) {
-		margin: 0 5%;
-	}
+	${respondTo.xs`
+		margin: 0 2.5rem;
+	`};
 `;
 
 export const Logo = styled.img`
-	height: ${({ largeLogo, smallLogo }) => (largeLogo ? "55px" : smallLogo ? "35px" : "45px")};
+	height: ${({ largeLogo, smallLogo }) => (largeLogo ? "34px" : smallLogo ? "25px" : "24px")};
 	padding-top: 0.5em;
 	margin-right: 1.5em;
 
-	@media only screen and (max-width: 1449px) and (min-width: 950px) {
+	${respondTo.md`
 		height: ${({ largeLogo, smallLogo }) => (largeLogo ? "46px" : smallLogo ? "33px" : "36px")};
-	}
+	`};
 
-	@media only screen and (max-width: 949px) and (min-width: 550px) {
+	${respondTo.sm`
 		height: ${({ largeLogo, smallLogo }) => (largeLogo ? "42px" : smallLogo ? "30px" : "32px")};
-	}
+	`};
 
-	@media only screen and (max-width: 549px) and (min-width: 400px),
-		only screen and (max-width: 399px) and (min-width: 350px),
-		only screen and (max-width: 349px) {
-		height: ${({ largeLogo, smallLogo }) => (largeLogo ? "34px" : smallLogo ? "25px" : "24px")};
-	}
+	${respondTo.xs`
+		height: ${({ largeLogo, smallLogo }) => (largeLogo ? "55px" : smallLogo ? "35px" : "45px")};
+	`};
 `;
 
 export const Menu = styled.ul`
@@ -71,15 +68,15 @@ export const MenuItem = styled.li`
 	cursor: pointer;
 	transition: color 0.4s;
 	margin-right: 1.8em;
-	font-size: 1vw;
+	font-size: 0.8em;
 
 	&:hover {
 		color: #b3b3b3;
 	}
 
-	@media only screen and (max-width: 949px) {
-		font-size: 0.8em;
-	}
+	${respondTo.md`
+		font-size: 1vw;
+	`};
 `;
 
 export const Divide = styled.div`
