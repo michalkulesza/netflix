@@ -1,5 +1,6 @@
 import axios from "axios";
 import { CLEAR_EPISODES, FETCH_EPISODES, SET_EPISODES_UPDATING } from "../types";
+import { setError } from "./error";
 
 export const fetchEpisodes = (id, season) => {
 	return async dispatch => {
@@ -16,7 +17,7 @@ export const fetchEpisodes = (id, season) => {
 				payload: response.data,
 			});
 		} catch (error) {
-			console.error(error.message);
+			dispatch(setError("Whops! Something happend while getting episodes."));
 		}
 	};
 };

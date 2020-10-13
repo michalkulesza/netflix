@@ -1,5 +1,6 @@
 import axios from "axios";
 import { CLEAR_DETAILS, FETCH_DETAILS, FETCH_EPISODES } from "../types";
+import { setError } from "../actions/error";
 
 export const fetchDetailsMovie = id => {
 	return async dispatch => {
@@ -11,7 +12,7 @@ export const fetchDetailsMovie = id => {
 				payload: response.data,
 			});
 		} catch (error) {
-			console.error(error.message);
+			dispatch(setError("Whops! Something happend while getting movie details."));
 		}
 	};
 };
@@ -36,9 +37,9 @@ export const fetchDetailsTv = id => {
 						});
 					})
 				)
-				.catch(err => console.error(err.message));
+				.catch(() => dispatch(setError("Whops! Something happend while getting tv details.")));
 		} catch (error) {
-			console.error(error.message);
+			dispatch(setError("Whops! Something happend while getting tv details."));
 		}
 	};
 };

@@ -1,5 +1,6 @@
 import axios from "axios";
 import { SET_INITIAL_DATA, SET_DATA_UPDATING } from "../types";
+import { setError } from "./error";
 
 export const setInitialData = data => {
 	return dispatch => {
@@ -37,7 +38,7 @@ export const fetchInitialDataBrowse = () => {
 				payload: response.data,
 			});
 		} catch (error) {
-			console.error(error.message);
+			dispatch(setError("Whops! Something happend while getting data."));
 		}
 	};
 };
@@ -57,7 +58,7 @@ export const fetchInitialDataSeries = () => {
 				payload: response.data,
 			});
 		} catch (error) {
-			console.error(error.message);
+			dispatch(setError("Whops! Something happend while getting data."));
 		}
 	};
 };
@@ -77,7 +78,7 @@ export const fetchInitialDataFilms = () => {
 				payload: response.data,
 			});
 		} catch (error) {
-			console.error(error.message);
+			dispatch(setError("Whops! Something happend while getting data."));
 		}
 	};
 };
@@ -97,7 +98,7 @@ export const fetchInitialDataLatest = () => {
 				payload: response.data,
 			});
 		} catch (error) {
-			console.error(error.message);
+			dispatch(setError("Whops! Something happend while getting data."));
 		}
 	};
 };
