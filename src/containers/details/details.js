@@ -8,7 +8,7 @@ import { Details } from "../../components";
 import { DetailsHeaderContainer, DetailsInfoContainer, DetailsEpisodesContainer, DetailsRelatedContainer } from "../";
 import { GlobalStyles } from "../../global-styles";
 
-const DetailsContainer = headerData => {
+const DetailsContainer = () => {
 	const dispatch = useDispatch();
 	const isDetails = useSelector(state => state.toggles.isDetails);
 	const position = useSelector(state => state.misc.detailsPosition);
