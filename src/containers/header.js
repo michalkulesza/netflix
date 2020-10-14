@@ -19,6 +19,7 @@ const HeaderContainer = ({ headerData, bg, children, ...restProps }) => {
 	const muted = useSelector(state => state.toggles.globalMute);
 	const isExpanded = useSelector(state => state.toggles.isExpanded);
 	const isDetails = useSelector(state => state.toggles.isDetails);
+	const { selectedGenre } = useSelector(state => state.genres);
 	const canPlay = useCanHeaderPlay();
 
 	useEffect(() => {
@@ -42,7 +43,7 @@ const HeaderContainer = ({ headerData, bg, children, ...restProps }) => {
 		dispatch(setGlobalMute(!muted));
 	};
 
-	return (
+	return !selectedGenre ? (
 		<Header>
 			{bg ? (
 				<>
@@ -95,7 +96,7 @@ const HeaderContainer = ({ headerData, bg, children, ...restProps }) => {
 				</>
 			) : null}
 		</Header>
-	);
+	) : null;
 };
 
 export default HeaderContainer;

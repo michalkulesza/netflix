@@ -1,12 +1,15 @@
 import React from "react";
 import LazyLoad from "react-lazyload";
+import { useSelector } from "react-redux";
 import { Carousels } from "../components";
 import CarouselContainer from "../containers/carousel";
 
 const CarouselsContainer = ({ data }) => {
+	const { selectedGenre } = useSelector(state => state.genres);
+
 	return (
 		data && (
-			<Carousels>
+			<Carousels biggerMargin={selectedGenre}>
 				{data.map((category, i) => {
 					const categoryName = category && Object.keys(category)[0];
 					const title =

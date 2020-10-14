@@ -4,7 +4,7 @@ import { LoadingAnimation } from "../../../styles/common-styles";
 export const Main = styled.div`
 	position: relative;
 	z-index: 15;
-	padding-top: 12%;
+	padding-top: ${({ biggerMargin }) => (biggerMargin ? "20%" : "12%")};
 `;
 
 export const Loading = styled.div`
