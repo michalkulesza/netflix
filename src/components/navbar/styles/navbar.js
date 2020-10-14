@@ -98,6 +98,18 @@ export const Genres = styled.div`
 		margin-right: 1em;
 		text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 	}
+
+	h2 {
+		font-size: 1.1em;
+		font-weight: 500;
+		margin-right: 0.5em;
+		color: #808080;
+	}
+
+	span {
+		margin-right: 0.5em;
+		color: #808080;
+	}
 `;
 
 export const GenresButtonWrapper = styled.div`
