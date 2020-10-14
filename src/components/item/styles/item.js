@@ -11,54 +11,50 @@ export const Container = styled.div`
 export const Wrapper = styled.div`
 	position: relative;
 	cursor: pointer;
-	width: calc((100vw / 4) - 0.5vw); /* Width of one tile */
-	height: calc(((100vw / 4) - 0.5vw) * 1.518712025909371);
-	margin-right: 0.5vw;
+	width: ${({ grid }) => !grid && "calc((100vw / 4) - 0.5vw)"};
+	height: ${({ grid }) => !grid && "calc(((100vw / 4) - 0.5vw) * 1.518712025909371)"};
+	margin-right: ${({ grid }) => !grid && "0.5vw"};
 	display: flex;
 	justify-content: center;
 	align-items: center;
 
 	&:nth-of-type(1) {
-		margin-left: ${({ firstHasMargin }) => firstHasMargin && "calc(((100vw / 4) + 0.5vw) / 2)"};
+		margin-left: ${({ grid }) => !grid && "calc(((100vw / 4) + 0.5vw) / 2)"};
 	}
 
 	${respondTo.sm`
-		width: calc((100vw / 5) - 0.5vw); /* Width of one tile */
-		height: calc(((100vw / 5) - 0.5vw) * 1.518712025909371);
-		margin-right: 0.5vw;
+		width: ${({ grid }) => !grid && "calc((100vw / 5) - 0.5vw)"};
+		height: ${({ grid }) => !grid && "calc(((100vw / 5) - 0.5vw) * 1.518712025909371)"};
 
 		&:nth-of-type(1) {
-			margin-left: ${({ firstHasMargin }) => firstHasMargin && "calc(((100vw / 5) + 0.5vw) / 2)"};
+			margin-left: ${({ grid }) => !grid && "calc(((100vw / 5) + 0.5vw) / 2)"};
 		}
 	`};
 
 	${respondTo.md`
-		width: calc((100vw / 6) - 0.5vw); /* Width of one tile */
-		height: calc(((100vw / 6) - 0.5vw) * 1.518712025909371);
-		margin-right: 0.5vw;
+		width: ${({ grid }) => !grid && "calc((100vw / 6) - 0.5vw)"};
+		height: ${({ grid }) => !grid && "calc(((100vw / 6) - 0.5vw) * 1.518712025909371)"};
 
 		&:nth-of-type(1) {
-			margin-left: ${({ firstHasMargin }) => firstHasMargin && "calc(((100vw / 6) + 0.5vw) / 2)"};
+			margin-left: ${({ grid }) => !grid && "calc(((100vw / 6) + 0.5vw) / 2)"};
 		}
 	`};
 
 	${respondTo.lg`
-		width: calc((100vw / 8) - 0.5vw); /* Width of one tile */
-		height: calc(((100vw / 8) - 0.5vw) * 1.518712025909371);
-		margin-right: 0.5vw;
+		width: ${({ grid }) => !grid && "calc((100vw / 8) - 0.5vw)"};
+		height: ${({ grid }) => !grid && "calc(((100vw / 8) - 0.5vw) * 1.518712025909371)"};
 
 		&:nth-of-type(1) {
-			margin-left: ${({ firstHasMargin }) => firstHasMargin && "calc(((100vw / 8) + 0.5vw) / 2)"};
+			margin-left: ${({ grid }) => !grid && "calc(((100vw / 8) + 0.5vw) / 2)"};
 		}
 	`};
 
 	${respondTo.xl`
-		width: calc((100vw / 9) - 0.5vw); /* Width of one tile */
-		height: calc(((100vw / 9) - 0.5vw) * 1.518712025909371);
-		margin-right: 0.5vw;
+		width: ${({ grid }) => !grid && "calc((100vw / 9) - 0.5vw)"};
+		height: ${({ grid }) => !grid && "calc(((100vw / 9) - 0.5vw) * 1.518712025909371)"};
 
 		&:nth-of-type(1) {
-			margin-left: ${({ firstHasMargin }) => firstHasMargin && "calc(((100vw / 9) + 0.5vw) / 2)"};
+			margin-left: ${({ grid }) => !grid && "calc(((100vw / 9) + 0.5vw) / 2)"};
 		}
 	`};
 `;
