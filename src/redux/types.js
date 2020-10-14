@@ -18,6 +18,7 @@ export const SET_DATA_UPDATING = "SET_DATA_UPDATING";
 //genres.js
 export const SET_GENRES = "SET_GENRES";
 export const CLEAR_GENRES = "CLEAR_GENRES";
+export const SET_SELECTED_GENRE = "SET_SELECTED_GENRE";
 
 //toggles.js
 export const SET_IS_DETAILS = "SET_IS_DETAILS";

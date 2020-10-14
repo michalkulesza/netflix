@@ -1,4 +1,4 @@
-import { SET_GENRES, CLEAR_GENRES } from "../types";
+import { SET_GENRES, CLEAR_GENRES, SET_SELECTED_GENRE } from "../types";
 import { setError } from "./error";
 import axios from "axios";
 
@@ -9,7 +9,7 @@ export const setSeriesGenres = () => {
 
 			dispatch({
 				type: SET_GENRES,
-				payload: { genres: response.data, type: "Series" },
+				payload: { genres: response.data, genresType: "Series" },
 			});
 		} catch (error) {
 			dispatch(setError("Whops! Something happend while getting genres."));
@@ -24,7 +24,7 @@ export const setFilmsGenres = () => {
 
 			dispatch({
 				type: SET_GENRES,
-				payload: { genres: response.data, type: "Films" },
+				payload: { genres: response.data, genresType: "Films" },
 			});
 		} catch (error) {
 			dispatch(setError("Whops! Something happend while getting genres."));
@@ -36,5 +36,12 @@ export const clearGenres = data => {
 	return {
 		type: CLEAR_GENRES,
 		payload: data,
+	};
+};
+
+export const setSelectedGenre = genreString => {
+	return {
+		type: SET_SELECTED_GENRE,
+		payload: genreString,
 	};
 };

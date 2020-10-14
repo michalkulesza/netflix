@@ -1,8 +1,9 @@
-import { SET_GENRES, CLEAR_GENRES } from "../types";
+import { SET_GENRES, CLEAR_GENRES, SET_SELECTED_GENRE } from "../types";
 
 const initState = {
 	genres: null,
-	type: null,
+	genresType: null,
+	selectedGenre: null,
 };
 
 const genres = (state = initState, action) => {
@@ -11,6 +12,8 @@ const genres = (state = initState, action) => {
 			return { ...state, ...action.payload };
 		case CLEAR_GENRES:
 			return initState;
+		case SET_SELECTED_GENRE:
+			return { ...state, selectedGenre: action.payload };
 		default:
 			return state;
 	}
