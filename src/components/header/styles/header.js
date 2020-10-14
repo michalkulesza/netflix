@@ -121,8 +121,8 @@ export const VideoGradient = styled.div`
 	background: linear-gradient(
 		180deg,
 		rgba(20, 20, 20, 0.6) 0%,
-		rgba(20, 20, 20, 0) 13%,
-		rgba(20, 20, 20, 0) 90%,
+		rgba(20, 20, 20, 0.15) 13%,
+		rgba(20, 20, 20, 0.15) 90%,
 		rgba(20, 20, 20, 1) 100%
 	);
 `;
@@ -152,18 +152,17 @@ export const ContainerInVideo = styled.div`
 export const ContainerInVideoHalf = styled.div`
 	height: calc(40%);
 	display: flex;
+	margin-top: 13vw;
 
 	&:nth-of-type(1) {
-		width: calc(50% - 2.5em);
-		margin-top: 12vw;
+		width: calc(70% - 2.5em);
 		margin-left: 2.5em;
 		flex-direction: column;
 		justify-content: center;
 	}
 
 	&:nth-of-type(2) {
-		width: 50%;
-		margin-top: 12vw;
+		width: 30%;
 		align-items: flex-end;
 		justify-content: flex-end;
 	}
@@ -183,9 +182,9 @@ export const AgeRestriction = styled.div`
 
 export const VideoLogo = styled.img`
 	object-fit: cover;
-	width: 30vw;
+	width: 28vw;
 	min-width: 200px;
-	margin-bottom: 1.5vw;
+	margin-bottom: 1vw;
 `;
 
 export const VideoDescription = styled.div`
