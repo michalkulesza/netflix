@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
 import { NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import { clearSelectedGenre, setSelectedGenre } from "../redux/actions/genres";
 import { Navbar } from "../components";
 import { useScrolledDistance } from "../hooks/";
 import { BROWSE, FILMS, SERIES, LATEST, MYLIST } from "../constants/routes";
 
 import { BiCaretDown } from "react-icons/bi";
-import { setSelectedGenre } from "../redux/actions/genres";
 
 const NavbarContainer = ({ children }) => {
 	const dispatch = useDispatch();
@@ -69,7 +69,7 @@ const NavbarContainer = ({ children }) => {
 				<Navbar.Genres genres={genres} scrolled={scrolled}>
 					{selectedGenre ? (
 						<>
-							<h2>{genresType}</h2>
+							<button onMouseDown={() => dispatch(clearSelectedGenre())}>{genresType}</button>
 							<span>&gt;</span>
 							<h1>{selectedGenre}</h1>
 						</>

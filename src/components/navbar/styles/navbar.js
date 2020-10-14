@@ -99,11 +99,12 @@ export const Genres = styled.div`
 		text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 	}
 
-	h2 {
+	> button {
 		font-size: 1.1em;
 		font-weight: 500;
 		margin-right: 0.5em;
 		color: #808080;
+		background-color: transparent;
 	}
 
 	span {
