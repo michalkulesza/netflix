@@ -1,4 +1,4 @@
-import { SET_GENRES, CLEAR_GENRES, SET_SELECTED_GENRE } from "../types";
+import { SET_GENRES, CLEAR_GENRES, SET_SELECTED_GENRE, CLEAR_SELECTED_GENRE } from "../types";
 import { setError } from "./error";
 import axios from "axios";
 
@@ -43,5 +43,11 @@ export const setSelectedGenre = genreString => {
 	return {
 		type: SET_SELECTED_GENRE,
 		payload: genreString,
+	};
+};
+
+export const clearSelectedGenre = () => {
+	return {
+		type: CLEAR_SELECTED_GENRE,
 	};
 };
