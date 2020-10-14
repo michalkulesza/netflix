@@ -14,6 +14,7 @@ const GridContainer = ({ data }) => {
 						totalItems={data.length}
 						i={i}
 						totalTilesInVievport={itemsInViewport}
+						firstHasMargin={false}
 					/>
 				))}
 			</Grid>
