@@ -19,7 +19,7 @@ export const Wrapper = styled.div`
 	align-items: center;
 
 	&:nth-of-type(1) {
-		margin-left: calc(((100vw / 4) + 0.5vw) / 2);
+		margin-left: ${({ firstMargin }) => firstMargin && "calc(((100vw / 4) + 0.5vw) / 2)"};
 	}
 
 	${respondTo.sm`
@@ -28,7 +28,7 @@ export const Wrapper = styled.div`
 		margin-right: 0.5vw;
 
 		&:nth-of-type(1) {
-			margin-left: calc(((100vw / 5) + 0.5vw) / 2);
+			margin-left: ${({ firstMargin }) => firstMargin && "calc(((100vw / 5) + 0.5vw) / 2)"};
 		}
 	`};
 
@@ -38,7 +38,7 @@ export const Wrapper = styled.div`
 		margin-right: 0.5vw;
 
 		&:nth-of-type(1) {
-			margin-left: calc(((100vw / 6) + 0.5vw) / 2);
+			margin-left: ${({ firstMargin }) => firstMargin && "calc(((100vw / 6) + 0.5vw) / 2)"};
 		}
 	`};
 
@@ -48,7 +48,7 @@ export const Wrapper = styled.div`
 		margin-right: 0.5vw;
 
 		&:nth-of-type(1) {
-			margin-left: calc(((100vw / 8) + 0.5vw) / 2);
+			margin-left: ${({ firstMargin }) => firstMargin && "calc(((100vw / 8) + 0.5vw) / 2)"};
 		}
 	`};
 
@@ -58,7 +58,7 @@ export const Wrapper = styled.div`
 		margin-right: 0.5vw;
 
 		&:nth-of-type(1) {
-			margin-left: calc(((100vw / 9) + 0.5vw) / 2);
+			margin-left: ${({ firstMargin }) => firstMargin && "calc(((100vw / 9) + 0.5vw) / 2)"};
 		}
 	`};
 `;

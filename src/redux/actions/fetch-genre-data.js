@@ -5,7 +5,7 @@ import axios from "axios";
 export const fetchGenreData = (type, genreID) => {
 	return async dispatch => {
 		try {
-			const response = await axios.post("http://localhost:8888/genre", { type, genreID });
+			const response = await axios.post(`http://localhost:8888/genre/${type}`, { genreID });
 
 			dispatch({
 				type: FETCH_GENRE_DATA,

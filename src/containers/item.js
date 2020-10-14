@@ -10,7 +10,7 @@ import placeholder from "../res/images/placeholder_h.jpg";
 let hoverTimer;
 let videoTimer;
 
-const ItemContainer = ({ item, i, scrolled, isFirstSlide, totalTilesInVievport }) => {
+const ItemContainer = ({ item, i, isFirstSlide = true, totalTilesInVievport, firstMargin }) => {
 	const dispatch = useDispatch();
 	const [isExpandedLocal, setIsExpandedLocal] = useState(false);
 	const [showVideo, setShowVideo] = useState(false);
@@ -35,8 +35,8 @@ const ItemContainer = ({ item, i, scrolled, isFirstSlide, totalTilesInVievport }
 				clearTimeout(videoTimer);
 			}}
 			key={item.id}
-			scrolled={scrolled}
 			className={position}
+			firstMargin={firstMargin}
 		>
 			<Item src={item.poster_path_300 ? item.poster_path_300 : placeholder} alt="Poster" />
 			<ItemExpandedContainer
