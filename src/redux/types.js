@@ -11,6 +11,9 @@ export const FETCH_EPISODES = "FETCH_EPISODES";
 export const SET_EPISODES_UPDATING = "SET_EPISODES_UPDATING";
 export const CLEAR_EPISODES = "CLEAR_EPISODES";
 
+//fetch-genre-data.js
+export const FETCH_GENRE_DATA = "FETCH_GENRE_DATA";
+
 //fetch-initial-data.js
 export const SET_INITIAL_DATA = "SET_INITIAL_DATA";
 export const SET_DATA_UPDATING = "SET_DATA_UPDATING";

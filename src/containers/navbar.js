@@ -7,6 +7,7 @@ import { useScrolledDistance } from "../hooks/";
 import { BROWSE, FILMS, SERIES, LATEST, MYLIST } from "../constants/routes";
 
 import { BiCaretDown } from "react-icons/bi";
+import { fetchGenreData } from "../redux/actions/fetch-genre-data";
 
 const NavbarContainer = ({ children }) => {
 	const dispatch = useDispatch();
@@ -32,8 +33,9 @@ const NavbarContainer = ({ children }) => {
 		setGenresListVisible(false);
 	};
 
-	const handleGenreItemClick = (genre, genreId) => {
+	const handleGenreItemClick = (genre, genreID) => {
 		dispatch(setSelectedGenre(genre));
+		dispatch(fetchGenreData(genresType.toLowerCase(), genreID));
 		setGenresListVisible(false);
 	};
 

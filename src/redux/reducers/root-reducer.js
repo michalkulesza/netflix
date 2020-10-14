@@ -5,15 +5,17 @@ import error from "./error";
 import toggles from "./toggles";
 import misc from "./misc";
 import genres from "./genres";
+import fetchGenreData from "./fetch-genre-data";
 import { combineReducers } from "redux";
 
 const rootReducer = combineReducers({
 	initialData,
 	fetchDetails,
 	fetchEpisodes,
+	fetchGenreData,
+	error,
 	toggles,
 	misc,
-	error,
 	genres,
 });
 
