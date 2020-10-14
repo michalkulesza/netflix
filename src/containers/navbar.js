@@ -64,9 +64,9 @@ const NavbarContainer = ({ children }) => {
 				)}
 			</Navbar.Container>
 			{genres && (
-				<Navbar.Genres ref={genresDropdown} genres={genres} scrolled={scrolled}>
+				<Navbar.Genres genres={genres} scrolled={scrolled}>
 					<h1>{type}</h1>
-					<Navbar.GenresButtonWrapper>
+					<Navbar.GenresButtonWrapper ref={genresDropdown}>
 						<Navbar.GenresButton onMouseDown={() => setGenresListVisible(!genresListVisible)}>
 							<span>Genres</span>
 							<BiCaretDown />

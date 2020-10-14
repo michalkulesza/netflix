@@ -48,17 +48,13 @@ Navbar.Divide = ({ children, ...restProps }) => {
 	return <Divide {...restProps}>{children}</Divide>;
 };
 
-Navbar.Genres = React.forwardRef((props, ref) => {
-	return (
-		<Genres ref={ref} genres={props.genres} scrolled={props.scrolled}>
-			{props.children}
-		</Genres>
-	);
-});
-
-Navbar.GenresButtonWrapper = ({ children, ...restProps }) => {
-	return <GenresButtonWrapper {...restProps}>{children}</GenresButtonWrapper>;
+Navbar.Genres = ({ children, ...restProps }) => {
+	return <Genres {...restProps}>{children}</Genres>;
 };
+
+Navbar.GenresButtonWrapper = React.forwardRef((props, ref) => {
+	return <GenresButtonWrapper ref={ref}>{props.children}</GenresButtonWrapper>;
+});
 
 Navbar.GenresButton = ({ children, ...restProps }) => {
 	return <GenresButton {...restProps}>{children}</GenresButton>;
