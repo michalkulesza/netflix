@@ -4,7 +4,7 @@ import { Button } from "../";
 import { Link } from "react-router-dom";
 import { HOME } from "../../constants/routes";
 
-const NotFound404 = () => {
+const NotFound404 = ({ children }) => {
 	return (
 		<Main>
 			<Heading>404</Heading>
@@ -12,6 +12,7 @@ const NotFound404 = () => {
 			<Button>
 				<Link to={HOME}>TAKE ME BACK</Link>
 			</Button>
+			{children}
 		</Main>
 	);
 };
