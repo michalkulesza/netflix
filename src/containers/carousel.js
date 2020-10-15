@@ -32,9 +32,7 @@ const CarouselContainer = ({ data, title }) => {
 			setMargin((scrolled + tileWidth * tilesToScroll) * -1 - tileWidth);
 			setScrolled(scrolled + tileWidth * tilesToScroll);
 
-			setTimeout(() => {
-				setScrolling(false);
-			}, 540); //540ms is the duration of carousel animation
+			setTimeout(() => setScrolling(false), 540); //540ms is the duration of carousel animation
 		}
 	};
 
@@ -71,16 +69,21 @@ const CarouselContainer = ({ data, title }) => {
 		}
 	};
 
-	const handleTouch = ({ touches }) => {
-		touches[0]?.screenX > touchX ? handleArrowForward() : handleArrowBack();
+	const handleTouchStart = ({ touches }) => {
 		setTouchX(touches[0]?.screenX);
+	};
+
+	const handleTouchEnd = ({ changedTouches }) => {
+		if (changedTouches[0]?.screenX < touchX) handleArrowForward();
+		if (changedTouches[0]?.screenX > touchX) handleArrowBack();
 	};
 
 	return buffer ? (
 		<>
 			<Carousel.Container
 				onWheel={({ nativeEvent }) => handleScroll(nativeEvent)}
-				onTouchMove={({ nativeEvent }) => handleTouch(nativeEvent)}
+				onTouchStart={({ nativeEvent }) => handleTouchStart(nativeEvent)}
+				onTouchEnd={({ nativeEvent }) => handleTouchEnd(nativeEvent)}
 			>
 				<Carousel.Category>{title && title}</Carousel.Category>
 				<Carousel.Overlay>
