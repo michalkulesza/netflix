@@ -8,7 +8,7 @@ import placeholder from "../../res/images/placeholder_w.jpg";
 
 const DetailsEpisodesContainer = ({ item }) => {
 	const dispatch = useDispatch();
-	const { data, isUpdating } = useSelector(state => state.fetchEpisodes.data);
+	const { data, isUpdating } = useSelector(state => state.fetchEpisodes);
 	const [seasonsDropdownDisabled, setSeasonsDropdownDisabled] = useState(true);
 	const [seasonsDropdownActive, setSeasonsDropdownActive] = useState(false);
 	const [selectedSeason, setSelectedSeason] = useState(1);
