@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { setIsExpanded } from "../redux/actions/toggles";
 import { Item } from "../components";
 import { ItemExpandedContainer } from "../containers/";
 import { markItemsPosition } from "../helpers/markItemsPosition";
-import { setIsExpanded } from "../redux/actions/toggles";
 
 import placeholder from "../res/images/placeholder_h.jpg";
 
@@ -17,25 +17,27 @@ const ItemContainer = ({ item, i, isFirstSlide, totalTilesInVievport, grid }) =>
 	const position = markItemsPosition(i, isFirstSlide, totalTilesInVievport);
 	const { headerVideo } = useSelector(state => state.misc);
 
+	const handleMouseEnter = () => {
+		hoverTimer = setTimeout(() => {
+			setIsExpandedLocal(true);
+			dispatch(setIsExpanded(true));
+			videoTimer = setTimeout(() => setShowVideo(true), 2000);
+		}, 500);
+	};
+
+	const handleMouseLeave = () => {
+		setIsExpandedLocal(false);
+		setShowVideo(false);
+		clearTimeout(hoverTimer);
+		clearTimeout(videoTimer);
+	};
+
 	return item ? (
 		<Item.Wrapper
-			onMouseEnter={() => {
-				hoverTimer = setTimeout(() => {
-					setIsExpandedLocal(true);
-					dispatch(setIsExpanded(true));
-					videoTimer = setTimeout(() => {
-						setShowVideo(true);
-					}, 2000);
-				}, 500);
-			}}
-			onMouseLeave={() => {
-				setIsExpandedLocal(false);
-				setShowVideo(false);
-				clearTimeout(hoverTimer);
-				clearTimeout(videoTimer);
-			}}
 			key={item.id}
 			className={position}
+			onMouseEnter={handleMouseEnter}
+			onMouseLeave={handleMouseLeave}
 			grid={grid}
 		>
 			<Item src={item.poster_path_300 ? item.poster_path_300 : placeholder} alt="Poster" />

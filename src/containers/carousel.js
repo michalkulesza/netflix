@@ -9,13 +9,13 @@ const CarouselContainer = ({ data, title }) => {
 	const [buffer, setBuffer] = useState([]);
 	const [scrollDeltaX, setScrollDeltaX] = useState(0);
 	const [touchX, setTouchX] = useState(0);
-	const { totalTilesInVievport } = useTilesInViewport();
-	const tileWidth = 100 / totalTilesInVievport;
-	const tilesToScroll = totalTilesInVievport - 1;
 	const [isFirstSlide, setisFirstSlide] = useState(true);
 	const [scrolled, setScrolled] = useState(0);
 	const [scrolling, setScrolling] = useState(false);
 	const [margin, setMargin] = useState(0);
+	const { totalTilesInVievport } = useTilesInViewport();
+	const tileWidth = 100 / totalTilesInVievport;
+	const tilesToScroll = totalTilesInVievport - 1;
 
 	useEffect(() => {
 		setBuffer(data);
