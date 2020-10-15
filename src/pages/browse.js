@@ -6,21 +6,19 @@ import LazyLoad from "react-lazyload";
 import GridContainer from "../containers/grid";
 
 const Browse = () => {
-	const initialData = useSelector(state => state.initialData.data);
+	const { data, isUpdating } = useSelector(state => state.initialData);
 	const headerData = useSelector(state => state.misc.headerVideo);
-	const dataUpdating = useSelector(state => state.initialData.isUpdating);
 	const { selectedGenre } = useSelector(state => state.genres);
-	const genreData = useSelector(state => state.fetchGenreData.data);
 
 	return (
 		<>
 			<NavbarContainer />
-			{initialData && !dataUpdating ? (
+			{data && !isUpdating ? (
 				<>
 					<LazyLoad placeholder={<Header.Loading />}>
 						<HeaderContainer headerData={headerData}></HeaderContainer>
 					</LazyLoad>
-					{selectedGenre ? <GridContainer data={genreData} /> : <CarouselsContainer data={initialData} />}
+					{selectedGenre ? <GridContainer /> : <CarouselsContainer data={data} />}
 					<DetailsContainer headerData={headerData} />
 				</>
 			) : (

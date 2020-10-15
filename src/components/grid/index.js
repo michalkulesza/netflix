@@ -1,5 +1,5 @@
 import React from "react";
-import { Main, Wrapper } from "./styles/grid";
+import { Main, Wrapper, Loading } from "./styles/grid";
 
 const Grid = ({ children, ...restProps }) => {
 	return <Main {...restProps}>{children}</Main>;
@@ -7,6 +7,10 @@ const Grid = ({ children, ...restProps }) => {
 
 Grid.Wrapper = ({ children, ...restProps }) => {
 	return <Wrapper {...restProps}>{children}</Wrapper>;
+};
+
+Grid.Loading = ({ children, ...restProps }) => {
+	return <Loading {...restProps}>{children}</Loading>;
 };
 
 export default Grid;

@@ -1,4 +1,5 @@
 import styled from "styled-components/macro";
+import { LoadingAnimation } from "../../../styles/common-styles";
 import { respondTo } from "../../../styles/respondTo";
 
 export const Wrapper = styled.div`
@@ -31,4 +32,18 @@ export const Main = styled.div`
 	${respondTo.xl`
 		grid-template-columns: repeat(7, 1fr);
 	`}
+`;
+
+export const Loading = styled.div`
+	width: 200px;
+	height: 300px;
+	background: linear-gradient(
+		90deg,
+		rgba(18, 18, 18, 1) 0%,
+		rgba(27, 27, 27, 1) 39%,
+		rgba(40, 40, 40, 1) 50%,
+		rgba(27, 27, 27, 1) 55%,
+		rgba(18, 18, 18, 1) 100%
+	);
+	animation: ${LoadingAnimation} 15s linear infinite;
 `;

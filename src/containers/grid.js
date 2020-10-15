@@ -1,26 +1,29 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { Grid } from "../components/";
 import { ItemContainer } from "../containers";
+import { useFetchGenreInfinite } from "../hooks";
 
-const GridContainer = ({ data }) => {
-	const itemsInViewport = 4;
-	return data ? (
+const GridContainer = () => {
+	const { genresType } = useSelector(state => state.genres);
+	const { data, isUpdating } = useSelector(state => state.fetchGenreData);
+
+	useFetchGenreInfinite(genresType);
+
+	return (
 		<Grid.Wrapper>
 			<Grid>
-				{data.map((item, i) => (
-					<ItemContainer
-						key={item.id}
-						item={item}
-						totalItems={data.length}
-						i={i}
-						totalTilesInVievport={itemsInViewport}
-						firstHasMargin={false}
-						grid
-					/>
-				))}
+				{data ? (
+					data.map((item, i) => (
+						<ItemContainer key={item.id} item={item} totalItems={data.length} i={i} firstHasMargin={false} grid />
+					))
+				) : (
+					<Grid.Loading />
+				)}
+				{isUpdating && <Grid.Loading />}
 			</Grid>
 		</Grid.Wrapper>
-	) : null;
+	);
 };
 
 export default GridContainer;
