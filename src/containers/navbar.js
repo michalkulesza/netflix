@@ -52,10 +52,10 @@ const NavbarContainer = ({ children }) => {
 							<NavLink exact to={BROWSE}>
 								<Navbar.MenuItem>Home</Navbar.MenuItem>
 							</NavLink>
-							<NavLink exact to={SERIES}>
+							<NavLink exact to={SERIES} onMouseDown={() => dispatch(clearSelectedGenre())}>
 								<Navbar.MenuItem>Series</Navbar.MenuItem>
 							</NavLink>
-							<NavLink exact to={FILMS}>
+							<NavLink exact to={FILMS} onMouseDown={() => dispatch(clearSelectedGenre())}>
 								<Navbar.MenuItem>Films</Navbar.MenuItem>
 							</NavLink>
 							<NavLink exact to={LATEST}>
