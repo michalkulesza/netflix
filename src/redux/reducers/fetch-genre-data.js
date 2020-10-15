@@ -1,4 +1,4 @@
-import { FETCH_GENRE_DATA } from "../types";
+import { CLEAR_GENRE_DATA, FETCH_GENRE_DATA } from "../types";
 
 const initState = {
 	data: null,
@@ -15,6 +15,8 @@ const fetchGenreData = (state = initState, action) => {
 				page: action.payload.page,
 				total_pages: action.payload.total_pages,
 			};
+		case CLEAR_GENRE_DATA:
+			return initState;
 		default:
 			return state;
 	}
