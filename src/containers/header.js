@@ -14,7 +14,7 @@ const HeaderContainer = ({ headerData, bg, children, ...restProps }) => {
 	const videoPlayer = useRef(null);
 	const dispatch = useDispatch();
 	const canPlay = useCanHeaderPlay();
-	const muted = useSelector(state => state.toggles.globalMute);
+	const { globalMute } = useSelector(state => state.toggles);
 	const { selectedGenre } = useSelector(state => state.genres);
 	const [videoEnded, setVideoEnded] = useState(false);
 	const [videoCanPlay, setVideoCanPlay] = useState(false);
@@ -38,7 +38,7 @@ const HeaderContainer = ({ headerData, bg, children, ...restProps }) => {
 	}, [canPlay, videoCanPlay, videoEnded]);
 
 	const handleMute = () => {
-		dispatch(setGlobalMute(!muted));
+		dispatch(setGlobalMute(!globalMute));
 	};
 
 	return !selectedGenre ? (
@@ -67,7 +67,7 @@ const HeaderContainer = ({ headerData, bg, children, ...restProps }) => {
 							autoPlay={canPlay}
 							onCanPlayThrough={() => setVideoCanPlay(true)}
 							onEnded={() => setVideoEnded(true)}
-							muted={muted}
+							muted={globalMute}
 							ref={videoPlayer}
 						/>
 					</Header.VideoWrapper>
@@ -86,7 +86,7 @@ const HeaderContainer = ({ headerData, bg, children, ...restProps }) => {
 						</Header.ContainerInVideoHalf>
 						<Header.ContainerInVideoHalf>
 							<Header.VideoMuteContainer>
-								<Button.Round onMouseDown={handleMute}>{muted ? <GiSpeakerOff /> : <GiSpeaker />}</Button.Round>
+								<Button.Round onMouseDown={handleMute}>{globalMute ? <GiSpeakerOff /> : <GiSpeaker />}</Button.Round>
 								<Header.AgeRestriction>{headerData.ageRestriction}</Header.AgeRestriction>
 							</Header.VideoMuteContainer>
 						</Header.ContainerInVideoHalf>

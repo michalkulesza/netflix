@@ -76,7 +76,7 @@ export const notificationIn = () => keyframes`
 `;
 
 export const notificationAnimOut = () => css`
-	${notificationOut} 0.4s
+	${notificationOut} 0.4s;
 `;
 
 export const notificationOut = () => keyframes`

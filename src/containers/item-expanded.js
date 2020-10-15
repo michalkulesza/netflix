@@ -16,7 +16,7 @@ const ItemExpandedContainer = ({ isExpanded, showVideo, position, item, videoFil
 	const [isPlaceholder, setIsPlaceholder] = useState(true);
 	const [videoCanPlay, setVideoCanPlay] = useState(false);
 	const [videoEnded, setVideoEnded] = useState(false);
-	const muted = useSelector(state => state.toggles.globalMute);
+	const { globalMuted } = useSelector(state => state.toggles);
 
 	useEffect(() => {
 		if (showVideo) {
@@ -67,14 +67,14 @@ const ItemExpandedContainer = ({ isExpanded, showVideo, position, item, videoFil
 						isPlaceholder={isPlaceholder}
 					/>
 					<ItemExpanded.Overlay>
-						<Button.Round onMouseDown={() => dispatch(setGlobalMute(!muted))} marginRight={"0"}>
-							{muted ? <GiSpeakerOff /> : <GiSpeaker />}
+						<Button.Round onMouseDown={() => dispatch(setGlobalMute(!globalMuted))} marginRight={"0"}>
+							{globalMuted ? <GiSpeakerOff /> : <GiSpeaker />}
 						</Button.Round>
 					</ItemExpanded.Overlay>
 					<LazyLoad>
 						<ItemExpanded.Video
 							src={videoFile}
-							muted={muted}
+							muted={globalMuted}
 							ref={VideoPlayer}
 							onCanPlayThrough={() => setVideoCanPlay(true)}
 							onEnded={() => setVideoEnded(true)}

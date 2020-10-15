@@ -5,7 +5,7 @@ import { emailValidation } from "../helpers/validators";
 const NewsletterContainer = () => {
 	const [inputFocused, setInputFocused] = useState(false);
 	const [email, setEmail] = useState("");
-	const [error, setError] = useState(" ");
+	const [error, setError] = useState("");
 
 	return (
 		<Newsletter>

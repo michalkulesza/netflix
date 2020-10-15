@@ -10,10 +10,9 @@ import { GlobalStyles } from "../../global-styles";
 
 const DetailsContainer = () => {
 	const dispatch = useDispatch();
-	const isDetails = useSelector(state => state.toggles.isDetails);
-	const position = useSelector(state => state.misc.detailsPosition);
+	const { isDetails } = useSelector(state => state.toggles);
+	const { detailsPosition, pressedKey } = useSelector(state => state.misc);
 	const item = useSelector(state => state.fetchDetails);
-	const pressedKey = useSelector(state => state.misc.pressedKey);
 	const [scrolled, setScrolled] = useState(0);
 	const [shouldRender, setRender] = useState(isDetails);
 
@@ -51,7 +50,7 @@ const DetailsContainer = () => {
 	return shouldRender ? (
 		<Details.Container shouldRender={shouldRender} onScroll={e => handleScroll(e)}>
 			<Details.OverlayTrigger onMouseDown={handleCloseCallback} />
-			<Details isDetails={isDetails} position={position} onAnimationEnd={onAnimationEnd}>
+			<Details isDetails={isDetails} position={detailsPosition} onAnimationEnd={onAnimationEnd}>
 				<DetailsHeaderContainer item={item} scrolled={scrolled} />
 				<DetailsInfoContainer item={item} />
 				<DetailsEpisodesContainer item={item} />

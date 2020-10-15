@@ -15,7 +15,7 @@ const ItemContainer = ({ item, i, isFirstSlide, totalTilesInVievport, grid }) =>
 	const [isExpandedLocal, setIsExpandedLocal] = useState(false);
 	const [showVideo, setShowVideo] = useState(false);
 	const position = markItemsPosition(i, isFirstSlide, totalTilesInVievport);
-	const headerData = useSelector(state => state.misc.headerVideo);
+	const { headerVideo } = useSelector(state => state.misc);
 
 	return item ? (
 		<Item.Wrapper
@@ -44,7 +44,7 @@ const ItemContainer = ({ item, i, isFirstSlide, totalTilesInVievport, grid }) =>
 				showVideo={showVideo}
 				position={position}
 				item={item}
-				videoFile={headerData?.src}
+				videoFile={headerVideo?.src}
 			/>
 		</Item.Wrapper>
 	) : null;

@@ -9,7 +9,7 @@ let dismissTimer;
 
 const ErrorNotificationContainer = () => {
 	const dispatch = useDispatch();
-	const error = useSelector(state => state.error.error);
+	const { error } = useSelector(state => state.error);
 	const [shouldRender, setRender] = useState(false);
 	const [errorCopy, setErrorCopy] = useState(error);
 

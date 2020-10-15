@@ -8,8 +8,7 @@ import placeholder from "../../res/images/placeholder_w.jpg";
 
 const DetailsEpisodesContainer = ({ item }) => {
 	const dispatch = useDispatch();
-	const episodes = useSelector(state => state.fetchEpisodes.data);
-	const episodesUpdating = useSelector(state => state.fetchEpisodes.isUpdating);
+	const { data, isUpdating } = useSelector(state => state.fetchEpisodes.data);
 	const [seasonsDropdownDisabled, setSeasonsDropdownDisabled] = useState(true);
 	const [seasonsDropdownActive, setSeasonsDropdownActive] = useState(false);
 	const [selectedSeason, setSelectedSeason] = useState(1);
@@ -24,7 +23,7 @@ const DetailsEpisodesContainer = ({ item }) => {
 		if (item?.details.number_of_seasons > 1) setSeasonsDropdownDisabled(false);
 	}, [item]);
 
-	return episodes && item ? (
+	return data && item ? (
 		<DetailsEpisodes>
 			<DetailsEpisodes.Header>
 				Episodes
@@ -51,10 +50,10 @@ const DetailsEpisodesContainer = ({ item }) => {
 				</DetailsEpisodes.Seasons>
 			</DetailsEpisodes.Header>{" "}
 			<DetailsEpisodes.List>
-				{episodesUpdating ? (
+				{isUpdating ? (
 					<DetailsEpisode.WrapperLoading />
 				) : (
-					episodes.map(episode => (
+					data.map(episode => (
 						<DetailsEpisode.Wrapper key={episode.id}>
 							<DetailsEpisode>
 								<DetailsEpisode.Num>{episode.episode_number ? episode.episode_number : "-"}</DetailsEpisode.Num>
