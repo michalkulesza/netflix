@@ -13,6 +13,8 @@ export const CLEAR_EPISODES = "CLEAR_EPISODES";
 
 //fetch-genre-data.js
 export const FETCH_GENRE_DATA = "FETCH_GENRE_DATA";
+export const FETCH_MORE_GENRE_DATA = "FETCH_MORE_GENRE_DATA";
+export const SET_GENRE_DATA_UPDATING = "SET_GENRE_DATA_UPDATING";
 export const CLEAR_GENRE_DATA = "CLEAR_GENRE_DATA";
 
 //fetch-initial-data.js
