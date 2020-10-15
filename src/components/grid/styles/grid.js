@@ -10,36 +10,25 @@ export const Main = styled.div`
 	height: 100%;
 	width: 100%;
 	display: grid;
-	grid-template-columns: repeat(4, 1fr);
+	gap: 0.6em;
 
 	${respondTo.xs`
 		grid-template-columns: repeat(2, 1fr);
-		gap: 1em;
 	`}
 
 	${respondTo.sm`
-		grid-template-columns: repeat(3, 1fr);
-		gap: 1em;
+		grid-template-columns: repeat(4, 1fr);
 	`}
 
 	${respondTo.md`
-		grid-template-columns: repeat(4, 1fr);
-		gap: 1em;
+		grid-template-columns: repeat(5, 1fr);
 	`}
 
 	${respondTo.lg`
-		grid-template-columns: repeat(5, 1fr);
-		gap: 1em;
+		grid-template-columns: repeat(6, 1fr);
 	`}
 
 	${respondTo.xl`
-		grid-template-columns: repeat(6, 1fr);
-		gap: 1em;
-	`}
-	
-
-	${respondTo.xxl`
-		grid-template-columns: repeat(8, 1fr);
-		gap: 1em;
+		grid-template-columns: repeat(7, 1fr);
 	`}
 `;
