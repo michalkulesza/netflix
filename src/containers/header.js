@@ -13,20 +13,18 @@ let posterTimer;
 const HeaderContainer = ({ headerData, bg, children, ...restProps }) => {
 	const videoPlayer = useRef(null);
 	const dispatch = useDispatch();
+	const canPlay = useCanHeaderPlay();
+	const muted = useSelector(state => state.toggles.globalMute);
+	const { selectedGenre } = useSelector(state => state.genres);
 	const [videoEnded, setVideoEnded] = useState(false);
 	const [videoCanPlay, setVideoCanPlay] = useState(false);
 	const [posterIsVisible, setPosterIsVisible] = useState(true);
-	const muted = useSelector(state => state.toggles.globalMute);
-	const isExpanded = useSelector(state => state.toggles.isExpanded);
-	const isDetails = useSelector(state => state.toggles.isDetails);
-	const { selectedGenre } = useSelector(state => state.genres);
-	const canPlay = useCanHeaderPlay();
 
 	useEffect(() => {
 		if (videoPlayer.current) {
 			videoPlayer.current.volume = 0.4;
 
-			if (canPlay && videoCanPlay && !videoEnded && !isExpanded && !isDetails) {
+			if (canPlay && videoCanPlay && !videoEnded) {
 				posterTimer = setTimeout(() => {
 					setPosterIsVisible(false);
 					videoPlayer.current && videoPlayer.current.play();
@@ -34,10 +32,10 @@ const HeaderContainer = ({ headerData, bg, children, ...restProps }) => {
 			} else {
 				clearTimeout(posterTimer);
 				setPosterIsVisible(true);
-				videoPlayer.current.pause();
+				videoPlayer.current && videoPlayer.current.pause();
 			}
 		}
-	}, [canPlay, videoCanPlay, videoEnded, isDetails, isExpanded]);
+	}, [canPlay, videoCanPlay, videoEnded]);
 
 	const handleMute = () => {
 		dispatch(setGlobalMute(!muted));

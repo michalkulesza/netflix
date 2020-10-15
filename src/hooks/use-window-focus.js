@@ -1,7 +1,7 @@
 import React from "react";
 
 const useWindowFocus = () => {
-	const [isFocused, setIsFocused] = React.useState(0);
+	const [isFocused, setIsFocused] = React.useState(true);
 
 	const setFocus = () => setIsFocused(true);
 	const setBlur = () => setIsFocused(false);
