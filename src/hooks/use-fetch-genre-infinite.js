@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchGenreData } from "../redux/actions/fetch-genre-data";
-const OFFSET = 200;
+const OFFSET = 800;
 
 const useFetchGenreInfinite = genreType => {
 	const dispatch = useDispatch();
 	const [isBottom, setIsBottom] = useState(false);
-	const { id, page, total_pages } = useSelector(state => state.fetchGenreData);
+	const { id, page, total_pages, isUpdating } = useSelector(state => state.fetchGenreData);
 
 	function handleScroll() {
 		const scrollTop = (document.documentElement && document.documentElement.scrollTop) || document.body.scrollTop;
@@ -23,7 +23,7 @@ const useFetchGenreInfinite = genreType => {
 	}, []);
 
 	useEffect(() => {
-		if (isBottom && page && total_pages && page < total_pages) {
+		if (isBottom && page && total_pages && page < total_pages && !isUpdating) {
 			dispatch(fetchGenreData(genreType, id, page + 1));
 			setIsBottom(false);
 		}
