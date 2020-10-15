@@ -35,6 +35,10 @@ const HeaderContainer = ({ headerData, bg, children, ...restProps }) => {
 				videoPlayer.current && videoPlayer.current.pause();
 			}
 		}
+
+		return () => {
+			clearTimeout(posterTimer);
+		};
 	}, [canPlay, videoCanPlay, videoEnded]);
 
 	const handleMute = () => {
