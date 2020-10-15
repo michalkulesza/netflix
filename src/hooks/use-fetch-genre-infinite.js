@@ -27,7 +27,7 @@ const useFetchGenreInfinite = genreType => {
 			dispatch(fetchGenreData(genreType, id, page + 1));
 			setIsBottom(false);
 		}
-	}, [isBottom, dispatch, genreType, id, page, total_pages]);
+	}, [isBottom, dispatch, genreType, id, page, total_pages, isUpdating]);
 };
 
 export default useFetchGenreInfinite;
