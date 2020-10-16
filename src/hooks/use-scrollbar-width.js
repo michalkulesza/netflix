@@ -6,7 +6,8 @@ const useScrollbarWidth = () => {
 
 	useEffect(() => {
 		const scrollBarWidthPx = window.outerWidth - window.innerWidth;
-		const scrollbarVW = Math.round(((scrollBarWidthPx / window.outerWidth) * 100 + Number.EPSILON) * 100) / 100;
+		const scrollbarVW =
+			Math.round(((scrollBarWidthPx / window.outerWidth) * 10000000 + Number.EPSILON) * 10000000) / 1000000000000;
 
 		if (scrollBarWidthPx !== widthPx) {
 			setWidthPx(scrollBarWidthPx);
