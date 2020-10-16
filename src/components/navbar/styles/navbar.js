@@ -34,20 +34,20 @@ export const Container = styled.div`
 `;
 
 export const Logo = styled.img`
-	height: ${({ largeLogo, smallLogo }) => (largeLogo ? "34px" : smallLogo ? "25px" : "24px")};
+	height: ${({ largeLogo }) => (largeLogo ? "39px" : "35px")};
 	padding-top: 0.5em;
 	margin-right: 1.5em;
 
 	${respondTo.md`
-		height: ${({ largeLogo, smallLogo }) => (largeLogo ? "46px" : smallLogo ? "33px" : "36px")};
+		height: ${({ largeLogo }) => (largeLogo ? "46px" : "36px")};
 	`};
 
 	${respondTo.sm`
-		height: ${({ largeLogo, smallLogo }) => (largeLogo ? "42px" : smallLogo ? "30px" : "32px")};
+		height: ${({ largeLogo }) => (largeLogo ? "42px" : "32px")};
 	`};
 
 	${respondTo.xs`
-		height: ${({ largeLogo, smallLogo }) => (largeLogo ? "55px" : smallLogo ? "35px" : "45px")};
+		height: ${({ largeLogo }) => (largeLogo ? "35px" : "30px")};
 	`};
 `;
 

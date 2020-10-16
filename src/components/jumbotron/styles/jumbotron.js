@@ -5,8 +5,9 @@ export const Main = styled.div`
 	border-bottom: 8px solid #333;
 	padding: 35px 3%;
 	margin-bottom: 0;
-	background: 0 0;
+	background: #000;
 	color: #fff;
+	padding-top: 20%;
 
 	${respondTo.xs`
 		padding: 50px 5%;
@@ -44,6 +45,7 @@ export const Half = styled.div`
 
 export const Title = styled.h1`
 	font-size: 3rem;
+	font-weight: 600;
 	line-height: 1.1;
 	margin-bottom: 0.5rem;
 	text-align: center;

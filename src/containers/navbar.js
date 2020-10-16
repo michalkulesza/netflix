@@ -47,7 +47,7 @@ const NavbarContainer = ({ children }) => {
 					children
 				) : (
 					<Navbar.Divide>
-						<Navbar.Logo smallLogo={true} />
+						<Navbar.Logo />
 						<Navbar.Menu>
 							<NavLink exact to={BROWSE}>
 								<Navbar.MenuItem>Home</Navbar.MenuItem>

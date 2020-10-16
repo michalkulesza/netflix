@@ -51,7 +51,7 @@ export const BackgroundGradient = styled.div`
 
 export const Container = styled.div`
 	position: relative;
-	padding: 55px 35px;
+	padding: 55px 5vw;
 	color: #fff;
 	z-index: 1;
 
@@ -74,7 +74,8 @@ export const Inner = styled.div`
 `;
 
 export const Heading = styled.h1`
-	font-size: 3rem;
+	font-size: 3em;
+	font-weight: 600;
 	max-width: 800px;
 	margin: 0 auto;
 

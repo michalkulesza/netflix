@@ -1,15 +1,19 @@
 import styled from "styled-components/macro";
+import { respondTo } from "../../../styles/respondTo";
 
 export const Main = styled.div`
 	margin: 0 auto;
 	background-color: transparent;
 	max-width: 480px;
-	padding: 0 5%;
-	margin-top: -6em;
+	margin-top: -6vw;
+
+	${respondTo.md`
+		max-width: 580px;
+	`}
 `;
 
 export const Container = styled.form`
-	padding: 60px 68px 40px;
+	padding: 40px 30px;
 	background-color: rgba(0, 0, 0, 0.75);
 	border-radius: 4px;
 	text-align: left;
@@ -17,6 +21,7 @@ export const Container = styled.form`
 
 export const Title = styled.h1`
 	margin-bottom: 28px;
+	font-weight: 600;
 	font-size: 2.3em;
 `;
 
@@ -75,7 +80,7 @@ export const Button = styled.button`
 
 export const Redirect = styled.div`
 	margin-top: 1em;
-	font-size: 1.1em;
+	font-size: 1em;
 	color: #737373;
 	margin-bottom: 2em;
 
@@ -91,7 +96,7 @@ export const Redirect = styled.div`
 
 export const Text = styled.span`
 	color: #8c8c8c;
-	font-size: 0.9em;
+	font-size: 0.7em;
 `;
 
 export const MainError = styled.div`

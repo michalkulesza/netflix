@@ -18,10 +18,11 @@ export const Container = styled.div`
 
 export const Title = styled.h1`
 	font-size: 2em;
+	font-weight: 600;
 
 	${respondTo.xs`
 		font-size: 1em;
-	`}
+	`};
 `;
 
 export const List = styled.ul`
