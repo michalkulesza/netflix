@@ -7,3 +7,4 @@ export { default as useViewportWidth } from "./use-viewport-width";
 export { default as useWindowFocus } from "./use-window-focus";
 export { default as useCanHeaderPlay } from "./use-can-header-play";
 export { default as useFetchGenreInfinite } from "./use-fetch-genre-infinite";
+export { default as useScrollbarWidth } from "./use-scrollbar-width";
