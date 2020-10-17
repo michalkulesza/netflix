@@ -1,20 +1,24 @@
 import React, { useState, useEffect } from "react";
-import { useTilesInViewport } from "../hooks";
+import { useConvertPxToVw, useTilesInViewport } from "../hooks";
 import { Carousel } from "../components";
 import { ItemContainer } from "../containers";
+import { useSelector } from "react-redux";
 
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
 const CarouselContainer = ({ data, title }) => {
+	const { totalTilesInVievport } = useTilesInViewport();
+	const { scrollbarWidth: scrollbarWidthPx } = useSelector(state => state.misc);
+	const scrollbarWidth = useConvertPxToVw(scrollbarWidthPx);
+	const [isFirstSlide, setisFirstSlide] = useState(true);
+	const [isScrolling, setIsScrolling] = useState(false);
 	const [buffer, setBuffer] = useState([]);
 	const [scrollDeltaX, setScrollDeltaX] = useState(0);
 	const [touchX, setTouchX] = useState(0);
-	const [isFirstSlide, setisFirstSlide] = useState(true);
 	const [scrolled, setScrolled] = useState(0);
-	const [scrolling, setScrolling] = useState(false);
 	const [margin, setMargin] = useState(0);
-	const { totalTilesInVievport } = useTilesInViewport();
-	const tileWidth = 100 / totalTilesInVievport;
+
+	const tileWidth = (100 - scrollbarWidth - totalTilesInVievport * 0.5) / (totalTilesInVievport - 0.5);
 	const tilesToScroll = totalTilesInVievport - 1;
 
 	useEffect(() => {
@@ -22,23 +26,25 @@ const CarouselContainer = ({ data, title }) => {
 	}, [data]);
 
 	const handleArrowBack = () => {
-		if (!scrolling) {
-			setScrolling(true);
+		if (!isScrolling) {
+			setIsScrolling(true);
 
 			let bufferCopy = [...buffer];
 			const post = bufferCopy.slice((totalTilesInVievport - 1) * -1);
 			bufferCopy.splice((totalTilesInVievport - 1) * -1);
 			setBuffer([...post, ...bufferCopy]);
-			setMargin((scrolled + tileWidth * tilesToScroll) * -1 - tileWidth);
-			setScrolled(scrolled + tileWidth * tilesToScroll);
+			setMargin((scrolled + tilesToScroll * tileWidth + tileWidth + totalTilesInVievport * 0.5) * -1);
+			setScrolled(scrolled + tilesToScroll * tileWidth + tilesToScroll * 0.5);
 
-			setTimeout(() => setScrolling(false), 540); //540ms is the duration of carousel animation
+			setTimeout(() => setIsScrolling(false), 540); //540ms is the duration of carousel animation
 		}
 	};
 
 	const handleArrowForward = () => {
-		if (!scrolling) {
-			setScrolling(true);
+		if (!isScrolling) {
+			const newScrolledValue = scrolled - tilesToScroll * tileWidth - tilesToScroll * 0.5;
+			setScrolled(newScrolledValue);
+			setIsScrolling(true);
 
 			setTimeout(() => {
 				let bufferCopy = [...buffer];
@@ -52,12 +58,9 @@ const CarouselContainer = ({ data, title }) => {
 					bufferCopy.splice(0, totalTilesInVievport - 1);
 				}
 				setBuffer([...bufferCopy, ...pre]);
-				setMargin((scrolled - tileWidth * tilesToScroll) * -1 - tileWidth);
-
-				setScrolling(false);
+				setMargin(Math.abs(newScrolledValue) - tileWidth - 0.5);
+				setIsScrolling(false);
 			}, 540); //540ms is the duration of carousel animation
-
-			setScrolled(scrolled - tileWidth * tilesToScroll);
 		}
 	};
 
@@ -87,10 +90,15 @@ const CarouselContainer = ({ data, title }) => {
 			>
 				<Carousel.Category>{title && title}</Carousel.Category>
 				<Carousel.Overlay>
-					<Carousel.Button onMouseDown={handleArrowBack} tileWidth={tileWidth} isFirstSlide={isFirstSlide}>
+					<Carousel.Button
+						onMouseDown={handleArrowBack}
+						tileWidth={tileWidth}
+						scrollbarWidth={scrollbarWidth}
+						isFirstSlide={isFirstSlide}
+					>
 						<IoIosArrowBack />
 					</Carousel.Button>
-					<Carousel.Button onMouseDown={handleArrowForward} tileWidth={tileWidth}>
+					<Carousel.Button onMouseDown={handleArrowForward} tileWidth={tileWidth} scrollbarWidth={scrollbarWidth}>
 						<IoIosArrowForward />
 					</Carousel.Button>
 				</Carousel.Overlay>

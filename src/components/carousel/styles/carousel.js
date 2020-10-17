@@ -27,7 +27,7 @@ export const Category = styled.h1`
 export const Overlay = styled.div`
 	position: absolute;
 	height: 100%;
-	width: 100vw;
+	width: 100%;
 	top: 0;
 	left: 0;
 	display: flex;
@@ -39,10 +39,11 @@ export const Overlay = styled.div`
 
 export const Button = styled.button`
 	position: absolute;
+	top: 0;
 	pointer-events: auto;
-	height: 100%;
-	width: ${({ tileWidth }) => `${(tileWidth - 0.5) / 2}vw`};
-	background: rgba(20, 20, 20, 0.5);
+	height: ${({ tileWidth }) => `calc(${tileWidth}vw * 1.518712025909371)`};
+	width: ${({ tileWidth }) => `calc(${tileWidth / 4}vw)`};
+	background: rgba(255, 20, 20, 0.5);
 	border: none;
 	padding: 0;
 
@@ -91,6 +92,6 @@ export const Wrapper = styled.div`
 export const ItemsContainer = styled.div`
 	height: 100%;
 	display: flex;
-	transition: transform 0.54s cubic-bezier(0.5, 0, 0.1, 1) 0s, -webkit-transform 0.54s cubic-bezier(0.5, 0, 0.1, 1) 0s,
-		-moz-transform 0.54s cubic-bezier(0.5, 0, 0.1, 1) 0s, -o-transform 0.54s cubic-bezier(0.5, 0, 0.1, 1) 0s;
+	transition: transform 500ms cubic-bezier(0.5, 0, 0.1, 1) 0s, -webkit-transform 500ms cubic-bezier(0.5, 0, 0.1, 1) 0s,
+		-moz-transform 500ms cubic-bezier(0.5, 0, 0.1, 1) 0s, -o-transform 500ms cubic-bezier(0.5, 0, 0.1, 1) 0s;
 `;
