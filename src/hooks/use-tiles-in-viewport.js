@@ -6,13 +6,13 @@ const useTilesInViewport = () => {
 	function changeTiles() {
 		if (window.innerWidth < 768) {
 			setTotalTilesInVievport(4);
-		} else if (window.innerWidth >= 768 && window.innerWidth < 980) {
+		} else if (window.innerWidth >= 768 && window.innerWidth < 992) {
 			setTotalTilesInVievport(5);
-		} else if (window.innerWidth >= 980 && window.innerWidth < 1260) {
+		} else if (window.innerWidth >= 992 && window.innerWidth < 1200) {
 			setTotalTilesInVievport(6);
-		} else if (window.innerWidth >= 1260 && window.innerWidth < 1800) {
+		} else if (window.innerWidth >= 1200 && window.innerWidth < 1900) {
 			setTotalTilesInVievport(8);
-		} else if (window.innerWidth >= 1800) {
+		} else if (window.innerWidth >= 1900) {
 			setTotalTilesInVievport(9);
 		}
 	}
