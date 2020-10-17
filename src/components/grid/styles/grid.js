@@ -16,22 +16,18 @@ export const Main = styled.div`
 	${respondTo.xs`
 		grid-template-columns: repeat(2, 1fr);
 	`}
-
 	${respondTo.sm`
 		grid-template-columns: repeat(4, 1fr);
 	`}
-
-	${respondTo.md`
+		${respondTo.md`
 		grid-template-columns: repeat(5, 1fr);
 	`}
-
-	${respondTo.lg`
+		${respondTo.lg`
 		grid-template-columns: repeat(6, 1fr);
 	`}
-
-	${respondTo.xl`
+		${respondTo.xl`
 		grid-template-columns: repeat(7, 1fr);
-	`}
+	`};
 `;
 
 export const Loading = styled.div`

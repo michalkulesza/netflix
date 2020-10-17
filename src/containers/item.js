@@ -44,7 +44,9 @@ const ItemContainer = ({ item, i, isFirstSlide, totalTilesInVievport, grid }) =>
 			grid={grid}
 			scrollbarWidth={scrollbarWidth}
 		>
-			<Item src={item.poster_path_300 ? item.poster_path_300 : placeholder} alt="Poster" />
+			{item.poster_path_300 && <Item src={item.poster_path_300} alt="Poster" style={{ position: "absolute" }} />}
+
+			<Item src={placeholder} alt="Poster" />
 			<ItemExpandedContainer
 				isExpanded={isExpandedLocal}
 				showVideo={showVideo}

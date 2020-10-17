@@ -43,7 +43,7 @@ export const Button = styled.button`
 	pointer-events: auto;
 	height: ${({ tileWidth }) => `calc(${tileWidth}vw * 1.518712025909371)`};
 	width: ${({ tileWidth }) => `calc(${tileWidth / 4}vw)`};
-	background: rgba(255, 20, 20, 0.5);
+	background: rgba(20, 20, 20, 0.5);
 	border: none;
 	padding: 0;
 
