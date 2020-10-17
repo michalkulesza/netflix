@@ -5,17 +5,24 @@ import { Home, SignIn, SignUp, Browse, Latest, MyList, Page404 } from "./pages";
 import { IfUserRedirect, ProtectedRoute } from "./helpers/protectedRoutes";
 import { useAuthListener, useFetchInitData, useKeyDownListener } from "./hooks/";
 import { ErrorNotificationContainer } from "./containers";
+import ScrollbarSize from "react-scrollbar-size";
+import { useDispatch, useSelector } from "react-redux";
+import { setScrollbarWidth } from "./redux/actions/misc";
 
 const App = () => {
+	const dispatch = useDispatch();
 	const history = useHistory();
 	const { user } = useAuthListener();
 	const id = useLocation();
+	const { scrollbarWidth } = useSelector(state => state.misc);
 	useFetchInitData(id);
 	useKeyDownListener();
 
 	useEffect(() => {
 		history.replace(history.location.pathname, null);
 	}, [history]);
+
+	const handleScrollbarChange = ({ width }) => width !== scrollbarWidth && dispatch(setScrollbarWidth(width));
 
 	return (
 		<>
@@ -48,7 +55,8 @@ const App = () => {
 					<Page404 />
 				</Route>
 			</Switch>
-			<ErrorNotificationContainer></ErrorNotificationContainer>
+			<ErrorNotificationContainer />
+			<ScrollbarSize onChange={handleScrollbarChange} />
 		</>
 	);
 };
