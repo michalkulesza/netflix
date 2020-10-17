@@ -10,6 +10,7 @@ const CarouselContainer = ({ data, title }) => {
 	const { totalTilesInVievport } = useTilesInViewport();
 	const { scrollbarWidth: scrollbarWidthPx } = useSelector(state => state.misc);
 	const scrollbarWidth = useConvertPxToVw(scrollbarWidthPx);
+	const [lastTotalTilesInViewport, setLastTotalTilesInViewport] = useState(totalTilesInVievport);
 	const [isFirstSlide, setisFirstSlide] = useState(true);
 	const [isScrolling, setIsScrolling] = useState(false);
 	const [buffer, setBuffer] = useState([]);
@@ -20,6 +21,14 @@ const CarouselContainer = ({ data, title }) => {
 
 	const tileWidth = (100 - scrollbarWidth - totalTilesInVievport * 0.5) / (totalTilesInVievport - 0.5);
 	const tilesToScroll = totalTilesInVievport - 1;
+
+	useEffect(() => {
+		if (totalTilesInVievport !== lastTotalTilesInViewport) {
+			setLastTotalTilesInViewport(totalTilesInVievport);
+			setScrolled(0);
+			isFirstSlide ? setMargin(0) : setMargin(-tileWidth - 0.5);
+		}
+	}, [totalTilesInVievport, lastTotalTilesInViewport, isFirstSlide, tileWidth]);
 
 	useEffect(() => {
 		setBuffer(data);

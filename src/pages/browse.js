@@ -1,8 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Header, Carousels } from "../components/";
-import { NavbarContainer, HeaderContainer, CarouselsContainer, DetailsContainer, FooterContainer } from "../containers";
-import LazyLoad from "react-lazyload";
+import { NavbarContainer, CarouselsContainer, DetailsContainer, FooterContainer } from "../containers";
 import GridContainer from "../containers/grid";
 
 const Browse = () => {
@@ -15,9 +14,6 @@ const Browse = () => {
 			<NavbarContainer />
 			{data && !isUpdating ? (
 				<>
-					<LazyLoad placeholder={<Header.Loading />}>
-						<HeaderContainer headerData={headerData}></HeaderContainer>
-					</LazyLoad>
 					{selectedGenre ? <GridContainer /> : <CarouselsContainer data={data} />}
 					<DetailsContainer headerData={headerData} />
 				</>
