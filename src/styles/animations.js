@@ -1,6 +1,6 @@
 import { keyframes, css } from "styled-components/macro";
 
-export const LoadingAnimation = keyframes`
+export const LoadingBackgroundAnimation = keyframes`
 	from {
 		background-position-x: 0px;
 	}
@@ -9,11 +9,11 @@ export const LoadingAnimation = keyframes`
 	}
 `;
 
-export const fadeInAnim = (x, y, width) => css`
-	${fadeIn(x, y, width)} 0.5s;
+export const detailsFadeInAnim = (x, y, width) => css`
+	${detailsFadeIn(x, y, width)} 0.5s;
 `;
 
-export const fadeIn = (x, y, width) => keyframes`
+export const detailsFadeIn = (x, y, width) => keyframes`
 	0% {
 			opacity: 0;
 			width: ${width}px;
@@ -33,7 +33,11 @@ export const fadeIn = (x, y, width) => keyframes`
 		}
 `;
 
-export const fadeOut = (x, y, width) => keyframes`
+export const detailsFadeOutAnim = (x, y, width) => css`
+	${detailsFadeOut(x, y, width)} 0.5s;
+`;
+
+export const detailsFadeOut = (x, y, width) => keyframes`
 	0% {
 			opacity: 1;
 			width: 95vw;
@@ -49,10 +53,6 @@ export const fadeOut = (x, y, width) => keyframes`
 			left: ${x}px;
 			transform: translateX(0);
 		}
-`;
-
-export const fadeOutAnim = (x, y, width) => css`
-	${fadeOut(x, y, width)} 0.5s;
 `;
 
 export const notificationAnimIn = () => css`

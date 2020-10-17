@@ -1,5 +1,5 @@
 import styled from "styled-components/macro";
-import { LoadingAnimation } from "../../../../styles/common-styles";
+import { LoadingBackgroundAnimation } from "../../../../styles/animations";
 
 export const Episodes = styled.div`
 	width: 100%;
@@ -94,7 +94,7 @@ export const EpisodeWrapperLoading = styled.div`
 		rgba(27, 27, 27, 1) 55%,
 		rgba(18, 18, 18, 1) 100%
 	);
-	animation: ${LoadingAnimation} 15s linear infinite;
+	animation: ${LoadingBackgroundAnimation} 15s linear infinite;
 `;
 
 export const Episode = styled.div`

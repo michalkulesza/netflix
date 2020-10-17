@@ -1,5 +1,5 @@
 import styled from "styled-components/macro";
-import { LoadingAnimation } from "../../../styles/common-styles";
+import { LoadingBackgroundAnimation } from "../../../styles/animations";
 import { respondTo } from "../../../styles/respondTo";
 
 export const Main = styled.div`
@@ -216,7 +216,7 @@ export const Loading = styled.div`
 		rgba(27, 27, 27, 1) 55%,
 		rgba(18, 18, 18, 1) 100%
 	);
-	animation: ${LoadingAnimation} 15s linear infinite;
+	animation: ${LoadingBackgroundAnimation} 15s linear infinite;
 	display: flex;
 	align-items: center;
 `;

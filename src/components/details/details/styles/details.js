@@ -1,5 +1,5 @@
 import styled from "styled-components/macro";
-import { fadeInAnim, fadeOutAnim } from "../../../../styles/common-styles";
+import { detailsFadeInAnim, detailsFadeOutAnim } from "../../../../styles/animations";
 
 export const Container = styled.div`
 	position: fixed;
@@ -38,8 +38,8 @@ export const Main = styled.div`
 	box-shadow: rgba(0, 0, 0, 0.75) 0px 3px 10px;
 	animation: ${({ isDetails, position }) =>
 		isDetails
-			? fadeInAnim(position.x, position.y, position.width)
-			: fadeOutAnim(position.x, position.y, position.width)};
+			? detailsFadeInAnim(position.x, position.y, position.width)
+			: detailsFadeOutAnim(position.x, position.y, position.width)};
 `;
 
 export const About = styled.div`
