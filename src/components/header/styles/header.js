@@ -147,24 +147,41 @@ export const ContainerInVideo = styled.div`
 	color: #fff;
 	display: flex;
 	z-index: 3;
+	margin-top: 15vw;
+
+	${respondTo.xs`
+		margin-top: initial;
+	`}
 `;
 
 export const ContainerInVideoHalf = styled.div`
 	height: calc(40%);
 	display: flex;
-	margin-top: 13vw;
+	margin-top: 8vw;
+
+	${respondTo.xs`
+		margin-top: 13vw;
+	`}
 
 	&:nth-of-type(1) {
 		width: calc(70% - 2.5em);
-		margin-left: 2.5em;
+		margin-left: 1.2em;
 		flex-direction: column;
 		justify-content: center;
+
+		${respondTo.xs`
+		margin-left: 2.5em;
+	`}
 	}
 
 	&:nth-of-type(2) {
-		width: 30%;
+		width: 100%;
 		align-items: flex-end;
 		justify-content: flex-end;
+
+		${respondTo.xs`
+		width: 30%;
+	`}
 	}
 `;
 
@@ -189,10 +206,11 @@ export const VideoLogo = styled.img`
 
 export const VideoDescription = styled.div`
 	text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
-	margin-bottom: 1.5vw;
 	font-size: 2.5vw;
+	margin-bottom: 2.5vw;
 
 	${respondTo.xs`
+		margin-bottom: 1.5vw;
 		font-size: 1.5vw;
 	`}
 `;

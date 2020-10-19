@@ -1,19 +1,22 @@
 import React, { useState, useEffect, useRef } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { clearSelectedGenre, setSelectedGenre } from "../redux/actions/genres";
 import { Navbar } from "../components";
 import { useScrolledDistance } from "../hooks/";
 import { BROWSE, FILMS, SERIES, LATEST, MYLIST } from "../constants/routes";
 
-import { BiCaretDown } from "react-icons/bi";
+import { BiCaretDown, BiCaretUp } from "react-icons/bi";
 import { clearGenreData, fetchGenreData } from "../redux/actions/fetch-genre-data";
 
 const NavbarContainer = ({ children }) => {
 	const dispatch = useDispatch();
 	const genresDropdown = useRef();
+	const location = useLocation();
 	const scrolled = useScrolledDistance();
 	const [genresListVisible, setGenresListVisible] = useState(false);
+	const [mobileMenuVisible, setMobileMenuVisible] = useState(false);
+	const [currentLocation, setCurrentLocation] = useState(null);
 	const { genres, genresType, selectedGenre } = useSelector(state => state.genres);
 
 	useEffect(() => {
@@ -40,6 +43,8 @@ const NavbarContainer = ({ children }) => {
 		setGenresListVisible(false);
 	};
 
+	const handleMobileMenuClick = () => setMobileMenuVisible(!mobileMenuVisible);
+
 	return (
 		<Navbar scrolled={scrolled} genres={genres}>
 			<Navbar.Container>
@@ -48,23 +53,48 @@ const NavbarContainer = ({ children }) => {
 				) : (
 					<Navbar.Divide>
 						<Navbar.Logo />
-						<Navbar.Menu>
-							<NavLink exact to={BROWSE}>
-								<Navbar.MenuItem>Home</Navbar.MenuItem>
-							</NavLink>
-							<NavLink exact to={SERIES} onMouseDown={() => dispatch(clearSelectedGenre())}>
-								<Navbar.MenuItem>Series</Navbar.MenuItem>
-							</NavLink>
-							<NavLink exact to={FILMS} onMouseDown={() => dispatch(clearSelectedGenre())}>
-								<Navbar.MenuItem>Films</Navbar.MenuItem>
-							</NavLink>
-							<NavLink exact to={LATEST}>
-								<Navbar.MenuItem>Latest</Navbar.MenuItem>
-							</NavLink>
-							<NavLink exact to={MYLIST}>
-								<Navbar.MenuItem>My List</Navbar.MenuItem>
-							</NavLink>
-						</Navbar.Menu>
+						<Navbar.MenuWrapper>
+							<Navbar.Menu>
+								<NavLink exact to={BROWSE}>
+									<Navbar.MenuItem>Home</Navbar.MenuItem>
+								</NavLink>
+								<NavLink exact to={SERIES} onMouseDown={() => dispatch(clearSelectedGenre())}>
+									<Navbar.MenuItem>Series</Navbar.MenuItem>
+								</NavLink>
+								<NavLink exact to={FILMS} onMouseDown={() => dispatch(clearSelectedGenre())}>
+									<Navbar.MenuItem>Films</Navbar.MenuItem>
+								</NavLink>
+								<NavLink exact to={LATEST}>
+									<Navbar.MenuItem>Latest</Navbar.MenuItem>
+								</NavLink>
+								<NavLink exact to={MYLIST}>
+									<Navbar.MenuItem>My List</Navbar.MenuItem>
+								</NavLink>
+							</Navbar.Menu>
+							<Navbar.MenuMobile>
+								<button onMouseDown={handleMobileMenuClick}>
+									{currentLocation} {mobileMenuVisible ? <BiCaretUp /> : <BiCaretDown />}
+								</button>
+
+								<Navbar.MenuListMobile isVisible={mobileMenuVisible}>
+									<NavLink exact to={BROWSE}>
+										<Navbar.MenuItemMobile>Home</Navbar.MenuItemMobile>
+									</NavLink>
+									<NavLink exact to={SERIES} onMouseDown={() => dispatch(clearSelectedGenre())}>
+										<Navbar.MenuItemMobile>Series</Navbar.MenuItemMobile>
+									</NavLink>
+									<NavLink exact to={FILMS} onMouseDown={() => dispatch(clearSelectedGenre())}>
+										<Navbar.MenuItemMobile>Films</Navbar.MenuItemMobile>
+									</NavLink>
+									<NavLink exact to={LATEST}>
+										<Navbar.MenuItemMobile>Latest</Navbar.MenuItemMobile>
+									</NavLink>
+									<NavLink exact to={MYLIST}>
+										<Navbar.MenuItemMobile>My List</Navbar.MenuItemMobile>
+									</NavLink>
+								</Navbar.MenuListMobile>
+							</Navbar.MenuMobile>
+						</Navbar.MenuWrapper>
 					</Navbar.Divide>
 				)}
 			</Navbar.Container>

@@ -14,10 +14,10 @@ export const Main = styled(Link)`
 `;
 
 export const Square = styled.button`
-	padding: 1.2vw 2.5vw;
+	padding: 1.5vw 2.7vw;
 	border-radius: 4px;
 	font-weight: 600;
-	font-size: 1em;
+	font-size: 0.8em;
 	display: flex;
 	align-items: center;
 	background-color: ${({ dark }) => (dark ? "#616f6d" : "#fff")};

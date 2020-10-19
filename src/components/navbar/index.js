@@ -4,7 +4,11 @@ import {
 	Main,
 	Container,
 	Logo,
+	MenuWrapper,
 	Menu,
+	MenuMobile,
+	MenuListMobile,
+	MenuItemMobile,
 	MenuItem,
 	Divide,
 	Genres,
@@ -36,12 +40,28 @@ Navbar.Logo = ({ children, ...restProps }) => {
 	);
 };
 
+Navbar.MenuWrapper = ({ children, ...restProps }) => {
+	return <MenuWrapper {...restProps}>{children}</MenuWrapper>;
+};
+
 Navbar.Menu = ({ children, ...restProps }) => {
 	return <Menu {...restProps}>{children}</Menu>;
 };
 
 Navbar.MenuItem = ({ children, ...restProps }) => {
 	return <MenuItem {...restProps}>{children}</MenuItem>;
+};
+
+Navbar.MenuMobile = ({ children, ...restProps }) => {
+	return <MenuMobile {...restProps}>{children}</MenuMobile>;
+};
+
+Navbar.MenuListMobile = ({ children, ...restProps }) => {
+	return <MenuListMobile {...restProps}>{children}</MenuListMobile>;
+};
+
+Navbar.MenuItemMobile = ({ children, ...restProps }) => {
+	return <MenuItemMobile {...restProps}>{children}</MenuItemMobile>;
 };
 
 Navbar.Divide = ({ children, ...restProps }) => {

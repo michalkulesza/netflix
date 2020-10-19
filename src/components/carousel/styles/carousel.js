@@ -1,4 +1,5 @@
 import styled from "styled-components/macro";
+import { respondTo } from "../../../styles/respondTo";
 
 export const Main = styled.div`
 	position: relative;
@@ -11,15 +12,20 @@ export const Container = styled.div`
 	position: relative;
 	display: flex;
 	flex-direction: column;
-	margin-bottom: 8%;
-	min-height: 250px;
+	margin-bottom: 14%;
+
+	${respondTo.xs`
+		margin-bottom: 8%;
+		min-height: 250px;
+		margin-top: initial;
+	`}
 `;
 
 export const Category = styled.h1`
 	position: absolute;
-	top: -3em;
-	margin-left: 2.5em;
-	font-size: 1.5vw;
+	top: -2.5em;
+	margin-left: 1.2em;
+	font-size: 2.7vw;
 	font-weight: 500;
 	color: #e5e5e5;
 `;

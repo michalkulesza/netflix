@@ -1,10 +1,15 @@
 import styled from "styled-components/macro";
 import { LoadingBackgroundAnimation } from "../../../styles/animations";
+import { respondTo } from "../../../styles/respondTo";
 
 export const Main = styled.div`
 	position: relative;
 	z-index: 15;
-	margin-top: ${({ biggerMargin }) => (biggerMargin ? "-20%" : "-12%")};
+	margin-top: 12%;
+
+	${respondTo.xs`
+		margin-top: ${({ biggerMargin }) => (biggerMargin ? "-20%" : "-12%")};
+	`}
 `;
 
 export const Loading = styled.div`

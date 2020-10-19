@@ -5,7 +5,6 @@ export const Main = styled.div`
 	position: ${({ genres }) => (genres ? "absolute" : "fixed")};
 	max-width: 1920px;
 	margin: 0 auto;
-	padding-top: 10px;
 	width: 100%;
 	height: 62px;
 	z-index: 100;
@@ -23,6 +22,7 @@ export const Container = styled.div`
 	height: 100%;
 	display: flex;
 	justify-content: space-between;
+	align-items: center;
 
 	${respondTo.sm`
 		margin: 0 45px;
@@ -34,26 +34,32 @@ export const Container = styled.div`
 `;
 
 export const Logo = styled.img`
-	height: ${({ largeLogo }) => (largeLogo ? "39px" : "35px")};
+	height: ${({ largeLogo }) => (largeLogo ? "35px" : "30px")};
 	padding-top: 0.5em;
 	margin-right: 1.5em;
-
-	${respondTo.md`
-		height: ${({ largeLogo }) => (largeLogo ? "46px" : "36px")};
-	`};
 
 	${respondTo.sm`
 		height: ${({ largeLogo }) => (largeLogo ? "42px" : "32px")};
 	`};
 
 	${respondTo.xs`
-		height: ${({ largeLogo }) => (largeLogo ? "35px" : "30px")};
+		height: ${({ largeLogo }) => (largeLogo ? "39px" : "35px")};
 	`};
 `;
 
-export const Menu = styled.ul`
+export const MenuWrapper = styled.div`
+	height: 100%;
+	width: 100%;
+	position: relative;
 	display: flex;
 	align-items: center;
+`;
+
+export const Menu = styled.ul`
+	position: absolute;
+	display: flex;
+	align-items: center;
+	visibility: hidden;
 
 	a.active {
 		font-weight: 600;
@@ -61,6 +67,10 @@ export const Menu = styled.ul`
 			color: #fff;
 		}
 	}
+
+	${respondTo.xs`
+		visibility: visible;
+	`};
 `;
 
 export const MenuItem = styled.li`
@@ -75,8 +85,52 @@ export const MenuItem = styled.li`
 	}
 `;
 
+export const MenuMobile = styled.div`
+	visibility: visible;
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	font-size: 0.8em;
+
+	button {
+		background-color: transparent;
+		color: #fff;
+		display: flex;
+		align-items: center;
+
+		span {
+			transform: scale(1.2);
+		}
+	}
+
+	${respondTo.xs`
+		visibility: hidden;
+	`};
+`;
+
+export const MenuListMobile = styled.ul`
+	display: flex;
+	font-size: 1.2em;
+	width: max-content;
+	position: absolute;
+	top: 80%;
+	background-color: #141414;
+	padding: 1em 2em 0;
+	flex-direction: column;
+	opacity: ${({ isVisible }) => (isVisible ? "1" : "0")};
+`;
+
+export const MenuItemMobile = styled.li`
+	margin-bottom: 1.1em;
+`;
+
 export const Divide = styled.div`
 	display: flex;
+	align-items: center;
+	height: 100%;
+	width: 60%;
 `;
 
 export const Genres = styled.div`

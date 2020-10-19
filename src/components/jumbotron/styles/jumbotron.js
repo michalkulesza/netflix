@@ -80,6 +80,6 @@ export const Image = styled.img`
 	object-fit: scale-down;
 
 	${respondTo.xs`
-	height: 100%;
+		height: 100%;
 	`};
 `;
