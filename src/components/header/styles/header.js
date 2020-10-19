@@ -5,7 +5,6 @@ import { respondTo } from "../../../styles/respondTo";
 export const Main = styled.div`
 	position: relative;
 	width: 100%;
-	margin-bottom: -22%;
 `;
 
 export const Border = styled.div`
@@ -51,12 +50,12 @@ export const BackgroundGradient = styled.div`
 
 export const Container = styled.div`
 	position: relative;
-	padding: 55px 5vw;
+	padding: 55px 3vw;
 	color: #fff;
 	z-index: 1;
 
 	${respondTo.xs`
-		padding: 70px 45px;
+	padding: 55px 5vw;
 	`}
 `;
 
@@ -68,7 +67,7 @@ export const Inner = styled.div`
 	text-align: center;
 	margin-top: 5em;
 
-	${respondTo.xs`
+	${respondTo.sm`
 		padding: 75px 0;
 	`}
 `;

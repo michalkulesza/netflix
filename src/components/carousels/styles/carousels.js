@@ -4,7 +4,7 @@ import { LoadingBackgroundAnimation } from "../../../styles/animations";
 export const Main = styled.div`
 	position: relative;
 	z-index: 15;
-	padding-top: ${({ biggerMargin }) => (biggerMargin ? "20%" : "12%")};
+	margin-top: ${({ biggerMargin }) => (biggerMargin ? "-20%" : "-12%")};
 `;
 
 export const Loading = styled.div`

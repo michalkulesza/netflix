@@ -26,13 +26,13 @@ export const Title = styled.h1`
 `;
 
 export const List = styled.ul`
-	width: 100%;
+	width: 75%;
 	margin: 2em auto;
 	max-width: 815px;
 	list-style: none;
 
 	${respondTo.xs`
-		width: 75%;
+	width: 100%;
 	`}
 `;
 
@@ -53,6 +53,12 @@ export const Header = styled.div`
 	justify-content: space-between;
 	user-select: none;
 
+	p {
+		margin: 0 1em 0 0;
+		padding: 0;
+		font-size: 0.9em;
+	}
+
 	${respondTo.xs`
 		font-size: 1em;
 	`}
@@ -68,7 +74,6 @@ export const Icon = styled.div`
 
 export const Body = styled.div`
 	background-color: #333;
-	font-size: 0.7em;
 	text-align: left;
 	max-height: ${({ active }) => (active ? "800px" : "0px")};
 	overflow: hidden;
@@ -81,4 +86,5 @@ export const Body = styled.div`
 
 export const Text = styled.div`
 	padding: 1.2em;
+	font-size: 0.8em;
 `;

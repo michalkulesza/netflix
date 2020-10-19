@@ -20,7 +20,7 @@ const FaqContainer = () => {
 									item.id && currentlyOpened === item.id ? setCurrentlyOpened(null) : setCurrentlyOpened(item.id);
 								}}
 							>
-								{item.header && item.header}
+								<p>{item.header && item.header}</p>
 								<Faq.Icon active={currentlyOpened === item.id}>
 									<img src={crossIcon} alt="Toggle Item" />
 								</Faq.Icon>

@@ -26,6 +26,8 @@ export const InputContainer = styled.div`
 	position: relative;
 	display: flex;
 	flex-direction: column;
+	width: 100%;
+	justify-content: center;
 
 	${respondTo.md`
 		flex-direction: initial;
@@ -41,9 +43,10 @@ export const Input = styled.input`
 	height: 60px !important;
 	padding: 10px 10px 0;
 	width: 100%;
-	border-radius: 3px 0 0 3px;
+	border-radius: 3px;
 
 	${respondTo.md`
+	border-radius: 3px 0 0 3px;
 		min-width: 450px;
 	`};
 `;
@@ -51,7 +54,6 @@ export const Input = styled.input`
 export const Label = styled.label`
 	position: absolute;
 	color: #8c8c8c;
-	font-weight: ${({ focused }) => (focused ? "bold" : "regular")};
 	top: ${({ focused }) => (focused ? "25%" : "50%")};
 	transform: translateY(-50%) ${({ focused }) => (focused ? "scale(0.8) translateX(-12%)" : "scale(1) translateX(0%)")};
 	left: 10px;
@@ -71,7 +73,7 @@ export const Button = styled.button`
 	background-color: #e50914;
 	color: #fff;
 	cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
-	border-radius: 0 3px 3px 0;
+	border-radius: 3px;
 	margin: 0 auto;
 	margin-top: 1.2em;
 
@@ -80,14 +82,10 @@ export const Button = styled.button`
 	}
 
 	${respondTo.md`
+		border-radius: 0 3px 3px 0;
 		width: initial;
 		margin: initial;
-		
 		`};
-
-	${respondTo.xs`
-		margin-top: 0.2em;
-	`};
 `;
 
 export const Error = styled.div`

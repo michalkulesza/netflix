@@ -5,7 +5,6 @@ import { FooterContainer } from "../containers";
 const Page404 = () => {
 	return (
 		<NotFound404>
-			<h1>404</h1>
 			<FooterContainer />
 		</NotFound404>
 	);

@@ -2,7 +2,7 @@ import styled from "styled-components/macro";
 import { respondTo } from "../../../styles/respondTo";
 
 export const Main = styled.div`
-	max-width: 900px;
+	max-width: 1200px;
 	margin: 0 auto;
 	padding: 0px 25px;
 

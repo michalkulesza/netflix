@@ -4,12 +4,8 @@ import { respondTo } from "../../../styles/respondTo";
 export const Main = styled.div`
 	margin: 0 auto;
 	background-color: transparent;
-	max-width: 480px;
+	max-width: 450px;
 	margin-top: -6vw;
-
-	${respondTo.md`
-		max-width: 580px;
-	`}
 `;
 
 export const Container = styled.form`
@@ -17,6 +13,10 @@ export const Container = styled.form`
 	background-color: rgba(0, 0, 0, 0.75);
 	border-radius: 4px;
 	text-align: left;
+
+	${respondTo.md`
+	padding: 40px 50px;
+	`}
 `;
 
 export const Title = styled.h1`
@@ -59,7 +59,7 @@ export const Label = styled.label`
 `;
 
 export const Error = styled.div`
-	font-size: 0.9em;
+	font-size: 0.8em;
 	color: #e87c03;
 	margin: 0.5em 0 0 0.5em;
 	margin-bottom: 10px;
@@ -80,9 +80,9 @@ export const Button = styled.button`
 
 export const Redirect = styled.div`
 	margin-top: 1em;
-	font-size: 1em;
+	font-size: 0.9em;
 	color: #737373;
-	margin-bottom: 2em;
+	margin-bottom: 1em;
 
 	a {
 		color: #fff;

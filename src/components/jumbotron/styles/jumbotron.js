@@ -18,11 +18,12 @@ export const Container = styled.div`
 	max-width: 1100px;
 	margin: 0 auto;
 	display: flex;
-	justify-content: space-between;
+	align-items: center;
 	flex-direction: column;
 
 	${respondTo.md`
 		flex-direction: ${({ direction }) => direction};
+		align-items: center;
 	`};
 `;
 
@@ -37,8 +38,8 @@ export const Half = styled.div`
 		width: ${({ direction }) => (direction === "row" ? "48%" : "52%")};
 	}
 
-	${respondTo.xs`
-		width: ${({ direction }) => (direction === "row" ? "52%" : "48%")};
+	${respondTo.md`
+		width: ${({ direction }) => direction === "row" && "52%"};
 		margin: 0;
 	`};
 `;
@@ -76,6 +77,9 @@ export const SubTitle = styled.h2`
 
 export const Image = styled.img`
 	max-width: 100%;
-	height: 100%;
 	object-fit: scale-down;
+
+	${respondTo.xs`
+	height: 100%;
+	`};
 `;
