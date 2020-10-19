@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setIsExpanded } from "../redux/actions/toggles";
 import { Item } from "../components";
@@ -11,7 +11,7 @@ import { useConvertPxToVw } from "../hooks";
 let hoverTimer;
 let videoTimer;
 
-const ItemContainer = ({ item, i, isFirstSlide, totalTilesInVievport, grid }) => {
+const ItemContainer = ({ item, i, isFirstSlide, totalTilesInVievport, grid, isScrolling }) => {
 	const dispatch = useDispatch();
 	const { scrollbarWidth: scrollbarWidthPx } = useSelector(state => state.misc);
 	const scrollbarWidth = useConvertPxToVw(scrollbarWidthPx);
@@ -19,6 +19,17 @@ const ItemContainer = ({ item, i, isFirstSlide, totalTilesInVievport, grid }) =>
 	const [showVideo, setShowVideo] = useState(false);
 	const position = markItemsPosition(i, isFirstSlide, totalTilesInVievport);
 	const { headerVideo } = useSelector(state => state.misc);
+
+	useEffect(() => {
+		if (isScrolling && isExpandedLocal) setInitialState();
+	}, [isScrolling, isExpandedLocal]);
+
+	const setInitialState = () => {
+		setIsExpandedLocal(false);
+		setShowVideo(false);
+		clearTimeout(hoverTimer);
+		clearTimeout(videoTimer);
+	};
 
 	const handleMouseEnter = () => {
 		hoverTimer = setTimeout(() => {
@@ -28,12 +39,7 @@ const ItemContainer = ({ item, i, isFirstSlide, totalTilesInVievport, grid }) =>
 		}, 500);
 	};
 
-	const handleMouseLeave = () => {
-		setIsExpandedLocal(false);
-		setShowVideo(false);
-		clearTimeout(hoverTimer);
-		clearTimeout(videoTimer);
-	};
+	const handleMouseLeave = () => setInitialState();
 
 	return item ? (
 		<Item.Wrapper

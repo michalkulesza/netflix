@@ -12,18 +12,27 @@ import placeholder from "../res/images/placeholder_h.jpg";
 
 const ItemExpandedContainer = ({ isExpanded, showVideo, position, item, videoFile }) => {
 	const dispatch = useDispatch();
-	const VideoPlayer = useRef(null);
+	const videoPlayerRef = useRef(null);
+	const containerRef = useRef(null);
 	const [isPlaceholder, setIsPlaceholder] = useState(true);
 	const [videoCanPlay, setVideoCanPlay] = useState(false);
 	const [videoEnded, setVideoEnded] = useState(false);
 	const { globalMute } = useSelector(state => state.toggles);
 
 	useEffect(() => {
+		if (!isExpanded) {
+			dispatch(setIsExpanded(false));
+			setIsPlaceholder(true);
+			videoPlayerRef.current && videoPlayerRef.current.pause();
+		}
+	}, [isExpanded, dispatch]);
+
+	useEffect(() => {
 		if (showVideo) {
-			if (!videoEnded && VideoPlayer.current && videoCanPlay) {
+			if (!videoEnded && videoPlayerRef.current && videoCanPlay) {
 				setIsPlaceholder(false);
-				VideoPlayer.current.volume = 0.4;
-				VideoPlayer.current.play();
+				videoPlayerRef.current.volume = 0.4;
+				videoPlayerRef.current.play();
 			} else {
 				setIsPlaceholder(true);
 			}
@@ -39,12 +48,6 @@ const ItemExpandedContainer = ({ isExpanded, showVideo, position, item, videoFil
 	const handleMouseEnter = () =>
 		item.media_type === "movie" ? dispatch(fetchDetailsMovie(item.id)) : dispatch(fetchDetailsTv(item.id));
 
-	const handleMouseLeave = () => {
-		dispatch(setIsExpanded(false));
-		setIsPlaceholder(true);
-		VideoPlayer.current && VideoPlayer.current.pause();
-	};
-
 	const handleMuteClick = () => dispatch(setGlobalMute(!globalMute));
 
 	const handleVideoCanPlayThrough = () => setVideoCanPlay(true);
@@ -53,12 +56,7 @@ const ItemExpandedContainer = ({ isExpanded, showVideo, position, item, videoFil
 
 	return (
 		item && (
-			<ItemExpanded
-				isExpanded={isExpanded}
-				position={position}
-				onMouseEnter={handleMouseEnter}
-				onMouseLeave={handleMouseLeave}
-			>
+			<ItemExpanded isExpanded={isExpanded} position={position} onMouseEnter={handleMouseEnter} ref={containerRef}>
 				<ItemExpanded.Header>
 					<ItemExpanded.Placeholder
 						src={
@@ -80,7 +78,7 @@ const ItemExpandedContainer = ({ isExpanded, showVideo, position, item, videoFil
 						<ItemExpanded.Video
 							src={videoFile}
 							muted={globalMute}
-							ref={VideoPlayer}
+							ref={videoPlayerRef}
 							onCanPlayThrough={handleVideoCanPlayThrough}
 							onEnded={handleVideoEnded}
 						/>

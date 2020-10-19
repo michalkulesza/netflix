@@ -1,4 +1,5 @@
 import React from "react";
+import { forwardRef } from "react";
 import {
 	Item,
 	Header,
@@ -13,9 +14,13 @@ import {
 	GenreWrapper,
 } from "./styles/item-expanded";
 
-const ItemExpanded = ({ children, ...restProps }) => {
-	return <Item {...restProps}>{children}</Item>;
-};
+const ItemExpanded = forwardRef((props, ref) => {
+	return (
+		<Item isExpanded={props.isExpanded} position={props.position} onMouseEnter={props.onMouseEnter} ref={ref}>
+			{props.children}
+		</Item>
+	);
+});
 
 ItemExpanded.Header = ({ children, ...restProps }) => {
 	return <Header {...restProps}>{children}</Header>;

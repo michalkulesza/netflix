@@ -123,6 +123,7 @@ const CarouselContainer = ({ data, title }) => {
 								scrolled={scrolled}
 								isFirstSlide={isFirstSlide}
 								totalTilesInVievport={totalTilesInVievport}
+								isScrolling={isScrolling}
 							/>
 						))}
 					</Carousel.ItemsContainer>
