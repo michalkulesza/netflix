@@ -86,6 +86,8 @@ const CarouselContainer = ({ data, title }) => {
 	};
 
 	const handleTouchEnd = ({ changedTouches }) => {
+		const diff = touchX - changedTouches[0]?.screenX;
+		if (diff && Math.abs(diff) < 50) return;
 		if (changedTouches[0]?.screenX < touchX) handleArrowForward();
 		if (changedTouches[0]?.screenX > touchX) handleArrowBack();
 	};
