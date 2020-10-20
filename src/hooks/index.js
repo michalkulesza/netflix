@@ -8,3 +8,4 @@ export { default as useWindowFocus } from "./use-window-focus";
 export { default as useCanHeaderPlay } from "./use-can-header-play";
 export { default as useFetchGenreInfinite } from "./use-fetch-genre-infinite";
 export { default as useConvertPxToVw } from "./use-convert-px-to-vw";
+export { default as useCurrentMenuLocation } from "./use-current-menu-location";

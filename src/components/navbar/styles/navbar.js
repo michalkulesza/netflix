@@ -53,6 +53,7 @@ export const MenuWrapper = styled.div`
 	position: relative;
 	display: flex;
 	align-items: center;
+	z-index: 10;
 `;
 
 export const Menu = styled.ul`
@@ -121,6 +122,7 @@ export const MenuListMobile = styled.ul`
 	padding: 1em 2em 0;
 	flex-direction: column;
 	opacity: ${({ isVisible }) => (isVisible ? "1" : "0")};
+	pointer-events: ${({ isVisible }) => (isVisible ? "all" : "none")};
 `;
 
 export const MenuItemMobile = styled.li`
