@@ -16,7 +16,7 @@ import {
 
 const ItemExpanded = forwardRef((props, ref) => {
 	return (
-		<Item isExpanded={props.isExpanded} position={props.position} onMouseEnter={props.onMouseEnter} ref={ref}>
+		<Item isVisible={props.isVisible} position={props.position} onMouseEnter={props.onMouseEnter} ref={ref}>
 			{props.children}
 		</Item>
 	);

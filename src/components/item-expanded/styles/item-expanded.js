@@ -7,15 +7,15 @@ export const Item = styled.div`
 	right: ${({ position }) => position === "last" && "0"};
 	min-height: 60%;
 	width: 170%;
-	transform: ${({ isExpanded, position }) =>
-		`translateX(${position === "middle" ? "-50%" : "0"}) ${isExpanded ? "scale(1)" : "scale(.7)"}`};
+	transform: ${({ isVisible, position }) =>
+		`translateX(${position === "middle" ? "-50%" : "0"}) ${isVisible ? "scale(1)" : "scale(.7)"}`};
 	transform-origin: ${({ position }) => (position === "first" ? "left" : position === "last" ? "right" : "center")};
 	pointer-events: ${({ position }) => (position === "outside" ? "none" : "all")};
-	opacity: ${({ isExpanded }) => (isExpanded ? `1` : `0`)};
+	opacity: ${({ isVisible }) => (isVisible ? `1` : `0`)};
 	transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
 	border-radius: 3px;
 	background-color: #181818;
-	pointer-events: ${({ isExpanded }) => (isExpanded ? `all` : `none`)};
+	pointer-events: ${({ isVisible }) => (isVisible ? `all` : `none`)};
 	box-shadow: rgba(0, 0, 0, 0.75) 0px 3px 10px;
 	cursor: default;
 `;

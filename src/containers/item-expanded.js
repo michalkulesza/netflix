@@ -10,7 +10,7 @@ import { BiPlay, BiPlus, BiLike, BiDislike, BiChevronDown } from "react-icons/bi
 import { GiSpeaker, GiSpeakerOff } from "react-icons/gi";
 import placeholder from "../res/images/placeholder_h.jpg";
 
-const ItemExpandedContainer = ({ isExpanded, showVideo, position, item, videoFile }) => {
+const ItemExpandedContainer = ({ isVisible, showVideo, position, item, videoFile }) => {
 	const dispatch = useDispatch();
 	const videoPlayerRef = useRef(null);
 	const containerRef = useRef(null);
@@ -18,14 +18,15 @@ const ItemExpandedContainer = ({ isExpanded, showVideo, position, item, videoFil
 	const [videoCanPlay, setVideoCanPlay] = useState(false);
 	const [videoEnded, setVideoEnded] = useState(false);
 	const { globalMute } = useSelector(state => state.toggles);
+	const { isExpanded } = useSelector(state => state.toggles);
 
 	useEffect(() => {
-		if (!isExpanded) {
+		if (!isVisible && isExpanded) {
 			dispatch(setIsExpanded(false));
 			setIsPlaceholder(true);
 			videoPlayerRef.current && videoPlayerRef.current.pause();
 		}
-	}, [isExpanded, dispatch]);
+	}, [isVisible, dispatch, isExpanded]);
 
 	useEffect(() => {
 		if (showVideo) {
@@ -56,7 +57,7 @@ const ItemExpandedContainer = ({ isExpanded, showVideo, position, item, videoFil
 
 	return (
 		item && (
-			<ItemExpanded isExpanded={isExpanded} position={position} onMouseEnter={handleMouseEnter} ref={containerRef}>
+			<ItemExpanded isVisible={isVisible} position={position} onMouseEnter={handleMouseEnter} ref={containerRef}>
 				<ItemExpanded.Header>
 					<ItemExpanded.Placeholder
 						src={

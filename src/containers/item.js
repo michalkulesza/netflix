@@ -15,17 +15,17 @@ const ItemContainer = ({ item, i, isFirstSlide, totalTilesInVievport, grid, isSc
 	const dispatch = useDispatch();
 	const { scrollbarWidth: scrollbarWidthPx } = useSelector(state => state.misc);
 	const scrollbarWidth = useConvertPxToVw(scrollbarWidthPx);
-	const [isExpandedLocal, setIsExpandedLocal] = useState(false);
+	const [isExpandedVisible, setIsExpandedVisible] = useState(false);
 	const [showVideo, setShowVideo] = useState(false);
 	const position = markItemsPosition(i, isFirstSlide, totalTilesInVievport);
 	const { headerVideo } = useSelector(state => state.misc);
 
 	useEffect(() => {
-		if (isScrolling && isExpandedLocal) setInitialState();
-	}, [isScrolling, isExpandedLocal]);
+		if (isScrolling && isExpandedVisible) setInitialState();
+	}, [isScrolling, isExpandedVisible]);
 
 	const setInitialState = () => {
-		setIsExpandedLocal(false);
+		setIsExpandedVisible(false);
 		setShowVideo(false);
 		clearTimeout(hoverTimer);
 		clearTimeout(videoTimer);
@@ -33,7 +33,7 @@ const ItemContainer = ({ item, i, isFirstSlide, totalTilesInVievport, grid, isSc
 
 	const handleMouseEnter = () => {
 		hoverTimer = setTimeout(() => {
-			setIsExpandedLocal(true);
+			setIsExpandedVisible(true);
 			dispatch(setIsExpanded(true));
 			videoTimer = setTimeout(() => setShowVideo(true), 2000);
 		}, 500);
@@ -53,7 +53,7 @@ const ItemContainer = ({ item, i, isFirstSlide, totalTilesInVievport, grid, isSc
 
 			<Item src={placeholder} alt="Poster" />
 			<ItemExpandedContainer
-				isExpanded={isExpandedLocal}
+				isVisible={isExpandedVisible}
 				showVideo={showVideo}
 				position={auxPosition ? auxPosition : position}
 				item={item}
