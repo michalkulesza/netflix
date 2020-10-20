@@ -75,6 +75,7 @@ Header.Video = React.forwardRef((props, ref) => {
 			autoPlay={props.autoPlay}
 			muted={props.muted}
 			onCanPlayThrough={props.onCanPlayThrough}
+			onEnded={props.onEnded}
 		></Video>
 	);
 });
