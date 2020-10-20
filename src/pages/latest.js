@@ -4,14 +4,14 @@ import { Carousels } from "../components";
 import { NavbarContainer, CarouselsContainer, DetailsContainer, FooterContainer } from "../containers";
 
 const Latest = () => {
-	const data = useSelector(state => state.initialData);
+	const { data } = useSelector(state => state.initialData);
 
 	return (
 		<>
 			<NavbarContainer />
 			{data ? (
 				<>
-					<CarouselsContainer data={data} />
+					<CarouselsContainer data={data} noMargin />
 					<DetailsContainer />
 				</>
 			) : (

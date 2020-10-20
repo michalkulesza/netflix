@@ -4,12 +4,12 @@ import { useSelector } from "react-redux";
 import { Carousels } from "../components";
 import CarouselContainer from "../containers/carousel";
 
-const CarouselsContainer = ({ data }) => {
+const CarouselsContainer = ({ data, noMargin }) => {
 	const { selectedGenre } = useSelector(state => state.genres);
 
 	return (
 		data && (
-			<Carousels biggerMargin={selectedGenre}>
+			<Carousels biggerMargin={selectedGenre} noMargin={noMargin}>
 				{data.map((category, i) => {
 					const categoryName = category && Object.keys(category)[0];
 					const title =

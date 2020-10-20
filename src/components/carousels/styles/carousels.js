@@ -9,6 +9,8 @@ export const Main = styled.div`
 
 	${respondTo.sm`
 		margin-top: ${({ biggerMargin }) => (biggerMargin ? "-20%" : "-12%")};
+		margin-top: ${({ noMargin }) => noMargin && "0"};
+		padding-top: ${({ noMargin }) => noMargin && "12%"};
 	`}
 `;
 

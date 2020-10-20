@@ -91,7 +91,7 @@ export const fetchInitialDataLatest = () => {
 				payload: true,
 			});
 
-			const response = await axios.get("http://localhost:8888/initial/latest");
+			const response = await axios.get("http://localhost:8888/initial/series");
 
 			dispatch({
 				type: SET_INITIAL_DATA,

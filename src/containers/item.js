@@ -46,6 +46,10 @@ const ItemContainer = ({ item, i, isFirstSlide, totalTilesInVievport, grid, isSc
 			key={item.id}
 			onMouseEnter={handleMouseEnter}
 			onMouseLeave={handleMouseLeave}
+			onTouchStart={e => {
+				e.preventDefault();
+				handleMouseEnter();
+			}}
 			grid={grid}
 			scrollbarWidth={scrollbarWidth}
 		>
