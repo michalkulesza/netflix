@@ -1,7 +1,7 @@
 import React from "react";
 
 const useTilesInViewport = () => {
-	const [totalTilesInVievport, setTotalTilesInVievport] = React.useState(0);
+	const [totalTilesInVievport, setTotalTilesInVievport] = React.useState(null);
 
 	function changeTiles() {
 		if (window.innerWidth < 768) {
@@ -26,7 +26,7 @@ const useTilesInViewport = () => {
 		};
 	}, []);
 
-	return { totalTilesInVievport };
+	return totalTilesInVievport;
 };
 
 export default useTilesInViewport;

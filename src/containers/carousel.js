@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
 const CarouselContainer = ({ data, title }) => {
-	const { totalTilesInVievport } = useTilesInViewport();
+	const totalTilesInVievport = useTilesInViewport();
 	const { scrollbarWidth: scrollbarWidthPx } = useSelector(state => state.misc);
 	const scrollbarWidth = useConvertPxToVw(scrollbarWidthPx);
 	const [lastTotalTilesInViewport, setLastTotalTilesInViewport] = useState(totalTilesInVievport);

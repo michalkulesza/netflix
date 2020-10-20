@@ -11,7 +11,7 @@ import { useConvertPxToVw } from "../hooks";
 let hoverTimer;
 let videoTimer;
 
-const ItemContainer = ({ item, i, isFirstSlide, totalTilesInVievport, grid, isScrolling }) => {
+const ItemContainer = ({ item, i, isFirstSlide, totalTilesInVievport, grid, isScrolling, auxPosition }) => {
 	const dispatch = useDispatch();
 	const { scrollbarWidth: scrollbarWidthPx } = useSelector(state => state.misc);
 	const scrollbarWidth = useConvertPxToVw(scrollbarWidthPx);
@@ -44,7 +44,6 @@ const ItemContainer = ({ item, i, isFirstSlide, totalTilesInVievport, grid, isSc
 	return item ? (
 		<Item.Wrapper
 			key={item.id}
-			className={position}
 			onMouseEnter={handleMouseEnter}
 			onMouseLeave={handleMouseLeave}
 			grid={grid}
@@ -56,7 +55,7 @@ const ItemContainer = ({ item, i, isFirstSlide, totalTilesInVievport, grid, isSc
 			<ItemExpandedContainer
 				isExpanded={isExpandedLocal}
 				showVideo={showVideo}
-				position={position}
+				position={auxPosition ? auxPosition : position}
 				item={item}
 				videoFile={headerVideo?.src}
 			/>
