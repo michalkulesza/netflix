@@ -1,6 +1,5 @@
 import styled from "styled-components/macro";
 import { LoadingBackgroundAnimation } from "../../../styles/animations";
-import { respondTo } from "../../../styles/respondTo";
 
 export const Wrapper = styled.div`
 	width: 100%;
@@ -12,22 +11,7 @@ export const Main = styled.div`
 	width: 100%;
 	display: grid;
 	gap: 0.6em;
-
-	${respondTo.xs`
-		grid-template-columns: repeat(2, 1fr);
-	`}
-	${respondTo.sm`
-		grid-template-columns: repeat(4, 1fr);
-	`}
-		${respondTo.md`
-		grid-template-columns: repeat(5, 1fr);
-	`}
-		${respondTo.lg`
-		grid-template-columns: repeat(6, 1fr);
-	`}
-		${respondTo.xl`
-		grid-template-columns: repeat(7, 1fr);
-	`};
+	${({ itemsInRow }) => `grid-template-columns: repeat(${itemsInRow - 1}, 1fr);`}
 `;
 
 export const Loading = styled.div`
