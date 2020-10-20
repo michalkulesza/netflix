@@ -28,6 +28,10 @@ export const Category = styled.h1`
 	font-size: 2.7vw;
 	font-weight: 500;
 	color: #e5e5e5;
+
+	${respondTo.sm`
+		font-size: 1.6vw;
+	`}
 `;
 
 export const Overlay = styled.div`

@@ -147,9 +147,9 @@ export const ContainerInVideo = styled.div`
 	color: #fff;
 	display: flex;
 	z-index: 3;
-	margin-top: 15vw;
+	margin-top: 12vw;
 
-	${respondTo.xs`
+	${respondTo.sm`
 		margin-top: initial;
 	`}
 `;

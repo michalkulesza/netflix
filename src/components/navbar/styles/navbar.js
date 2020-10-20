@@ -68,7 +68,7 @@ export const Menu = styled.ul`
 		}
 	}
 
-	${respondTo.xs`
+	${respondTo.sm`
 		visibility: visible;
 	`};
 `;
@@ -79,6 +79,7 @@ export const MenuItem = styled.li`
 	transition: color 0.4s;
 	margin-right: 1.8em;
 	font-size: 0.8em;
+	width: max-content;
 
 	&:hover {
 		color: #b3b3b3;
@@ -105,7 +106,7 @@ export const MenuMobile = styled.div`
 		}
 	}
 
-	${respondTo.xs`
+	${respondTo.sm`
 		visibility: hidden;
 	`};
 `;
@@ -135,7 +136,7 @@ export const Divide = styled.div`
 
 export const Genres = styled.div`
 	position: ${({ scrolled }) => (scrolled > 62 ? "fixed" : "absolute")};
-	top: ${({ scrolled }) => (scrolled > 62 ? "0" : "100%")};
+	top: ${({ scrolled }) => (scrolled > 62 ? "0" : "70%")};
 	left: 0;
 	height: 50px;
 	width: 100%;
@@ -165,6 +166,10 @@ export const Genres = styled.div`
 		margin-right: 0.5em;
 		color: #808080;
 	}
+
+	${respondTo.sm`
+		top: ${({ scrolled }) => (scrolled > 62 ? "0" : "100%")};
+	`};
 `;
 
 export const GenresButtonWrapper = styled.div`

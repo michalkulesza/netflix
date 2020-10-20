@@ -3,7 +3,7 @@ import { LoadingBackgroundAnimation } from "../../../styles/animations";
 
 export const Wrapper = styled.div`
 	width: 100%;
-	padding: 20% 2.5em 0 2.5em;
+	padding: 10em 2.5em 0 2.5em;
 `;
 
 export const Main = styled.div`

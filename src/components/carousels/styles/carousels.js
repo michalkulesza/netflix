@@ -5,9 +5,9 @@ import { respondTo } from "../../../styles/respondTo";
 export const Main = styled.div`
 	position: relative;
 	z-index: 15;
-	margin-top: 12%;
+	margin-top: 5%;
 
-	${respondTo.xs`
+	${respondTo.sm`
 		margin-top: ${({ biggerMargin }) => (biggerMargin ? "-20%" : "-12%")};
 	`}
 `;

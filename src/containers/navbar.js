@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { clearSelectedGenre, setSelectedGenre } from "../redux/actions/genres";
 import { Navbar } from "../components";
@@ -12,11 +12,11 @@ import { clearGenreData, fetchGenreData } from "../redux/actions/fetch-genre-dat
 const NavbarContainer = ({ children }) => {
 	const dispatch = useDispatch();
 	const genresDropdown = useRef();
-	const location = useLocation();
+	// const location = useLocation();
 	const scrolled = useScrolledDistance();
 	const [genresListVisible, setGenresListVisible] = useState(false);
 	const [mobileMenuVisible, setMobileMenuVisible] = useState(false);
-	const [currentLocation, setCurrentLocation] = useState(null);
+	const [currentLocation] = useState(null);
 	const { genres, genresType, selectedGenre } = useSelector(state => state.genres);
 
 	useEffect(() => {
