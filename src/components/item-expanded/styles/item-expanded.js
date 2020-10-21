@@ -1,23 +1,28 @@
 import styled from "styled-components/macro";
 
 export const Item = styled.div`
-	position: absolute;
-	z-index: 20;
-	left: ${({ position }) => (position === "first" ? "0" : position === "middle" ? "50%" : "")};
-	right: ${({ position }) => position === "last" && "0"};
-	min-height: 60%;
-	width: 170%;
+	/* position: absolute;
 	transform: ${({ isVisible, position }) =>
 		`translateX(${position === "middle" ? "-50%" : "0"}) ${isVisible ? "scale(1)" : "scale(.7)"}`};
 	transform-origin: ${({ position }) => (position === "first" ? "left" : position === "last" ? "right" : "center")};
 	pointer-events: ${({ position }) => (position === "outside" ? "none" : "all")};
 	opacity: ${({ isVisible }) => (isVisible ? `1` : `0`)};
+	pointer-events: ${({ isVisible }) => (isVisible ? `all` : `none`)};
+	 */
+	position: absolute;
+	top: ${({ position, offset }) => position && `${position.y + position.height / 2 + offset}px`};
+	left: ${({ position }) => position && `${position.x + position.width / 2}px`};
+	transform: translate(-50%, -50%);
+	min-height: ${({ position }) => position && `${position.width * 1.7 * 0.5625}px`};
+	width: ${({ position }) => position && `${position.width * 1.7}px`};
+	background-color: pink;
+	z-index: 99;
+	overflow: hidden;
+	cursor: default;
 	transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
 	border-radius: 3px;
 	background-color: #181818;
-	pointer-events: ${({ isVisible }) => (isVisible ? `all` : `none`)};
 	box-shadow: rgba(0, 0, 0, 0.75) 0px 3px 10px;
-	cursor: default;
 `;
 
 export const Header = styled.div`
