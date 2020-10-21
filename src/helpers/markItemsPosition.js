@@ -1,4 +1,4 @@
-export const markItemsPosition = (i, isFirstSlide, totalTilesInVievport) => {
+export const markItemsPosition = (i, isFirstSlide = true, totalTilesInVievport) => {
 	if (i && isFirstSlide && totalTilesInVievport) {
 		const offset = isFirstSlide ? 0 : 1;
 		const items = totalTilesInVievport - 2;
