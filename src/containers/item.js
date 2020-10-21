@@ -1,68 +1,51 @@
-import React, { useEffect, useState } from "react";
+/* eslint-disable */
+import React, { useEffect, useState, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { setIsExpanded } from "../redux/actions/toggles";
-import { Item } from "../components";
-import { ItemExpandedContainer } from "../containers/";
+import { clearExpandedPosition, setExpandedPosition, setExpandedTranformOrigin } from "../redux/actions/misc";
+import { useClickOutside, useConvertPxToVw } from "../hooks";
 import { markItemsPosition } from "../helpers/markItemsPosition";
+import { Item } from "../components";
 
 import placeholder from "../res/images/placeholder_h.jpg";
-import { useConvertPxToVw } from "../hooks";
+import { clearDetails, fetchDetailsMovie, fetchDetailsTv } from "../redux/actions/fetch-details";
 
-let hoverTimer;
-let videoTimer;
-
-const ItemContainer = ({ item, i, isFirstSlide, totalTilesInVievport, grid, isScrolling, auxPosition }) => {
+const ItemContainer = ({ item, i, isFirstSlide, totalTilesInVievport, grid, isScrolling }) => {
+	const itemRef = useRef(null);
 	const dispatch = useDispatch();
 	const { scrollbarWidth: scrollbarWidthPx } = useSelector(state => state.misc);
-	const scrollbarWidth = useConvertPxToVw(scrollbarWidthPx);
-	const [isExpandedVisible, setIsExpandedVisible] = useState(false);
-	const [showVideo, setShowVideo] = useState(false);
+	const [isExpandedActive, setIsExpandedActive] = useState(false);
 	const position = markItemsPosition(i, isFirstSlide, totalTilesInVievport);
-	const { headerVideo } = useSelector(state => state.misc);
+	const scrollbarWidth = useConvertPxToVw(scrollbarWidthPx);
 
-	useEffect(() => {
-		if (isScrolling && isExpandedVisible) setInitialState();
-	}, [isScrolling, isExpandedVisible]);
-
-	const setInitialState = () => {
-		setIsExpandedVisible(false);
-		setShowVideo(false);
-		clearTimeout(hoverTimer);
-		clearTimeout(videoTimer);
+	const handleMouseDown = ({ currentTarget }) => {
+		dispatch(clearDetails());
+		dispatch(clearExpandedPosition());
+		item.media_type === "movie" ? dispatch(fetchDetailsMovie(item.id)) : dispatch(fetchDetailsTv(item.id));
+		dispatch(setExpandedTranformOrigin(position));
+		dispatch(setExpandedPosition(currentTarget.getBoundingClientRect()));
 	};
 
-	const handleMouseEnter = () => {
-		hoverTimer = setTimeout(() => {
-			setIsExpandedVisible(true);
-			dispatch(setIsExpanded(true));
-			videoTimer = setTimeout(() => setShowVideo(true), 2000);
-		}, 500);
-	};
-
-	const handleMouseLeave = () => setInitialState();
+	// useEffect(() => {
+	// 	if (isScrolling && isExpandedActive) setInitialState();
+	// }, [isScrolling, isExpandedActive]);
 
 	return item ? (
 		<Item.Wrapper
 			key={item.id}
-			onMouseEnter={handleMouseEnter}
-			onMouseLeave={handleMouseLeave}
-			onTouchStart={e => {
-				e.preventDefault();
-				handleMouseEnter();
-			}}
+			ref={itemRef}
 			grid={grid}
 			scrollbarWidth={scrollbarWidth}
+			onMouseDown={e => handleMouseDown(e)}
+			// onMouseEnter={handleMouseEnter}
+			// onMouseLeave={handleMouseLeave}
+			// onTouchStart={e => {
+			// 	e.preventDefault();
+			// 	handleMouseEnter();
+			// }}
 		>
 			{item.poster_path_300 && <Item src={item.poster_path_300} alt="Poster" style={{ position: "absolute" }} />}
 
 			<Item src={placeholder} alt="Poster" />
-			<ItemExpandedContainer
-				isVisible={isExpandedVisible}
-				showVideo={showVideo}
-				position={auxPosition ? auxPosition : position}
-				item={item}
-				videoFile={headerVideo?.src}
-			/>
 		</Item.Wrapper>
 	) : null;
 };

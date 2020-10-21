@@ -21,7 +21,7 @@ const CarouselsContainer = ({ data, noMargin }) => {
 
 					return (
 						<LazyLoad height={200} key={category.id}>
-							<CarouselContainer title={title} i={i} data={category[categoryName]} />
+							<CarouselContainer title={title} data={category[categoryName]} />
 						</LazyLoad>
 					);
 				})}

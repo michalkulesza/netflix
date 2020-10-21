@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
-const CarouselContainer = ({ data, title }) => {
+const CarouselContainer = ({ data, title, handleClickOnItem }) => {
 	const totalTilesInVievport = useTilesInViewport();
 	const { scrollbarWidth: scrollbarWidthPx } = useSelector(state => state.misc);
 	const scrollbarWidth = useConvertPxToVw(scrollbarWidthPx);
@@ -92,12 +92,15 @@ const CarouselContainer = ({ data, title }) => {
 		if (changedTouches[0]?.screenX > touchX) handleArrowBack();
 	};
 
+	const handleCheckIfClickOutside = () => {};
+
 	return buffer ? (
 		<>
 			<Carousel.Container
 				onWheel={({ nativeEvent }) => handleScroll(nativeEvent)}
 				onTouchStart={({ nativeEvent }) => handleTouchStart(nativeEvent)}
 				onTouchEnd={({ nativeEvent }) => handleTouchEnd(nativeEvent)}
+				onMouseDown={handleCheckIfClickOutside}
 			>
 				<Carousel.Category>{title && title}</Carousel.Category>
 				<Carousel.Overlay>
@@ -124,6 +127,7 @@ const CarouselContainer = ({ data, title }) => {
 								isFirstSlide={isFirstSlide}
 								totalTilesInVievport={totalTilesInVievport}
 								isScrolling={isScrolling}
+								handleClickOnItem={handleClickOnItem}
 							/>
 						))}
 					</Carousel.ItemsContainer>
