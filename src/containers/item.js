@@ -13,11 +13,12 @@ const ItemContainer = ({ item, i, isFirstSlide, totalTilesInVievport, grid, isSc
 	const itemRef = useRef(null);
 	const dispatch = useDispatch();
 	const { scrollbarWidth: scrollbarWidthPx } = useSelector(state => state.misc);
-	const [isExpandedActive, setIsExpandedActive] = useState(false);
+	// const [isExpandedActive, setIsExpandedActive] = useState(false);
 	const position = markItemsPosition(i, isFirstSlide, totalTilesInVievport);
 	const scrollbarWidth = useConvertPxToVw(scrollbarWidthPx);
 
 	const handleMouseDown = ({ currentTarget }) => {
+		console.log(isFirstSlide);
 		dispatch(clearDetails());
 		dispatch(clearExpandedPosition());
 		item.media_type === "movie" ? dispatch(fetchDetailsMovie(item.id)) : dispatch(fetchDetailsTv(item.id));
@@ -36,6 +37,7 @@ const ItemContainer = ({ item, i, isFirstSlide, totalTilesInVievport, grid, isSc
 			grid={grid}
 			scrollbarWidth={scrollbarWidth}
 			onMouseDown={e => handleMouseDown(e)}
+			className={position}
 			// onMouseEnter={handleMouseEnter}
 			// onMouseLeave={handleMouseLeave}
 			// onTouchStart={e => {

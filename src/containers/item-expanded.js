@@ -9,8 +9,6 @@ import { GiSpeaker, GiSpeakerOff } from "react-icons/gi";
 import placeholder from "../res/images/placeholder_h.jpg";
 import { useClickOutside } from "../hooks";
 
-const transformOrigin = "middle"; //REMOVE
-
 const ItemExpandedContainer = () => {
 	const dispatch = useDispatch();
 	const videoPlayerRef = useRef(null);
@@ -19,7 +17,7 @@ const ItemExpandedContainer = () => {
 	const [videoCanPlay, setVideoCanPlay] = useState(false);
 	const [videoEnded, setVideoEnded] = useState(false);
 	const { globalMute, isExpanded } = useSelector(state => state.toggles);
-	const { expandedPosition: position, headerVideo } = useSelector(state => state.misc);
+	const { expandedPosition: position, headerVideo, expandedTransformOrigin } = useSelector(state => state.misc);
 	const data = useSelector(state => state.fetchDetails);
 
 	useClickOutside(expandedRef, () => dispatch(clearExpandedPosition()));
@@ -58,8 +56,9 @@ const ItemExpandedContainer = () => {
 	return data && position ? (
 		<ItemExpanded
 			position={position}
-			transformOrigin={transformOrigin}
+			transformOrigin={expandedTransformOrigin}
 			onMouseEnter={handleMouseEnter}
+			isVisible={data}
 			offset={window.pageYOffset}
 			ref={expandedRef}
 		>

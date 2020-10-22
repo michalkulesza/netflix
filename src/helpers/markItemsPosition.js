@@ -1,22 +1,20 @@
-export const markItemsPosition = (i, isFirstSlide = true, totalTilesInVievport) => {
-	if (i && isFirstSlide && totalTilesInVievport) {
+export const markItemsPosition = (i, isFirstSlide, totalTilesInVievport) => {
+	if (i !== undefined && totalTilesInVievport && isFirstSlide) {
 		const offset = isFirstSlide ? 0 : 1;
 		const items = totalTilesInVievport - 2;
 
 		if (i === 0 + offset) {
-			return "first";
+			return "left";
 		}
 
 		if (i > 0 + offset && i < items + offset) {
-			return "middle";
+			return "center";
 		}
 
 		if (i === items + offset) {
-			return "last";
+			return "right";
 		}
 	}
-
-	return "outside";
 };
 
 export const markItemsPositionGrid = (data, totalTilesInVievport) => {

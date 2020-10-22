@@ -1,28 +1,37 @@
 import styled from "styled-components/macro";
+import { expandedAnimIn, expandedAnimInLeft, expandedAnimInRight } from "../../../styles/animations";
 
 export const Item = styled.div`
-	/* position: absolute;
-	transform: ${({ isVisible, position }) =>
-		`translateX(${position === "middle" ? "-50%" : "0"}) ${isVisible ? "scale(1)" : "scale(.7)"}`};
-	transform-origin: ${({ position }) => (position === "first" ? "left" : position === "last" ? "right" : "center")};
-	pointer-events: ${({ position }) => (position === "outside" ? "none" : "all")};
-	opacity: ${({ isVisible }) => (isVisible ? `1` : `0`)};
-	pointer-events: ${({ isVisible }) => (isVisible ? `all` : `none`)};
-	 */
-	position: absolute;
 	top: ${({ position, offset }) => position && `${position.y + position.height / 2 + offset}px`};
-	left: ${({ position }) => position && `${position.x + position.width / 2}px`};
-	transform: translate(-50%, -50%);
+	left: ${({ position, transformOrigin }) =>
+		transformOrigin === "left"
+			? `${position.x}px`
+			: transformOrigin === "right"
+			? `${position.x + position.width}px`
+			: `${position.x + position.width / 2}px`};
+	transform: ${({ transformOrigin }) =>
+		transformOrigin === "left"
+			? "translate3d(0%, -50%, 0) scale(1)"
+			: transformOrigin === "right"
+			? "translate3d(-100%, -50%, 0) scale(1)"
+			: "translate3d(-50%, -50%, 0) scale(1)"};
+	transform-origin: ${({ transformOrigin }) =>
+		transformOrigin === "left" ? "left" : transformOrigin === "right" ? "right" : "center"};
+	position: absolute;
 	min-height: ${({ position }) => position && `${position.width * 1.7 * 0.5625}px`};
 	width: ${({ position }) => position && `${position.width * 1.7}px`};
-	background-color: pink;
 	z-index: 99;
 	overflow: hidden;
 	cursor: default;
-	transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
 	border-radius: 3px;
 	background-color: #181818;
 	box-shadow: rgba(0, 0, 0, 0.75) 0px 3px 10px;
+	animation: ${({ transformOrigin }) =>
+		transformOrigin === "left"
+			? expandedAnimInLeft
+			: transformOrigin === "right"
+			? expandedAnimInRight
+			: expandedAnimIn};
 `;
 
 export const Header = styled.div`

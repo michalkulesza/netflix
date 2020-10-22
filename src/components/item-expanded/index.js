@@ -21,6 +21,7 @@ const ItemExpanded = forwardRef((props, ref) => {
 			transformOrigin={props.transformOrigin}
 			onMouseEnter={props.onMouseEnter}
 			offset={props.offset}
+			isVisible={props.isVisible}
 			ref={ref}
 		>
 			{props.children}
