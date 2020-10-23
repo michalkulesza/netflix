@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { Item } from "../components";
 import { ItemExpandedContainer } from "../containers/";
 import { markItemsPosition } from "../helpers/markItemsPosition";
-import { setIsExpanded } from "../redux/actions/toggles";
 import { clearActiveExpanded, setActiveExpanded } from "../redux/actions/misc";
 import { useConvertPxToVw, useOnClickOutside } from "../hooks";
 
@@ -25,14 +24,12 @@ const ItemContainer = ({ item, i, parentID, isFirstSlide, totalTilesInVievport, 
 	useOnClickOutside(itemRef, () => {
 		if (activeExpanded?.parent === parentID && activeExpanded?.item === i) {
 			setIsExpandedVisible(false);
-			dispatch(setIsExpanded(false));
 		}
 	});
 
 	const handleMouseEnter = e => {
 		hoverTimer = setTimeout(() => {
 			setIsExpandedVisible(true);
-			dispatch(setIsExpanded(true));
 			dispatch(setActiveExpanded(parentID, i));
 			videoTimer = setTimeout(() => setShowVideo(true), 2000);
 		}, 500);
@@ -40,7 +37,6 @@ const ItemContainer = ({ item, i, parentID, isFirstSlide, totalTilesInVievport, 
 
 	const handleMouseLeave = e => {
 		dispatch(clearActiveExpanded());
-		dispatch(setIsExpanded(false));
 		setIsExpandedVisible(false);
 		setShowVideo(false);
 		clearTimeout(hoverTimer);

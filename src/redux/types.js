@@ -29,7 +29,6 @@ export const CLEAR_SELECTED_GENRE = "CLEAR_SELECTED_GENRE";
 
 //toggles.js
 export const SET_IS_DETAILS = "SET_IS_DETAILS";
-export const SET_IS_EXPANDED = "SET_IS_EXPANDED";
 export const SET_GLOBAL_MUTE = "SET_GLOBAL_MUTE";
 
 //misc.js
