@@ -1,4 +1,5 @@
 import styled from "styled-components/macro";
+import { LoadingBackgroundAnimation } from "../../../styles/animations";
 
 export const Item = styled.div`
 	position: absolute;
@@ -31,11 +32,12 @@ export const Header = styled.div`
 
 export const Placeholder = styled.img`
 	position: absolute;
-	top: 0;
+	top: 50%;
 	left: 0;
 	object-fit: cover;
 	max-width: calc(100% - 1px);
 	opacity: ${({ isPlaceholder }) => (isPlaceholder ? "1" : "0")};
+	transform: translateY(-50%);
 	transition: opacity 1s ease-in-out;
 	z-index: 2;
 	pointer-events: none;
@@ -109,4 +111,21 @@ export const Genre = styled.div`
 	span {
 		margin: 0 0.5em;
 	}
+`;
+
+export const Loading = styled.div`
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	background: linear-gradient(
+		90deg,
+		rgba(18, 18, 18, 1) 0%,
+		rgba(27, 27, 27, 1) 39%,
+		rgba(40, 40, 40, 1) 50%,
+		rgba(27, 27, 27, 1) 55%,
+		rgba(18, 18, 18, 1) 100%
+	);
+	animation: ${LoadingBackgroundAnimation} 15s linear infinite;
 `;

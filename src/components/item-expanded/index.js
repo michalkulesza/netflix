@@ -12,6 +12,7 @@ import {
 	Info,
 	Genre,
 	GenreWrapper,
+	Loading,
 } from "./styles/item-expanded";
 
 const ItemExpanded = forwardRef((props, ref) => {
@@ -75,6 +76,10 @@ ItemExpanded.Genre = ({ children, ...restProps }) => {
 
 ItemExpanded.GenreWrapper = ({ children, ...restProps }) => {
 	return <GenreWrapper {...restProps}>{children}</GenreWrapper>;
+};
+
+ItemExpanded.Loading = ({ children, ...restProps }) => {
+	return <Loading {...restProps}>{children}</Loading>;
 };
 
 export default ItemExpanded;

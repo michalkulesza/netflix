@@ -1,6 +1,7 @@
-import styled from "styled-components/macro";
+import styled, { css } from "styled-components/macro";
 import { Link } from "react-router-dom";
 import { respondTo } from "../../../styles/respondTo";
+import { LoadingBackgroundAnimation } from "../../../styles/animations";
 
 export const Main = styled(Link)`
 	background-color: #e50914;
@@ -84,15 +85,31 @@ export const Container = styled.div`
 	}
 `;
 
+const anim = css`
+	${LoadingBackgroundAnimation} 60s linear infinite
+`;
+
 export const Round = styled.button`
 	background-color: ${({ inverted }) => (inverted ? "#fff" : "#232323")};
-	border: ${({ inverted, dark }) => (inverted ? "1px solid #fff" : dark ? "none" : "1px solid #919191")};
+	border: ${({ inverted, dark, isLoading }) =>
+		inverted ? "1px solid #fff" : dark || isLoading ? "none" : "1px solid #919191"};
 	border-radius: 50%;
 	height: 40px;
 	width: 40px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	background: ${({ isLoading }) =>
+		isLoading &&
+		`linear-gradient(
+		90deg,
+		rgba(18, 18, 18, 1) 0%,
+		rgba(27, 27, 27, 1) 39%,
+		rgba(40, 40, 40, 1) 50%,
+		rgba(27, 27, 27, 1) 55%,
+		rgba(18, 18, 18, 1) 100%
+	)`};
+	animation: ${({ isLoading }) => isLoading && anim};
 
 	&:hover {
 		background-color: ${({ inverted }) => inverted && "#e2e2e2"};

@@ -17,10 +17,10 @@ Button.Square = ({ iconScale, inverted, marginRight, children, ...restProps }) =
 	);
 };
 
-Button.Round = ({ label, inverted, dark, marginRight, children, ...restProps }) => {
+Button.Round = ({ label, inverted, dark, marginRight, children, isLoading, ...restProps }) => {
 	return (
 		<Container marginRight={marginRight}>
-			<Round inverted={inverted} dark={dark} {...restProps}>
+			<Round inverted={inverted} dark={dark} isLoading={isLoading} {...restProps}>
 				{children}
 			</Round>
 			{label && <Label>{label}</Label>}
