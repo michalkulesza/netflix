@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
-const CarouselContainer = ({ data, title }) => {
+const CarouselContainer = ({ data, title, parentID }) => {
 	const totalTilesInVievport = useTilesInViewport();
 	const { scrollbarWidth: scrollbarWidthPx } = useSelector(state => state.misc);
 	const scrollbarWidth = useConvertPxToVw(scrollbarWidthPx);
@@ -120,10 +120,10 @@ const CarouselContainer = ({ data, title }) => {
 								key={item.id}
 								item={item}
 								i={i}
+								parentID={parentID}
 								scrolled={scrolled}
 								isFirstSlide={isFirstSlide}
 								totalTilesInVievport={totalTilesInVievport}
-								isScrolling={isScrolling}
 							/>
 						))}
 					</Carousel.ItemsContainer>

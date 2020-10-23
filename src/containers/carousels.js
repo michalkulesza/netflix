@@ -12,16 +12,14 @@ const CarouselsContainer = ({ data, noMargin }) => {
 			<Carousels biggerMargin={selectedGenre} noMargin={noMargin}>
 				{data.map((category, i) => {
 					const categoryName = category && Object.keys(category)[0];
-					const title =
-						categoryName &&
-						categoryName
-							.split("_")
-							.map(word => word.charAt(0).toUpperCase() + word.slice(1))
-							.join(" ");
+					const title = categoryName
+						?.split("_")
+						.map(word => word.charAt(0).toUpperCase() + word.slice(1))
+						.join(" ");
 
 					return (
 						<LazyLoad height={200} key={category.id}>
-							<CarouselContainer title={title} i={i} data={category[categoryName]} />
+							<CarouselContainer title={title} parentID={i} data={category[categoryName]} />
 						</LazyLoad>
 					);
 				})}
