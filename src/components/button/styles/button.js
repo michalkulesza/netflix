@@ -25,6 +25,7 @@ export const Square = styled.button`
 	margin-right: ${({ marginRight = "4%" }) => marginRight};
 
 	svg {
+		pointer-events: none;
 		margin-right: 0.5em;
 		transform: ${({ iconScale = 1 }) => `scale(${iconScale})`};
 		fill: ${({ dark }) => (dark ? "#000" : "#fff")};
@@ -99,6 +100,7 @@ export const Round = styled.button`
 	}
 
 	svg {
+		pointer-events: none;
 		fill: ${({ inverted }) => (inverted ? "#232323" : "#fff")};
 		transform: ${({ inverted }) => (inverted ? "scale(1.5)" : "scale(1.2)")};
 
