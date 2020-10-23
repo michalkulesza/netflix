@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setIsDetails, setIsExpanded, setGlobalMute } from "../redux/actions/toggles";
+import { setIsDetails, setGlobalMute } from "../redux/actions/toggles";
 import { setDetailsPosition } from "../redux/actions/misc";
 import { fetchDetailsMovie, fetchDetailsTv } from "../redux/actions/fetch-details";
 import LazyLoad from "react-lazyload";
@@ -20,20 +20,11 @@ const ItemExpandedContainer = ({ isVisible, showVideo, position, item, videoFile
 	const [itemCache, setItemCache] = useState(false);
 	const [shouldRender, setShouldRender] = useState(false);
 	const { globalMute } = useSelector(state => state.toggles);
-	const { isExpanded } = useSelector(state => state.toggles);
 
 	useEffect(() => {
 		if (item && !itemCache) setItemCache(item);
 		if (item && !shouldRender && isVisible) setShouldRender(true);
 	}, [item, itemCache, shouldRender, isVisible]);
-
-	useEffect(() => {
-		if (!isVisible && isExpanded) {
-			dispatch(setIsExpanded(false));
-			setIsPlaceholder(true);
-			videoPlayerRef.current && videoPlayerRef.current.pause();
-		}
-	}, [isVisible, dispatch, isExpanded]);
 
 	useEffect(() => {
 		if (showVideo) {
@@ -48,9 +39,10 @@ const ItemExpandedContainer = ({ isVisible, showVideo, position, item, videoFile
 	}, [showVideo, videoEnded, videoCanPlay]);
 
 	const handleOnAnimationEnd = () => {
-		console.log("isVisible", isVisible);
-		console.log("shouldRender", shouldRender);
-		if (!isVisible) setShouldRender(false);
+		if (!isVisible) {
+			setShouldRender(false);
+			setIsPlaceholder(true);
+		}
 	};
 
 	const handleClickMoreDetails = ({ currentTarget }) => {

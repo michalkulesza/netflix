@@ -4,10 +4,10 @@ import { Item } from "../components";
 import { ItemExpandedContainer } from "../containers/";
 import { markItemsPosition } from "../helpers/markItemsPosition";
 import { setIsExpanded } from "../redux/actions/toggles";
+import { clearActiveExpanded, setActiveExpanded } from "../redux/actions/misc";
 import { useConvertPxToVw, useOnClickOutside } from "../hooks";
 
 import placeholder from "../res/images/placeholder_h.jpg";
-import { clearActiveExpanded, setActiveExpanded } from "../redux/actions/misc";
 
 let hoverTimer;
 let videoTimer;
