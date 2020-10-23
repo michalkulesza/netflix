@@ -1,4 +1,11 @@
-import { SET_PRESSED_KEY, SET_HEADER_VIDEO, SET_DETAILS_POSITION, SET_SCROLLBAR_WIDTH } from "../types";
+import {
+	SET_PRESSED_KEY,
+	SET_HEADER_VIDEO,
+	SET_DETAILS_POSITION,
+	SET_SCROLLBAR_WIDTH,
+	SET_ACTIVE_EXPANDED,
+	CLEAR_ACTIVE_EXPANDED,
+} from "../types";
 
 export const setPressedKey = key => {
 	return {
@@ -25,5 +32,18 @@ export const setScrollbarWidth = width => {
 	return {
 		type: SET_SCROLLBAR_WIDTH,
 		payload: width,
+	};
+};
+
+export const setActiveExpanded = (parent, item) => {
+	return {
+		type: SET_ACTIVE_EXPANDED,
+		payload: { parent, item },
+	};
+};
+
+export const clearActiveExpanded = () => {
+	return {
+		type: CLEAR_ACTIVE_EXPANDED,
 	};
 };
