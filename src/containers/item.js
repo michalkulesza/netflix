@@ -59,15 +59,13 @@ const ItemContainer = ({ item, i, parentID, isFirstSlide, totalTilesInVievport, 
 			{item.poster_path_300 && <Item src={item.poster_path_300} alt="Poster" style={{ position: "absolute" }} />}
 
 			<Item src={placeholder} alt="Poster" />
-			{isExpandedVisible ? (
-				<ItemExpandedContainer
-					isVisible={isExpandedVisible}
-					showVideo={showVideo}
-					position={auxPosition ? auxPosition : position}
-					item={item}
-					videoFile={headerVideo?.src}
-				/>
-			) : null}
+			<ItemExpandedContainer
+				isVisible={isExpandedVisible}
+				showVideo={showVideo}
+				position={auxPosition ? auxPosition : position}
+				item={item}
+				videoFile={headerVideo?.src}
+			/>
 		</Item.Wrapper>
 	) : null;
 };

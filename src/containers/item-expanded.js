@@ -17,8 +17,15 @@ const ItemExpandedContainer = ({ isVisible, showVideo, position, item, videoFile
 	const [isPlaceholder, setIsPlaceholder] = useState(true);
 	const [videoCanPlay, setVideoCanPlay] = useState(false);
 	const [videoEnded, setVideoEnded] = useState(false);
+	const [itemCache, setItemCache] = useState(false);
+	const [shouldRender, setShouldRender] = useState(false);
 	const { globalMute } = useSelector(state => state.toggles);
 	const { isExpanded } = useSelector(state => state.toggles);
+
+	useEffect(() => {
+		if (item && !itemCache) setItemCache(item);
+		if (item && !shouldRender && isVisible) setShouldRender(true);
+	}, [item, itemCache, shouldRender, isVisible]);
 
 	useEffect(() => {
 		if (!isVisible && isExpanded) {
@@ -40,6 +47,12 @@ const ItemExpandedContainer = ({ isVisible, showVideo, position, item, videoFile
 		}
 	}, [showVideo, videoEnded, videoCanPlay]);
 
+	const handleOnAnimationEnd = () => {
+		console.log("isVisible", isVisible);
+		console.log("shouldRender", shouldRender);
+		if (!isVisible) setShouldRender(false);
+	};
+
 	const handleClickMoreDetails = ({ currentTarget }) => {
 		const elemPos = currentTarget.parentNode.parentNode.parentNode.parentNode.getBoundingClientRect();
 		dispatch(setDetailsPosition(elemPos.x, elemPos.y, elemPos.width, elemPos.height));
@@ -47,7 +60,9 @@ const ItemExpandedContainer = ({ isVisible, showVideo, position, item, videoFile
 	};
 
 	const handleMouseEnter = () =>
-		item.media_type === "movie" ? dispatch(fetchDetailsMovie(item.id)) : dispatch(fetchDetailsTv(item.id));
+		itemCache.media_type === "movie"
+			? dispatch(fetchDetailsMovie(itemCache.id))
+			: dispatch(fetchDetailsTv(itemCache.id));
 
 	const handleMuteClick = () => dispatch(setGlobalMute(!globalMute));
 
@@ -56,75 +71,85 @@ const ItemExpandedContainer = ({ isVisible, showVideo, position, item, videoFile
 	const handleVideoEnded = () => setVideoEnded(true);
 
 	return (
-		item && (
-			<ItemExpanded isVisible={isVisible} position={position} onMouseEnter={handleMouseEnter} ref={containerRef}>
-				<ItemExpanded.Header>
-					<ItemExpanded.Placeholder
-						src={
-							item.backdrop_path_500
-								? item.backdrop_path_500
-								: item.poster_path_500
-								? item.poster_path_500
-								: placeholder
-						}
-						alt="Poster"
-						isPlaceholder={isPlaceholder}
-					/>
-					<ItemExpanded.Overlay>
-						<Button.Round onMouseDown={handleMuteClick} marginRight={"0"}>
-							{globalMute ? <GiSpeakerOff /> : <GiSpeaker />}
-						</Button.Round>
-					</ItemExpanded.Overlay>
-					<LazyLoad>
-						<ItemExpanded.Video
-							src={videoFile}
-							muted={globalMute}
-							ref={videoPlayerRef}
-							onCanPlayThrough={handleVideoCanPlayThrough}
-							onEnded={handleVideoEnded}
-						/>
-					</LazyLoad>
-				</ItemExpanded.Header>
-				<ItemExpanded.Main>
-					<ItemExpanded.Buttons>
-						<ItemExpanded.Half>
-							<Button.Round inverted>
-								<BiPlay />
-							</Button.Round>
-							<Button.Round label="Add to My List">
-								<BiPlus />
-							</Button.Round>
-							<Button.Round label="I like this">
-								<BiLike />
-							</Button.Round>
-							<Button.Round label="Not for me">
-								<BiDislike />
-							</Button.Round>
-						</ItemExpanded.Half>
-						<ItemExpanded.Half>
-							<Button.Round
-								label={item.media_type === "movie" ? "More info" : "Episodes & Info"}
-								onMouseDown={e => handleClickMoreDetails(e)}
-							>
-								<BiChevronDown />
-							</Button.Round>
-						</ItemExpanded.Half>
-					</ItemExpanded.Buttons>
-					<ItemExpanded.Info>
-						<p>96% Match</p>
-						<span>{`12 `}</span>
-						{item.media_type === "movie" ? "1h 40m" : "3 Seasons"}
-					</ItemExpanded.Info>
-					<ItemExpanded.GenreWrapper>
-						{item.genre_ids &&
-							item.genre_ids.slice(0, 2).map((genre, i) => (
-								<ItemExpanded.Genre key={i}>
-									{genre}
-									{i !== item.genre_ids.slice(0, 2).length - 1 && <span>•</span>}
-								</ItemExpanded.Genre>
-							))}
-					</ItemExpanded.GenreWrapper>
-				</ItemExpanded.Main>
+		itemCache && (
+			<ItemExpanded
+				isVisible={isVisible}
+				position={position}
+				onMouseEnter={handleMouseEnter}
+				onTransitionEnd={handleOnAnimationEnd}
+				ref={containerRef}
+			>
+				{shouldRender && (
+					<>
+						<ItemExpanded.Header>
+							<ItemExpanded.Placeholder
+								src={
+									itemCache.backdrop_path_500
+										? itemCache.backdrop_path_500
+										: itemCache.poster_path_500
+										? itemCache.poster_path_500
+										: placeholder
+								}
+								alt="Poster"
+								isPlaceholder={isPlaceholder}
+							/>
+							<ItemExpanded.Overlay>
+								<Button.Round onMouseDown={handleMuteClick} marginRight={"0"}>
+									{globalMute ? <GiSpeakerOff /> : <GiSpeaker />}
+								</Button.Round>
+							</ItemExpanded.Overlay>
+							<LazyLoad>
+								<ItemExpanded.Video
+									src={videoFile}
+									muted={globalMute}
+									ref={videoPlayerRef}
+									onCanPlayThrough={handleVideoCanPlayThrough}
+									onEnded={handleVideoEnded}
+								/>
+							</LazyLoad>
+						</ItemExpanded.Header>
+						<ItemExpanded.Main>
+							<ItemExpanded.Buttons>
+								<ItemExpanded.Half>
+									<Button.Round inverted>
+										<BiPlay />
+									</Button.Round>
+									<Button.Round label="Add to My List">
+										<BiPlus />
+									</Button.Round>
+									<Button.Round label="I like this">
+										<BiLike />
+									</Button.Round>
+									<Button.Round label="Not for me">
+										<BiDislike />
+									</Button.Round>
+								</ItemExpanded.Half>
+								<ItemExpanded.Half>
+									<Button.Round
+										label={itemCache.media_type === "movie" ? "More info" : "Episodes & Info"}
+										onMouseDown={e => handleClickMoreDetails(e)}
+									>
+										<BiChevronDown />
+									</Button.Round>
+								</ItemExpanded.Half>
+							</ItemExpanded.Buttons>
+							<ItemExpanded.Info>
+								<p>96% Match</p>
+								<span>{`12 `}</span>
+								{itemCache.media_type === "movie" ? "1h 40m" : "3 Seasons"}
+							</ItemExpanded.Info>
+							<ItemExpanded.GenreWrapper>
+								{itemCache.genre_ids &&
+									itemCache.genre_ids.slice(0, 2).map((genre, i) => (
+										<ItemExpanded.Genre key={i}>
+											{genre}
+											{i !== itemCache.genre_ids.slice(0, 2).length - 1 && <span>•</span>}
+										</ItemExpanded.Genre>
+									))}
+							</ItemExpanded.GenreWrapper>
+						</ItemExpanded.Main>
+					</>
+				)}
 			</ItemExpanded>
 		)
 	);

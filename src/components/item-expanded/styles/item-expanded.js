@@ -12,7 +12,7 @@ export const Item = styled.div`
 	transform-origin: ${({ position }) => (position === "first" ? "left" : position === "last" ? "right" : "center")};
 	pointer-events: ${({ position }) => (position === "outside" ? "none" : "all")};
 	opacity: ${({ isVisible }) => (isVisible ? `1` : `0`)};
-	transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
+	transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
 	border-radius: 3px;
 	background-color: #181818;
 	pointer-events: ${({ isVisible }) => (isVisible ? `all` : `none`)};
