@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Item } from "../components";
 import { ItemExpandedContainer } from "../containers/";
@@ -17,9 +17,13 @@ const ItemContainer = ({ item, i, parentID, isFirstSlide, totalTilesInVievport, 
 	const position = markItemsPosition(i, isFirstSlide, totalTilesInVievport);
 	const [isExpandedVisible, setIsExpandedVisible] = useState(false);
 	const [showVideo, setShowVideo] = useState(false);
-	const { scrollbarWidth: scrollbarWidthPx } = useSelector(state => state.misc);
-	const { headerVideo, activeExpanded } = useSelector(state => state.misc);
+	const { scrollbarWidth: scrollbarWidthPx, headerVideo, activeExpanded } = useSelector(state => state.misc);
+	const { isDetails } = useSelector(state => state.toggles);
 	const scrollbarWidth = useConvertPxToVw(scrollbarWidthPx);
+
+	useEffect(() => {
+		if (isDetails) setIsExpandedVisible(false);
+	}, [isDetails]);
 
 	useOnClickOutside(itemRef, () => {
 		if (activeExpanded?.parent === parentID && activeExpanded?.item === i) {
@@ -46,8 +50,8 @@ const ItemContainer = ({ item, i, parentID, isFirstSlide, totalTilesInVievport, 
 	return item ? (
 		<Item.Wrapper
 			key={item.id}
-			onMouseEnter={e => handleMouseEnter(e)}
-			onMouseLeave={e => handleMouseLeave(e)}
+			onMouseEnter={handleMouseEnter}
+			onMouseLeave={handleMouseLeave}
 			grid={grid}
 			scrollbarWidth={scrollbarWidth}
 			ref={itemRef}
