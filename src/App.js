@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
-import { HOME, SIGN_IN, SIGN_UP, BROWSE, SERIES, FILMS, LATEST, MYLIST } from "./constants/routes";
+import { HOME, SIGN_IN, SIGN_UP, BROWSE, SERIES, FILMS, LATEST, MYLIST, WATCH } from "./constants/routes";
 import { useLocation, Route, Switch, useHistory } from "react-router-dom";
-import { Home, SignIn, SignUp, Browse, Latest, MyList, Page404 } from "./pages";
+import { Home, SignIn, SignUp, Browse, Latest, MyList, Page404, Watch } from "./pages";
 import { IfUserRedirect, ProtectedRoute } from "./helpers/protectedRoutes";
 import { useAuthListener, useFetchInitData, useKeyDownListener } from "./hooks/";
 import { ErrorNotificationContainer } from "./containers";
@@ -51,6 +51,9 @@ const App = () => {
 				<ProtectedRoute exact path={MYLIST} user={user}>
 					<MyList />
 				</ProtectedRoute>
+				<Route path={WATCH}>
+					<Watch></Watch>
+				</Route>
 				<Route>
 					<Page404 />
 				</Route>

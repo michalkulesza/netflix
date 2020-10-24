@@ -3,9 +3,8 @@ import {
 	SET_HEADER_VIDEO,
 	SET_DETAILS_POSITION,
 	SET_SCROLLBAR_WIDTH,
-	SET_EXPANDED_POSITION,
-	CLEAR_EXPANDED_POSITION,
-	SET_EXPANDED_TRANSFORM_ORIGIN,
+	SET_ACTIVE_EXPANDED,
+	CLEAR_ACTIVE_EXPANDED,
 } from "../types";
 
 export const setPressedKey = key => {
@@ -36,22 +35,15 @@ export const setScrollbarWidth = width => {
 	};
 };
 
-export const setExpandedPosition = ({ x, y, width, height }) => {
+export const setActiveExpanded = (parent, item) => {
 	return {
-		type: SET_EXPANDED_POSITION,
-		payload: { x, y, width, height },
+		type: SET_ACTIVE_EXPANDED,
+		payload: { parent, item },
 	};
 };
 
-export const clearExpandedPosition = () => {
+export const clearActiveExpanded = () => {
 	return {
-		type: CLEAR_EXPANDED_POSITION,
-	};
-};
-
-export const setExpandedTranformOrigin = origin => {
-	return {
-		type: SET_EXPANDED_TRANSFORM_ORIGIN,
-		payload: origin,
+		type: CLEAR_ACTIVE_EXPANDED,
 	};
 };

@@ -12,7 +12,13 @@ Item.Container = ({ children, ...restProps }) => {
 
 Item.Wrapper = forwardRef((props, ref) => {
 	return (
-		<Wrapper ref={ref} onMouseDown={props.onMouseDown} grid={props.grid} scrollbarWidth={props.scrollbarWidth}>
+		<Wrapper
+			onMouseEnter={props.onMouseEnter}
+			onMouseLeave={props.onMouseLeave}
+			grid={props.grid}
+			scrollbarWidth={props.scrollbarWidth}
+			ref={ref}
+		>
 			{props.children}
 		</Wrapper>
 	);

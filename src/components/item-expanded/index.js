@@ -12,16 +12,16 @@ import {
 	Info,
 	Genre,
 	GenreWrapper,
+	Loading,
 } from "./styles/item-expanded";
 
 const ItemExpanded = forwardRef((props, ref) => {
 	return (
 		<Item
-			position={props.position}
-			transformOrigin={props.transformOrigin}
-			onMouseEnter={props.onMouseEnter}
-			offset={props.offset}
 			isVisible={props.isVisible}
+			position={props.position}
+			onTransitionEnd={props.onTransitionEnd}
+			onMouseEnter={props.onMouseEnter}
 			ref={ref}
 		>
 			{props.children}
@@ -76,6 +76,10 @@ ItemExpanded.Genre = ({ children, ...restProps }) => {
 
 ItemExpanded.GenreWrapper = ({ children, ...restProps }) => {
 	return <GenreWrapper {...restProps}>{children}</GenreWrapper>;
+};
+
+ItemExpanded.Loading = ({ children, ...restProps }) => {
+	return <Loading {...restProps}>{children}</Loading>;
 };
 
 export default ItemExpanded;

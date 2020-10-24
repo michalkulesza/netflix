@@ -14,3 +14,4 @@ export { default as DetailsHeaderContainer } from "./details/details-header";
 export { default as DetailsInfoContainer } from "./details/details-info";
 export { default as DetailsRelatedContainer } from "./details/details-related";
 export { default as ErrorNotificationContainer } from "./error-notification";
+export { default as PlayerContainer } from "./player";

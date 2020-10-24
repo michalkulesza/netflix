@@ -18,3 +18,4 @@ export { default as DetailsInfo } from "./details/details-info";
 export { default as DetailsRelated } from "./details/details-related";
 export { default as NotFound404 } from "./not-found-404";
 export { default as Grid } from "./grid";
+export { default as Player } from "./player";

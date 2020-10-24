@@ -7,3 +7,4 @@ export { default as Films } from "./browse";
 export { default as Latest } from "./latest";
 export { default as MyList } from "./my-list";
 export { default as Page404 } from "./page404";
+export { default as Watch } from "./watch";

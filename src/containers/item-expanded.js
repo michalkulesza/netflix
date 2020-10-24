@@ -1,42 +1,54 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setIsDetails, setIsExpanded, setGlobalMute } from "../redux/actions/toggles";
-import { clearExpandedPosition, setDetailsPosition } from "../redux/actions/misc";
+import { setIsDetails, setGlobalMute } from "../redux/actions/toggles";
+import { setDetailsPosition } from "../redux/actions/misc";
 import { ItemExpanded, Button } from "../components";
+import LazyLoad from "react-lazyload";
 
 import { BiPlay, BiPlus, BiLike, BiDislike, BiChevronDown } from "react-icons/bi";
 import { GiSpeaker, GiSpeakerOff } from "react-icons/gi";
-import placeholder from "../res/images/placeholder_h.jpg";
-import { useClickOutside } from "../hooks";
+import placeholder from "../res/images/placeholder_w.jpg";
 
-const ItemExpandedContainer = () => {
+const ItemExpandedContainer = ({ isVisible, showVideo, position, videoFile }) => {
 	const dispatch = useDispatch();
 	const videoPlayerRef = useRef(null);
-	const expandedRef = useRef(null);
+	const containerRef = useRef(null);
 	const [isPlaceholder, setIsPlaceholder] = useState(true);
 	const [videoCanPlay, setVideoCanPlay] = useState(false);
 	const [videoEnded, setVideoEnded] = useState(false);
-	const { globalMute, isExpanded } = useSelector(state => state.toggles);
-	const { expandedPosition: position, headerVideo, expandedTransformOrigin } = useSelector(state => state.misc);
-	const data = useSelector(state => state.fetchDetails);
-
-	useClickOutside(expandedRef, () => dispatch(clearExpandedPosition()));
+	const [itemCache, setItemCache] = useState(null);
+	const [shouldRender, setShouldRender] = useState(false);
+	const { globalMute } = useSelector(state => state.toggles);
+	const item = useSelector(state => state.fetchDetails?.details);
+	const ageRestriction = useSelector(state => state.fetchDetails?.ageRestriction);
 
 	useEffect(() => {
-		if (!position && isExpanded) {
-			dispatch(setIsExpanded(false));
+		setItemCache(null);
+	}, []);
+
+	useEffect(() => {
+		if (item && !itemCache) setItemCache(item);
+		if (item && !shouldRender && isVisible) setShouldRender(true);
+	}, [item, itemCache, shouldRender, isVisible]);
+
+	useEffect(() => {
+		if (showVideo) {
+			if (!videoEnded && videoPlayerRef.current && videoCanPlay) {
+				setIsPlaceholder(false);
+				videoPlayerRef.current.volume = 0.4;
+				videoPlayerRef.current.play();
+			} else {
+				setIsPlaceholder(true);
+			}
 		}
-	}, [position, dispatch, isExpanded]);
+	}, [showVideo, videoEnded, videoCanPlay]);
 
-	useEffect(() => {
-		if (!videoEnded && videoPlayerRef.current && videoCanPlay) {
-			setIsPlaceholder(false);
-			videoPlayerRef.current.volume = 0.4;
-			videoPlayerRef.current.play();
-		} else {
+	const handleOnAnimationEnd = () => {
+		if (!isVisible) {
+			setShouldRender(false);
 			setIsPlaceholder(true);
 		}
-	}, [videoEnded, videoCanPlay]);
+	};
 
 	const handleClickMoreDetails = ({ currentTarget }) => {
 		const elemPos = currentTarget.parentNode.parentNode.parentNode.parentNode.getBoundingClientRect();
@@ -44,93 +56,102 @@ const ItemExpandedContainer = () => {
 		dispatch(setIsDetails(true));
 	};
 
-	const handleMouseEnter = () => {};
-	// item.media_type === "movie" ? dispatch(fetchDetailsMovie(item.id)) : dispatch(fetchDetailsTv(item.id));
-
 	const handleMuteClick = () => dispatch(setGlobalMute(!globalMute));
 
 	const handleVideoCanPlayThrough = () => setVideoCanPlay(true);
 
 	const handleVideoEnded = () => setVideoEnded(true);
 
-	return data && position ? (
-		<ItemExpanded
-			position={position}
-			transformOrigin={expandedTransformOrigin}
-			onMouseEnter={handleMouseEnter}
-			isVisible={data}
-			offset={window.pageYOffset}
-			ref={expandedRef}
-		>
-			<ItemExpanded.Header>
-				<ItemExpanded.Placeholder
-					src={
-						data.details.backdrop_path_500
-							? data.details.backdrop_path_500
-							: data.details.poster_path_500
-							? data.details.poster_path_500
-							: placeholder
-					}
-					alt="Poster"
-					isPlaceholder={isPlaceholder}
-				/>
-				<ItemExpanded.Overlay>
-					<Button.Round onMouseDown={handleMuteClick} marginRight={"0"}>
-						{globalMute ? <GiSpeakerOff /> : <GiSpeaker />}
-					</Button.Round>
-				</ItemExpanded.Overlay>
-				<ItemExpanded.Video
-					src={headerVideo.src}
-					muted={globalMute}
-					ref={videoPlayerRef}
-					onCanPlayThrough={handleVideoCanPlayThrough}
-					onEnded={handleVideoEnded}
-				/>
-			</ItemExpanded.Header>
-			<ItemExpanded.Main>
-				<ItemExpanded.Buttons>
-					<ItemExpanded.Half>
-						<Button.Round inverted>
-							<BiPlay />
-						</Button.Round>
-						<Button.Round label="Add to My List">
-							<BiPlus />
-						</Button.Round>
-						<Button.Round label="I like this">
-							<BiLike />
-						</Button.Round>
-						<Button.Round label="Not for me">
-							<BiDislike />
-						</Button.Round>
-					</ItemExpanded.Half>
-					<ItemExpanded.Half>
-						<Button.Round
-							label={data.details.runtime ? "More info" : "Episodes & Info"}
-							onMouseDown={e => handleClickMoreDetails(e)}
-						>
-							<BiChevronDown />
-						</Button.Round>
-					</ItemExpanded.Half>
-				</ItemExpanded.Buttons>
-				<ItemExpanded.Info>
-					<p>96% Match</p>
-					<span>{`12 `}</span>
-					{data.details.runtime
-						? `${data.details.runtime}min`
-						: data.details.number_of_seasons
-						? `${data.details.number_of_seasons}${data.details.number_of_seasons === 1 ? " Season" : " Seasons"}`
-						: null}
-				</ItemExpanded.Info>
-				<ItemExpanded.GenreWrapper>
-					{data.details.genres?.slice(0, 2).map((genre, i) => (
-						<ItemExpanded.Genre key={i}>
-							{genre.name}
-							{i !== data.details.genres.slice(0, 2).length - 1 && <span>•</span>}
-						</ItemExpanded.Genre>
-					))}
-				</ItemExpanded.GenreWrapper>
-			</ItemExpanded.Main>
+	return (
+		<ItemExpanded isVisible={isVisible} position={position} onTransitionEnd={handleOnAnimationEnd} ref={containerRef}>
+			{shouldRender && itemCache ? (
+				<>
+					<ItemExpanded.Header>
+						<ItemExpanded.Placeholder
+							src={
+								itemCache.backdrop_path_500
+									? itemCache.backdrop_path_500
+									: itemCache.poster_path_500
+									? itemCache.poster_path_500
+									: placeholder
+							}
+							alt="Poster"
+							isPlaceholder={isPlaceholder}
+						/>
+						<ItemExpanded.Overlay>
+							<Button.Round onMouseDown={handleMuteClick} marginRight={"0"}>
+								{globalMute ? <GiSpeakerOff /> : <GiSpeaker />}
+							</Button.Round>
+						</ItemExpanded.Overlay>
+						<LazyLoad>
+							<ItemExpanded.Video
+								src={videoFile}
+								muted={globalMute}
+								ref={videoPlayerRef}
+								onCanPlayThrough={handleVideoCanPlayThrough}
+								onEnded={handleVideoEnded}
+							/>
+						</LazyLoad>
+					</ItemExpanded.Header>
+					<ItemExpanded.Main>
+						<ItemExpanded.Buttons>
+							<ItemExpanded.Half>
+								<Button.Round inverted>
+									<BiPlay />
+								</Button.Round>
+								<Button.Round label="Add to My List">
+									<BiPlus />
+								</Button.Round>
+								<Button.Round label="I like this">
+									<BiLike />
+								</Button.Round>
+								<Button.Round label="Not for me">
+									<BiDislike />
+								</Button.Round>
+							</ItemExpanded.Half>
+							<ItemExpanded.Half>
+								<Button.Round
+									label={itemCache.media_type === "movie" ? "More info" : "Episodes & Info"}
+									onMouseDown={e => handleClickMoreDetails(e)}
+								>
+									<BiChevronDown />
+								</Button.Round>
+							</ItemExpanded.Half>
+						</ItemExpanded.Buttons>
+						<ItemExpanded.Info>
+							<p>96% Match</p>
+							<span>{`${ageRestriction} `}</span>
+							{itemCache?.media_type === "movie"
+								? `${itemCache?.runtime}m`
+								: `${itemCache?.number_of_seasons} ${itemCache?.number_of_seasons > 1 ? "Seasons" : "Season"}`}
+						</ItemExpanded.Info>
+						<ItemExpanded.GenreWrapper>
+							{itemCache.genre_ids &&
+								itemCache.genre_ids.slice(0, 2).map((genre, i) => (
+									<ItemExpanded.Genre key={i}>
+										{genre}
+										{i !== itemCache.genre_ids.slice(0, 2).length - 1 && <span>•</span>}
+									</ItemExpanded.Genre>
+								))}
+						</ItemExpanded.GenreWrapper>
+					</ItemExpanded.Main>
+				</>
+			) : (
+				<>
+					<ItemExpanded.Header>
+						<ItemExpanded.Loading />
+					</ItemExpanded.Header>
+					<ItemExpanded.Main>
+						<ItemExpanded.Buttons></ItemExpanded.Buttons>
+						<ItemExpanded.Half>
+							<Button.Round isLoading></Button.Round>
+							<Button.Round isLoading></Button.Round>
+						</ItemExpanded.Half>
+					</ItemExpanded.Main>
+				</>
+			)}
 		</ItemExpanded>
-	) : null;
+	);
 };
+
 export default ItemExpandedContainer;

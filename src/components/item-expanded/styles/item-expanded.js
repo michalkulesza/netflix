@@ -1,37 +1,25 @@
 import styled from "styled-components/macro";
-import { expandedAnimIn, expandedAnimInLeft, expandedAnimInRight } from "../../../styles/animations";
+import { LoadingBackgroundAnimation } from "../../../styles/animations";
+
 
 export const Item = styled.div`
-	top: ${({ position, offset }) => position && `${position.y + position.height / 2 + offset}px`};
-	left: ${({ position, transformOrigin }) =>
-		transformOrigin === "left"
-			? `${position.x}px`
-			: transformOrigin === "right"
-			? `${position.x + position.width}px`
-			: `${position.x + position.width / 2}px`};
-	transform: ${({ transformOrigin }) =>
-		transformOrigin === "left"
-			? "translate3d(0%, -50%, 0) scale(1)"
-			: transformOrigin === "right"
-			? "translate3d(-100%, -50%, 0) scale(1)"
-			: "translate3d(-50%, -50%, 0) scale(1)"};
-	transform-origin: ${({ transformOrigin }) =>
-		transformOrigin === "left" ? "left" : transformOrigin === "right" ? "right" : "center"};
-	position: absolute;
-	min-height: ${({ position }) => position && `${position.width * 1.7 * 0.5625}px`};
-	width: ${({ position }) => position && `${position.width * 1.7}px`};
-	z-index: 99;
-	overflow: hidden;
-	cursor: default;
+position: absolute;
+	z-index: 20;
+	left: ${({ position }) => (position === "first" ? "0" : position === "middle" ? "50%" : "")};
+	right: ${({ position }) => position === "last" && "0"};
+	min-height: 60%;
+	width: 170%;
+	transform: ${({ isVisible, position }) =>
+		`translateX(${position === "middle" ? "-50%" : "0"}) ${isVisible ? "scale(1)" : "scale(.7)"}`};
+	transform-origin: ${({ position }) => (position === "first" ? "left" : position === "last" ? "right" : "center")};
+	pointer-events: ${({ position }) => (position === "outside" ? "none" : "all")};
+	opacity: ${({ isVisible }) => (isVisible ? `1` : `0`)};
+	transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
 	border-radius: 3px;
 	background-color: #181818;
+	pointer-events: ${({ isVisible }) => (isVisible ? `all` : `none`)};
 	box-shadow: rgba(0, 0, 0, 0.75) 0px 3px 10px;
-	animation: ${({ transformOrigin }) =>
-		transformOrigin === "left"
-			? expandedAnimInLeft
-			: transformOrigin === "right"
-			? expandedAnimInRight
-			: expandedAnimIn};
+	cursor: default;
 `;
 
 export const Header = styled.div`
@@ -45,11 +33,12 @@ export const Header = styled.div`
 
 export const Placeholder = styled.img`
 	position: absolute;
-	top: 0;
+	top: 50%;
 	left: 0;
 	object-fit: cover;
 	max-width: calc(100% - 1px);
 	opacity: ${({ isPlaceholder }) => (isPlaceholder ? "1" : "0")};
+	transform: translateY(-50%);
 	transition: opacity 1s ease-in-out;
 	z-index: 2;
 	pointer-events: none;
@@ -123,4 +112,21 @@ export const Genre = styled.div`
 	span {
 		margin: 0 0.5em;
 	}
+`;
+
+export const Loading = styled.div`
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	background: linear-gradient(
+		90deg,
+		rgba(18, 18, 18, 1) 0%,
+		rgba(27, 27, 27, 1) 39%,
+		rgba(40, 40, 40, 1) 50%,
+		rgba(27, 27, 27, 1) 55%,
+		rgba(18, 18, 18, 1) 100%
+	);
+	animation: ${LoadingBackgroundAnimation} 15s linear infinite;
 `;

@@ -3,18 +3,16 @@ import {
 	SET_PRESSED_KEY,
 	SET_DETAILS_POSITION,
 	SET_SCROLLBAR_WIDTH,
-	SET_EXPANDED_POSITION,
-	CLEAR_EXPANDED_POSITION,
-	SET_EXPANDED_TRANSFORM_ORIGIN,
+	SET_ACTIVE_EXPANDED,
+	CLEAR_ACTIVE_EXPANDED,
 } from "../types";
 
 const initState = {
 	headerVideo: null,
 	pressedKey: null,
 	detailsPosition: null,
-	expandedPosition: null,
-	expandedTransformOrigin: "center",
 	scrollbarWidth: null,
+	activeExpanded: null,
 };
 
 const misc = (state = initState, action) => {
@@ -25,14 +23,12 @@ const misc = (state = initState, action) => {
 			return { ...state, pressedKey: action.payload };
 		case SET_DETAILS_POSITION:
 			return { ...state, detailsPosition: action.payload };
-		case SET_EXPANDED_POSITION:
-			return { ...state, expandedPosition: action.payload };
 		case SET_SCROLLBAR_WIDTH:
 			return { ...state, scrollbarWidth: action.payload };
-		case SET_EXPANDED_TRANSFORM_ORIGIN:
-			return { ...state, expandedTransformOrigin: action.payload };
-		case CLEAR_EXPANDED_POSITION:
-			return { ...state, expandedPosition: null };
+		case SET_ACTIVE_EXPANDED:
+			return { ...state, activeExpanded: action.payload };
+		case CLEAR_ACTIVE_EXPANDED:
+			return { ...state, activeExpanded: null };
 		default:
 			return state;
 	}
