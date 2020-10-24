@@ -7,6 +7,7 @@ import { clearActiveExpanded, setActiveExpanded } from "../redux/actions/misc";
 import { useConvertPxToVw, useOnClickOutside } from "../hooks";
 
 import placeholder from "../res/images/placeholder_h.jpg";
+import { fetchDetailsMovie, fetchDetailsTv } from "../redux/actions/fetch-details";
 
 let hoverTimer;
 let videoTimer;
@@ -32,6 +33,7 @@ const ItemContainer = ({ item, i, parentID, isFirstSlide, totalTilesInVievport, 
 	});
 
 	const handleMouseEnter = e => {
+		item.media_type === "movie" ? dispatch(fetchDetailsMovie(item.id)) : dispatch(fetchDetailsTv(item.id));
 		hoverTimer = setTimeout(() => {
 			setIsExpandedVisible(true);
 			dispatch(setActiveExpanded(parentID, i));
@@ -63,7 +65,6 @@ const ItemContainer = ({ item, i, parentID, isFirstSlide, totalTilesInVievport, 
 				isVisible={isExpandedVisible}
 				showVideo={showVideo}
 				position={auxPosition ? auxPosition : position}
-				item={item}
 				videoFile={headerVideo?.src}
 			/>
 		</Item.Wrapper>

@@ -2,24 +2,29 @@ import React, { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setIsDetails, setGlobalMute } from "../redux/actions/toggles";
 import { setDetailsPosition } from "../redux/actions/misc";
-import { fetchDetailsMovie, fetchDetailsTv } from "../redux/actions/fetch-details";
-import LazyLoad from "react-lazyload";
 import { ItemExpanded, Button } from "../components";
+import LazyLoad from "react-lazyload";
 
 import { BiPlay, BiPlus, BiLike, BiDislike, BiChevronDown } from "react-icons/bi";
 import { GiSpeaker, GiSpeakerOff } from "react-icons/gi";
 import placeholder from "../res/images/placeholder_w.jpg";
 
-const ItemExpandedContainer = ({ isVisible, showVideo, position, item, videoFile }) => {
+const ItemExpandedContainer = ({ isVisible, showVideo, position, videoFile }) => {
 	const dispatch = useDispatch();
 	const videoPlayerRef = useRef(null);
 	const containerRef = useRef(null);
 	const [isPlaceholder, setIsPlaceholder] = useState(true);
 	const [videoCanPlay, setVideoCanPlay] = useState(false);
 	const [videoEnded, setVideoEnded] = useState(false);
-	const [itemCache, setItemCache] = useState(false);
+	const [itemCache, setItemCache] = useState(null);
 	const [shouldRender, setShouldRender] = useState(false);
 	const { globalMute } = useSelector(state => state.toggles);
+	const item = useSelector(state => state.fetchDetails?.details);
+	const ageRestriction = useSelector(state => state.fetchDetails?.ageRestriction);
+
+	useEffect(() => {
+		setItemCache(null);
+	}, []);
 
 	useEffect(() => {
 		if (item && !itemCache) setItemCache(item);
@@ -51,11 +56,6 @@ const ItemExpandedContainer = ({ isVisible, showVideo, position, item, videoFile
 		dispatch(setIsDetails(true));
 	};
 
-	const handleMouseEnter = () =>
-		itemCache.media_type === "movie"
-			? dispatch(fetchDetailsMovie(itemCache.id))
-			: dispatch(fetchDetailsTv(itemCache.id));
-
 	const handleMuteClick = () => dispatch(setGlobalMute(!globalMute));
 
 	const handleVideoCanPlayThrough = () => setVideoCanPlay(true);
@@ -63,13 +63,7 @@ const ItemExpandedContainer = ({ isVisible, showVideo, position, item, videoFile
 	const handleVideoEnded = () => setVideoEnded(true);
 
 	return (
-		<ItemExpanded
-			isVisible={isVisible}
-			position={position}
-			onMouseEnter={handleMouseEnter}
-			onTransitionEnd={handleOnAnimationEnd}
-			ref={containerRef}
-		>
+		<ItemExpanded isVisible={isVisible} position={position} onTransitionEnd={handleOnAnimationEnd} ref={containerRef}>
 			{shouldRender && itemCache ? (
 				<>
 					<ItemExpanded.Header>
@@ -126,8 +120,10 @@ const ItemExpandedContainer = ({ isVisible, showVideo, position, item, videoFile
 						</ItemExpanded.Buttons>
 						<ItemExpanded.Info>
 							<p>96% Match</p>
-							<span>{`12 `}</span>
-							{itemCache.media_type === "movie" ? "1h 40m" : "3 Seasons"}
+							<span>{`${ageRestriction} `}</span>
+							{itemCache?.media_type === "movie"
+								? `${itemCache?.runtime}m`
+								: `${itemCache?.number_of_seasons} ${itemCache?.number_of_seasons > 1 ? "Seasons" : "Season"}`}
 						</ItemExpanded.Info>
 						<ItemExpanded.GenreWrapper>
 							{itemCache.genre_ids &&
