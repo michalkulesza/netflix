@@ -60,7 +60,7 @@ export const OverlayTop = styled.div`
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	padding: 0 5%;
+	padding: 0 4%;
 `;
 
 export const OverlayMiddle = styled.div`
@@ -75,8 +75,121 @@ export const OverlayBottom = styled.div`
 	width: 100%;
 	background: rgb(0, 0, 0);
 	background: linear-gradient(0deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.5) 60%, rgba(0, 0, 0, 0) 100%);
+	padding: 0 4%;
 `;
 
 export const OverlayTitle = styled.h1`
 	font-weight: 600;
+`;
+
+export const ControlsContainer = styled.div`
+	height: 100%;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+`;
+
+export const ControlSeekContainer = styled.div`
+	height: max-content;
+	width: 100%;
+	display: flex;
+`;
+
+export const ControlSeek = styled.div`
+	position: relative;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	flex: 1;
+`;
+
+export const ControlSeekBarContainer = styled.div`
+	position: relative;
+	height: 23px;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	transition: all 150ms ease-in-out;
+	cursor: pointer;
+
+	&:hover {
+		transform: scaleY(1.7);
+	}
+`;
+
+export const ControlSeekBar = styled.div`
+	position: relative;
+	height: 5px;
+	width: 100%;
+	background-color: #5b5b5b;
+	transition: all 200ms ease-in-out;
+	border: 3px solid transparent;
+`;
+
+export const ControlSeekBarCurrent = styled.div`
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-color: #7c7c7c;
+	height: 100%;
+	width: 22%;
+`;
+
+export const ControlSeekIndicator = styled.div`
+	position: absolute;
+	top: 50%;
+	left: 0;
+	transform: translateY(-50%);
+	transition: all 200ms ease-in-out;
+	background-color: #e50914;
+	height: 23px;
+	width: 23px;
+	border-radius: 50%;
+	cursor: pointer;
+
+	&:hover {
+		transform: translateY(-50%) scale(1.2);
+	}
+`;
+
+export const Time = styled.div`
+	height: 100%;
+	width: max-content;
+	display: flex;
+	align-items: center;
+	margin-left: 1em;
+	font-size: 1.1em;
+`;
+
+export const ControlButtonsContainer = styled.div`
+	height: 100%;
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+`;
+
+export const ControlLeft = styled.div`
+	height: 100%;
+	width: max-content;
+	display: flex;
+	align-items: center;
+`;
+
+export const ControlMiddle = styled.div`
+	height: 100%;
+	flex: 1;
+	margin: 0 1em;
+	display: flex;
+	align-items: center;
+`;
+
+export const ControlTitle = styled.h3`
+	font-weight: 600;
+`;
+
+export const ControlRight = styled.div`
+	height: 100%;
+	width: max-content;
+	display: flex;
+	align-items: center;
 `;

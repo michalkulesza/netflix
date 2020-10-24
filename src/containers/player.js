@@ -1,6 +1,19 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { Player } from "../components";
+import { Button } from "../components";
+
+import {
+	GrClose,
+	GrPlayFill,
+	GrPauseFill,
+	GrForwardTen,
+	GrBackTen,
+	GrCircleQuestion,
+	GrContact,
+	GrExpand,
+} from "react-icons/gr";
+import { ImVolumeHigh, ImVolumeMedium, ImVolumeLow, ImVolumeMute2 } from "react-icons/im";
 
 const data = {
 	src: "http://localhost:8888/video/night",
@@ -24,9 +37,56 @@ const PlayerContainer = () => {
 			<Player.OverlayContainer>
 				<Player.OverlayTop>
 					<Player.OverlayTitle>{data.title}</Player.OverlayTitle>
+					<Button.Clear padding="0.5em">
+						<GrClose />
+					</Button.Clear>
 				</Player.OverlayTop>
 				<Player.OverlayMiddle></Player.OverlayMiddle>
-				<Player.OverlayBottom></Player.OverlayBottom>
+				<Player.OverlayBottom>
+					<Player.ControlsContainer>
+						<Player.ControlSeekContainer>
+							<Player.ControlSeek>
+								<Player.ControlSeekBarContainer>
+									<Player.ControlSeekBar>
+										<Player.ControlSeekBarCurrent></Player.ControlSeekBarCurrent>
+									</Player.ControlSeekBar>
+								</Player.ControlSeekBarContainer>
+								<Player.ControlSeekIndicator></Player.ControlSeekIndicator>
+							</Player.ControlSeek>
+							<Player.Time>1:34:25</Player.Time>
+						</Player.ControlSeekContainer>
+						<Player.ControlButtonsContainer>
+							<Player.ControlLeft>
+								<Button.Clear padding="0.5em" margin="0 1.3em 0 0">
+									<GrPlayFill />
+								</Button.Clear>
+								<Button.Clear padding="0.5em" margin="0 1.3em 0 0">
+									<GrBackTen />
+								</Button.Clear>
+								<Button.Clear padding="0.5em" margin="0 1.3em 0 0">
+									<GrForwardTen />
+								</Button.Clear>
+								<Button.Clear padding="0.5em">
+									<ImVolumeHigh />
+								</Button.Clear>
+							</Player.ControlLeft>
+							<Player.ControlMiddle>
+								<Player.ControlTitle>{data.title}</Player.ControlTitle>
+							</Player.ControlMiddle>
+							<Player.ControlRight>
+								<Button.Clear padding="0.5em" margin="0 1.3em 0 0">
+									<GrCircleQuestion />
+								</Button.Clear>
+								<Button.Clear padding="0.5em" margin="0 1.3em 0 0">
+									<GrContact />
+								</Button.Clear>
+								<Button.Clear padding="0.7em">
+									<GrExpand />
+								</Button.Clear>
+							</Player.ControlRight>
+						</Player.ControlButtonsContainer>
+					</Player.ControlsContainer>
+				</Player.OverlayBottom>
 			</Player.OverlayContainer>
 			<Player.PlaceholderContainer>
 				<Player.Placeholder src={data.backdrop} />
