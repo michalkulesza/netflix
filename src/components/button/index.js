@@ -1,5 +1,5 @@
 import React from "react";
-import { Main, Square, Round, Container, Label } from "./styles/button";
+import { Main, Square, Round, Container, Label, Clear } from "./styles/button";
 
 const Button = ({ route, children, ...restProps }) => {
 	return (
@@ -25,6 +25,14 @@ Button.Round = ({ label, inverted, dark, marginRight, children, isLoading, ...re
 			</Round>
 			{label && <Label>{label}</Label>}
 		</Container>
+	);
+};
+
+Button.Clear = ({ size, padding, children, margin, ...restProps }) => {
+	return (
+		<Clear size={size} padding={padding} margin={margin} {...restProps}>
+			{children}
+		</Clear>
 	);
 };
 

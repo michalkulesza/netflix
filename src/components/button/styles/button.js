@@ -126,3 +126,29 @@ export const Round = styled.button`
 		}
 	}
 `;
+
+export const Clear = styled.button`
+	height: ${({ size }) => (size ? size : "3.5em")};
+	width: ${({ size }) => (size ? size : "3.5em")};
+	padding: ${({ padding }) => (padding ? padding : "0")};
+	margin: ${({ margin }) => (margin ? margin : "0")};
+	background-color: transparent;
+	transition: all 100ms ease-in-out;
+
+	svg {
+		height: 100%;
+		width: 100%;
+		fill: #fff;
+		color: #fff;
+		path {
+			height: 100%;
+			width: 100%;
+			color: #fff;
+			stroke: #fff;
+		}
+	}
+
+	&:hover {
+		transform: scale(1.2);
+	}
+`;
