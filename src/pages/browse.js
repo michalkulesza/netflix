@@ -20,7 +20,7 @@ const Browse = () => {
 		<>
 			<NavbarContainer />
 			{data && !isUpdating ? (
-				<div style={{ position: "relative" }}>
+				<div style={{ position: "relative", overflow: "hidden" }}>
 					<HeaderContainer headerData={headerData}></HeaderContainer>
 					{selectedGenre ? <GridContainer /> : <CarouselsContainer data={data} />}
 					<DetailsContainer headerData={headerData} />
