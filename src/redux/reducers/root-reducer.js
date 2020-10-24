@@ -6,6 +6,7 @@ import toggles from "./toggles";
 import misc from "./misc";
 import genres from "./genres";
 import fetchGenreData from "./fetch-genre-data";
+import player from "./player";
 import { combineReducers } from "redux";
 
 const rootReducer = combineReducers({
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
 	toggles,
 	misc,
 	genres,
+	player,
 });
 
 export default rootReducer;

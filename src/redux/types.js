@@ -27,10 +27,6 @@ export const CLEAR_GENRES = "CLEAR_GENRES";
 export const SET_SELECTED_GENRE = "SET_SELECTED_GENRE";
 export const CLEAR_SELECTED_GENRE = "CLEAR_SELECTED_GENRE";
 
-//toggles.js
-export const SET_IS_DETAILS = "SET_IS_DETAILS";
-export const SET_GLOBAL_MUTE = "SET_GLOBAL_MUTE";
-
 //misc.js
 export const SET_DETAILS_POSITION = "SET_DETAILS_POSITION";
 export const SET_HEADER_VIDEO = "SET_HEADER_VIDEO";
@@ -38,3 +34,11 @@ export const SET_PRESSED_KEY = "SET_PRESSED_KEY";
 export const SET_SCROLLBAR_WIDTH = "SET_SCROLLBAR_WIDTH";
 export const SET_ACTIVE_EXPANDED = "SET_ACTIVE_EXPANDED";
 export const CLEAR_ACTIVE_EXPANDED = "CLEAR_ACTIVE_EXPANDED";
+
+//player.js
+export const SET_PLAYER_TV = "SET_PLAYER_FILM";
+export const SET_PLAYER_FILM = "SET_PLAYER_TV";
+
+//toggles.js
+export const SET_IS_DETAILS = "SET_IS_DETAILS";
+export const SET_GLOBAL_MUTE = "SET_GLOBAL_MUTE";
