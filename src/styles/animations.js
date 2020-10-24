@@ -80,7 +80,7 @@ export const notificationAnimOut = () => css`
 `;
 
 export const notificationOut = () => keyframes`
-	0% {
+		0% {
 			opacity: 1;
 			transform: translateY(0px);
 		}
@@ -91,4 +91,49 @@ export const notificationOut = () => keyframes`
 			opacity: 0;
 			transform: translateY(30px);
 		}
+`;
+
+export const expandedAnimIn = () => css`
+	${expandedIn} 400ms;
+`;
+
+export const expandedIn = () => keyframes`
+		0% {
+			opacity: 0;
+			transform: translate3d(-50%, -50%, 0) scale(0.6);
+			};
+		100% {
+			opacity: 1;
+			transform: translate3d(-50%, -50%, 0) scale(1);
+			};
+`;
+
+export const expandedAnimInLeft = () => css`
+	${expandedInLeft} 400ms;
+`;
+
+export const expandedInLeft = () => keyframes`
+		0% {
+			opacity: 0;
+			transform: translate3d(0%, -50%, 0) scale(0.6);
+			};
+		100% {
+			opacity: 1;
+			transform: translate3d(0%, -50%, 0) scale(1);
+			};
+`;
+
+export const expandedAnimInRight = () => css`
+	${expandedInRight} 400ms;
+`;
+
+export const expandedInRight = () => keyframes`
+		0% {
+			opacity: 0;
+			transform: translate3d(-100%, -50%, 0) scale(0.6);
+			};
+		100% {
+			opacity: 1;
+			transform: translate3d(-100%, -50%, 0) scale(1);
+			};
 `;

@@ -1,8 +1,9 @@
 import styled from "styled-components/macro";
 import { LoadingBackgroundAnimation } from "../../../styles/animations";
 
+
 export const Item = styled.div`
-	position: absolute;
+position: absolute;
 	z-index: 20;
 	left: ${({ position }) => (position === "first" ? "0" : position === "middle" ? "50%" : "")};
 	right: ${({ position }) => position === "last" && "0"};
