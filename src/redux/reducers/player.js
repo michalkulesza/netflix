@@ -19,9 +19,9 @@ const initState = {
 const misc = (state = initState, action) => {
 	switch (action.type) {
 		case SET_PLAYER_TV:
-			return { ...state, type: "tv", ...action.payload };
+			return { ...initState, type: "tv", ...action.payload };
 		case SET_PLAYER_FILM:
-			return { ...state, type: "film", ...action.payload };
+			return { ...initState, type: "film", ...action.payload };
 		default:
 			return state;
 	}
