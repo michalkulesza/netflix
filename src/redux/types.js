@@ -39,8 +39,9 @@ export const SET_ACTIVE_EXPANDED = "SET_ACTIVE_EXPANDED";
 export const CLEAR_ACTIVE_EXPANDED = "CLEAR_ACTIVE_EXPANDED";
 
 //player.js
-export const SET_PLAYER_TV = "SET_PLAYER_FILM";
-export const SET_PLAYER_FILM = "SET_PLAYER_TV";
+export const SET_PLAYER_TV = "SET_PLAYER_TV";
+export const SET_PLAYER_FILM = "SET_PLAYER_FILM";
+export const SET_PLAYER_VOLUME = "SET_PLAYER_VOLUME";
 
 //toggles.js
 export const SET_IS_DETAILS = "SET_IS_DETAILS";

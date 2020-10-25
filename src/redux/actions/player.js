@@ -1,4 +1,4 @@
-import { SET_PLAYER_TV, SET_PLAYER_FILM } from "../types";
+import { SET_PLAYER_TV, SET_PLAYER_FILM, SET_PLAYER_VOLUME } from "../types";
 
 export const setPlayerTV = ({
 	title,
@@ -21,5 +21,12 @@ export const setPlayerFilm = ({ title, src, backdrop, description, year, ageRest
 	return {
 		type: SET_PLAYER_FILM,
 		payload: { title, src, backdrop, description, year, ageRestriction, runtime },
+	};
+};
+
+export const setPlayerVolume = vol => {
+	return {
+		type: SET_PLAYER_VOLUME,
+		payload: vol,
 	};
 };

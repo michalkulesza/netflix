@@ -1,4 +1,4 @@
-import { SET_PLAYER_FILM, SET_PLAYER_TV } from "../types";
+import { SET_PLAYER_FILM, SET_PLAYER_TV, SET_PLAYER_VOLUME } from "../types";
 
 const initState = {
 	type: null,
@@ -14,6 +14,9 @@ const initState = {
 	year: null,
 	ageRestriction: null,
 	runtime: null,
+	config: {
+		volume: 0.6,
+	},
 };
 
 const misc = (state = initState, action) => {
@@ -22,6 +25,8 @@ const misc = (state = initState, action) => {
 			return { ...initState, type: "tv", ...action.payload };
 		case SET_PLAYER_FILM:
 			return { ...initState, type: "film", ...action.payload };
+		case SET_PLAYER_VOLUME:
+			return { ...state, config: { ...action.payload } };
 		default:
 			return state;
 	}
