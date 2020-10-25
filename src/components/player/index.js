@@ -23,6 +23,7 @@ import {
 	ControlMiddle,
 	ControlTitle,
 	ControlRight,
+	ButtonContainer,
 } from "./styles/player";
 
 const Player = ({ children, ...restProps }) => {
@@ -115,6 +116,10 @@ Player.ControlSeekBarCurrent = ({ children, ...restProps }) => {
 
 Player.ControlSeekIndicator = ({ children, ...restProps }) => {
 	return <ControlSeekIndicator {...restProps}>{children}</ControlSeekIndicator>;
+};
+
+Player.ButtonContainer = ({ children, ...restProps }) => {
+	return <ButtonContainer {...restProps}>{children}</ButtonContainer>;
 };
 
 export default Player;

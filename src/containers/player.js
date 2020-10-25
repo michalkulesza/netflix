@@ -136,8 +136,8 @@ const PlayerContainer = () => {
 								>
 									<GrForwardTen />
 								</Button.Clear>
-								<Button.Clear
-									padding="0.6em"
+
+								<Player.ButtonContainer
 									onMouseDown={handleClickMute}
 									onMouseEnter={() => {
 										handleButtonMouseEnter();
@@ -148,9 +148,22 @@ const PlayerContainer = () => {
 										handleVolumeButtonLeave();
 									}}
 								>
-									<ImVolumeHigh />
-									<VolumeSliderContainer visible={volumeSliderVisible} />
-								</Button.Clear>
+									<Button.Clear padding="0.6em" mouseover={volumeSliderVisible}>
+										<ImVolumeHigh />
+									</Button.Clear>
+									<VolumeSliderContainer
+										visible={volumeSliderVisible}
+										playerRef={playerRef}
+										onMouseEnter={() => {
+											handleButtonMouseEnter();
+											handleVolumeButtonEnter();
+										}}
+										onMouseLeave={() => {
+											handleButtonMouseLeave();
+											handleVolumeButtonLeave();
+										}}
+									/>
+								</Player.ButtonContainer>
 							</Player.ControlLeft>
 							<Player.ControlMiddle>
 								<Player.ControlTitle>{data.title}</Player.ControlTitle>

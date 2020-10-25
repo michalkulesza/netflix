@@ -133,7 +133,7 @@ export const Clear = styled.button`
 	margin: ${({ margin }) => (margin ? margin : "0")};
 	background-color: transparent;
 	transition: all 100ms ease-in-out;
-
+	transform: ${({ mouseover }) => mouseover && "scale(1.2)"};
 	svg {
 		height: ${({ size }) => (size ? size : "2em")};
 		width: ${({ size }) => (size ? size : "2em")};

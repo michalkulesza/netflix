@@ -17,6 +17,7 @@ export const Volume = styled.div`
 	padding: 1em 0.6em;
 	background-color: #262626;
 	border-radius: 7px;
+	cursor: pointer;
 `;
 
 export const VolumeBarContainer = styled.div`
@@ -34,18 +35,20 @@ export const VolumeBarCurrent = styled.div`
 	position: absolute;
 	bottom: 0;
 	left: 0;
-	height: 60%;
+	height: ${({ position }) => `${position}%`};
 	width: 100%;
 	background-color: #e50914;
+	pointer-events: none;
 `;
 
 export const VolumeBarIndicator = styled.div`
 	position: absolute;
-	bottom: 60%;
+	bottom: ${({ position }) => `${position}%`};
 	left: 50%;
 	transform: translate(-50%, 50%);
 	background-color: #e50914;
 	height: 17px;
 	width: 17px;
 	border-radius: 50%;
+	pointer-events: none;
 `;

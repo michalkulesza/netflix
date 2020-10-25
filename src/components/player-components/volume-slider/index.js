@@ -1,4 +1,4 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import {
 	Main,
 	Volume,
@@ -20,9 +20,9 @@ VolumeSlider.VolumeBarContainer = ({ children, ...restProps }) => {
 	return <VolumeBarContainer {...restProps}>{children}</VolumeBarContainer>;
 };
 
-VolumeSlider.VolumeBar = ({ children, ...restProps }) => {
-	return <VolumeBar {...restProps}>{children}</VolumeBar>;
-};
+VolumeSlider.VolumeBar = forwardRef((props, ref) => {
+	return <VolumeBar ref={ref}>{props.children}</VolumeBar>;
+});
 
 VolumeSlider.VolumeBarCurrent = ({ children, ...restProps }) => {
 	return <VolumeBarCurrent {...restProps}>{children}</VolumeBarCurrent>;

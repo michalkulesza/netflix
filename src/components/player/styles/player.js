@@ -192,3 +192,7 @@ export const ControlRight = styled.div`
 	display: flex;
 	align-items: center;
 `;
+
+export const ButtonContainer = styled.div`
+	position: relative;
+`;
