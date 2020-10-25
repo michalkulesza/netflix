@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
-import { useSelector } from "react-redux";
-import { Player } from "../components";
-import { Button } from "../components";
+import { useDispatch } from "react-redux";
+import { Player, Button } from "../components";
+import { setError } from "../redux/actions/error";
 
 import {
 	GrClose,
@@ -27,6 +27,7 @@ const data = {
 };
 
 const PlayerContainer = () => {
+	const dispatch = useDispatch();
 	const playerRef = useRef(null);
 	const [placeholderVisible, setPlaceholderVisible] = useState(false);
 	const [buttonHover, setButtonHover] = useState(false);
@@ -64,6 +65,15 @@ const PlayerContainer = () => {
 
 	const handleClickMute = () => null;
 
+	const handleClickVideo = () => handleClickPlay();
+
+	const handleClickFullscreen = () => {
+		const elem = document.documentElement;
+		!document.fullscreenElement
+			? elem.requestFullscreen && elem.requestFullscreen().catch(err => dispatch(setError(err.message)))
+			: document.exitFullscreen();
+	};
+
 	const handleButtonMouseEnter = () => setButtonHover(true);
 
 	const handleButtonMouseLeave = () => setButtonHover(false);
@@ -77,7 +87,7 @@ const PlayerContainer = () => {
 						<GrClose />
 					</Button.Clear>
 				</Player.OverlayTop>
-				<Player.OverlayMiddle></Player.OverlayMiddle>
+				<Player.OverlayMiddle onMouseDown={handleClickVideo}></Player.OverlayMiddle>
 				<Player.OverlayBottom>
 					<Player.ControlsContainer>
 						<Player.ControlSeekContainer>
@@ -151,6 +161,7 @@ const PlayerContainer = () => {
 								<Button.Clear
 									grayedOut={buttonHover}
 									padding="0.7em"
+									onMouseDown={handleClickFullscreen}
 									onMouseEnter={handleButtonMouseEnter}
 									onMouseLeave={handleButtonMouseLeave}
 								>
