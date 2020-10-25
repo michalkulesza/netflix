@@ -48,9 +48,19 @@ const PlayerContainer = () => {
 		}
 	};
 
-	const handleClickSkipBack = () => null;
+	const handleClickSkipBack = () => {
+		if (playerRef?.current) {
+			const currentTime = playerRef.current.currentTime;
+			playerRef.current.currentTime = currentTime - 10;
+		}
+	};
 
-	const handleClickSkipForward = () => null;
+	const handleClickSkipForward = () => {
+		if (playerRef?.current) {
+			const currentTime = playerRef.current.currentTime;
+			playerRef.current.currentTime = currentTime + 10;
+		}
+	};
 
 	const handleClickMute = () => null;
 
