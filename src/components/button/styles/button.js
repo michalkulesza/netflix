@@ -58,7 +58,7 @@ export const Label = styled.div`
 	padding: 0.3em 0.6em;
 	opacity: 0;
 	transition: opacity 200ms ease-in-out;
-	box-shadow: "rgba(0, 0, 0, 0.75) 0px 3px 10px"};
+	box-shadow: "rgba(0, 0, 0, 0.75) 0px 3px 10px";
 	pointer-events: none;
 
 	&::after {
@@ -128,27 +128,32 @@ export const Round = styled.button`
 `;
 
 export const Clear = styled.button`
-	height: ${({ size }) => (size ? size : "3.5em")};
-	width: ${({ size }) => (size ? size : "3.5em")};
 	padding: ${({ padding }) => (padding ? padding : "0")};
 	margin: ${({ margin }) => (margin ? margin : "0")};
 	background-color: transparent;
 	transition: all 100ms ease-in-out;
 
 	svg {
-		height: 100%;
-		width: 100%;
-		fill: #fff;
-		color: #fff;
+		height: ${({ size }) => (size ? size : "2em")};
+		width: ${({ size }) => (size ? size : "2em")};
+		transition: all 100ms ease-in-out;
+		fill: ${({ grayedOut }) => (grayedOut ? "#5b5b5b" : "#fff")};
 		path {
 			height: 100%;
 			width: 100%;
-			color: #fff;
-			stroke: #fff;
+			transition: all 100ms ease-in-out;
+			stroke: ${({ grayedOut }) => (grayedOut ? "#5b5b5b" : "#fff")};
 		}
 	}
 
 	&:hover {
 		transform: scale(1.2);
+
+		svg {
+			fill: #fff;
+			path {
+				stroke: #fff;
+			}
+		}
 	}
 `;

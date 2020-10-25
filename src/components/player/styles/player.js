@@ -33,6 +33,7 @@ export const PlaceholderContainer = styled.div`
 	top: 0;
 	left: 0;
 	z-index: 1;
+	opacity: ${({ visible }) => (visible ? "1" : "0")};
 `;
 
 export const Placeholder = styled.img`
@@ -104,7 +105,6 @@ export const ControlSeek = styled.div`
 `;
 
 export const ControlSeekBarContainer = styled.div`
-	position: relative;
 	height: 23px;
 	width: 100%;
 	display: flex;
@@ -123,7 +123,6 @@ export const ControlSeekBar = styled.div`
 	width: 100%;
 	background-color: #5b5b5b;
 	transition: all 200ms ease-in-out;
-	border: 3px solid transparent;
 `;
 
 export const ControlSeekBarCurrent = styled.div`
@@ -139,7 +138,7 @@ export const ControlSeekIndicator = styled.div`
 	position: absolute;
 	top: 50%;
 	left: 0;
-	transform: translateY(-50%);
+	transform: translate(-50%, -50%);
 	transition: all 200ms ease-in-out;
 	background-color: #e50914;
 	height: 23px;
@@ -148,7 +147,7 @@ export const ControlSeekIndicator = styled.div`
 	cursor: pointer;
 
 	&:hover {
-		transform: translateY(-50%) scale(1.2);
+		transform: translate(-50%, -50%) scale(1.2);
 	}
 `;
 

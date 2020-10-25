@@ -1,4 +1,4 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import {
 	Main,
 	VideoContainer,
@@ -33,9 +33,9 @@ Player.VideoContainer = ({ children, ...restProps }) => {
 	return <VideoContainer {...restProps}>{children}</VideoContainer>;
 };
 
-Player.Video = ({ ...restProps }) => {
-	return <Video type="video/mp4" {...restProps} />;
-};
+Player.Video = forwardRef((props, ref) => {
+	return <Video type="video/mp4" onCanPlay={props.onCanPlay} src={props.src} ref={ref} />;
+});
 
 Player.PlaceholderContainer = ({ children, ...restProps }) => {
 	return <PlaceholderContainer {...restProps}>{children}</PlaceholderContainer>;
