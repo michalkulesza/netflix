@@ -30,7 +30,8 @@ const PlayerContainer = () => {
 	const dispatch = useDispatch();
 	const playerRef = useRef(null);
 	const [placeholderVisible, setPlaceholderVisible] = useState(false);
-	const [buttonHover, setButtonHover] = useState(false);
+	const [controlButtonsHover, setControlButtonsHover] = useState(false);
+	const [volumeSliderVisible, setVolumeSliderVisible] = useState(false);
 	const [canPlay, setCanPlay] = useState(false);
 	const [videoState, setVideoState] = useState("paused");
 
@@ -74,9 +75,13 @@ const PlayerContainer = () => {
 			: document.exitFullscreen();
 	};
 
-	const handleButtonMouseEnter = () => setButtonHover(true);
+	const handleButtonMouseEnter = () => setControlButtonsHover(true);
 
-	const handleButtonMouseLeave = () => setButtonHover(false);
+	const handleButtonMouseLeave = () => setControlButtonsHover(false);
+
+	const handleVolumeButtonEnter = () => setVolumeSliderVisible(true);
+
+	const handleVolumeButtonLeave = () => setVolumeSliderVisible(false);
 
 	return (
 		<Player>
@@ -104,7 +109,7 @@ const PlayerContainer = () => {
 						<Player.ControlButtonsContainer>
 							<Player.ControlLeft>
 								<Button.Clear
-									grayedOut={buttonHover}
+									grayedOut={controlButtonsHover}
 									padding="0.6em 1.9em 0.6em 0.6em"
 									onMouseDown={handleClickPlay}
 									onMouseEnter={handleButtonMouseEnter}
@@ -113,7 +118,7 @@ const PlayerContainer = () => {
 									{videoState === "playing" ? <GrPlayFill /> : <GrPauseFill />}
 								</Button.Clear>
 								<Button.Clear
-									grayedOut={buttonHover}
+									grayedOut={controlButtonsHover}
 									padding="0.6em 1.9em 0.6em 0.6em"
 									onMouseDown={handleClickSkipBack}
 									onMouseEnter={handleButtonMouseEnter}
@@ -122,7 +127,7 @@ const PlayerContainer = () => {
 									<GrBackTen />
 								</Button.Clear>
 								<Button.Clear
-									grayedOut={buttonHover}
+									grayedOut={controlButtonsHover}
 									padding="0.6em 1.9em 0.6em 0.6em"
 									onMouseDown={handleClickSkipForward}
 									onMouseEnter={handleButtonMouseEnter}
@@ -133,10 +138,26 @@ const PlayerContainer = () => {
 								<Button.Clear
 									padding="0.6em"
 									onMouseDown={handleClickMute}
-									onMouseEnter={handleButtonMouseEnter}
-									onMouseLeave={handleButtonMouseLeave}
+									onMouseEnter={() => {
+										handleButtonMouseEnter();
+										handleVolumeButtonEnter();
+									}}
+									onMouseLeave={() => {
+										handleButtonMouseLeave();
+										handleVolumeButtonLeave();
+									}}
 								>
 									<ImVolumeHigh />
+									<Player.ControlVolumeContainer visible={volumeSliderVisible}>
+										<Player.ControlVolume>
+											<Player.ControlVolumeBarContainer>
+												<Player.ControlVolumeBar>
+													<Player.ControlVolumeBarCurrent></Player.ControlVolumeBarCurrent>
+												</Player.ControlVolumeBar>
+												<Player.ControlVolumeBarIndicator></Player.ControlVolumeBarIndicator>
+											</Player.ControlVolumeBarContainer>
+										</Player.ControlVolume>
+									</Player.ControlVolumeContainer>
 								</Button.Clear>
 							</Player.ControlLeft>
 							<Player.ControlMiddle>
@@ -159,7 +180,7 @@ const PlayerContainer = () => {
 									<GrContact />
 								</Button.Clear>
 								<Button.Clear
-									grayedOut={buttonHover}
+									grayedOut={controlButtonsHover}
 									padding="0.7em"
 									onMouseDown={handleClickFullscreen}
 									onMouseEnter={handleButtonMouseEnter}

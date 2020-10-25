@@ -128,6 +128,7 @@ export const Round = styled.button`
 `;
 
 export const Clear = styled.button`
+	position: relative;
 	padding: ${({ padding }) => (padding ? padding : "0")};
 	margin: ${({ margin }) => (margin ? margin : "0")};
 	background-color: transparent;
