@@ -23,12 +23,6 @@ import {
 	ControlMiddle,
 	ControlTitle,
 	ControlRight,
-	ControlVolumeContainer,
-	ControlVolume,
-	ControlVolumeBarContainer,
-	ControlVolumeBar,
-	ControlVolumeBarCurrent,
-	ControlVolumeBarIndicator,
 } from "./styles/player";
 
 const Player = ({ children, ...restProps }) => {
@@ -121,30 +115,6 @@ Player.ControlSeekBarCurrent = ({ children, ...restProps }) => {
 
 Player.ControlSeekIndicator = ({ children, ...restProps }) => {
 	return <ControlSeekIndicator {...restProps}>{children}</ControlSeekIndicator>;
-};
-
-Player.ControlVolumeContainer = ({ children, ...restProps }) => {
-	return <ControlVolumeContainer {...restProps}>{children}</ControlVolumeContainer>;
-};
-
-Player.ControlVolume = ({ children, ...restProps }) => {
-	return <ControlVolume {...restProps}>{children}</ControlVolume>;
-};
-
-Player.ControlVolumeBarContainer = ({ children, ...restProps }) => {
-	return <ControlVolumeBarContainer {...restProps}>{children}</ControlVolumeBarContainer>;
-};
-
-Player.ControlVolumeBar = ({ children, ...restProps }) => {
-	return <ControlVolumeBar {...restProps}>{children}</ControlVolumeBar>;
-};
-
-Player.ControlVolumeBarCurrent = ({ children, ...restProps }) => {
-	return <ControlVolumeBarCurrent {...restProps}>{children}</ControlVolumeBarCurrent>;
-};
-
-Player.ControlVolumeBarIndicator = ({ children, ...restProps }) => {
-	return <ControlVolumeBarIndicator {...restProps}>{children}</ControlVolumeBarIndicator>;
 };
 
 export default Player;

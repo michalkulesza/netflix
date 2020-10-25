@@ -1,6 +1,7 @@
 import React, { useState, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { Player, Button } from "../components";
+import { VolumeSliderContainer } from "../containers";
 import { setError } from "../redux/actions/error";
 
 import {
@@ -148,16 +149,7 @@ const PlayerContainer = () => {
 									}}
 								>
 									<ImVolumeHigh />
-									<Player.ControlVolumeContainer visible={volumeSliderVisible}>
-										<Player.ControlVolume>
-											<Player.ControlVolumeBarContainer>
-												<Player.ControlVolumeBar>
-													<Player.ControlVolumeBarCurrent></Player.ControlVolumeBarCurrent>
-												</Player.ControlVolumeBar>
-												<Player.ControlVolumeBarIndicator></Player.ControlVolumeBarIndicator>
-											</Player.ControlVolumeBarContainer>
-										</Player.ControlVolume>
-									</Player.ControlVolumeContainer>
+									<VolumeSliderContainer visible={volumeSliderVisible} />
 								</Button.Clear>
 							</Player.ControlLeft>
 							<Player.ControlMiddle>
