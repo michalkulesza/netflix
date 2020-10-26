@@ -32,6 +32,48 @@ const data = {
 	ep_number: 1,
 	ep_season: 6,
 	ep_title: "Forever",
+	seasons: [
+		{
+			_id: "5d98d2b78c40f7001179ee4f",
+			air_date: "2020-10-04",
+			name: "Season 1",
+			overview:
+				"A group of teenagers living in a community sheltered from the dangers of the apocalypse receive a message that inspires them to leave the safety of the only home they have ever known and embark on a cross-country journey to save their father.",
+			id: 133610,
+			poster_path: "/z31GxpVgDsFAF4paZR8PRsiP16D.jpg",
+			season_number: 1,
+			episodes: [
+				{
+					air_date: "2005-09-13",
+					episode_number: 1,
+					id: 163114,
+					name: "Pilot",
+					overview:
+						'Two brothers, Sam and Dean Winchester, witness their mother\'s paranormal death as children and grow up trained to fight by a distraught father who wants nothing more then to hunt down the thing that killed his wife. Sam escapes to college to start a new, normal life, but gets pulled back in after Dean shows up on his doorstep to tell him their father is missing. Following clues from an eerie phone message from him, the boys travel to a small town and encounter a vengeful spirit called the "Woman in White" who then starts to haunt Sam.',
+					production_code: "475285",
+					season_number: 1,
+					show_id: 1622,
+					still_path: "/nGUD5H2wU7bYBqpqDPTybTWunrR.jpg",
+					vote_average: 6.343,
+					vote_count: 51,
+				},
+				{
+					air_date: "2020-10-11",
+					episode_number: 2,
+					id: 2451318,
+					name: "The Blaze of Gory",
+					overview:
+						"The group adjusts to the reality of life beyond the walls of their community; Iris tries to take over, despite Hope's reservations; Felix and Huck follow the teenagers, while Felix is ​​forced to face unwanted memories.",
+					production_code: "",
+					season_number: 1,
+					show_id: 94305,
+					still_path: "/nvuQqeDPBksSE019KHnseWOJ1YB.jpg",
+					vote_average: 3.6,
+					vote_count: 5,
+				},
+			],
+		},
+	],
 };
 
 const PlayerContainer = () => {

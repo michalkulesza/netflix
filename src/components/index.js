@@ -21,3 +21,4 @@ export { default as Grid } from "./grid";
 export { default as Player } from "./player";
 export { default as VolumeSlider } from "./player-components/volume-slider";
 export { default as SeekBar } from "./player-components/seek-bar";
+export { default as Popup } from "./player-components/popup";
