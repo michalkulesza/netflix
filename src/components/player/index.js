@@ -10,13 +10,6 @@ import {
 	OverlayMiddle,
 	OverlayBottom,
 	OverlayTitle,
-	ControlsContainer,
-	ControlButtonsContainer,
-	ControlLeft,
-	ControlMiddle,
-	ControlTitle,
-	ControlRight,
-	ButtonContainer,
 } from "./styles/player";
 
 const Player = ({ children, ...restProps }) => {
@@ -65,34 +58,6 @@ Player.OverlayBottom = ({ children, ...restProps }) => {
 
 Player.OverlayTitle = ({ children, ...restProps }) => {
 	return <OverlayTitle {...restProps}>{children}</OverlayTitle>;
-};
-
-Player.ControlsContainer = ({ children, ...restProps }) => {
-	return <ControlsContainer {...restProps}>{children}</ControlsContainer>;
-};
-
-Player.ControlButtonsContainer = ({ children, ...restProps }) => {
-	return <ControlButtonsContainer {...restProps}>{children}</ControlButtonsContainer>;
-};
-
-Player.ControlLeft = ({ children, ...restProps }) => {
-	return <ControlLeft {...restProps}>{children}</ControlLeft>;
-};
-
-Player.ControlMiddle = ({ children, ...restProps }) => {
-	return <ControlMiddle {...restProps}>{children}</ControlMiddle>;
-};
-
-Player.ControlTitle = ({ children, ...restProps }) => {
-	return <ControlTitle {...restProps}>{children}</ControlTitle>;
-};
-
-Player.ControlRight = ({ children, ...restProps }) => {
-	return <ControlRight {...restProps}>{children}</ControlRight>;
-};
-
-Player.ButtonContainer = ({ children, ...restProps }) => {
-	return <ButtonContainer {...restProps}>{children}</ButtonContainer>;
 };
 
 export default Player;

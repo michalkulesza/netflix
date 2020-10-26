@@ -1,9 +1,10 @@
 import React, { useState, useRef, useEffect } from "react";
+import { useSelector } from "react-redux";
 import { SeekBar } from "../../components";
 
 let currentTimeInterval;
 
-const SeekBarContainer = ({ metaLoaded, isVideoPlaying, playerRef }) => {
+const SeekBarContainer = ({ isVideoPlaying, playerRef }) => {
 	const barRef = useRef(null);
 	const [isDragged, setIsDragged] = useState(false);
 	const [seekBarPosition, setSeekBarPosition] = useState(null);
@@ -11,6 +12,9 @@ const SeekBarContainer = ({ metaLoaded, isVideoPlaying, playerRef }) => {
 	const [pixelsToPercent, setPixelsToPercent] = useState(null);
 	const [currentTime, setCurrentTime] = useState(null);
 	const [videoLength, setVideoLength] = useState(null);
+	const metaLoaded = useSelector(state => state.player.state);
+
+	console.log(playerRef?.current?.duration);
 
 	useEffect(() => {
 		if (currentTime !== null && videoLength && !isDragged) {
@@ -75,7 +79,7 @@ const SeekBarContainer = ({ metaLoaded, isVideoPlaying, playerRef }) => {
 				<SeekBar.SeekIndicator position={indicatorPosition}></SeekBar.SeekIndicator>
 			</SeekBar.Main>
 			<SeekBar.Time>
-				{videoLength !== null && currentTime !== null
+				{metaLoaded && videoLength && currentTime
 					? new Date((videoLength - currentTime) * 1000).toISOString().substr(12, 7)
 					: "0:00:00"}
 			</SeekBar.Time>

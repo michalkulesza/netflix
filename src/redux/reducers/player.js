@@ -21,7 +21,7 @@ const initState = {
 	ageRestriction: null,
 	runtime: null,
 	volume: 0.6,
-	state: null,
+	state: "paused",
 	metaLoaded: false,
 };
 
