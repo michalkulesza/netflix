@@ -6,12 +6,32 @@ export const Container = styled.div`
 	display: flex;
 `;
 
+export const SeekIndicator = styled.div`
+	position: absolute;
+	top: 50%;
+	left: ${({ position }) => (position ? `${position}%` : 0)};
+	transform: translate(-50%, -50%);
+	transition: transform 150ms ease-in-out, left 50ms linear;
+	background-color: #e50914;
+	height: 20px;
+	width: 20px;
+	border-radius: 50%;
+	cursor: pointer;
+	pointer-events: none;
+`;
+
 export const Main = styled.div`
 	position: relative;
 	height: 100%;
 	display: flex;
 	align-items: center;
 	flex: 1;
+
+	&:hover {
+		${SeekIndicator} {
+			transform: translate(-50%, -50%) scale(1.2);
+		}
+	}
 `;
 
 export const Time = styled.div`
@@ -30,27 +50,6 @@ export const SeekBarContainer = styled.div`
 	align-items: center;
 	transition: all 150ms ease-in-out;
 	cursor: pointer;
-
-	&:hover {
-		transform: scaleY(1.7);
-	}
-`;
-
-export const SeekIndicator = styled.div`
-	position: absolute;
-	top: 50%;
-	left: 0;
-	transform: translate(-50%, -50%);
-	transition: all 200ms ease-in-out;
-	background-color: #e50914;
-	height: 23px;
-	width: 23px;
-	border-radius: 50%;
-	cursor: pointer;
-
-	&:hover {
-		transform: translate(-50%, -50%) scale(1.2);
-	}
 `;
 
 export const SeekBarTotal = styled.div`

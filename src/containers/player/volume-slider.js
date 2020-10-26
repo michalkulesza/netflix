@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { VolumeSlider } from "../../components";
 import { setPlayerVolume } from "../../redux/actions/player";
 
-const VolumeSliderContainer = ({ visible, playerRef }) => {
+const VolumeSliderContainer = ({ playerRef }) => {
 	const dispatch = useDispatch();
 	const volumeBarRef = useRef(null);
 	const initVolume = useSelector(state => state.player.volume);
@@ -44,7 +44,6 @@ const VolumeSliderContainer = ({ visible, playerRef }) => {
 
 	return (
 		<VolumeSlider
-			visible={visible}
 			onMouseDown={handleBarMouseDown}
 			onMouseMove={e => handleBarMouseMove(e)}
 			onMouseUp={handleBarMouseUp}

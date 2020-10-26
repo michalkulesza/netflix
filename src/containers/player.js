@@ -91,7 +91,7 @@ const PlayerContainer = () => {
 				<Player.OverlayMiddle onMouseDown={handleClickVideo}></Player.OverlayMiddle>
 				<Player.OverlayBottom>
 					<Player.ControlsContainer>
-						<SeekBarContainer />
+						<SeekBarContainer playerRef={playerRef} />
 						<Player.ControlButtonsContainer>
 							<Player.ControlLeft>
 								<Button.Clear

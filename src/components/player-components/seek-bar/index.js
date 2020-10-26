@@ -1,4 +1,5 @@
 import React from "react";
+import { forwardRef } from "react";
 import {
 	Container,
 	Main,
@@ -13,9 +14,13 @@ const SeekBar = ({ children, ...restProps }) => {
 	return <Container {...restProps}>{children}</Container>;
 };
 
-SeekBar.Main = ({ children, ...restProps }) => {
-	return <Main {...restProps}>{children}</Main>;
-};
+SeekBar.Main = forwardRef((props, ref) => {
+	return (
+		<Main onMouseDown={props.onMouseDown} onMouseUp={props.onMouseUp} onMouseMove={props.onMouseMove} ref={ref}>
+			{props.children}
+		</Main>
+	);
+});
 
 SeekBar.Time = ({ children, ...restProps }) => {
 	return <Time {...restProps}>{children}</Time>;
