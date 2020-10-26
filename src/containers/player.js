@@ -1,5 +1,6 @@
 import React, { useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { Player, Button } from "../components";
 import { SeekBarContainer, VolumeSliderContainer, PopupContainer } from "../containers";
 import { setError } from "../redux/actions/error";
@@ -18,66 +19,11 @@ import {
 	GrChapterNext,
 } from "react-icons/gr";
 import { ImVolumeMedium } from "react-icons/im";
-
-const data = {
-	src: "http://localhost:8888/video/night",
-	title: "Angry looking fella",
-	backdrop: "http://image.tmdb.org/t/p/w1280/aO5ILS7qnqtFIprbJ40zla0jhpu.jpg",
-	description:
-		"Jesse Freeman is a former special forces officer and explosives expert now working a regular job as a security guard in a state-of-the-art basketball arena. Trouble erupts when a tech-savvy cadre of terrorists kidnap the team's owner and Jesse's daughter during opening night. Facing a ticking clock and impossible odds, it's up to Jesse to not only save them but also a full house of fans in this highly charged action thriller.",
-	year: 1991,
-	ageRestriction: 12,
-	length: 69,
-	type: "tv",
-	ep_number: 1,
-	ep_season: 1,
-	ep_title: "Forever",
-	seasons: [
-		{
-			_id: "5d98d2b78c40f7001179ee4f",
-			air_date: "2020-10-04",
-			name: "Season 1",
-			overview:
-				"A group of teenagers living in a community sheltered from the dangers of the apocalypse receive a message that inspires them to leave the safety of the only home they have ever known and embark on a cross-country journey to save their father.",
-			id: 133610,
-			poster_path: "/z31GxpVgDsFAF4paZR8PRsiP16D.jpg",
-			season_number: 1,
-			episodes: [
-				{
-					air_date: "2005-09-13",
-					episode_number: 1,
-					id: 163114,
-					name: "Pilot",
-					overview:
-						'Two brothers, Sam and Dean Winchester, witness their mother\'s paranormal death as children and grow up trained to fight by a distraught father who wants nothing more then to hunt down the thing that killed his wife. Sam escapes to college to start a new, normal life, but gets pulled back in after Dean shows up on his doorstep to tell him their father is missing. Following clues from an eerie phone message from him, the boys travel to a small town and encounter a vengeful spirit called the "Woman in White" who then starts to haunt Sam.',
-					production_code: "475285",
-					season_number: 1,
-					show_id: 1622,
-					still_path: "/nGUD5H2wU7bYBqpqDPTybTWunrR.jpg",
-					vote_average: 6.343,
-					vote_count: 51,
-				},
-				{
-					air_date: "2020-10-11",
-					episode_number: 2,
-					id: 2451318,
-					name: "The Blaze of Gory",
-					overview:
-						"The group adjusts to the reality of life beyond the walls of their community; Iris tries to take over, despite Hope's reservations; Felix and Huck follow the teenagers, while Felix is ​​forced to face unwanted memories.",
-					production_code: "",
-					season_number: 1,
-					show_id: 94305,
-					still_path: "/nvuQqeDPBksSE019KHnseWOJ1YB.jpg",
-					vote_average: 3.6,
-					vote_count: 5,
-				},
-			],
-		},
-	],
-};
+import { HOME, WATCH } from "../constants/routes";
 
 const PlayerContainer = () => {
 	const dispatch = useDispatch();
+	const history = useHistory();
 	const playerRef = useRef(null);
 	const volume = useSelector(state => state.player.volume);
 	const [placeholderVisible, setPlaceholderVisible] = useState(false);
@@ -88,10 +34,11 @@ const PlayerContainer = () => {
 	const [canPlay, setCanPlay] = useState(false);
 	const [videoState, setVideoState] = useState("paused");
 	const volumeIcon = useVolumeIcon(volume);
-
-	// const data = useSelector(state => state.player);
+	const data = useSelector(state => state.player);
 
 	const handleCanPlay = () => setCanPlay(true);
+
+	const handleCloseButton = () => (history?.location?.pathname !== WATCH ? history.goBack() : history.push(HOME));
 
 	const handleClickPlay = () => {
 		if (playerRef.current && videoState === "playing") {
@@ -139,7 +86,7 @@ const PlayerContainer = () => {
 			<Player.OverlayContainer>
 				<Player.OverlayTop>
 					<Player.OverlayTitle>{data.title}</Player.OverlayTitle>
-					<Button.Clear padding="0.6em">
+					<Button.Clear padding="0.6em" onMouseDown={handleCloseButton}>
 						<GrClose />
 					</Button.Clear>
 				</Player.OverlayTop>
@@ -231,20 +178,24 @@ const PlayerContainer = () => {
 									<GrCircleQuestion />
 									<PopupContainer visible={feedbackHover}>Hi there. Something wrong?</PopupContainer>
 								</Button.Clear>
-								<Button.Clear
-									padding="0.6em 1.4em 0.6em 0.6em"
-									onMouseEnter={handleButtonMouseEnter}
-									onMouseLeave={handleButtonMouseLeave}
-								>
-									<GrChapterNext />
-								</Button.Clear>
-								<Button.Clear
-									padding="0.6em 1.4em 0.6em 0.6em"
-									onMouseEnter={handleButtonMouseEnter}
-									onMouseLeave={handleButtonMouseLeave}
-								>
-									<GrLayer />
-								</Button.Clear>
+								{data.type === "tv" && (
+									<>
+										<Button.Clear
+											padding="0.6em 1.4em 0.6em 0.6em"
+											onMouseEnter={handleButtonMouseEnter}
+											onMouseLeave={handleButtonMouseLeave}
+										>
+											<GrChapterNext />
+										</Button.Clear>
+										<Button.Clear
+											padding="0.6em 1.4em 0.6em 0.6em"
+											onMouseEnter={handleButtonMouseEnter}
+											onMouseLeave={handleButtonMouseLeave}
+										>
+											<GrLayer />
+										</Button.Clear>
+									</>
+								)}
 								<Button.Clear
 									padding="0.6em 1.4em 0.6em 0.6em"
 									margin="0 1.3em 0 0"
