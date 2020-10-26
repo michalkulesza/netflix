@@ -14,9 +14,7 @@ const initState = {
 	year: null,
 	ageRestriction: null,
 	runtime: null,
-	config: {
-		volume: 0.6,
-	},
+	volume: 0.6,
 };
 
 const misc = (state = initState, action) => {
@@ -26,7 +24,7 @@ const misc = (state = initState, action) => {
 		case SET_PLAYER_FILM:
 			return { ...initState, type: "film", ...action.payload };
 		case SET_PLAYER_VOLUME:
-			return { ...state, config: { ...action.payload } };
+			return { ...state, volume: action.payload };
 		default:
 			return state;
 	}

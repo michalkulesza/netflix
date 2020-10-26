@@ -10,3 +10,4 @@ export { default as useFetchGenreInfinite } from "./use-fetch-genre-infinite";
 export { default as useConvertPxToVw } from "./use-convert-px-to-vw";
 export { default as useCurrentMenuLocation } from "./use-current-menu-location";
 export { default as useOnClickOutside } from "./use-on-click-outside";
+export { default as useVolumeIcon } from "./use-volume-icon";

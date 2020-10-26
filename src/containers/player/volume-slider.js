@@ -6,7 +6,7 @@ import { setPlayerVolume } from "../../redux/actions/player";
 const VolumeSliderContainer = ({ visible, playerRef }) => {
 	const dispatch = useDispatch();
 	const volumeBarRef = useRef(null);
-	const initVolume = useSelector(state => state.player.config.volume);
+	const initVolume = useSelector(state => state.player.volume);
 	const [isDragged, setIsDragged] = useState(false);
 	const [volumeBarPos, setVolumeBarPos] = useState(null);
 	const [percentToPixels, setPercentToPixels] = useState(null);

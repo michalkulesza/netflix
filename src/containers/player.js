@@ -1,8 +1,9 @@
-import React, { useState, useRef } from "react";
-import { useDispatch } from "react-redux";
+import React, { useState, useRef, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Player, Button } from "../components";
 import { VolumeSliderContainer } from "../containers";
 import { setError } from "../redux/actions/error";
+import { useVolumeIcon } from "../hooks";
 
 import {
 	GrClose,
@@ -30,11 +31,13 @@ const data = {
 const PlayerContainer = () => {
 	const dispatch = useDispatch();
 	const playerRef = useRef(null);
+	const volume = useSelector(state => state.player.volume);
 	const [placeholderVisible, setPlaceholderVisible] = useState(false);
 	const [controlButtonsHover, setControlButtonsHover] = useState(false);
 	const [volumeSliderVisible, setVolumeSliderVisible] = useState(false);
 	const [canPlay, setCanPlay] = useState(false);
 	const [videoState, setVideoState] = useState("paused");
+	const volumeIcon = useVolumeIcon(volume);
 
 	// const data = useSelector(state => state.player);
 
@@ -149,7 +152,7 @@ const PlayerContainer = () => {
 									}}
 								>
 									<Button.Clear padding="0.6em" mouseover={volumeSliderVisible}>
-										<ImVolumeHigh />
+										{volumeIcon ? volumeIcon : <ImVolumeMedium />}
 									</Button.Clear>
 									<VolumeSliderContainer
 										visible={volumeSliderVisible}
