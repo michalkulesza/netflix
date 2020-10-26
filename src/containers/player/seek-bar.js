@@ -7,7 +7,6 @@ const SeekBarContainer = ({ metaLoaded, isVideoPlaying, playerRef }) => {
 	const barRef = useRef(null);
 	const [isDragged, setIsDragged] = useState(false);
 	const [seekBarPosition, setSeekBarPosition] = useState(null);
-	const [cachedIndicatorPosition, setCachedIndicatorPosition] = useState(null);
 	const [indicatorPosition, setIndicatorPosition] = useState(null);
 	const [pixelsToPercent, setPixelsToPercent] = useState(null);
 	const [currentTime, setCurrentTime] = useState(null);

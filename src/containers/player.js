@@ -14,6 +14,8 @@ import {
 	GrCircleQuestion,
 	GrContact,
 	GrExpand,
+	GrLayer,
+	GrChapterNext,
 } from "react-icons/gr";
 import { ImVolumeMedium } from "react-icons/im";
 
@@ -26,6 +28,10 @@ const data = {
 	year: 1991,
 	ageRestriction: 12,
 	length: 69,
+	type: "tv",
+	ep_number: 1,
+	ep_season: 6,
+	ep_title: "Forever",
 };
 
 const PlayerContainer = () => {
@@ -99,7 +105,7 @@ const PlayerContainer = () => {
 							<Player.ControlLeft>
 								<Button.Clear
 									grayedOut={controlButtonsHover}
-									padding="0.6em 1.9em 0.6em 0.6em"
+									padding="0.6em 1.4em 0.6em 0.6em"
 									onMouseDown={handleClickPlay}
 									onMouseEnter={handleButtonMouseEnter}
 									onMouseLeave={handleButtonMouseLeave}
@@ -108,7 +114,7 @@ const PlayerContainer = () => {
 								</Button.Clear>
 								<Button.Clear
 									grayedOut={controlButtonsHover}
-									padding="0.6em 1.9em 0.6em 0.6em"
+									padding="0.6em 1.4em 0.6em 0.6em"
 									onMouseDown={handleClickSkipBack}
 									onMouseEnter={handleButtonMouseEnter}
 									onMouseLeave={handleButtonMouseLeave}
@@ -117,7 +123,7 @@ const PlayerContainer = () => {
 								</Button.Clear>
 								<Button.Clear
 									grayedOut={controlButtonsHover}
-									padding="0.6em 1.9em 0.6em 0.6em"
+									padding="0.6em 1.4em 0.6em 0.6em"
 									onMouseDown={handleClickSkipForward}
 									onMouseEnter={handleButtonMouseEnter}
 									onMouseLeave={handleButtonMouseLeave}
@@ -153,18 +159,41 @@ const PlayerContainer = () => {
 								</Player.ButtonContainer>
 							</Player.ControlLeft>
 							<Player.ControlMiddle>
-								<Player.ControlTitle>{data.title}</Player.ControlTitle>
+								<Player.ControlTitle>
+									{data?.type === "film" ? (
+										data.title
+									) : (
+										<>
+											{`${data.title} `}
+											<span>{`S${data.ep_season}:E${data.ep_number} ${data.ep_title}`}</span>
+										</>
+									)}
+								</Player.ControlTitle>
 							</Player.ControlMiddle>
 							<Player.ControlRight>
 								<Button.Clear
-									padding="0.6em 1.9em 0.6em 0.6em"
+									padding="0.6em 1.4em 0.6em 0.6em"
 									onMouseEnter={handleButtonMouseEnter}
 									onMouseLeave={handleButtonMouseLeave}
 								>
 									<GrCircleQuestion />
 								</Button.Clear>
 								<Button.Clear
-									padding="0.6em 1.9em 0.6em 0.6em"
+									padding="0.6em 1.4em 0.6em 0.6em"
+									onMouseEnter={handleButtonMouseEnter}
+									onMouseLeave={handleButtonMouseLeave}
+								>
+									<GrChapterNext />
+								</Button.Clear>
+								<Button.Clear
+									padding="0.6em 1.4em 0.6em 0.6em"
+									onMouseEnter={handleButtonMouseEnter}
+									onMouseLeave={handleButtonMouseLeave}
+								>
+									<GrLayer />
+								</Button.Clear>
+								<Button.Clear
+									padding="0.6em 1.4em 0.6em 0.6em"
 									margin="0 1.3em 0 0"
 									onMouseEnter={handleButtonMouseEnter}
 									onMouseLeave={handleButtonMouseLeave}

@@ -87,6 +87,7 @@ const ItemExpandedContainer = ({ isVisible, showVideo, position, videoFile }) =>
 			if (item.media_type === "tv") {
 				dispatch(
 					setPlayerTV({
+						id: item.id,
 						title: item.name,
 						src: videoPlayerSrc,
 						backdrop: item.backdrop_path_1280,

@@ -109,11 +109,17 @@ export const ControlMiddle = styled.div`
 	flex: 1;
 	margin: 0 1em;
 	display: flex;
+	overflow: hidden;
 	align-items: center;
 `;
 
 export const ControlTitle = styled.h3`
+	width: 100%;
 	font-weight: 600;
+	white-space: nowrap;
+	span {
+		color: #adadad;
+	}
 `;
 
 export const ControlRight = styled.div`
