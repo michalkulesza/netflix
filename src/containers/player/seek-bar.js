@@ -78,9 +78,7 @@ const SeekBarContainer = ({ metaLoaded, isVideoPlaying, playerRef }) => {
 				ref={barRef}
 			>
 				<SeekBar.SeekBarContainer>
-					<SeekBar.SeekBarTotal>
-						<SeekBar.SeekBarCurrent></SeekBar.SeekBarCurrent>
-					</SeekBar.SeekBarTotal>
+					<SeekBar.SeekBarTotal />
 				</SeekBar.SeekBarContainer>
 				<SeekBar.SeekIndicator position={indicatorPosition}></SeekBar.SeekIndicator>
 			</SeekBar.Main>

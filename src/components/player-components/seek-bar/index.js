@@ -1,14 +1,6 @@
 import React from "react";
 import { forwardRef } from "react";
-import {
-	Container,
-	Main,
-	Time,
-	SeekBarContainer,
-	SeekIndicator,
-	SeekBarTotal,
-	SeekBarCurrent,
-} from "./styles/seek-bar";
+import { Container, Main, Time, SeekBarContainer, SeekIndicator, SeekBarTotal } from "./styles/seek-bar";
 
 const SeekBar = ({ children, ...restProps }) => {
 	return <Container {...restProps}>{children}</Container>;
@@ -42,10 +34,6 @@ SeekBar.SeekIndicator = ({ children, ...restProps }) => {
 
 SeekBar.SeekBarTotal = ({ children, ...restProps }) => {
 	return <SeekBarTotal {...restProps}>{children}</SeekBarTotal>;
-};
-
-SeekBar.SeekBarCurrent = ({ children, ...restProps }) => {
-	return <SeekBarCurrent {...restProps}>{children}</SeekBarCurrent>;
 };
 
 export default SeekBar;

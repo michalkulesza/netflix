@@ -59,12 +59,3 @@ export const SeekBarTotal = styled.div`
 	background-color: #5b5b5b;
 	transition: all 200ms ease-in-out;
 `;
-
-export const SeekBarCurrent = styled.div`
-	position: absolute;
-	top: 0;
-	left: 0;
-	background-color: #7c7c7c;
-	height: 100%;
-	width: 22%;
-`;
