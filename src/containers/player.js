@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Player, Button } from "../components";
-import { SeekBarContainer, VolumeSliderContainer } from "../containers";
+import { SeekBarContainer, VolumeSliderContainer, PopupContainer } from "../containers";
 import { setError } from "../redux/actions/error";
 import { useVolumeIcon } from "../hooks";
 
@@ -83,6 +83,7 @@ const PlayerContainer = () => {
 	const [placeholderVisible, setPlaceholderVisible] = useState(false);
 	const [controlButtonsHover, setControlButtonsHover] = useState(false);
 	const [volumeSliderVisible, setVolumeSliderVisible] = useState(false);
+	const [feedbackHover, setFeedbackHover] = useState(false);
 	const [metaLoaded, setMetaLoaded] = useState(false);
 	const [canPlay, setCanPlay] = useState(false);
 	const [videoState, setVideoState] = useState("paused");
@@ -129,6 +130,9 @@ const PlayerContainer = () => {
 	const handleVolumeButtonLeave = () => setVolumeSliderVisible(false);
 
 	const handleLoadedMetadata = () => setMetaLoaded(true);
+
+	const handleFeedbackHoverEnter = () => setFeedbackHover(true);
+	const handleFeedbackHoverLeave = () => setFeedbackHover(false);
 
 	return (
 		<Player>
@@ -215,10 +219,19 @@ const PlayerContainer = () => {
 							<Player.ControlRight>
 								<Button.Clear
 									padding="0.6em 1.4em 0.6em 0.6em"
-									onMouseEnter={handleButtonMouseEnter}
-									onMouseLeave={handleButtonMouseLeave}
+									onMouseEnter={() => {
+										handleButtonMouseEnter();
+										handleFeedbackHoverEnter();
+									}}
+									onMouseLeave={() => {
+										handleButtonMouseLeave();
+										handleFeedbackHoverLeave();
+									}}
 								>
 									<GrCircleQuestion />
+									<PopupContainer type="dialog" visible={feedbackHover}>
+										Hi there. Something wrong?
+									</PopupContainer>
 								</Button.Clear>
 								<Button.Clear
 									padding="0.6em 1.4em 0.6em 0.6em"

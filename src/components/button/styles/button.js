@@ -148,10 +148,9 @@ export const Clear = styled.button`
 	}
 
 	&:hover {
-		transform: scale(1.2);
-
 		svg {
 			fill: #fff;
+			transform: scale(1.2);
 			path {
 				stroke: #fff;
 			}
