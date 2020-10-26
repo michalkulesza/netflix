@@ -28,7 +28,15 @@ Player.VideoContainer = ({ children, ...restProps }) => {
 };
 
 Player.Video = forwardRef((props, ref) => {
-	return <Video type="video/mp4" onCanPlay={props.onCanPlay} src={props.src} ref={ref} />;
+	return (
+		<Video
+			type="video/mp4"
+			onLoadedMetadata={props.onLoadedMetadata}
+			onCanPlay={props.onCanPlay}
+			src={props.src}
+			ref={ref}
+		/>
+	);
 });
 
 Player.PlaceholderContainer = ({ children, ...restProps }) => {

@@ -35,6 +35,7 @@ const PlayerContainer = () => {
 	const [placeholderVisible, setPlaceholderVisible] = useState(false);
 	const [controlButtonsHover, setControlButtonsHover] = useState(false);
 	const [volumeSliderVisible, setVolumeSliderVisible] = useState(false);
+	const [metaLoaded, setMetaLoaded] = useState(false);
 	const [canPlay, setCanPlay] = useState(false);
 	const [videoState, setVideoState] = useState("paused");
 	const volumeIcon = useVolumeIcon(volume);
@@ -79,6 +80,8 @@ const PlayerContainer = () => {
 	const handleVolumeButtonEnter = () => setVolumeSliderVisible(true);
 	const handleVolumeButtonLeave = () => setVolumeSliderVisible(false);
 
+	const handleLoadedMetadata = () => setMetaLoaded(true);
+
 	return (
 		<Player>
 			<Player.OverlayContainer>
@@ -91,7 +94,7 @@ const PlayerContainer = () => {
 				<Player.OverlayMiddle onMouseDown={handleClickVideo}></Player.OverlayMiddle>
 				<Player.OverlayBottom>
 					<Player.ControlsContainer>
-						<SeekBarContainer playerRef={playerRef} />
+						<SeekBarContainer metaLoaded={metaLoaded} isVideoPlaying={videoState === "playing"} playerRef={playerRef} />
 						<Player.ControlButtonsContainer>
 							<Player.ControlLeft>
 								<Button.Clear
@@ -186,7 +189,12 @@ const PlayerContainer = () => {
 				<Player.Placeholder src={data.backdrop} />
 			</Player.PlaceholderContainer>
 			<Player.VideoContainer>
-				<Player.Video ref={playerRef} onCanPlay={handleCanPlay} src={data.src} />
+				<Player.Video
+					ref={playerRef}
+					onLoadedMetadata={handleLoadedMetadata}
+					onCanPlay={handleCanPlay}
+					src={data.src}
+				/>
 			</Player.VideoContainer>
 		</Player>
 	);
