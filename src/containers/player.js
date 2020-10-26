@@ -30,7 +30,7 @@ const data = {
 	length: 69,
 	type: "tv",
 	ep_number: 1,
-	ep_season: 6,
+	ep_season: 1,
 	ep_title: "Forever",
 	seasons: [
 		{
@@ -229,9 +229,7 @@ const PlayerContainer = () => {
 									}}
 								>
 									<GrCircleQuestion />
-									<PopupContainer type="dialog" visible={feedbackHover}>
-										Hi there. Something wrong?
-									</PopupContainer>
+									<PopupContainer visible={feedbackHover}>Hi there. Something wrong?</PopupContainer>
 								</Button.Clear>
 								<Button.Clear
 									padding="0.6em 1.4em 0.6em 0.6em"

@@ -8,5 +8,4 @@ const Popup = ({ children, ...restProps }) => {
 Popup.Dialog = ({ children, ...restProps }) => {
 	return <Dialog {...restProps}>{children}</Dialog>;
 };
-
 export default Popup;
