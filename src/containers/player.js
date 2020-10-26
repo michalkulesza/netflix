@@ -80,11 +80,9 @@ const PlayerContainer = () => {
 	};
 
 	const handleButtonMouseEnter = () => setControlButtonsHover(true);
-
 	const handleButtonMouseLeave = () => setControlButtonsHover(false);
 
 	const handleVolumeButtonEnter = () => setVolumeSliderVisible(true);
-
 	const handleVolumeButtonLeave = () => setVolumeSliderVisible(false);
 
 	return (

@@ -13,7 +13,7 @@ const VolumeSliderContainer = ({ visible, playerRef }) => {
 	const [indicatorPosition, setIndicatorPosition] = useState(initVolume * 100);
 
 	useEffect(() => {
-		if (playerRef?.current) {
+		if (playerRef?.current && indicatorPosition % 5 === 0) {
 			playerRef.current.volume = indicatorPosition / 100;
 			dispatch(setPlayerVolume(indicatorPosition / 100));
 		}
@@ -33,11 +33,11 @@ const VolumeSliderContainer = ({ visible, playerRef }) => {
 		if (isDragged && volumeBarPos) {
 			if (e.clientY > volumeBarPos.y && e.clientY < volumeBarPos.bottom) {
 				const percentageVal = 100 - (e.clientY - volumeBarPos.y) / percentToPixels;
-				percentageVal < 6
+				percentageVal <= 5
 					? setIndicatorPosition(0)
-					: percentageVal > 94
+					: percentageVal >= 95
 					? setIndicatorPosition(100)
-					: setIndicatorPosition(percentageVal);
+					: setIndicatorPosition(Math.ceil(percentageVal));
 			}
 		}
 	};
