@@ -16,7 +16,13 @@ const SeekBar = ({ children, ...restProps }) => {
 
 SeekBar.Main = forwardRef((props, ref) => {
 	return (
-		<Main onMouseDown={props.onMouseDown} onMouseUp={props.onMouseUp} onMouseMove={props.onMouseMove} ref={ref}>
+		<Main
+			onMouseDown={props.onMouseDown}
+			onMouseLeave={props.onMouseLeave}
+			onMouseUp={props.onMouseUp}
+			onMouseMove={props.onMouseMove}
+			ref={ref}
+		>
 			{props.children}
 		</Main>
 	);
