@@ -1,5 +1,12 @@
 import Axios from "axios";
-import { SET_PLAYER_TV, SET_PLAYER_FILM, SET_PLAYER_VOLUME, SET_PLAYER_SEASONS } from "../types";
+import {
+	SET_PLAYER_TV,
+	SET_PLAYER_FILM,
+	SET_PLAYER_VOLUME,
+	SET_PLAYER_SEASONS,
+	SET_PLAYER_STATE,
+	SET_PLAYER_META_LOADED,
+} from "../types";
 import { setError } from "./error";
 
 export const setPlayerTV = ({ id, title, src, backdrop, description, ep_title, ep_number, ep_season }) => {
@@ -33,5 +40,19 @@ export const setPlayerVolume = vol => {
 	return {
 		type: SET_PLAYER_VOLUME,
 		payload: vol,
+	};
+};
+
+export const setPlayerState = state => {
+	return {
+		type: SET_PLAYER_STATE,
+		payload: state,
+	};
+};
+
+export const setPlayerMetaLoaded = bool => {
+	return {
+		type: SET_PLAYER_META_LOADED,
+		payload: bool,
 	};
 };
