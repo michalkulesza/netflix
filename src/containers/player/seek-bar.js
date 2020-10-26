@@ -38,16 +38,8 @@ const SeekBarContainer = ({ metaLoaded, isVideoPlaying, playerRef }) => {
 		}
 	}, []);
 
-	const handleBarMouseLeave = () => {
-		if (isDragged) {
-			setIsDragged(false);
-			setIndicatorPosition(cachedIndicatorPosition);
-		}
-	};
-	const handleBarMouseDown = () => {
-		setCachedIndicatorPosition(indicatorPosition);
-		setIsDragged(true);
-	};
+	const handleBarMouseLeave = () => isDragged && handleBarMouseUp();
+	const handleBarMouseDown = () => setIsDragged(true);
 	const handleBarMouseUp = () => {
 		if (playerRef.current) {
 			const newTime = Math.floor((videoLength / 100) * indicatorPosition);
@@ -75,6 +67,7 @@ const SeekBarContainer = ({ metaLoaded, isVideoPlaying, playerRef }) => {
 				onMouseUp={handleBarMouseUp}
 				onMouseMove={e => handleBarMouseMove(e)}
 				onMouseLeave={handleBarMouseLeave}
+				isDragged={isDragged}
 				ref={barRef}
 			>
 				<SeekBar.SeekBarContainer>
@@ -82,7 +75,11 @@ const SeekBarContainer = ({ metaLoaded, isVideoPlaying, playerRef }) => {
 				</SeekBar.SeekBarContainer>
 				<SeekBar.SeekIndicator position={indicatorPosition}></SeekBar.SeekIndicator>
 			</SeekBar.Main>
-			<SeekBar.Time>{videoLength - currentTime}</SeekBar.Time>
+			<SeekBar.Time>
+				{videoLength !== null && currentTime !== null
+					? new Date((videoLength - currentTime) * 1000).toISOString().substr(12, 7)
+					: "0:00:00"}
+			</SeekBar.Time>
 		</SeekBar>
 	);
 };

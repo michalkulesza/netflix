@@ -1,7 +1,7 @@
 import styled from "styled-components/macro";
 
 export const Container = styled.div`
-	height: max-content;
+	height: 100%;
 	width: 100%;
 	display: flex;
 `;
@@ -16,8 +16,15 @@ export const SeekIndicator = styled.div`
 	height: 20px;
 	width: 20px;
 	border-radius: 50%;
-	cursor: pointer;
 	pointer-events: none;
+`;
+
+export const SeekBarTotal = styled.div`
+	position: relative;
+	height: 5px;
+	width: 100%;
+	background-color: #5b5b5b;
+	transition: all 200ms ease-in-out;
 `;
 
 export const Main = styled.div`
@@ -26,10 +33,14 @@ export const Main = styled.div`
 	display: flex;
 	align-items: center;
 	flex: 1;
+	cursor: ${({ isDragged }) => (isDragged ? "grabbing" : "grab")};
 
 	&:hover {
 		${SeekIndicator} {
 			transform: translate(-50%, -50%) scale(1.2);
+		}
+		${SeekBarTotal} {
+			transform: scaleY(1.7);
 		}
 	}
 `;
@@ -49,13 +60,4 @@ export const SeekBarContainer = styled.div`
 	display: flex;
 	align-items: center;
 	transition: all 150ms ease-in-out;
-	cursor: pointer;
-`;
-
-export const SeekBarTotal = styled.div`
-	position: relative;
-	height: 5px;
-	width: 100%;
-	background-color: #5b5b5b;
-	transition: all 200ms ease-in-out;
 `;

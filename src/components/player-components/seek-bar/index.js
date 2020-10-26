@@ -13,6 +13,7 @@ SeekBar.Main = forwardRef((props, ref) => {
 			onMouseLeave={props.onMouseLeave}
 			onMouseUp={props.onMouseUp}
 			onMouseMove={props.onMouseMove}
+			isDragged={props.isDragged}
 			ref={ref}
 		>
 			{props.children}
