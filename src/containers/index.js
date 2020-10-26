@@ -16,3 +16,4 @@ export { default as DetailsRelatedContainer } from "./details/details-related";
 export { default as ErrorNotificationContainer } from "./error-notification";
 export { default as PlayerContainer } from "./player";
 export { default as VolumeSliderContainer } from "./player/volume-slider";
+export { default as SeekBarContainer } from "./player/seek-bar";

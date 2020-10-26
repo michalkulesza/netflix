@@ -1,7 +1,7 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Player, Button } from "../components";
-import { VolumeSliderContainer } from "../containers";
+import { SeekBarContainer, VolumeSliderContainer } from "../containers";
 import { setError } from "../redux/actions/error";
 import { useVolumeIcon } from "../hooks";
 
@@ -15,7 +15,7 @@ import {
 	GrContact,
 	GrExpand,
 } from "react-icons/gr";
-import { ImVolumeHigh, ImVolumeMedium, ImVolumeLow, ImVolumeMute2 } from "react-icons/im";
+import { ImVolumeMedium } from "react-icons/im";
 
 const data = {
 	src: "http://localhost:8888/video/night",
@@ -91,17 +91,7 @@ const PlayerContainer = () => {
 				<Player.OverlayMiddle onMouseDown={handleClickVideo}></Player.OverlayMiddle>
 				<Player.OverlayBottom>
 					<Player.ControlsContainer>
-						<Player.ControlSeekContainer>
-							<Player.ControlSeek>
-								<Player.ControlSeekBarContainer>
-									<Player.ControlSeekBar>
-										<Player.ControlSeekBarCurrent></Player.ControlSeekBarCurrent>
-									</Player.ControlSeekBar>
-								</Player.ControlSeekBarContainer>
-								<Player.ControlSeekIndicator></Player.ControlSeekIndicator>
-							</Player.ControlSeek>
-							<Player.Time>1:34:25</Player.Time>
-						</Player.ControlSeekContainer>
+						<SeekBarContainer />
 						<Player.ControlButtonsContainer>
 							<Player.ControlLeft>
 								<Button.Clear

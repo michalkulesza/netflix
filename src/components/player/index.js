@@ -11,14 +11,7 @@ import {
 	OverlayBottom,
 	OverlayTitle,
 	ControlsContainer,
-	ControlSeekContainer,
 	ControlButtonsContainer,
-	ControlSeek,
-	Time,
-	ControlSeekBar,
-	ControlSeekBarContainer,
-	ControlSeekBarCurrent,
-	ControlSeekIndicator,
 	ControlLeft,
 	ControlMiddle,
 	ControlTitle,
@@ -70,20 +63,8 @@ Player.ControlsContainer = ({ children, ...restProps }) => {
 	return <ControlsContainer {...restProps}>{children}</ControlsContainer>;
 };
 
-Player.ControlSeekContainer = ({ children, ...restProps }) => {
-	return <ControlSeekContainer {...restProps}>{children}</ControlSeekContainer>;
-};
-
 Player.ControlButtonsContainer = ({ children, ...restProps }) => {
 	return <ControlButtonsContainer {...restProps}>{children}</ControlButtonsContainer>;
-};
-
-Player.ControlSeek = ({ children, ...restProps }) => {
-	return <ControlSeek {...restProps}>{children}</ControlSeek>;
-};
-
-Player.Time = ({ children, ...restProps }) => {
-	return <Time {...restProps}>{children}</Time>;
 };
 
 Player.ControlLeft = ({ children, ...restProps }) => {
@@ -100,22 +81,6 @@ Player.ControlTitle = ({ children, ...restProps }) => {
 
 Player.ControlRight = ({ children, ...restProps }) => {
 	return <ControlRight {...restProps}>{children}</ControlRight>;
-};
-
-Player.ControlSeekBar = ({ children, ...restProps }) => {
-	return <ControlSeekBar {...restProps}>{children}</ControlSeekBar>;
-};
-
-Player.ControlSeekBarContainer = ({ children, ...restProps }) => {
-	return <ControlSeekBarContainer {...restProps}>{children}</ControlSeekBarContainer>;
-};
-
-Player.ControlSeekBarCurrent = ({ children, ...restProps }) => {
-	return <ControlSeekBarCurrent {...restProps}>{children}</ControlSeekBarCurrent>;
-};
-
-Player.ControlSeekIndicator = ({ children, ...restProps }) => {
-	return <ControlSeekIndicator {...restProps}>{children}</ControlSeekIndicator>;
 };
 
 Player.ButtonContainer = ({ children, ...restProps }) => {
