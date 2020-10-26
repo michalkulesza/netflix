@@ -54,21 +54,15 @@ const PlayerContainer = () => {
 		}
 	};
 
-	const handleClickSkipBack = () => {
-		if (playerRef?.current) {
-			const currentTime = playerRef.current.currentTime;
-			playerRef.current.currentTime = currentTime - 10;
+	const handleSkip = (ref, val) => {
+		if (ref?.current) {
+			const currentTime = ref.current.currentTime;
+			ref.current.currentTime = currentTime + val;
 		}
 	};
 
-	const handleClickSkipForward = () => {
-		if (playerRef?.current) {
-			const currentTime = playerRef.current.currentTime;
-			playerRef.current.currentTime = currentTime + 10;
-		}
-	};
-
-	const handleClickMute = () => null;
+	const handleClickSkipBack = () => handleSkip(playerRef, -10);
+	const handleClickSkipForward = () => handleSkip(playerRef, 10);
 
 	const handleClickVideo = () => handleClickPlay();
 
@@ -139,7 +133,6 @@ const PlayerContainer = () => {
 								</Button.Clear>
 
 								<Player.ButtonContainer
-									onMouseDown={handleClickMute}
 									onMouseEnter={() => {
 										handleButtonMouseEnter();
 										handleVolumeButtonEnter();
