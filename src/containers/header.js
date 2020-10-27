@@ -9,7 +9,6 @@ import { GrPlayFill, GrCircleInformation } from "react-icons/gr";
 import placeholder from "../res/images/placeholder_w.jpg";
 
 let posterTimer;
-const STOP_VIDEO = false; //REMOVE
 
 const HeaderContainer = ({ headerData, bg, children, ...restProps }) => {
 	const videoPlayer = useRef(null);
@@ -25,7 +24,7 @@ const HeaderContainer = ({ headerData, bg, children, ...restProps }) => {
 		if (videoPlayer.current) {
 			videoPlayer.current.volume = 0.4;
 
-			if (canPlay && videoCanPlay && !videoEnded && !STOP_VIDEO) {
+			if (canPlay && videoCanPlay && !videoEnded) {
 				posterTimer = setTimeout(() => {
 					setPosterIsVisible(false);
 					videoPlayer.current && videoPlayer.current.play();

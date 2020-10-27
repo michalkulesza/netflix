@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setIsDetails, setGlobalMute } from "../redux/actions/toggles";
-import { useHistory } from "react-router-dom";
-import { setDetailsPosition } from "../redux/actions/misc";
-import { ItemExpanded, Button } from "../components";
 import { setPlayerFilm, setPlayerTV } from "../redux/actions/player";
+import { setDetailsPosition } from "../redux/actions/misc";
+import { useHistory } from "react-router-dom";
+import { ItemExpanded, Button } from "../components";
 import { WATCH } from "../constants/routes";
 import LazyLoad from "react-lazyload";
 
@@ -49,12 +49,7 @@ const ItemExpandedContainer = ({ isVisible, showVideo, position, videoFile }) =>
 		}
 	}, [showVideo, videoEnded, videoCanPlay]);
 
-	const handleOnAnimationEnd = () => {
-		if (!isVisible) {
-			setShouldRender(false);
-			setIsPlaceholder(true);
-		}
-	};
+	const handleMuteClick = () => dispatch(setGlobalMute(!globalMute));
 
 	const handleClickMoreDetails = ({ currentTarget }) => {
 		const elemPos = currentTarget.parentNode.parentNode.parentNode.parentNode.getBoundingClientRect();
@@ -62,11 +57,14 @@ const ItemExpandedContainer = ({ isVisible, showVideo, position, videoFile }) =>
 		dispatch(setIsDetails(true));
 	};
 
-	const handleMuteClick = () => dispatch(setGlobalMute(!globalMute));
-
 	const handleVideoCanPlayThrough = () => setVideoCanPlay(true);
-
 	const handleVideoEnded = () => setVideoEnded(true);
+	const handleOnAnimationEnd = () => {
+		if (!isVisible) {
+			setShouldRender(false);
+			setIsPlaceholder(true);
+		}
+	};
 
 	const handlePlay = () => {
 		if (item && ageRestriction) {
