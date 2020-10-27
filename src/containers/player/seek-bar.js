@@ -14,8 +14,6 @@ const SeekBarContainer = ({ isVideoPlaying, playerRef }) => {
 	const [videoLength, setVideoLength] = useState(null);
 	const metaLoaded = useSelector(state => state.player.state);
 
-	console.log(playerRef?.current?.duration);
-
 	useEffect(() => {
 		if (currentTime !== null && videoLength && !isDragged) {
 			setIndicatorPosition((currentTime / videoLength) * 100);

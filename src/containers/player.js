@@ -11,6 +11,7 @@ import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 let loadingScreenTimer;
 let overlayHiddenTimer;
+let awayScreenTimer;
 
 const PlayerContainer = () => {
 	const dispatch = useDispatch();
@@ -23,7 +24,7 @@ const PlayerContainer = () => {
 	const [overlayVisible, setOverlayVisible] = useState(true);
 	const [canPlay, setCanPlay] = useState(false);
 
-	// const data = useSelector(state => state.player);
+	const data = useSelector(state => state.player);
 	const playerState = useSelector(state => state.player.state);
 
 	useEffect(() => {
@@ -38,15 +39,30 @@ const PlayerContainer = () => {
 
 	useEffect(() => {
 		if (!loadingScreen && !awayScreen && overlayVisible)
-			overlayHiddenTimer = setTimeout(() => setOverlayVisible(false), 5000);
+			overlayHiddenTimer = setTimeout(() => setOverlayVisible(false), 2000);
 		return () => clearTimeout(overlayHiddenTimer);
 	}, [awayScreen, loadingScreen, overlayVisible]);
 
 	const handleMouseMove = () => {
-		console.log("move");
 		if (!overlayVisible) {
 			clearTimeout(overlayHiddenTimer);
 			setOverlayVisible(true);
+		}
+	};
+
+	const handleMouseLeave = () => {
+		if (!loadingScreen && !awayScreen)
+			awayScreenTimer = setTimeout(() => {
+				setAwayScreen(true);
+				setOverlayVisible(true);
+				setControlsVisible(false);
+			}, 5000);
+	};
+	const handleMouseEnter = () => {
+		clearTimeout(awayScreenTimer);
+		if (awayScreen) {
+			setAwayScreen(false);
+			setControlsVisible(true);
 		}
 	};
 
@@ -67,19 +83,8 @@ const PlayerContainer = () => {
 
 	const handleLoadedMetadata = () => dispatch(setPlayerMetaLoaded(true));
 
-	const data = {
-		src: "http://localhost:8888/video/night",
-		title: "Angry looking fella",
-		backdrop: "http://image.tmdb.org/t/p/w1280/aO5ILS7qnqtFIprbJ40zla0jhpu.jpg",
-		description:
-			"Jesse Freeman is a former special forces officer and explosives expert now working a regular job as a security guard in a state-of-the-art basketball arena. Trouble erupts when a tech-savvy cadre of terrorists kidnap the team's owner and Jesse's daughter during opening night. Facing a ticking clock and impossible odds, it's up to Jesse to not only save them but also a full house of fans in this highly charged action thriller.",
-		year: 1991,
-		ageRestriction: 12,
-		length: 69,
-	};
-
 	return (
-		<Player onMouseMove={handleMouseMove}>
+		<Player onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave} onMouseEnter={handleMouseEnter}>
 			<Player.OverlayContainer visible={overlayVisible}>
 				<Player.OverlayTop>
 					{loadingScreen ? (
@@ -89,18 +94,30 @@ const PlayerContainer = () => {
 								<GrClose />
 							</Button.Clear>
 						</>
-					) : (
+					) : !loadingScreen && !awayScreen ? (
 						<Button.Clear padding="0.6em" onMouseDown={handleCloseButton}>
 							<GrLinkPrevious />
 						</Button.Clear>
-					)}
+					) : null}
 				</Player.OverlayTop>
 				<Player.OverlayMiddle onMouseDown={handleClickPlay}>
-					{loadingScreen && (
+					{loadingScreen ? (
 						<Player.OverlaySpinner>
 							<AiOutlineLoading3Quarters />
 						</Player.OverlaySpinner>
-					)}
+					) : !loadingScreen && awayScreen ? (
+						<Player.OverlayInfo>
+							<p>Your're watching</p>
+							<h1>{data.title}</h1>
+							<h2>
+								{data.type === "tv"
+									? `Season ${data.ep_season}: Ep. ${data.ep_number}`
+									: `${data.year} ${data.ageRestriction} ${data.runtime}min`}
+							</h2>
+							{data.type === "tv" && <h2>{data.ep_title}</h2>}
+							<p>{data.description}</p>
+						</Player.OverlayInfo>
+					) : null}
 				</Player.OverlayMiddle>
 				<Player.OverlayBottom>
 					{controlsVisible && <ControlsContainer handleClickPlay={handleClickPlay} playerRef={playerRef} />}

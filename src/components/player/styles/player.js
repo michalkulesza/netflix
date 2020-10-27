@@ -76,6 +76,40 @@ export const OverlayMiddle = styled.div`
 	align-items: center;
 `;
 
+export const OverlayInfo = styled.div`
+	height: 100%;
+	width: 100%;
+	padding: 10%;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	background: rgb(0, 0, 0);
+	background: linear-gradient(
+		0deg,
+		rgba(0, 0, 0, 0) 0%,
+		rgba(0, 0, 0, 0.5) 30%,
+		rgba(0, 0, 0, 0.5) 70%,
+		rgba(0, 0, 0, 0) 100%
+	);
+
+	p {
+		margin: 0;
+		color: #cccccc;
+	}
+
+	h1 {
+		font-size: 3.2em;
+		margin: 0;
+		font-weight: 600;
+	}
+
+	h2 {
+		font-size: 1.3em;
+		font-weight: 600;
+		margin-top: 0;
+	}
+`;
+
 export const OverlaySpinner = styled.div`
 	height: 4em;
 	width: 4em;

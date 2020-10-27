@@ -8,6 +8,7 @@ import {
 	OverlayContainer,
 	OverlayTop,
 	OverlayMiddle,
+	OverlayInfo,
 	OverlaySpinner,
 	OverlayBottom,
 	OverlayTitle,
@@ -51,6 +52,10 @@ Player.OverlayTop = ({ children, ...restProps }) => {
 
 Player.OverlayMiddle = ({ children, ...restProps }) => {
 	return <OverlayMiddle {...restProps}>{children}</OverlayMiddle>;
+};
+
+Player.OverlayInfo = ({ children, ...restProps }) => {
+	return <OverlayInfo {...restProps}>{children}</OverlayInfo>;
 };
 
 Player.OverlaySpinner = ({ children, ...restProps }) => {
