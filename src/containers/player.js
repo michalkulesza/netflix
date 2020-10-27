@@ -69,7 +69,14 @@ const PlayerContainer = () => {
 
 	const handleCanPlay = () => setCanPlay(true);
 
-	const handleCloseButton = () => (history?.location?.pathname !== WATCH ? history.goBack() : history.push(HOME));
+	const handleCloseButton = () => {
+		document.exitFullscreen();
+		if (history?.location?.pathname !== WATCH) {
+			history.goBack();
+		} else {
+			history.push(HOME);
+		}
+	};
 
 	const handleClickPlay = () => {
 		if (playerRef.current && playerState === "playing") {
