@@ -52,6 +52,9 @@ export const OverlayContainer = styled.div`
 	display: flex;
 	flex-direction: column;
 	z-index: 99;
+	opacity: ${({ visible }) => (visible ? "1" : "0")};
+	pointer-events: ${({ visible }) => (visible ? "all" : "none")};
+	transition: all 500ms ease-in-out;
 `;
 
 export const OverlayTop = styled.div`

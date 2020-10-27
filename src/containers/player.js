@@ -6,10 +6,11 @@ import { HOME, WATCH } from "../constants/routes";
 import { ControlsContainer } from "../containers";
 import { setPlayerState, setPlayerMetaLoaded } from "../redux/actions/player";
 
-import { GrClose } from "react-icons/gr";
+import { GrClose, GrLinkPrevious } from "react-icons/gr";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 let loadingScreenTimer;
+let overlayHiddenTimer;
 
 const PlayerContainer = () => {
 	const dispatch = useDispatch();
@@ -18,7 +19,8 @@ const PlayerContainer = () => {
 
 	const [loadingScreen, setLoadingScreen] = useState(true);
 	const [awayScreen, setAwayScreen] = useState(false);
-	const [controlsHidden, setControlsHidden] = useState(true);
+	const [controlsVisible, setControlsVisible] = useState(false);
+	const [overlayVisible, setOverlayVisible] = useState(true);
 	const [canPlay, setCanPlay] = useState(false);
 
 	// const data = useSelector(state => state.player);
@@ -28,11 +30,25 @@ const PlayerContainer = () => {
 		if (canPlay)
 			loadingScreenTimer = setTimeout(() => {
 				setLoadingScreen(false);
-				setControlsHidden(false);
+				setControlsVisible(true);
 			}, 2000);
 
 		return () => clearTimeout(loadingScreenTimer);
 	}, [canPlay]);
+
+	useEffect(() => {
+		if (!loadingScreen && !awayScreen && overlayVisible)
+			overlayHiddenTimer = setTimeout(() => setOverlayVisible(false), 5000);
+		return () => clearTimeout(overlayHiddenTimer);
+	}, [awayScreen, loadingScreen, overlayVisible]);
+
+	const handleMouseMove = () => {
+		console.log("move");
+		if (!overlayVisible) {
+			clearTimeout(overlayHiddenTimer);
+			setOverlayVisible(true);
+		}
+	};
 
 	const handleCanPlay = () => setCanPlay(true);
 
@@ -63,8 +79,8 @@ const PlayerContainer = () => {
 	};
 
 	return (
-		<Player>
-			<Player.OverlayContainer>
+		<Player onMouseMove={handleMouseMove}>
+			<Player.OverlayContainer visible={overlayVisible}>
 				<Player.OverlayTop>
 					{loadingScreen ? (
 						<>
@@ -75,7 +91,7 @@ const PlayerContainer = () => {
 						</>
 					) : (
 						<Button.Clear padding="0.6em" onMouseDown={handleCloseButton}>
-							<GrClose />
+							<GrLinkPrevious />
 						</Button.Clear>
 					)}
 				</Player.OverlayTop>
@@ -87,7 +103,7 @@ const PlayerContainer = () => {
 					)}
 				</Player.OverlayMiddle>
 				<Player.OverlayBottom>
-					{!controlsHidden && <ControlsContainer handleClickPlay={handleClickPlay} playerRef={playerRef} />}
+					{controlsVisible && <ControlsContainer handleClickPlay={handleClickPlay} playerRef={playerRef} />}
 				</Player.OverlayBottom>
 			</Player.OverlayContainer>
 			<Player.PlaceholderContainer visible={loadingScreen}>
