@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { Player, Button } from "../components";
@@ -7,17 +7,32 @@ import { ControlsContainer } from "../containers";
 import { setPlayerState, setPlayerMetaLoaded } from "../redux/actions/player";
 
 import { GrClose } from "react-icons/gr";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
+
+let loadingScreenTimer;
 
 const PlayerContainer = () => {
 	const dispatch = useDispatch();
 	const history = useHistory();
 	const playerRef = useRef(null);
 
-	const [placeholderVisible, setPlaceholderVisible] = useState(false);
+	const [loadingScreen, setLoadingScreen] = useState(true);
+	const [awayScreen, setAwayScreen] = useState(false);
+	const [controlsHidden, setControlsHidden] = useState(true);
 	const [canPlay, setCanPlay] = useState(false);
 
-	const data = useSelector(state => state.player);
+	// const data = useSelector(state => state.player);
 	const playerState = useSelector(state => state.player.state);
+
+	useEffect(() => {
+		if (canPlay)
+			loadingScreenTimer = setTimeout(() => {
+				setLoadingScreen(false);
+				setControlsHidden(false);
+			}, 2000);
+
+		return () => clearTimeout(loadingScreenTimer);
+	}, [canPlay]);
 
 	const handleCanPlay = () => setCanPlay(true);
 
@@ -28,7 +43,7 @@ const PlayerContainer = () => {
 			playerRef.current.pause();
 			dispatch(setPlayerState("paused"));
 		}
-		if (playerRef.current && playerState === "paused") {
+		if (playerRef.current && playerState === "paused" && !awayScreen && !loadingScreen) {
 			playerRef.current.play();
 			dispatch(setPlayerState("playing"));
 		}
@@ -36,21 +51,46 @@ const PlayerContainer = () => {
 
 	const handleLoadedMetadata = () => dispatch(setPlayerMetaLoaded(true));
 
+	const data = {
+		src: "http://localhost:8888/video/night",
+		title: "Angry looking fella",
+		backdrop: "http://image.tmdb.org/t/p/w1280/aO5ILS7qnqtFIprbJ40zla0jhpu.jpg",
+		description:
+			"Jesse Freeman is a former special forces officer and explosives expert now working a regular job as a security guard in a state-of-the-art basketball arena. Trouble erupts when a tech-savvy cadre of terrorists kidnap the team's owner and Jesse's daughter during opening night. Facing a ticking clock and impossible odds, it's up to Jesse to not only save them but also a full house of fans in this highly charged action thriller.",
+		year: 1991,
+		ageRestriction: 12,
+		length: 69,
+	};
+
 	return (
 		<Player>
 			<Player.OverlayContainer>
 				<Player.OverlayTop>
-					<Player.OverlayTitle>{data.title}</Player.OverlayTitle>
-					<Button.Clear padding="0.6em" onMouseDown={handleCloseButton}>
-						<GrClose />
-					</Button.Clear>
+					{loadingScreen ? (
+						<>
+							<Player.OverlayTitle>{data.title}</Player.OverlayTitle>
+							<Button.Clear padding="0.6em" onMouseDown={handleCloseButton}>
+								<GrClose />
+							</Button.Clear>
+						</>
+					) : (
+						<Button.Clear padding="0.6em" onMouseDown={handleCloseButton}>
+							<GrClose />
+						</Button.Clear>
+					)}
 				</Player.OverlayTop>
-				<Player.OverlayMiddle onMouseDown={handleClickPlay}></Player.OverlayMiddle>
+				<Player.OverlayMiddle onMouseDown={handleClickPlay}>
+					{loadingScreen && (
+						<Player.OverlaySpinner>
+							<AiOutlineLoading3Quarters />
+						</Player.OverlaySpinner>
+					)}
+				</Player.OverlayMiddle>
 				<Player.OverlayBottom>
-					<ControlsContainer handleClickPlay={handleClickPlay} playerRef={playerRef} />
+					{!controlsHidden && <ControlsContainer handleClickPlay={handleClickPlay} playerRef={playerRef} />}
 				</Player.OverlayBottom>
 			</Player.OverlayContainer>
-			<Player.PlaceholderContainer visible={placeholderVisible}>
+			<Player.PlaceholderContainer visible={loadingScreen}>
 				<Player.Placeholder src={data.backdrop} />
 			</Player.PlaceholderContainer>
 			<Player.VideoContainer>

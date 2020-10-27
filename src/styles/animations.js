@@ -137,3 +137,16 @@ export const expandedInRight = () => keyframes`
 			transform: translate3d(-100%, -50%, 0) scale(1);
 			};
 `;
+
+export const spinnerAnim = () => css`
+	${spinner} 600ms infinite linear;
+`;
+
+export const spinner = () => keyframes`
+		0% {
+			transform: rotate(0deg);
+			};
+		100% {
+			transform: rotate(360deg);
+			};
+`;

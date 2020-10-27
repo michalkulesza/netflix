@@ -8,6 +8,7 @@ import {
 	OverlayContainer,
 	OverlayTop,
 	OverlayMiddle,
+	OverlaySpinner,
 	OverlayBottom,
 	OverlayTitle,
 } from "./styles/player";
@@ -50,6 +51,10 @@ Player.OverlayTop = ({ children, ...restProps }) => {
 
 Player.OverlayMiddle = ({ children, ...restProps }) => {
 	return <OverlayMiddle {...restProps}>{children}</OverlayMiddle>;
+};
+
+Player.OverlaySpinner = ({ children, ...restProps }) => {
+	return <OverlaySpinner {...restProps}>{children}</OverlaySpinner>;
 };
 
 Player.OverlayBottom = ({ children, ...restProps }) => {

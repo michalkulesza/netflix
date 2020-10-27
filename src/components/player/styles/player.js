@@ -1,4 +1,5 @@
 import styled from "styled-components/macro";
+import { spinnerAnim } from "../../../styles/animations";
 
 export const Main = styled.div`
 	height: 100vh;
@@ -67,8 +68,25 @@ export const OverlayTop = styled.div`
 export const OverlayMiddle = styled.div`
 	flex: 1;
 	width: 100%;
-	/* background-color: lime; */
-	opacity: 0.7;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+`;
+
+export const OverlaySpinner = styled.div`
+	height: 4em;
+	width: 4em;
+	animation: ${spinnerAnim};
+
+	svg {
+		height: 100%;
+		width: 100%;
+		fill: #e50914;
+
+		path {
+			stroke: #e50914;
+		}
+	}
 `;
 
 export const OverlayBottom = styled.div`
