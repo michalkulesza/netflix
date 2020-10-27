@@ -18,6 +18,7 @@ const ItemContainer = ({ item, i, parentID, isFirstSlide, totalTilesInVievport, 
 	const position = markItemsPosition(i, isFirstSlide, totalTilesInVievport);
 	const [isExpandedVisible, setIsExpandedVisible] = useState(false);
 	const [showVideo, setShowVideo] = useState(false);
+	const [mouseOver, setMouseOver] = useState(false);
 	const { scrollbarWidth: scrollbarWidthPx, headerVideo, activeExpanded } = useSelector(state => state.misc);
 	const { isDetails } = useSelector(state => state.toggles);
 	const scrollbarWidth = useConvertPxToVw(scrollbarWidthPx);
@@ -26,28 +27,36 @@ const ItemContainer = ({ item, i, parentID, isFirstSlide, totalTilesInVievport, 
 		if (isDetails) setIsExpandedVisible(false);
 	}, [isDetails]);
 
+	useEffect(() => {
+		if (mouseOver) {
+			item.media_type === "movie" ? dispatch(fetchDetailsMovie(item.id)) : dispatch(fetchDetailsTv(item.id));
+			hoverTimer = setTimeout(() => {
+				setIsExpandedVisible(true);
+				dispatch(setActiveExpanded(parentID, i));
+				videoTimer = setTimeout(() => setShowVideo(true), 2000);
+			}, 500);
+		} else {
+			dispatch(clearActiveExpanded());
+			setIsExpandedVisible(false);
+			setShowVideo(false);
+			clearTimeout(hoverTimer);
+			clearTimeout(videoTimer);
+		}
+
+		return () => {
+			clearTimeout(hoverTimer);
+			clearTimeout(videoTimer);
+		};
+	}, [dispatch, i, item, mouseOver, parentID]);
+
 	useOnClickOutside(itemRef, () => {
 		if (activeExpanded?.parent === parentID && activeExpanded?.item === i) {
 			setIsExpandedVisible(false);
 		}
 	});
 
-	const handleMouseEnter = e => {
-		item.media_type === "movie" ? dispatch(fetchDetailsMovie(item.id)) : dispatch(fetchDetailsTv(item.id));
-		hoverTimer = setTimeout(() => {
-			setIsExpandedVisible(true);
-			dispatch(setActiveExpanded(parentID, i));
-			videoTimer = setTimeout(() => setShowVideo(true), 2000);
-		}, 500);
-	};
-
-	const handleMouseLeave = e => {
-		dispatch(clearActiveExpanded());
-		setIsExpandedVisible(false);
-		setShowVideo(false);
-		clearTimeout(hoverTimer);
-		clearTimeout(videoTimer);
-	};
+	const handleMouseEnter = () => setMouseOver(true);
+	const handleMouseLeave = () => setMouseOver(false);
 
 	return item ? (
 		<Item.Wrapper
