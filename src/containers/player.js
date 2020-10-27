@@ -22,6 +22,7 @@ const PlayerContainer = () => {
 	const [awayScreen, setAwayScreen] = useState(false);
 	const [controlsVisible, setControlsVisible] = useState(false);
 	const [overlayVisible, setOverlayVisible] = useState(true);
+	const [hoveredOnControls, setHoveredOnControls] = useState(false);
 	const [canPlay, setCanPlay] = useState(false);
 
 	const data = useSelector(state => state.player);
@@ -38,10 +39,10 @@ const PlayerContainer = () => {
 	}, [canPlay]);
 
 	useEffect(() => {
-		if (!loadingScreen && !awayScreen && overlayVisible)
-			overlayHiddenTimer = setTimeout(() => setOverlayVisible(false), 2000);
+		if (!loadingScreen && !awayScreen && overlayVisible && !hoveredOnControls)
+			overlayHiddenTimer = setTimeout(() => setOverlayVisible(false), 4000);
 		return () => clearTimeout(overlayHiddenTimer);
-	}, [awayScreen, loadingScreen, overlayVisible]);
+	}, [awayScreen, loadingScreen, overlayVisible, hoveredOnControls]);
 
 	const handleMouseMove = () => {
 		if (!overlayVisible) {
@@ -56,7 +57,7 @@ const PlayerContainer = () => {
 				setAwayScreen(true);
 				setOverlayVisible(true);
 				setControlsVisible(false);
-			}, 5000);
+			}, 10000);
 	};
 	const handleMouseEnter = () => {
 		clearTimeout(awayScreenTimer);
@@ -83,10 +84,13 @@ const PlayerContainer = () => {
 
 	const handleLoadedMetadata = () => dispatch(setPlayerMetaLoaded(true));
 
+	const handleControlsHoverEnter = () => setHoveredOnControls(true);
+	const handleControlsHoverLeave = () => setHoveredOnControls(false);
+
 	return (
 		<Player onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave} onMouseEnter={handleMouseEnter}>
 			<Player.OverlayContainer visible={overlayVisible}>
-				<Player.OverlayTop>
+				<Player.OverlayTop onMouseEnter={handleControlsHoverEnter} onMouseLeave={handleControlsHoverLeave}>
 					{loadingScreen ? (
 						<>
 							<Player.OverlayTitle>{data.title}</Player.OverlayTitle>
@@ -119,7 +123,7 @@ const PlayerContainer = () => {
 						</Player.OverlayInfo>
 					) : null}
 				</Player.OverlayMiddle>
-				<Player.OverlayBottom>
+				<Player.OverlayBottom onMouseEnter={handleControlsHoverEnter} onMouseLeave={handleControlsHoverLeave}>
 					{controlsVisible && <ControlsContainer handleClickPlay={handleClickPlay} playerRef={playerRef} />}
 				</Player.OverlayBottom>
 			</Player.OverlayContainer>
