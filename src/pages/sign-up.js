@@ -48,6 +48,7 @@ const SignUp = ({ history }) => {
 			.then(({ user }) => {
 				user.updateProfile({
 					displayName: name,
+					photoURL: "avatar1",
 				});
 				history.push(BROWSE);
 			})
