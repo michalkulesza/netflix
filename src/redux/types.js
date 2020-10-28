@@ -54,3 +54,7 @@ export const SET_GLOBAL_MUTE = "SET_GLOBAL_MUTE";
 export const SET_USER_INFO = "SET_USER_INFO";
 export const SET_USER = "SET_USER";
 export const CLEAR_USER = "CLEAR_USER";
+export const LIKE_VIDEO = "LIKE_VIDEO";
+export const REMOVE_LIKED_VIDEO = "REMOVE_LIKED_VIDEO";
+export const DISLIKE_VIDEO = "DISLIKE_VIDEO";
+export const REMOVE_DISLIKED_VIDEO = "REMOVE_DISLIKED_VIDEO";

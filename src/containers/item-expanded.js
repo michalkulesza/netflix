@@ -13,6 +13,7 @@ import { BiPlay, BiPlus, BiLike, BiDislike, BiChevronDown } from "react-icons/bi
 import { GiSpeaker, GiSpeakerOff } from "react-icons/gi";
 import placeholder from "../res/images/placeholder_w.jpg";
 import { setError } from "../redux/actions/error";
+import { likeVideo } from "../redux/actions/user";
 const videoPlayerSrc = "http://localhost:8888/video/night";
 
 const ItemExpandedContainer = ({ isVisible, showVideo, position, videoFile }) => {
@@ -29,6 +30,7 @@ const ItemExpandedContainer = ({ isVisible, showVideo, position, videoFile }) =>
 	const item = useSelector(state => state.fetchDetails?.details[0]);
 	const ageRestriction = useSelector(state => state.fetchDetails?.ageRestriction);
 	const episodes = useSelector(state => state.fetchEpisodes.data);
+	const userID = JSON.parse(localStorage.getItem("authUser"))?.uid;
 
 	useEffect(() => {
 		setItemCache(null);
@@ -103,10 +105,7 @@ const ItemExpandedContainer = ({ isVisible, showVideo, position, videoFile }) =>
 	};
 
 	const handleLikeClick = () => {
-		axios
-			.post("http://localhost:8888/data/like", { userID: 1232131221 })
-			.then(() => setError("Cyk"))
-			.catch(err => setError(err.message));
+		dispatch(likeVideo(userID, item.id));
 	};
 
 	return (
