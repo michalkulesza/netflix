@@ -7,6 +7,7 @@ import misc from "./misc";
 import genres from "./genres";
 import fetchGenreData from "./fetch-genre-data";
 import player from "./player";
+import user from "./user";
 import { combineReducers } from "redux";
 
 const rootReducer = combineReducers({
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
 	misc,
 	genres,
 	player,
+	user,
 });
 
 export default rootReducer;

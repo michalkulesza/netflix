@@ -49,3 +49,7 @@ export const SET_PLAYER_META_LOADED = "SET_PLAYER_META_LOADED";
 //toggles.js
 export const SET_IS_DETAILS = "SET_IS_DETAILS";
 export const SET_GLOBAL_MUTE = "SET_GLOBAL_MUTE";
+
+//user.js
+export const SET_USER = "SET_USER";
+export const CLEAR_USER = "CLEAR_USER";

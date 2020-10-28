@@ -1,14 +1,16 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { firebase } from "../firebase";
 import { HeaderContainer, NavbarContainer, FooterContainer } from "../containers";
 import { Navbar, Form, Header } from "../components";
 import { emailValidation, passwordValidation } from "../helpers/validators";
-import { SIGN_IN, BROWSE } from "../constants/routes";
+import { SIGN_IN } from "../constants/routes";
+import { signupUser } from "../redux/actions/user";
+import { useDispatch } from "react-redux";
 
 import Background from "../res/home-bg.jpg";
 
 const SignUp = ({ history }) => {
+	const dispatch = useDispatch();
 	const [name, setName] = useState("");
 	const [nameError, setNameError] = useState(null);
 	const [email, setEmail] = useState("");
@@ -41,24 +43,11 @@ const SignUp = ({ history }) => {
 
 	const handleSubmit = e => {
 		e.preventDefault();
-
-		firebase
-			.auth()
-			.createUserWithEmailAndPassword(email, password)
-			.then(({ user }) => {
-				user.updateProfile({
-					displayName: name,
-					photoURL: "avatar1",
-				});
-				history.push(BROWSE);
-			})
-			.catch(err => {
-				setError(err.message);
-				setName("");
-				setEmail("");
-				setPassword("");
-				setSecondPassword("");
-			});
+		dispatch(signupUser(email, password, name));
+		setName("");
+		setEmail("");
+		setPassword("");
+		setSecondPassword("");
 	};
 
 	return (

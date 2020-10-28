@@ -16,6 +16,7 @@ const HeaderContainer = ({ headerData, bg, children, ...restProps }) => {
 	const canPlay = useCanHeaderPlay();
 	const { globalMute } = useSelector(state => state.toggles);
 	const { selectedGenre } = useSelector(state => state.genres);
+	const item = useSelector(state => state.misc.headerVideo);
 	const [videoEnded, setVideoEnded] = useState(false);
 	const [videoCanPlay, setVideoCanPlay] = useState(false);
 	const [posterIsVisible, setPosterIsVisible] = useState(true);
@@ -43,6 +44,40 @@ const HeaderContainer = ({ headerData, bg, children, ...restProps }) => {
 
 	const handleMute = () => {
 		dispatch(setGlobalMute(!globalMute));
+	};
+
+	const handlePlay = () => {
+		// if (item) {
+		// 	if (item.media_type === "movie") {
+		// 		dispatch(
+		// 			setPlayerFilm({
+		// 				title: item.title,
+		// 				src: videoPlayerSrc,
+		// 				backdrop: item.backdrop_path_1280,
+		// 				description: item.overview,
+		// 				year: item.release_date?.slice(0, 4),
+		// 				ageRestriction,
+		// 				runtime: item.runtime,
+		// 			})
+		// 		);
+		// 		history.push(WATCH);
+		// 	}
+		// 	if (item.media_type === "tv") {
+		// 		dispatch(
+		// 			setPlayerTV({
+		// 				id: item.id,
+		// 				title: item.name,
+		// 				src: videoPlayerSrc,
+		// 				backdrop: item.backdrop_path_1280,
+		// 				description: item.overview,
+		// 				ep_title: episodes[0]?.name,
+		// 				ep_number: episodes[0]?.episode_number,
+		// 				ep_season: episodes[0]?.season_number,
+		// 			})
+		// 		);
+		// 		history.push(WATCH);
+		// 	}
+		// }
 	};
 
 	return !selectedGenre ? (
@@ -80,7 +115,7 @@ const HeaderContainer = ({ headerData, bg, children, ...restProps }) => {
 							<Header.VideoLogo src={headerData.logo} alt={headerData.title} />
 							<Header.VideoDescription>{headerData.description}</Header.VideoDescription>
 							<Header.VideoButtonsContainer>
-								<Button.Square>
+								<Button.Square onMouseDown={handlePlay}>
 									<GrPlayFill /> Play
 								</Button.Square>
 								<Button.Square iconScale="1.4" dark>
