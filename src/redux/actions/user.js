@@ -4,8 +4,7 @@ import { setError } from "./error";
 import {
 	SET_USER,
 	SET_USER_INFO,
-	LIKE_VIDEO,
-	REMOVE_LIKED_VIDEO,
+	TOGGLE_LIKE_VIDEO,
 	DISLIKE_VIDEO,
 	REMOVE_DISLIKED_VIDEO,
 	CLEAR_INITIAL_DATA,
@@ -123,7 +122,7 @@ export const likeVideo = (userID, videoID) => {
 							payload: videoID,
 						});
 						dispatch({
-							type: LIKE_VIDEO,
+							type: TOGGLE_LIKE_VIDEO,
 							payload: videoID,
 						});
 					}
@@ -149,7 +148,7 @@ export const dislikeVideo = (userID, videoID) => {
 					if (res.status === 200) {
 						if (res.status === 200) {
 							dispatch({
-								type: REMOVE_LIKED_VIDEO,
+								type: TOGGLE_LIKE_VIDEO,
 								payload: videoID,
 							});
 							dispatch({

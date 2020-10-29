@@ -57,8 +57,7 @@ export const CLEAR_TOGGLES = "CLEAR_TOGGLES";
 //user.js
 export const SET_USER_INFO = "SET_USER_INFO";
 export const SET_USER = "SET_USER";
-export const LIKE_VIDEO = "LIKE_VIDEO";
-export const REMOVE_LIKED_VIDEO = "REMOVE_LIKED_VIDEO";
+export const TOGGLE_LIKE_VIDEO = "TOGGLE_LIKE_VIDEO";
 export const DISLIKE_VIDEO = "DISLIKE_VIDEO";
 export const REMOVE_DISLIKED_VIDEO = "REMOVE_DISLIKED_VIDEO";
 export const TOGGLE_VIDEO_LIST = "TOGGLE_VIDEO_LIST";
