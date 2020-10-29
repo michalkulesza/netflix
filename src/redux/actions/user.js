@@ -5,8 +5,7 @@ import {
 	SET_USER,
 	SET_USER_INFO,
 	TOGGLE_LIKE_VIDEO,
-	DISLIKE_VIDEO,
-	REMOVE_DISLIKED_VIDEO,
+	TOGGLE_DISLIKE_VIDEO,
 	CLEAR_INITIAL_DATA,
 	CLEAR_EPISODES,
 	CLEAR_GENRE_DATA,
@@ -118,7 +117,7 @@ export const likeVideo = (userID, videoID) => {
 				.then(res => {
 					if (res.status === 200) {
 						dispatch({
-							type: REMOVE_DISLIKED_VIDEO,
+							type: TOGGLE_DISLIKE_VIDEO,
 							payload: videoID,
 						});
 						dispatch({
@@ -152,7 +151,7 @@ export const dislikeVideo = (userID, videoID) => {
 								payload: videoID,
 							});
 							dispatch({
-								type: DISLIKE_VIDEO,
+								type: TOGGLE_DISLIKE_VIDEO,
 								payload: videoID,
 							});
 						}

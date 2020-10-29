@@ -1,9 +1,7 @@
 import {
 	CLEAR_USER,
-	DISLIKE_VIDEO,
 	TOGGLE_LIKE_VIDEO,
-	REMOVE_DISLIKED_VIDEO,
-	REMOVE_LIKED_VIDEO,
+	TOGGLE_DISLIKE_VIDEO,
 	SET_USER,
 	SET_USER_INFO,
 	TOGGLE_VIDEO_LIST,
@@ -23,14 +21,12 @@ const toggles = (state = initState, action) => {
 			} else {
 				return { ...state, liked: state.liked.filter(el => el !== action.payload) };
 			}
-		case DISLIKE_VIDEO:
+		case TOGGLE_DISLIKE_VIDEO:
 			if (!state.disliked.includes(action.payload)) {
 				return { ...state, disliked: [...state.disliked, action.payload] };
 			} else {
-				return state;
+				return { ...state, disliked: state.disliked.filter(el => el !== action.payload) };
 			}
-		case REMOVE_DISLIKED_VIDEO:
-			return { ...state, disliked: state.disliked.filter(el => el !== action.payload) };
 		case TOGGLE_VIDEO_LIST:
 			if (!state.list.includes(action.payload)) {
 				return { ...state, list: [...state.list, action.payload] };
