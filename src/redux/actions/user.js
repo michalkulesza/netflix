@@ -48,8 +48,7 @@ export const signupUser = (email, password, name, avatar = "avatar1") => {
 				});
 			})
 			.catch(err => {
-				console.error(err.message);
-				dispatch(setError("Whops! Something went wrong while Signing Up."));
+				dispatch(setError(err.message));
 			});
 	};
 };
@@ -63,15 +62,14 @@ export const signinUser = (email, password) => {
 				getUserData(user.user.uid);
 			})
 			.catch(err => {
-				console.error(err.message);
-				dispatch(setError("Whops! Something went wrong, please check your email and password."));
+				dispatch(setError(err.message));
 			});
 	};
 };
 
 export const signoutUser = () => {
 	return dispatch => {
-		firebase
+		return firebase
 			.auth()
 			.signOut()
 			.then(() => {
@@ -116,14 +114,11 @@ export const likeVideo = (userID, videoID) => {
 				.then(res => {
 					if (res.status === 200) {
 						dispatch({
-							type: dispatch({
-								type: LIKE_VIDEO,
-								payload: videoID,
-							}),
+							type: REMOVE_DISLIKED_VIDEO,
 							payload: videoID,
 						});
 						dispatch({
-							type: REMOVE_DISLIKED_VIDEO,
+							type: LIKE_VIDEO,
 							payload: videoID,
 						});
 					}
@@ -147,17 +142,16 @@ export const dislikeVideo = (userID, videoID) => {
 				.post("http://localhost:8888/data/dislike", { userID, videoID })
 				.then(res => {
 					if (res.status === 200) {
-						dispatch({
-							type: dispatch({
+						if (res.status === 200) {
+							dispatch({
+								type: REMOVE_LIKED_VIDEO,
+								payload: videoID,
+							});
+							dispatch({
 								type: DISLIKE_VIDEO,
 								payload: videoID,
-							}),
-							payload: videoID,
-						});
-						dispatch({
-							type: REMOVE_DISLIKED_VIDEO,
-							payload: videoID,
-						});
+							});
+						}
 					}
 				})
 				.catch(err => {
