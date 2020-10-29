@@ -22,12 +22,16 @@ import {
 
 export const getUserData = userID => {
 	return async dispatch => {
-		const userData = await axios.get(`http://localhost:8888/data/user?id=${userID}`);
+		try {
+			const userData = await axios.get(`http://localhost:8888/data/user?id=${userID}`);
 
-		dispatch({
-			type: SET_USER,
-			payload: userData.data,
-		});
+			dispatch({
+				type: SET_USER,
+				payload: userData.data,
+			});
+		} catch (err) {
+			dispatch(setError(err.message));
+		}
 	};
 };
 

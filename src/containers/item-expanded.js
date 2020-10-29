@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { dislikeVideo, likeVideo, toggleVideoToList } from "../redux/actions/user";
 import { setIsDetails, setGlobalMute } from "../redux/actions/toggles";
 import { setPlayerFilm, setPlayerTV } from "../redux/actions/player";
 import { setDetailsPosition } from "../redux/actions/misc";
@@ -7,13 +8,10 @@ import { useHistory } from "react-router-dom";
 import { ItemExpanded, Button } from "../components";
 import { WATCH } from "../constants/routes";
 import LazyLoad from "react-lazyload";
-import axios from "axios";
 
-import { BiPlay, BiPlus, BiLike, BiDislike, BiChevronDown } from "react-icons/bi";
+import { BiPlay, BiPlus, BiMinus, BiLike, BiDislike, BiChevronDown } from "react-icons/bi";
 import { GiSpeaker, GiSpeakerOff } from "react-icons/gi";
 import placeholder from "../res/images/placeholder_w.jpg";
-import { setError } from "../redux/actions/error";
-import { dislikeVideo, likeVideo, toggleVideoToList } from "../redux/actions/user";
 const videoPlayerSrc = "http://localhost:8888/video/night";
 
 const ItemExpandedContainer = ({ isVisible, showVideo, position, videoFile }) => {
@@ -31,6 +29,7 @@ const ItemExpandedContainer = ({ isVisible, showVideo, position, videoFile }) =>
 	const ageRestriction = useSelector(state => state.fetchDetails?.ageRestriction);
 	const episodes = useSelector(state => state.fetchEpisodes.data);
 	const userID = JSON.parse(localStorage.getItem("authUser"))?.uid;
+	const { liked, disliked, list } = useSelector(state => state.user);
 
 	useEffect(() => {
 		setItemCache(null);
@@ -145,13 +144,24 @@ const ItemExpandedContainer = ({ isVisible, showVideo, position, videoFile }) =>
 								<Button.Round inverted onMouseDown={handlePlay}>
 									<BiPlay />
 								</Button.Round>
-								<Button.Round label="Add to My List" onMouseDown={handleToggleVideoList}>
-									<BiPlus />
+								<Button.Round
+									label={list.includes(item.id) ? "Remove from My List" : "Add to My List"}
+									onMouseDown={handleToggleVideoList}
+								>
+									{list.includes(item.id) ? <BiMinus /> : <BiPlus />}
 								</Button.Round>
-								<Button.Round label="I like this" onMouseDown={handleLikeClick}>
+								<Button.Round
+									inverted={liked.includes(item.id)}
+									label={liked.includes(item.id) ? "Remove like" : "I like this"}
+									onMouseDown={handleLikeClick}
+								>
 									<BiLike />
 								</Button.Round>
-								<Button.Round label="Not for me" onMouseDown={handleDislikeClick}>
+								<Button.Round
+									inverted={disliked.includes(item.id)}
+									label={disliked.includes(item.id) ? "Remove dislike" : "Not for me"}
+									onMouseDown={handleDislikeClick}
+								>
 									<BiDislike />
 								</Button.Round>
 							</ItemExpanded.Half>
