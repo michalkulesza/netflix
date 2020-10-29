@@ -176,7 +176,7 @@ const ItemExpandedContainer = ({ isVisible, showVideo, position, videoFile }) =>
 						</ItemExpanded.Buttons>
 						<ItemExpanded.Info>
 							<p>96% Match</p>
-							<span>{`${ageRestriction} `}</span>
+							<span>{ageRestriction !== "" ? `${ageRestriction} ` : "-"}</span>
 							{itemCache.media_type === "movie"
 								? `${itemCache?.runtime}m`
 								: `${itemCache?.number_of_seasons} ${itemCache?.number_of_seasons > 1 ? "Seasons" : "Season"}`}
