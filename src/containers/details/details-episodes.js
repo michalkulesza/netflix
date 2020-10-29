@@ -20,7 +20,7 @@ const DetailsEpisodesContainer = ({ item }) => {
 	};
 
 	useEffect(() => {
-		if (item?.details.number_of_seasons > 1) setSeasonsDropdownDisabled(false);
+		if (item?.details?.number_of_seasons > 1) setSeasonsDropdownDisabled(false);
 	}, [item]);
 
 	return data && item ? (
@@ -41,7 +41,7 @@ const DetailsEpisodesContainer = ({ item }) => {
 						) : null}
 					</DetailsEpisodes.SeasonsButton>
 					<DetailsEpisodes.SeasonsList seasonsDropdownActive={seasonsDropdownActive}>
-						{Array.from(Array(item.details.number_of_seasons), (_, i) => (
+						{Array.from(Array(item.details?.number_of_seasons), (_, i) => (
 							<DetailsEpisodes.Season key={i} onMouseDown={() => handleSeasonClick(i + 1)}>
 								Season {i + 1}
 							</DetailsEpisodes.Season>

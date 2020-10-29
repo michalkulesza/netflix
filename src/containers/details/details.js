@@ -51,22 +51,22 @@ const DetailsContainer = () => {
 		<Details.Container shouldRender={shouldRender} onScroll={e => handleScroll(e)}>
 			<Details.OverlayTrigger onMouseDown={handleCloseCallback} />
 			<Details isDetails={isDetails} position={detailsPosition} onAnimationEnd={onAnimationEnd}>
-				<DetailsHeaderContainer item={item} scrolled={scrolled} />
+				<DetailsHeaderContainer item={item.details} scrolled={scrolled} />
 				<DetailsInfoContainer item={item} />
 				<DetailsEpisodesContainer item={item} />
 				<DetailsRelatedContainer item={item} />
 				<Details.About>
-					{item ? (
+					{item?.details ? (
 						<>
 							<Details.AboutHeader>
-								About {item.details[0].name ? item.details[0].name : item.details[0].title}
+								About {item.details.name ? item.details.name : item.details.title}
 							</Details.AboutHeader>
-							{item.details[0].created_by && (
+							{item.details.created_by && (
 								<Details.AboutPiece>
 									Creators:
 									<p>
-										{item.details[0].created_by.map((el, i) =>
-											i + 1 === item.details[0].created_by.length ? el.name : `${el.name}, `
+										{item.details.created_by.map((el, i) =>
+											i + 1 === item.details.created_by.length ? el.name : `${el.name}, `
 										)}
 									</p>
 								</Details.AboutPiece>
@@ -77,12 +77,12 @@ const DetailsContainer = () => {
 									<p>{item.cast.map((el, i) => (i + 1 === item.cast.length ? el.name : `${el.name}, `))}</p>
 								</Details.AboutPiece>
 							)}
-							{item.details[0].genres && (
+							{item.details.genres && (
 								<Details.AboutPiece>
 									Genres:
 									<p>
-										{item.details[0].genres.map((el, i) =>
-											i + 1 === item.details[0].genres.length ? el.name : `${el.name}, `
+										{item.details.genres.map((el, i) =>
+											i + 1 === item.details.genres.length ? el.name : `${el.name}, `
 										)}
 									</p>
 								</Details.AboutPiece>

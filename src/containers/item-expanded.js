@@ -67,28 +67,28 @@ const ItemExpandedContainer = ({ isVisible, showVideo, position, videoFile }) =>
 
 	const handlePlay = () => {
 		if (item) {
-			if (item.media_type === "movie") {
+			if (item.details.media_type === "movie") {
 				dispatch(
 					setPlayerFilm({
-						title: item.title,
+						title: item.details.title,
 						src: videoPlayerSrc,
-						backdrop: item.backdrop_path_1280,
-						description: item.overview,
-						year: item.release_date?.slice(0, 4),
-						ageRestriction: item.ageRestriction,
-						runtime: item.runtime,
+						backdrop: item.details.backdrop_path_1280,
+						description: item.details.overview,
+						year: item.details.release_date?.slice(0, 4),
+						ageRestriction: item.details.ageRestriction,
+						runtime: item.details.runtime,
 					})
 				);
 				history.push(WATCH);
 			}
-			if (item.media_type === "tv") {
+			if (item.details.media_type === "tv") {
 				dispatch(
 					setPlayerTV({
-						id: item.id,
-						title: item.name,
+						id: item.details.id,
+						title: item.details.name,
 						src: videoPlayerSrc,
-						backdrop: item.backdrop_path_1280,
-						description: item.overview,
+						backdrop: item.details.backdrop_path_1280,
+						description: item.details.overview,
 						ep_title: episodes[0]?.name,
 						ep_number: episodes[0]?.episode_number,
 						ep_season: episodes[0]?.season_number,
@@ -99,9 +99,9 @@ const ItemExpandedContainer = ({ isVisible, showVideo, position, videoFile }) =>
 		}
 	};
 
-	const handleLikeClick = () => dispatch(likeVideo(userID, item.id));
-	const handleDislikeClick = () => dispatch(dislikeVideo(userID, item.id));
-	const handleToggleVideoList = () => dispatch(toggleVideoToList(userID, item.id));
+	const handleLikeClick = () => dispatch(likeVideo(userID, item.details.id));
+	const handleDislikeClick = () => dispatch(dislikeVideo(userID, item.details.id));
+	const handleToggleVideoList = () => dispatch(toggleVideoToList(userID, item.details.id));
 
 	return (
 		<ItemExpanded isVisible={isVisible} position={position} onTransitionEnd={handleOnAnimationEnd} ref={containerRef}>
@@ -110,10 +110,10 @@ const ItemExpandedContainer = ({ isVisible, showVideo, position, videoFile }) =>
 					<ItemExpanded.Header>
 						<ItemExpanded.Placeholder
 							src={
-								itemCache.backdrop_path_500
-									? itemCache.backdrop_path_500
-									: itemCache.poster_path_500
-									? itemCache.poster_path_500
+								itemCache.details.backdrop_path_500
+									? itemCache.details.backdrop_path_500
+									: itemCache.details.poster_path_500
+									? itemCache.details.poster_path_500
 									: placeholder
 							}
 							alt="Poster"
@@ -141,21 +141,21 @@ const ItemExpandedContainer = ({ isVisible, showVideo, position, videoFile }) =>
 									<BiPlay />
 								</Button.Round>
 								<Button.Round
-									label={list.includes(itemCache.id) ? "Remove from My List" : "Add to My List"}
+									label={list.includes(itemCache.details.id) ? "Remove from My List" : "Add to My List"}
 									onMouseDown={handleToggleVideoList}
 								>
-									{list.includes(itemCache.id) ? <BiMinus /> : <BiPlus />}
+									{list.includes(itemCache.details.id) ? <BiMinus /> : <BiPlus />}
 								</Button.Round>
 								<Button.Round
-									inverted={liked.includes(itemCache.id)}
-									label={liked.includes(itemCache.id) ? "Remove like" : "I like this"}
+									inverted={liked.includes(itemCache.details.id)}
+									label={liked.includes(itemCache.details.id) ? "Remove like" : "I like this"}
 									onMouseDown={handleLikeClick}
 								>
 									<BiLike />
 								</Button.Round>
 								<Button.Round
-									inverted={disliked.includes(itemCache.id)}
-									label={disliked.includes(itemCache.id) ? "Remove dislike" : "Not for me"}
+									inverted={disliked.includes(itemCache.details.id)}
+									label={disliked.includes(itemCache.details.id) ? "Remove dislike" : "Not for me"}
 									onMouseDown={handleDislikeClick}
 								>
 									<BiDislike />
@@ -163,7 +163,7 @@ const ItemExpandedContainer = ({ isVisible, showVideo, position, videoFile }) =>
 							</ItemExpanded.Half>
 							<ItemExpanded.Half>
 								<Button.Round
-									label={itemCache.media_type === "movie" ? "More info" : "Episodes & Info"}
+									label={itemCache.details.media_type === "movie" ? "More info" : "Episodes & Info"}
 									onMouseDown={e => handleClickMoreDetails(e)}
 								>
 									<BiChevronDown />
@@ -173,16 +173,18 @@ const ItemExpandedContainer = ({ isVisible, showVideo, position, videoFile }) =>
 						<ItemExpanded.Info>
 							<p>96% Match</p>
 							<span>{item.ageRestriction !== "" ? `${item.ageRestriction} ` : "-"}</span>
-							{itemCache.media_type === "movie"
-								? `${itemCache?.runtime}m`
-								: `${itemCache?.number_of_seasons} ${itemCache?.number_of_seasons > 1 ? "Seasons" : "Season"}`}
+							{itemCache.details.media_type === "movie"
+								? `${itemCache.details?.runtime}m`
+								: `${itemCache.details?.number_of_seasons} ${
+										itemCache.details?.number_of_seasons > 1 ? "Seasons" : "Season"
+								  }`}
 						</ItemExpanded.Info>
 						<ItemExpanded.GenreWrapper>
-							{itemCache.genre_ids &&
-								itemCache.genre_ids.slice(0, 2).map((genre, i) => (
+							{itemCache.details.genre_ids &&
+								itemCache.details.genre_ids.slice(0, 2).map((genre, i) => (
 									<ItemExpanded.Genre key={i}>
 										{genre}
-										{i !== itemCache.genre_ids.slice(0, 2).length - 1 && <span>•</span>}
+										{i !== itemCache.details.genre_ids.slice(0, 2).length - 1 && <span>•</span>}
 									</ItemExpanded.Genre>
 								))}
 						</ItemExpanded.GenreWrapper>

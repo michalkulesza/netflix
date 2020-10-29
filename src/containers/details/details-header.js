@@ -37,20 +37,20 @@ const DetailsHeaderContainer = ({ item, scrolled }) => {
 			}
 		}
 	}, [scrolled]);
-	console.log(item.id);
+
 	const handleClose = () => dispatch(setIsDetails(false));
 	const handleMute = () => dispatch(setGlobalMute(!globalMute));
-	const handleListClick = () => dispatch(toggleVideoToList(userID, item.details[0].id));
-	const handleLikeClick = () => dispatch(likeVideo(userID, item.details[0].id));
-	const handleDislikeClick = () => dispatch(dislikeVideo(userID, item.details[0].id));
+	const handleListClick = () => dispatch(toggleVideoToList(userID, item.id));
+	const handleLikeClick = () => dispatch(likeVideo(userID, item.id));
+	const handleDislikeClick = () => dispatch(dislikeVideo(userID, item.id));
 
 	return (
 		<DetailsHeader>
-			{headerData && item.details[0] ? (
+			{headerData && item ? (
 				<>
 					<DetailsHeader.Video src={headerData.src} muted={globalMute} ref={VideoPlayer} />
 					<DetailsHeader.Cover
-						src={item.details[0].backdrop_path_1280 ? item.details[0].backdrop_path_1280 : placeholder}
+						src={item.backdrop_path_1280 ? item.backdrop_path_1280 : placeholder}
 						isPlaceholder={isPlaceholder}
 					/>
 					<DetailsHeader.Overlay>
@@ -61,21 +61,21 @@ const DetailsHeaderContainer = ({ item, scrolled }) => {
 									<GrPlayFill /> Play
 								</Button.Square>
 								<Button.Round
-									label={list.includes(item.details[0].id) ? "Remove from My List" : "Add to My List"}
+									label={list.includes(item.id) ? "Remove from My List" : "Add to My List"}
 									onMouseDown={handleListClick}
 								>
-									{list.includes(item.details[0].id) ? <BiMinus /> : <BiPlus />}
+									{list.includes(item.id) ? <BiMinus /> : <BiPlus />}
 								</Button.Round>
 								<Button.Round
-									inverted={liked.includes(item.details[0].id)}
-									label={liked.includes(item.details[0].id) ? "Remove like" : "I like this"}
+									inverted={liked.includes(item.id)}
+									label={liked.includes(item.id) ? "Remove like" : "I like this"}
 									onMouseDown={handleLikeClick}
 								>
 									<BiLike />
 								</Button.Round>
 								<Button.Round
-									inverted={disliked.includes(item.details[0].id)}
-									label={disliked.includes(item.details[0].id) ? "Remove dislike" : "Not for me"}
+									inverted={disliked.includes(item.id)}
+									label={disliked.includes(item.id) ? "Remove dislike" : "Not for me"}
 									onMouseDown={handleDislikeClick}
 								>
 									<BiDislike />
