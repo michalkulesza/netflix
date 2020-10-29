@@ -70,7 +70,9 @@ const PlayerContainer = () => {
 	const handleCanPlay = () => setCanPlay(true);
 
 	const handleCloseButton = () => {
-		document.exitFullscreen();
+		if (document.fullscreenElement) {
+			document.exitFullscreen();
+		}
 		if (history?.location?.pathname !== WATCH) {
 			history.goBack();
 		} else {
