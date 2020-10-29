@@ -8,7 +8,27 @@ import {
 	REMOVE_LIKED_VIDEO,
 	DISLIKE_VIDEO,
 	REMOVE_DISLIKED_VIDEO,
+	CLEAR_INITIAL_DATA,
+	CLEAR_EPISODES,
+	CLEAR_GENRE_DATA,
+	CLEAR_TOGGLES,
+	CLEAR_MISC,
+	CLEAR_GENRES,
+	CLEAR_DETAILS,
+	CLEAR_PLAYER,
+	CLEAR_USER,
 } from "../types";
+
+export const getUserData = userID => {
+	return async dispatch => {
+		const userData = await axios.get(`http://localhost:8888/data/user?id=${userID}`);
+
+		dispatch({
+			type: SET_USER,
+			payload: userData.data,
+		});
+	};
+};
 
 export const signupUser = (email, password, name, avatar = "avatar1") => {
 	return async dispatch => {
@@ -34,17 +54,6 @@ export const signupUser = (email, password, name, avatar = "avatar1") => {
 	};
 };
 
-export const getUserData = userID => {
-	return async dispatch => {
-		const userData = await axios.get(`http://localhost:8888/data/user?id=${userID}`);
-
-		dispatch({
-			type: SET_USER,
-			payload: userData.data,
-		});
-	};
-};
-
 export const signinUser = (email, password) => {
 	return async dispatch => {
 		firebase
@@ -57,6 +66,44 @@ export const signinUser = (email, password) => {
 				console.error(err.message);
 				dispatch(setError("Whops! Something went wrong, please check your email and password."));
 			});
+	};
+};
+
+export const signoutUser = () => {
+	return dispatch => {
+		firebase
+			.auth()
+			.signOut()
+			.then(() => {
+				dispatch({
+					type: CLEAR_INITIAL_DATA,
+				});
+				dispatch({
+					type: CLEAR_DETAILS,
+				});
+				dispatch({
+					type: CLEAR_EPISODES,
+				});
+				dispatch({
+					type: CLEAR_GENRE_DATA,
+				});
+				dispatch({
+					type: CLEAR_TOGGLES,
+				});
+				dispatch({
+					type: CLEAR_MISC,
+				});
+				dispatch({
+					type: CLEAR_GENRES,
+				});
+				dispatch({
+					type: CLEAR_PLAYER,
+				});
+				dispatch({
+					type: CLEAR_USER,
+				});
+			})
+			.catch(err => setError(err.message));
 	};
 };
 

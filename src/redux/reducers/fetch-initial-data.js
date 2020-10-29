@@ -1,4 +1,4 @@
-import { SET_DATA_UPDATING, SET_INITIAL_DATA } from "../types";
+import { CLEAR_INITIAL_DATA, SET_DATA_UPDATING, SET_INITIAL_DATA } from "../types";
 
 const initState = {
 	data: null,
@@ -11,6 +11,8 @@ const initialData = (state = initState, action) => {
 			return { isUpdating: false, data: action.payload };
 		case SET_DATA_UPDATING:
 			return { ...state, isUpdating: action.payload };
+		case CLEAR_INITIAL_DATA:
+			return initState;
 		default:
 			return state;
 	}

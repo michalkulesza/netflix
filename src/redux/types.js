@@ -20,6 +20,7 @@ export const CLEAR_GENRE_DATA = "CLEAR_GENRE_DATA";
 //fetch-initial-data.js
 export const SET_INITIAL_DATA = "SET_INITIAL_DATA";
 export const SET_DATA_UPDATING = "SET_DATA_UPDATING";
+export const CLEAR_INITIAL_DATA = "CLEAR_INITIAL_DATA";
 
 //genres.js
 export const SET_GENRES = "SET_GENRES";
@@ -37,6 +38,7 @@ export const SET_PRESSED_KEY = "SET_PRESSED_KEY";
 export const SET_SCROLLBAR_WIDTH = "SET_SCROLLBAR_WIDTH";
 export const SET_ACTIVE_EXPANDED = "SET_ACTIVE_EXPANDED";
 export const CLEAR_ACTIVE_EXPANDED = "CLEAR_ACTIVE_EXPANDED";
+export const CLEAR_MISC = "CLEAR_MISC";
 
 //player.js
 export const SET_PLAYER_TV = "SET_PLAYER_TV";
@@ -45,16 +47,18 @@ export const SET_PLAYER_VOLUME = "SET_PLAYER_VOLUME";
 export const SET_PLAYER_SEASONS = "SET_PLAYER_SEASONS";
 export const SET_PLAYER_STATE = "SET_PLAYER_STATE";
 export const SET_PLAYER_META_LOADED = "SET_PLAYER_META_LOADED";
+export const CLEAR_PLAYER = "CLEAR_PLAYER";
 
 //toggles.js
 export const SET_IS_DETAILS = "SET_IS_DETAILS";
 export const SET_GLOBAL_MUTE = "SET_GLOBAL_MUTE";
+export const CLEAR_TOGGLES = "CLEAR_TOGGLES";
 
 //user.js
 export const SET_USER_INFO = "SET_USER_INFO";
 export const SET_USER = "SET_USER";
-export const CLEAR_USER = "CLEAR_USER";
 export const LIKE_VIDEO = "LIKE_VIDEO";
 export const REMOVE_LIKED_VIDEO = "REMOVE_LIKED_VIDEO";
 export const DISLIKE_VIDEO = "DISLIKE_VIDEO";
 export const REMOVE_DISLIKED_VIDEO = "REMOVE_DISLIKED_VIDEO";
+export const CLEAR_USER = "CLEAR_USER";

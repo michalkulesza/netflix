@@ -1,4 +1,5 @@
 import {
+	CLEAR_USER,
 	DISLIKE_VIDEO,
 	LIKE_VIDEO,
 	REMOVE_DISLIKED_VIDEO,
@@ -7,12 +8,7 @@ import {
 	SET_USER_INFO,
 } from "../types";
 
-const initState = {
-	info: null,
-	liked: [],
-	disliked: [],
-	list: [],
-};
+const initState = null;
 
 const toggles = (state = initState, action) => {
 	switch (action.type) {
@@ -28,6 +24,8 @@ const toggles = (state = initState, action) => {
 			return { ...state, disliked: [...state.disliked, action.payload] };
 		case REMOVE_DISLIKED_VIDEO:
 			return { ...state, disliked: state.disliked.filter(el => el !== action.payload) };
+		case CLEAR_USER:
+			return initState;
 		default:
 			return state;
 	}

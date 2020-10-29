@@ -5,11 +5,10 @@ import { clearSelectedGenre, setSelectedGenre } from "../redux/actions/genres";
 import { clearGenreData, fetchGenreData } from "../redux/actions/fetch-genre-data";
 import { Navbar } from "../components";
 import { useScrolledDistance, useCurrentMenuLocation } from "../hooks/";
-import { BROWSE, FILMS, SERIES, LATEST, MYLIST, HOME } from "../constants/routes";
-import { firebase } from "../firebase/index";
+import { BROWSE, FILMS, SERIES, LATEST, MYLIST } from "../constants/routes";
 
 import { BiCaretDown, BiCaretUp } from "react-icons/bi";
-import { setError } from "../redux/actions/error";
+import { signoutUser } from "../redux/actions/user";
 
 const NavbarContainer = ({ children }) => {
 	const dispatch = useDispatch();
@@ -53,11 +52,7 @@ const NavbarContainer = ({ children }) => {
 	};
 
 	const handleLogoutClick = () => {
-		firebase
-			.auth()
-			.signOut()
-			.then(() => history.push(HOME))
-			.catch(err => setError(err.message));
+		dispatch(signoutUser());
 	};
 
 	return (

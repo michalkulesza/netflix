@@ -1,4 +1,4 @@
-import { SET_IS_DETAILS, SET_GLOBAL_MUTE } from "../types";
+import { SET_IS_DETAILS, SET_GLOBAL_MUTE, CLEAR_TOGGLES } from "../types";
 
 const initState = {
 	globalMute: true,
@@ -11,6 +11,8 @@ const toggles = (state = initState, action) => {
 			return { ...state, globalMute: action.payload };
 		case SET_IS_DETAILS:
 			return { ...state, ...action.payload };
+		case CLEAR_TOGGLES:
+			return initState;
 		default:
 			return state;
 	}

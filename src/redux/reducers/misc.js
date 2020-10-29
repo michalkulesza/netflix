@@ -5,6 +5,7 @@ import {
 	SET_SCROLLBAR_WIDTH,
 	SET_ACTIVE_EXPANDED,
 	CLEAR_ACTIVE_EXPANDED,
+	CLEAR_MISC,
 } from "../types";
 
 const initState = {
@@ -29,6 +30,8 @@ const misc = (state = initState, action) => {
 			return { ...state, activeExpanded: action.payload };
 		case CLEAR_ACTIVE_EXPANDED:
 			return { ...state, activeExpanded: null };
+		case CLEAR_MISC:
+			return initState;
 		default:
 			return state;
 	}

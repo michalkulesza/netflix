@@ -5,6 +5,7 @@ import {
 	SET_PLAYER_VOLUME,
 	SET_PLAYER_STATE,
 	SET_PLAYER_META_LOADED,
+	CLEAR_PLAYER,
 } from "../types";
 
 const initState = {
@@ -39,6 +40,8 @@ const misc = (state = initState, action) => {
 			return { ...state, state: action.payload };
 		case SET_PLAYER_META_LOADED:
 			return { ...state, metaLoaded: action.payload };
+		case CLEAR_PLAYER:
+			return initState;
 		default:
 			return state;
 	}
