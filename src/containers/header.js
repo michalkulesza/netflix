@@ -16,7 +16,6 @@ const HeaderContainer = ({ headerData, bg, children, ...restProps }) => {
 	const canPlay = useCanHeaderPlay();
 	const { globalMute } = useSelector(state => state.toggles);
 	const { selectedGenre } = useSelector(state => state.genres);
-	const item = useSelector(state => state.misc.headerVideo);
 	const [videoEnded, setVideoEnded] = useState(false);
 	const [videoCanPlay, setVideoCanPlay] = useState(false);
 	const [posterIsVisible, setPosterIsVisible] = useState(true);

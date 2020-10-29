@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { dislikeVideo, likeVideo, toggleVideoToList } from "../redux/actions/user";
 import { setIsDetails, setGlobalMute } from "../redux/actions/toggles";
-import { setPlayerFilm, setPlayerTV } from "../redux/actions/player";
+import { setPlayer } from "../redux/actions/player";
 import { setDetailsPosition } from "../redux/actions/misc";
 import { useHistory } from "react-router-dom";
 import { ItemExpanded, Button } from "../components";
@@ -67,35 +67,22 @@ const ItemExpandedContainer = ({ isVisible, showVideo, position, videoFile }) =>
 
 	const handlePlay = () => {
 		if (itemCache) {
-			if (itemCache.details.media_type === "movie") {
-				dispatch(
-					setPlayerFilm({
-						title: itemCache.details.title,
-						src: videoPlayerSrc,
-						backdrop: itemCache.details.backdrop_path_1280,
-						description: itemCache.details.overview,
-						year: itemCache.details.release_date?.slice(0, 4),
-						ageRestriction: itemCache.details.ageRestriction,
-						runtime: itemCache.details.runtime,
-					})
-				);
-				history.push(WATCH);
-			}
-			if (itemCache.details.media_type === "tv") {
-				dispatch(
-					setPlayerTV({
-						id: itemCache.details.id,
-						title: itemCache.details.name,
-						src: videoPlayerSrc,
-						backdrop: itemCache.details.backdrop_path_1280,
-						description: itemCache.details.overview,
-						ep_title: episodes[0]?.name,
-						ep_number: episodes[0]?.episode_number,
-						ep_season: episodes[0]?.season_number,
-					})
-				);
-				history.push(WATCH);
-			}
+			dispatch(
+				setPlayer({
+					type: itemCache.details.media_type,
+					title: itemCache.details.title,
+					src: videoPlayerSrc,
+					backdrop: itemCache.details.backdrop_path_1280,
+					description: itemCache.details.overview,
+					ep_title: episodes && episodes[0]?.name,
+					ep_number: episodes && episodes[0]?.episode_number,
+					ep_season: episodes && episodes[0]?.season_number,
+					year: itemCache.details.release_date?.slice(0, 4),
+					ageRestriction: itemCache.details.ageRestriction,
+					runtime: itemCache.details.runtime,
+				})
+			);
+			history.push(WATCH);
 		}
 	};
 

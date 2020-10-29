@@ -20,7 +20,6 @@ const ItemContainer = ({ item, i, parentID, isFirstSlide, totalTilesInVievport, 
 	const [isExpandedVisible, setIsExpandedVisible] = useState(false);
 	const [showVideo, setShowVideo] = useState(false);
 	const { scrollbarWidth: scrollbarWidthPx, headerVideo, activeExpanded } = useSelector(state => state.misc);
-	const { isDetails } = useSelector(state => state.toggles);
 	const scrollbarWidth = useConvertPxToVw(scrollbarWidthPx);
 
 	useEffect(() => {
@@ -44,14 +43,11 @@ const ItemContainer = ({ item, i, parentID, isFirstSlide, totalTilesInVievport, 
 	};
 
 	const handleMouseLeave = () => {
+		dispatch(setActiveExpanded(null, null));
 		clearTimeout(hoverTimer);
 		clearTimeout(preloadTimer);
 		clearTimeout(videoTimer);
 	};
-
-	// useEffect(() => {
-	// 	if (isDetails) setIsExpandedVisible(false);
-	// }, [isDetails]);
 
 	return item ? (
 		<Item.Wrapper

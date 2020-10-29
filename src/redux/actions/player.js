@@ -10,31 +10,44 @@ import {
 } from "../types";
 import { setError } from "./error";
 
-export const setPlayerTV = ({ id, title, src, backdrop, description, ep_title, ep_number, ep_season }) => {
-	return async dispatch => {
-		try {
-			dispatch({
-				type: SET_PLAYER_TV,
-				payload: { title, src, backdrop, description, ep_title, ep_number, ep_season },
-			});
+export const setPlayer = ({
+	type,
+	id,
+	title,
+	src,
+	backdrop,
+	description,
+	ep_title,
+	ep_number,
+	ep_season,
+	year,
+	ageRestriction,
+	runtime,
+}) => {
+	if (type === "tv") {
+		return async dispatch => {
+			try {
+				dispatch({
+					type: SET_PLAYER_TV,
+					payload: { title, src, backdrop, description, ep_title, ep_number, ep_season },
+				});
 
-			const seasons = await Axios.get(`${BASE_PATH}/episodes/all&id=${id}`);
+				const seasons = await Axios.get(`${BASE_PATH}/episodes/all&id=${id}`);
 
-			dispatch({
-				type: SET_PLAYER_SEASONS,
-				payload: seasons.data,
-			});
-		} catch (error) {
-			dispatch(setError("Whops! Something happend while getting seasons and episodes."));
-		}
-	};
-};
-
-export const setPlayerFilm = ({ title, src, backdrop, description, year, ageRestriction, runtime }) => {
-	return {
-		type: SET_PLAYER_FILM,
-		payload: { title, src, backdrop, description, year, ageRestriction, runtime },
-	};
+				dispatch({
+					type: SET_PLAYER_SEASONS,
+					payload: seasons.data,
+				});
+			} catch (error) {
+				dispatch(setError("Whops! Something happend while getting seasons and episodes."));
+			}
+		};
+	} else {
+		return {
+			type: SET_PLAYER_FILM,
+			payload: { title, src, backdrop, description, year, ageRestriction, runtime },
+		};
+	}
 };
 
 export const setPlayerVolume = vol => {
