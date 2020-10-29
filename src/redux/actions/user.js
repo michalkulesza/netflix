@@ -71,40 +71,39 @@ export const signinUser = (email, password) => {
 };
 
 export const signoutUser = () => {
-	return dispatch => {
-		return firebase
-			.auth()
-			.signOut()
-			.then(() => {
-				dispatch({
-					type: CLEAR_INITIAL_DATA,
-				});
-				dispatch({
-					type: CLEAR_DETAILS,
-				});
-				dispatch({
-					type: CLEAR_EPISODES,
-				});
-				dispatch({
-					type: CLEAR_GENRE_DATA,
-				});
-				dispatch({
-					type: CLEAR_TOGGLES,
-				});
-				dispatch({
-					type: CLEAR_MISC,
-				});
-				dispatch({
-					type: CLEAR_GENRES,
-				});
-				dispatch({
-					type: CLEAR_PLAYER,
-				});
-				dispatch({
-					type: CLEAR_USER,
-				});
-			})
-			.catch(err => setError(err.message));
+	return async dispatch => {
+		try {
+			await firebase.auth().signOut();
+			dispatch({
+				type: CLEAR_INITIAL_DATA,
+			});
+			dispatch({
+				type: CLEAR_DETAILS,
+			});
+			dispatch({
+				type: CLEAR_EPISODES,
+			});
+			dispatch({
+				type: CLEAR_GENRE_DATA,
+			});
+			dispatch({
+				type: CLEAR_TOGGLES,
+			});
+			dispatch({
+				type: CLEAR_MISC,
+			});
+			dispatch({
+				type: CLEAR_GENRES,
+			});
+			dispatch({
+				type: CLEAR_PLAYER,
+			});
+			dispatch({
+				type: CLEAR_USER,
+			});
+		} catch (err) {
+			dispatch(setError(err.message));
+		}
 	};
 };
 

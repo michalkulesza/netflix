@@ -10,7 +10,7 @@ export const fetchGenreData = (type, genreID, page = 1) => {
 				payload: true,
 			});
 
-			const response = await axios.post(`http://localhost:8888/genre/${type}`, { genreID, page });
+			const response = await axios.get(`http://localhost:8888/genre/${type}?genreID=${genreID}&page=${page}`);
 
 			if (page > 1) {
 				dispatch({

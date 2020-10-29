@@ -17,7 +17,7 @@ export const setPlayerTV = ({ id, title, src, backdrop, description, ep_title, e
 				payload: { title, src, backdrop, description, ep_title, ep_number, ep_season },
 			});
 
-			const seasons = await Axios.post("http://localhost:8888/episodes/all", { id });
+			const seasons = await Axios.get(`http://localhost:8888/episodes/all&id=${id}`);
 
 			dispatch({
 				type: SET_PLAYER_SEASONS,

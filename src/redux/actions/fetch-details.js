@@ -5,7 +5,7 @@ import { setError } from "../actions/error";
 export const fetchDetailsMovie = id => {
 	return async dispatch => {
 		try {
-			const response = await axios.post("http://localhost:8888/details/movie", { id });
+			const response = await axios.get(`http://localhost:8888/details/movie?id=${id}`);
 
 			dispatch({
 				type: FETCH_DETAILS,
@@ -20,8 +20,8 @@ export const fetchDetailsMovie = id => {
 export const fetchDetailsTv = id => {
 	return async dispatch => {
 		try {
-			const response = axios.post("http://localhost:8888/details/tv", { id });
-			const responseEpisodes = axios.post("http://localhost:8888/episodes", { id, season: 1 });
+			const response = axios.get(`http://localhost:8888/details/tv?id=${id}`);
+			const responseEpisodes = axios.get(`http://localhost:8888/episodes?id=${id}&season=1`);
 
 			axios
 				.all([response, responseEpisodes])

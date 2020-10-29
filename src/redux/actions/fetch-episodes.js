@@ -10,7 +10,7 @@ export const fetchEpisodes = (id, season) => {
 				payload: true,
 			});
 
-			const response = await axios.post("http://localhost:8888/episodes", { id, season });
+			const response = await axios.get(`http://localhost:8888/episodes?id=${id}&season=${season}`);
 
 			dispatch({
 				type: FETCH_EPISODES,
