@@ -8,11 +8,12 @@ import { useHistory } from "react-router-dom";
 import { ItemExpanded, Button } from "../components";
 import { WATCH } from "../constants/routes";
 import LazyLoad from "react-lazyload";
+import { BASE_PATH } from "../constants/config";
 
 import { BiPlay, BiPlus, BiMinus, BiLike, BiDislike, BiChevronDown } from "react-icons/bi";
 import { GiSpeaker, GiSpeakerOff } from "react-icons/gi";
 import placeholder from "../res/images/placeholder_w.jpg";
-const videoPlayerSrc = "http://localhost:8888/video/night";
+const videoPlayerSrc = `${BASE_PATH}/video/night`;
 
 const ItemExpandedContainer = ({ isVisible, showVideo, position, videoFile }) => {
 	const dispatch = useDispatch();

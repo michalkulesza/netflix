@@ -1,6 +1,7 @@
 import { FETCH_GENRE_DATA, FETCH_MORE_GENRE_DATA, CLEAR_GENRE_DATA, SET_GENRE_DATA_UPDATING } from "../types";
 import { setError } from "./error";
 import axios from "axios";
+import { BASE_PATH } from "../../constants/config";
 
 export const fetchGenreData = (type, genreID, page = 1) => {
 	return async dispatch => {
@@ -10,7 +11,7 @@ export const fetchGenreData = (type, genreID, page = 1) => {
 				payload: true,
 			});
 
-			const response = await axios.get(`http://localhost:8888/genre/${type}?genreID=${genreID}&page=${page}`);
+			const response = await axios.get(`${BASE_PATH}/genre/${type}?genreID=${genreID}&page=${page}`);
 
 			if (page > 1) {
 				dispatch({

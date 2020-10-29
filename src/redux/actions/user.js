@@ -17,11 +17,12 @@ import {
 	CLEAR_USER,
 	TOGGLE_VIDEO_LIST,
 } from "../types";
+import { BASE_PATH } from "../../constants/config";
 
 export const getUserData = userID => {
 	return async dispatch => {
 		try {
-			const userData = await axios.get(`http://localhost:8888/data/user?id=${userID}`);
+			const userData = await axios.get(`${BASE_PATH}/data/user?id=${userID}`);
 
 			dispatch({
 				type: SET_USER,
@@ -112,7 +113,7 @@ export const likeVideo = (userID, videoID) => {
 	return async dispatch => {
 		try {
 			axios
-				.post("http://localhost:8888/data/like", { userID, videoID })
+				.post("${BASE_PATH}/data/like", { userID, videoID })
 				.then(res => {
 					if (res.status === 200) {
 						dispatch({
@@ -141,7 +142,7 @@ export const dislikeVideo = (userID, videoID) => {
 	return async dispatch => {
 		try {
 			axios
-				.post("http://localhost:8888/data/dislike", { userID, videoID })
+				.post("${BASE_PATH}/data/dislike", { userID, videoID })
 				.then(res => {
 					if (res.status === 200) {
 						if (res.status === 200) {
@@ -172,7 +173,7 @@ export const toggleVideoToList = (userID, videoID) => {
 	return async dispatch => {
 		try {
 			axios
-				.post("http://localhost:8888/data/list", { userID, videoID })
+				.post("${BASE_PATH}/data/list", { userID, videoID })
 				.then(res => {
 					if (res.status === 200) {
 						if (res.status === 200) {
