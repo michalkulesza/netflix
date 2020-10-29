@@ -10,7 +10,7 @@ const toggles = (state = initState, action) => {
 		case SET_GLOBAL_MUTE:
 			return { ...state, globalMute: action.payload };
 		case SET_IS_DETAILS:
-			return { ...state, ...action.payload };
+			return { ...state, isDetails: action.payload };
 		case CLEAR_TOGGLES:
 			return initState;
 		default:

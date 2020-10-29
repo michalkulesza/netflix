@@ -22,22 +22,17 @@ const ItemExpandedContainer = ({ isVisible, showVideo, position, videoFile }) =>
 	const containerRef = useRef(null);
 	const [isPlaceholder, setIsPlaceholder] = useState(true);
 	const [videoCanPlay, setVideoCanPlay] = useState(false);
-	const [videoEnded, setVideoEnded] = useState(false);
 	const [itemCache, setItemCache] = useState(null);
 	const [shouldRender, setShouldRender] = useState(false);
+	const [videoEnded, setVideoEnded] = useState(false);
+	const item = useSelector(state => state.fetchDetails);
 	const { globalMute } = useSelector(state => state.toggles);
-	const item = useSelector(state => state.fetchDetails?.details[0]);
-	const ageRestriction = useSelector(state => state.fetchDetails?.ageRestriction);
 	const episodes = useSelector(state => state.fetchEpisodes.data);
 	const userID = JSON.parse(localStorage.getItem("authUser"))?.uid;
 	const { liked, disliked, list } = useSelector(state => state.user);
 
 	useEffect(() => {
-		setItemCache(null);
-	}, []);
-
-	useEffect(() => {
-		if (item && !itemCache) setItemCache(item);
+		if (item) setItemCache(item);
 		if (item && !shouldRender && isVisible) setShouldRender(true);
 	}, [item, itemCache, shouldRender, isVisible]);
 
@@ -71,7 +66,7 @@ const ItemExpandedContainer = ({ isVisible, showVideo, position, videoFile }) =>
 	};
 
 	const handlePlay = () => {
-		if (item && ageRestriction) {
+		if (item) {
 			if (item.media_type === "movie") {
 				dispatch(
 					setPlayerFilm({
@@ -80,7 +75,7 @@ const ItemExpandedContainer = ({ isVisible, showVideo, position, videoFile }) =>
 						backdrop: item.backdrop_path_1280,
 						description: item.overview,
 						year: item.release_date?.slice(0, 4),
-						ageRestriction,
+						ageRestriction: item.ageRestriction,
 						runtime: item.runtime,
 					})
 				);
@@ -146,21 +141,21 @@ const ItemExpandedContainer = ({ isVisible, showVideo, position, videoFile }) =>
 									<BiPlay />
 								</Button.Round>
 								<Button.Round
-									label={list.includes(item.id) ? "Remove from My List" : "Add to My List"}
+									label={list.includes(itemCache.id) ? "Remove from My List" : "Add to My List"}
 									onMouseDown={handleToggleVideoList}
 								>
-									{list.includes(item.id) ? <BiMinus /> : <BiPlus />}
+									{list.includes(itemCache.id) ? <BiMinus /> : <BiPlus />}
 								</Button.Round>
 								<Button.Round
-									inverted={liked.includes(item.id)}
-									label={liked.includes(item.id) ? "Remove like" : "I like this"}
+									inverted={liked.includes(itemCache.id)}
+									label={liked.includes(itemCache.id) ? "Remove like" : "I like this"}
 									onMouseDown={handleLikeClick}
 								>
 									<BiLike />
 								</Button.Round>
 								<Button.Round
-									inverted={disliked.includes(item.id)}
-									label={disliked.includes(item.id) ? "Remove dislike" : "Not for me"}
+									inverted={disliked.includes(itemCache.id)}
+									label={disliked.includes(itemCache.id) ? "Remove dislike" : "Not for me"}
 									onMouseDown={handleDislikeClick}
 								>
 									<BiDislike />
@@ -177,7 +172,7 @@ const ItemExpandedContainer = ({ isVisible, showVideo, position, videoFile }) =>
 						</ItemExpanded.Buttons>
 						<ItemExpanded.Info>
 							<p>96% Match</p>
-							<span>{ageRestriction !== "" ? `${ageRestriction} ` : "-"}</span>
+							<span>{item.ageRestriction !== "" ? `${item.ageRestriction} ` : "-"}</span>
 							{itemCache.media_type === "movie"
 								? `${itemCache?.runtime}m`
 								: `${itemCache?.number_of_seasons} ${itemCache?.number_of_seasons > 1 ? "Seasons" : "Season"}`}

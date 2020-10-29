@@ -3,12 +3,13 @@ import { useSelector, useDispatch } from "react-redux";
 import { Item } from "../components";
 import { ItemExpandedContainer } from "../containers/";
 import { markItemsPosition } from "../helpers/markItemsPosition";
-import { clearActiveExpanded, setActiveExpanded } from "../redux/actions/misc";
-import { useConvertPxToVw, useOnClickOutside } from "../hooks";
+import { setActiveExpanded } from "../redux/actions/misc";
+import { useConvertPxToVw } from "../hooks";
 
 import placeholder from "../res/images/placeholder_h.jpg";
 import { fetchDetailsMovie, fetchDetailsTv } from "../redux/actions/fetch-details";
 
+let preloadTimer;
 let hoverTimer;
 let videoTimer;
 
@@ -18,45 +19,39 @@ const ItemContainer = ({ item, i, parentID, isFirstSlide, totalTilesInVievport, 
 	const position = markItemsPosition(i, isFirstSlide, totalTilesInVievport);
 	const [isExpandedVisible, setIsExpandedVisible] = useState(false);
 	const [showVideo, setShowVideo] = useState(false);
-	const [mouseOver, setMouseOver] = useState(false);
 	const { scrollbarWidth: scrollbarWidthPx, headerVideo, activeExpanded } = useSelector(state => state.misc);
 	const { isDetails } = useSelector(state => state.toggles);
 	const scrollbarWidth = useConvertPxToVw(scrollbarWidthPx);
 
 	useEffect(() => {
-		if (isDetails) setIsExpandedVisible(false);
-	}, [isDetails]);
-
-	useEffect(() => {
-		if (mouseOver) {
-			item.media_type === "movie" ? dispatch(fetchDetailsMovie(item.id)) : dispatch(fetchDetailsTv(item.id));
-			hoverTimer = setTimeout(() => {
-				setIsExpandedVisible(true);
-				dispatch(setActiveExpanded(parentID, i));
-				videoTimer = setTimeout(() => setShowVideo(true), 2000);
-			}, 500);
+		if (activeExpanded?.parent === parentID && activeExpanded?.item === i) {
+			setIsExpandedVisible(true);
 		} else {
-			dispatch(clearActiveExpanded());
 			setIsExpandedVisible(false);
 			setShowVideo(false);
-			clearTimeout(hoverTimer);
-			clearTimeout(videoTimer);
 		}
+	}, [activeExpanded, i, parentID]);
 
-		return () => {
-			clearTimeout(hoverTimer);
-			clearTimeout(videoTimer);
-		};
-	}, [dispatch, i, item, mouseOver, parentID]);
+	const handleMouseEnter = () => {
+		preloadTimer = setTimeout(
+			() => (item.media_type === "movie" ? dispatch(fetchDetailsMovie(item.id)) : dispatch(fetchDetailsTv(item.id))),
+			200
+		);
+		hoverTimer = setTimeout(() => {
+			dispatch(setActiveExpanded(parentID, i));
+			videoTimer = setTimeout(() => setShowVideo(true), 2000);
+		}, 500);
+	};
 
-	useOnClickOutside(itemRef, () => {
-		if (activeExpanded?.parent === parentID && activeExpanded?.item === i) {
-			setIsExpandedVisible(false);
-		}
-	});
+	const handleMouseLeave = () => {
+		clearTimeout(hoverTimer);
+		clearTimeout(preloadTimer);
+		clearTimeout(videoTimer);
+	};
 
-	const handleMouseEnter = () => setMouseOver(true);
-	const handleMouseLeave = () => setMouseOver(false);
+	// useEffect(() => {
+	// 	if (isDetails) setIsExpandedVisible(false);
+	// }, [isDetails]);
 
 	return item ? (
 		<Item.Wrapper

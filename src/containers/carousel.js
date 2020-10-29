@@ -2,11 +2,13 @@ import React, { useState, useEffect } from "react";
 import { useConvertPxToVw, useTilesInViewport } from "../hooks";
 import { Carousel } from "../components";
 import { ItemContainer } from "../containers";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import { clearActiveExpanded } from "../redux/actions/misc";
 
 const CarouselContainer = ({ data, title, parentID }) => {
+	const dispatch = useDispatch();
 	const totalTilesInVievport = useTilesInViewport();
 	const { scrollbarWidth: scrollbarWidthPx } = useSelector(state => state.misc);
 	const scrollbarWidth = useConvertPxToVw(scrollbarWidthPx);
@@ -114,7 +116,10 @@ const CarouselContainer = ({ data, title, parentID }) => {
 					</Carousel.Button>
 				</Carousel.Overlay>
 				<Carousel.Wrapper>
-					<Carousel.ItemsContainer style={{ transform: `translate3d(${scrolled}vw, 0, 0)`, marginLeft: `${margin}vw` }}>
+					<Carousel.ItemsContainer
+						style={{ transform: `translate3d(${scrolled}vw, 0, 0)`, marginLeft: `${margin}vw` }}
+						onMouseLeave={() => dispatch(clearActiveExpanded())}
+					>
 						{buffer.map((item, i) => (
 							<ItemContainer
 								key={item.id}

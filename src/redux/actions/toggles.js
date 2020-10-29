@@ -3,7 +3,7 @@ import { SET_IS_DETAILS, SET_GLOBAL_MUTE } from "../types";
 export const setIsDetails = bool => {
 	return {
 		type: SET_IS_DETAILS,
-		payload: { isDetails: bool },
+		payload: bool,
 	};
 };
 
