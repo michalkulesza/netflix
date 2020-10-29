@@ -5,6 +5,7 @@
 	"dependencies": {
 		"axios": "^0.20.0",
 		"firebase": "^7.23.0",
+		"framer-motion": "^2.9.4",
 		"normalize.css": "^8.0.1",
 		"react": "^16.13.1",
 		"react-dom": "^16.13.1",
