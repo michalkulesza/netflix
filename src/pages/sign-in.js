@@ -9,7 +9,7 @@ import { useDispatch } from "react-redux";
 
 import Background from "../res/home-bg.jpg";
 
-const SignIn = ({ history }) => {
+const SignIn = () => {
 	const dispatch = useDispatch();
 	const [email, setEmail] = useState("");
 	const [emailError, setEmailError] = useState(null);

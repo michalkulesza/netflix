@@ -29,21 +29,15 @@ const App = () => {
 	return (
 		<>
 			<AnimatePresence exitBeforeEnter>
-				<Switch location={location} key={location.pathname}>
+				<Switch key={location.pathname}>
 					<IfUserRedirect exact path={HOME} ifUserRedirectTo={BROWSE} user={user}>
-						<AnimationContainer>
-							<Home />
-						</AnimationContainer>
+						<Home />
 					</IfUserRedirect>
 					<IfUserRedirect exact path={SIGN_IN} ifUserRedirectTo={BROWSE} user={user}>
-						<AnimationContainer>
-							<SignIn />
-						</AnimationContainer>
+						<SignIn />
 					</IfUserRedirect>
 					<IfUserRedirect exact path={SIGN_UP} ifUserRedirectTo={BROWSE} user={user}>
-						<AnimationContainer>
-							<SignUp />
-						</AnimationContainer>
+						<SignUp />
 					</IfUserRedirect>
 					<ProtectedRoute exact path={BROWSE} user={user}>
 						<AnimationContainer>
