@@ -32,7 +32,7 @@ const ItemExpandedContainer = ({ isVisible, showVideo, position, videoFile }) =>
 	const { liked, disliked, list } = useSelector(state => state.user);
 
 	useEffect(() => {
-		if (item) setItemCache(item);
+		if (item && !isVisible) setItemCache(item);
 		if (item && !shouldRender && isVisible) setShouldRender(true);
 	}, [item, itemCache, shouldRender, isVisible]);
 
@@ -66,29 +66,29 @@ const ItemExpandedContainer = ({ isVisible, showVideo, position, videoFile }) =>
 	};
 
 	const handlePlay = () => {
-		if (item) {
-			if (item.details.media_type === "movie") {
+		if (itemCache) {
+			if (itemCache.details.media_type === "movie") {
 				dispatch(
 					setPlayerFilm({
-						title: item.details.title,
+						title: itemCache.details.title,
 						src: videoPlayerSrc,
-						backdrop: item.details.backdrop_path_1280,
-						description: item.details.overview,
-						year: item.details.release_date?.slice(0, 4),
-						ageRestriction: item.details.ageRestriction,
-						runtime: item.details.runtime,
+						backdrop: itemCache.details.backdrop_path_1280,
+						description: itemCache.details.overview,
+						year: itemCache.details.release_date?.slice(0, 4),
+						ageRestriction: itemCache.details.ageRestriction,
+						runtime: itemCache.details.runtime,
 					})
 				);
 				history.push(WATCH);
 			}
-			if (item.details.media_type === "tv") {
+			if (itemCache.details.media_type === "tv") {
 				dispatch(
 					setPlayerTV({
-						id: item.details.id,
-						title: item.details.name,
+						id: itemCache.details.id,
+						title: itemCache.details.name,
 						src: videoPlayerSrc,
-						backdrop: item.details.backdrop_path_1280,
-						description: item.details.overview,
+						backdrop: itemCache.details.backdrop_path_1280,
+						description: itemCache.details.overview,
 						ep_title: episodes[0]?.name,
 						ep_number: episodes[0]?.episode_number,
 						ep_season: episodes[0]?.season_number,
@@ -172,7 +172,7 @@ const ItemExpandedContainer = ({ isVisible, showVideo, position, videoFile }) =>
 						</ItemExpanded.Buttons>
 						<ItemExpanded.Info>
 							<p>96% Match</p>
-							<span>{item.ageRestriction !== "" ? `${item.ageRestriction} ` : "-"}</span>
+							<span>{itemCache.ageRestriction !== "" ? `${itemCache.ageRestriction} ` : "-"}</span>
 							{itemCache.details.media_type === "movie"
 								? `${itemCache.details?.runtime}m`
 								: `${itemCache.details?.number_of_seasons} ${
