@@ -6,6 +6,7 @@ import {
 	REMOVE_LIKED_VIDEO,
 	SET_USER,
 	SET_USER_INFO,
+	TOGGLE_VIDEO_LIST,
 } from "../types";
 
 const initState = null;
@@ -32,6 +33,12 @@ const toggles = (state = initState, action) => {
 			}
 		case REMOVE_DISLIKED_VIDEO:
 			return { ...state, disliked: state.disliked.filter(el => el !== action.payload) };
+		case TOGGLE_VIDEO_LIST:
+			if (!state.list.includes(action.payload)) {
+				return { ...state, list: [...state.list, action.payload] };
+			} else {
+				return { ...state, list: state.list.filter(el => el !== action.payload) };
+			}
 		case CLEAR_USER:
 			return initState;
 		default:

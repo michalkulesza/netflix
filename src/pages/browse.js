@@ -15,7 +15,7 @@ const Browse = () => {
 	const { data, isUpdating } = useSelector(state => state.initialData);
 	const headerData = useSelector(state => state.misc.headerVideo);
 	const { selectedGenre } = useSelector(state => state.genres);
-	const user = useSelector(state => state.user);
+	const user = useSelector(state => state.user?.info);
 
 	return (
 		<>

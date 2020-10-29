@@ -17,6 +17,7 @@ import {
 	CLEAR_DETAILS,
 	CLEAR_PLAYER,
 	CLEAR_USER,
+	TOGGLE_VIDEO_LIST,
 } from "../types";
 
 export const getUserData = userID => {
@@ -149,6 +150,33 @@ export const dislikeVideo = (userID, videoID) => {
 							});
 							dispatch({
 								type: DISLIKE_VIDEO,
+								payload: videoID,
+							});
+						}
+					}
+				})
+				.catch(err => {
+					console.error(err.message);
+					dispatch(setError("Whops! Something went wrong while disliking video."));
+				});
+		} catch (err) {
+			console.error(err.message);
+			dispatch(setError("Whops! Something went wrong while disliking video."));
+		}
+	};
+};
+
+//ADD TO LIST
+export const toggleVideoToList = (userID, videoID) => {
+	return async dispatch => {
+		try {
+			axios
+				.post("http://localhost:8888/data/list", { userID, videoID })
+				.then(res => {
+					if (res.status === 200) {
+						if (res.status === 200) {
+							dispatch({
+								type: TOGGLE_VIDEO_LIST,
 								payload: videoID,
 							});
 						}

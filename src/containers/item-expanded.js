@@ -13,7 +13,7 @@ import { BiPlay, BiPlus, BiLike, BiDislike, BiChevronDown } from "react-icons/bi
 import { GiSpeaker, GiSpeakerOff } from "react-icons/gi";
 import placeholder from "../res/images/placeholder_w.jpg";
 import { setError } from "../redux/actions/error";
-import { dislikeVideo, likeVideo } from "../redux/actions/user";
+import { dislikeVideo, likeVideo, toggleVideoToList } from "../redux/actions/user";
 const videoPlayerSrc = "http://localhost:8888/video/night";
 
 const ItemExpandedContainer = ({ isVisible, showVideo, position, videoFile }) => {
@@ -104,13 +104,9 @@ const ItemExpandedContainer = ({ isVisible, showVideo, position, videoFile }) =>
 		}
 	};
 
-	const handleLikeClick = () => {
-		dispatch(likeVideo(userID, item.id));
-	};
-
-	const handleDislikeClick = () => {
-		dispatch(dislikeVideo(userID, item.id));
-	};
+	const handleLikeClick = () => dispatch(likeVideo(userID, item.id));
+	const handleDislikeClick = () => dispatch(dislikeVideo(userID, item.id));
+	const handleToggleVideoList = () => dispatch(toggleVideoToList(userID, item.id));
 
 	return (
 		<ItemExpanded isVisible={isVisible} position={position} onTransitionEnd={handleOnAnimationEnd} ref={containerRef}>
@@ -149,7 +145,7 @@ const ItemExpandedContainer = ({ isVisible, showVideo, position, videoFile }) =>
 								<Button.Round inverted onMouseDown={handlePlay}>
 									<BiPlay />
 								</Button.Round>
-								<Button.Round label="Add to My List">
+								<Button.Round label="Add to My List" onMouseDown={handleToggleVideoList}>
 									<BiPlus />
 								</Button.Round>
 								<Button.Round label="I like this" onMouseDown={handleLikeClick}>
