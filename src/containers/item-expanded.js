@@ -13,7 +13,7 @@ import { BiPlay, BiPlus, BiLike, BiDislike, BiChevronDown } from "react-icons/bi
 import { GiSpeaker, GiSpeakerOff } from "react-icons/gi";
 import placeholder from "../res/images/placeholder_w.jpg";
 import { setError } from "../redux/actions/error";
-import { likeVideo } from "../redux/actions/user";
+import { dislikeVideo, likeVideo } from "../redux/actions/user";
 const videoPlayerSrc = "http://localhost:8888/video/night";
 
 const ItemExpandedContainer = ({ isVisible, showVideo, position, videoFile }) => {
@@ -108,6 +108,10 @@ const ItemExpandedContainer = ({ isVisible, showVideo, position, videoFile }) =>
 		dispatch(likeVideo(userID, item.id));
 	};
 
+	const handleDislikeClick = () => {
+		dispatch(dislikeVideo(userID, item.id));
+	};
+
 	return (
 		<ItemExpanded isVisible={isVisible} position={position} onTransitionEnd={handleOnAnimationEnd} ref={containerRef}>
 			{shouldRender && itemCache ? (
@@ -151,7 +155,7 @@ const ItemExpandedContainer = ({ isVisible, showVideo, position, videoFile }) =>
 								<Button.Round label="I like this" onMouseDown={handleLikeClick}>
 									<BiLike />
 								</Button.Round>
-								<Button.Round label="Not for me">
+								<Button.Round label="Not for me" onMouseDown={handleDislikeClick}>
 									<BiDislike />
 								</Button.Round>
 							</ItemExpanded.Half>

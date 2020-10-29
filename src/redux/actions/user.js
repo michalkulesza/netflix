@@ -1,7 +1,14 @@
 import axios from "axios";
 import { firebase } from "../../firebase/index";
 import { setError } from "./error";
-import { SET_USER, SET_USER_INFO, LIKE_VIDEO, REMOVE_LIKED_VIDEO } from "../types";
+import {
+	SET_USER,
+	SET_USER_INFO,
+	LIKE_VIDEO,
+	REMOVE_LIKED_VIDEO,
+	DISLIKE_VIDEO,
+	REMOVE_DISLIKED_VIDEO,
+} from "../types";
 
 export const signupUser = (email, password, name, avatar = "avatar1") => {
 	return async dispatch => {
@@ -53,7 +60,7 @@ export const signinUser = (email, password) => {
 	};
 };
 
-//LIKES
+//LIKE
 export const likeVideo = (userID, videoID) => {
 	return async dispatch => {
 		try {
@@ -68,10 +75,8 @@ export const likeVideo = (userID, videoID) => {
 							}),
 							payload: videoID,
 						});
-					}
-					if (res.status === 409) {
 						dispatch({
-							type: REMOVE_LIKED_VIDEO,
+							type: REMOVE_DISLIKED_VIDEO,
 							payload: videoID,
 						});
 					}
@@ -83,6 +88,38 @@ export const likeVideo = (userID, videoID) => {
 		} catch (err) {
 			console.error(err.message);
 			dispatch(setError("Whops! Something went wrong while liking video."));
+		}
+	};
+};
+
+//DISLIKE
+export const dislikeVideo = (userID, videoID) => {
+	return async dispatch => {
+		try {
+			axios
+				.post("http://localhost:8888/data/dislike", { userID, videoID })
+				.then(res => {
+					if (res.status === 200) {
+						dispatch({
+							type: dispatch({
+								type: DISLIKE_VIDEO,
+								payload: videoID,
+							}),
+							payload: videoID,
+						});
+						dispatch({
+							type: REMOVE_DISLIKED_VIDEO,
+							payload: videoID,
+						});
+					}
+				})
+				.catch(err => {
+					console.error(err.message);
+					dispatch(setError("Whops! Something went wrong while disliking video."));
+				});
+		} catch (err) {
+			console.error(err.message);
+			dispatch(setError("Whops! Something went wrong while disliking video."));
 		}
 	};
 };
