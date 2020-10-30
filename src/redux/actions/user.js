@@ -3,7 +3,6 @@ import { firebase } from "../../firebase/index";
 import { setError } from "./error";
 import {
 	SET_USER,
-	SET_USER_INFO,
 	TOGGLE_LIKE_VIDEO,
 	TOGGLE_DISLIKE_VIDEO,
 	CLEAR_INITIAL_DATA,
@@ -16,6 +15,7 @@ import {
 	CLEAR_PLAYER,
 	CLEAR_USER,
 	TOGGLE_VIDEO_LIST,
+	AUTH_CHANGE,
 } from "../types";
 import { BASE_PATH } from "../../constants/config";
 
@@ -29,13 +29,27 @@ export const getUserData = userID => {
 				payload: userData.data,
 			});
 		} catch (err) {
-			dispatch(setError(err.message));
+			console.error(err.message);
 		}
 	};
 };
 
-export const signupUser = (email, password, name, avatar = "avatar1") => {
+export const signupUser = (email, password, name, history, avatar = "avatar1") => {
 	return async dispatch => {
+		const initUserData = {
+			info: {
+				displayName: name,
+				avatar,
+			},
+			list: [],
+			liked: [],
+			disliked: [],
+		};
+
+		dispatch({
+			type: AUTH_CHANGE,
+			payload: true,
+		});
 		firebase
 			.auth()
 			.createUserWithEmailAndPassword(email, password)
@@ -44,15 +58,25 @@ export const signupUser = (email, password, name, avatar = "avatar1") => {
 					displayName: name,
 					photoURL: avatar,
 				});
+				return user;
+			})
+			.then(user => {
+				firebase.firestore().collection("users").doc(user.uid).set(initUserData);
 			})
 			.then(() => {
 				dispatch({
-					type: SET_USER_INFO,
-					payload: { displayName: name, avatar },
+					type: SET_USER,
+					payload: initUserData,
 				});
 			})
 			.catch(err => {
 				dispatch(setError(err.message));
+			})
+			.finally(() => {
+				dispatch({
+					type: AUTH_CHANGE,
+					payload: false,
+				});
 			});
 	};
 };

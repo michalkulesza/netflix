@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { HeaderContainer, NavbarContainer, FooterContainer } from "../containers";
-import { Navbar, Form, Header } from "../components";
+import { Navbar, Form, Header, Button } from "../components";
 import { SIGN_UP } from "../constants/routes";
 import { emailValidation, passwordValidation } from "../helpers/validators";
 import { signinUser } from "../redux/actions/user";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import Background from "../res/home-bg.jpg";
 
@@ -16,6 +16,7 @@ const SignIn = () => {
 	const [password, setPassword] = useState("");
 	const [passwordError, setPasswordError] = useState(null);
 	const [error, setError] = useState(null);
+	const authChange = useSelector(state => state.toggles.authChange);
 
 	const handleEmail = value => {
 		setEmail(value);
@@ -59,9 +60,12 @@ const SignIn = () => {
 								error={passwordError}
 							/>
 							<Form.Error>{error}</Form.Error>
-							<Form.Button disabled={password === "" || passwordError || email === "" || emailError}>
+							<Button.Form
+								loading={authChange}
+								disabled={password === "" || passwordError || email === "" || emailError || authChange}
+							>
 								Sign In
-							</Form.Button>
+							</Button.Form>
 							<Form.Redirect>
 								New to Netflix? <Link to={SIGN_UP}>Sign up now</Link>.
 							</Form.Redirect>

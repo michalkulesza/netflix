@@ -1,18 +1,9 @@
-import {
-	CLEAR_USER,
-	TOGGLE_LIKE_VIDEO,
-	TOGGLE_DISLIKE_VIDEO,
-	SET_USER,
-	SET_USER_INFO,
-	TOGGLE_VIDEO_LIST,
-} from "../types";
+import { CLEAR_USER, TOGGLE_LIKE_VIDEO, TOGGLE_DISLIKE_VIDEO, SET_USER, TOGGLE_VIDEO_LIST } from "../types";
 
 const initState = null;
 
 const toggles = (state = initState, action) => {
 	switch (action.type) {
-		case SET_USER_INFO:
-			return { ...state, info: action.payload };
 		case SET_USER:
 			return action.payload;
 		case TOGGLE_LIKE_VIDEO:

@@ -55,6 +55,7 @@ export const SET_GLOBAL_MUTE = "SET_GLOBAL_MUTE";
 export const CLEAR_TOGGLES = "CLEAR_TOGGLES";
 
 //user.js
+export const AUTH_CHANGE = "AUTH_CHANGE";
 export const SET_USER_INFO = "SET_USER_INFO";
 export const SET_USER = "SET_USER";
 export const TOGGLE_LIKE_VIDEO = "TOGGLE_LIKE_VIDEO";
