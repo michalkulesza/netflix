@@ -26,15 +26,22 @@ const DetailsHeaderContainer = ({ item, scrolled }) => {
 	useEffect(() => {
 		if (VideoPlayer.current) {
 			if (scrolled < 200) {
-				VideoPlayer.current.volume = 0.4;
-				placeholderTimer = setTimeout(() => {
-					setIsPlaceholder(false);
-					videoTimer = setTimeout(() => VideoPlayer.current?.play(), 500);
-				}, 2000);
+				if (VideoPlayer?.current?.paused) {
+					console.log("hey");
+					VideoPlayer.current.volume = 0.4;
+					placeholderTimer = setTimeout(() => {
+						setIsPlaceholder(false);
+						videoTimer = setTimeout(() => VideoPlayer.current?.play(), 500);
+					}, 2000);
+				}
 			} else {
-				clearTimeout(placeholderTimer);
-				clearTimeout(videoTimer);
-				VideoPlayer.current.pause();
+				if (!VideoPlayer?.current?.paused) {
+					console.log("ho");
+					clearTimeout(placeholderTimer);
+					clearTimeout(videoTimer);
+					VideoPlayer.current.pause();
+					setIsPlaceholder(true);
+				}
 			}
 		}
 	}, [scrolled]);

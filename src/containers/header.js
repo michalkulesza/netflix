@@ -63,16 +63,16 @@ const HeaderContainer = ({ headerData, bg, children }) => {
 				src: videoPlayerSrc,
 				backdrop: headerData.backdrop,
 				description: headerData.description,
-				ep_title: episodes && episodes[0].name,
+				ep_title: episodes && episodes[0]?.name,
 				ep_number: episodes && episodes[0]?.episode_number,
 				ep_season: episodes && episodes[0]?.season_number,
-				year: details.release_date
+				year: details?.release_date
 					? details?.release_date.slice(0, 4)
-					: details.first_air_date
-					? details.first_air_date.slice(0, 4)
+					: details?.first_air_date
+					? details?.first_air_date.slice(0, 4)
 					: 2020,
 				ageRestriction: headerData.ageRestriction,
-				runtime: details.runtime ? details.runtime : details.episode_run_time ? details.episode_run_time[0] : 60,
+				runtime: details?.runtime ? details?.runtime : details?.episode_run_time ? details?.episode_run_time[0] : 60,
 			})
 		);
 

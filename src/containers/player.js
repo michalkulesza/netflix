@@ -25,7 +25,7 @@ const PlayerContainer = () => {
 	const [hoveredOnControls, setHoveredOnControls] = useState(false);
 	const [canPlay, setCanPlay] = useState(false);
 
-	const pressedKey = useSelector(state => state.misc.pressedKey);
+	// const pressedKey = useSelector(state => state.misc.pressedKey);
 	const data = useSelector(state => state.player);
 	const playerState = useSelector(state => state.player.state);
 
