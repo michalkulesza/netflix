@@ -29,14 +29,7 @@ export const setPlayer = ({
 			try {
 				dispatch({
 					type: SET_PLAYER_TV,
-					payload: { title, src, backdrop, description, ep_title, ep_number, ep_season },
-				});
-
-				const seasons = await Axios.get(`${BASE_PATH}/episodes/all&id=${id}`);
-
-				dispatch({
-					type: SET_PLAYER_SEASONS,
-					payload: seasons.data,
+					payload: { title, src, backdrop, ep_title, ep_number, ep_season },
 				});
 			} catch (error) {
 				dispatch(setError("Whops! Something happend while getting seasons and episodes."));
@@ -45,7 +38,7 @@ export const setPlayer = ({
 	} else {
 		return {
 			type: SET_PLAYER_FILM,
-			payload: { title, src, backdrop, description, year, ageRestriction, runtime },
+			payload: { title, src, backdrop, year, ageRestriction, runtime },
 		};
 	}
 };

@@ -25,6 +25,7 @@ const PlayerContainer = () => {
 	const [hoveredOnControls, setHoveredOnControls] = useState(false);
 	const [canPlay, setCanPlay] = useState(false);
 
+	const pressedKey = useSelector(state => state.misc.pressedKey);
 	const data = useSelector(state => state.player);
 	const playerState = useSelector(state => state.player.state);
 
@@ -70,14 +71,8 @@ const PlayerContainer = () => {
 	const handleCanPlay = () => setCanPlay(true);
 
 	const handleCloseButton = () => {
-		if (document.fullscreenElement) {
-			document.exitFullscreen();
-		}
-		if (history?.location?.pathname !== WATCH) {
-			history.goBack();
-		} else {
-			history.push(HOME);
-		}
+		document.fullscreenElement && document.exitFullscreen();
+		history?.location?.pathname !== WATCH ? history.goBack() : history.push(HOME);
 	};
 
 	const handleClickPlay = () => {
@@ -92,7 +87,6 @@ const PlayerContainer = () => {
 	};
 
 	const handleLoadedMetadata = () => dispatch(setPlayerMetaLoaded(true));
-
 	const handleControlsHoverEnter = () => setHoveredOnControls(true);
 	const handleControlsHoverLeave = () => setHoveredOnControls(false);
 

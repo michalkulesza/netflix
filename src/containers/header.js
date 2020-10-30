@@ -1,21 +1,30 @@
 import React, { useRef, useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setGlobalMute } from "../redux/actions/toggles";
+import { fetchDetailsMovie, fetchDetailsTv } from "../redux/actions/fetch-details";
+import { setPlayer } from "../redux/actions/player";
 import { Header, Button } from "../components";
 import { useCanHeaderPlay } from "../hooks";
+import { BASE_PATH } from "../constants/config";
+import { WATCH } from "../constants/routes";
+import { useHistory } from "react-router-dom";
 
 import { GiSpeaker, GiSpeakerOff } from "react-icons/gi";
 import { GrPlayFill, GrCircleInformation } from "react-icons/gr";
 import placeholder from "../res/images/placeholder_w.jpg";
+const videoPlayerSrc = `${BASE_PATH}/video/night`;
 
 let posterTimer;
 
-const HeaderContainer = ({ headerData, bg, children, ...restProps }) => {
+const HeaderContainer = ({ headerData, bg, children }) => {
 	const videoPlayer = useRef(null);
 	const dispatch = useDispatch();
+	const history = useHistory();
 	const canPlay = useCanHeaderPlay();
 	const { globalMute } = useSelector(state => state.toggles);
 	const { selectedGenre } = useSelector(state => state.genres);
+	const episodes = useSelector(state => state.fetchEpisodes.data);
+	const details = useSelector(state => state.fetchDetails);
 	const [videoEnded, setVideoEnded] = useState(false);
 	const [videoCanPlay, setVideoCanPlay] = useState(false);
 	const [posterIsVisible, setPosterIsVisible] = useState(true);
@@ -46,38 +55,34 @@ const HeaderContainer = ({ headerData, bg, children, ...restProps }) => {
 	};
 
 	const handlePlay = () => {
-		// if (item) {
-		// 	if (item.media_type === "movie") {
-		// 		dispatch(
-		// 			setPlayerFilm({
-		// 				title: item.title,
-		// 				src: videoPlayerSrc,
-		// 				backdrop: item.backdrop_path_1280,
-		// 				description: item.overview,
-		// 				year: item.release_date?.slice(0, 4),
-		// 				ageRestriction,
-		// 				runtime: item.runtime,
-		// 			})
-		// 		);
-		// 		history.push(WATCH);
-		// 	}
-		// 	if (item.media_type === "tv") {
-		// 		dispatch(
-		// 			setPlayerTV({
-		// 				id: item.id,
-		// 				title: item.name,
-		// 				src: videoPlayerSrc,
-		// 				backdrop: item.backdrop_path_1280,
-		// 				description: item.overview,
-		// 				ep_title: episodes[0]?.name,
-		// 				ep_number: episodes[0]?.episode_number,
-		// 				ep_season: episodes[0]?.season_number,
-		// 			})
-		// 		);
-		// 		history.push(WATCH);
-		// 	}
-		// }
+		dispatch(
+			setPlayer({
+				type: headerData.media_type,
+				id: headerData.id,
+				title: headerData.title,
+				src: videoPlayerSrc,
+				backdrop: headerData.backdrop,
+				description: headerData.description,
+				ep_title: episodes && episodes[0].name,
+				ep_number: episodes && episodes[0]?.episode_number,
+				ep_season: episodes && episodes[0]?.season_number,
+				year: details.release_date
+					? details?.release_date.slice(0, 4)
+					: details.first_air_date
+					? details.first_air_date.slice(0, 4)
+					: 2020,
+				ageRestriction: headerData.ageRestriction,
+				runtime: details.runtime ? details.runtime : details.episode_run_time ? details.episode_run_time[0] : 60,
+			})
+		);
+
+		history.push(WATCH);
 	};
+
+	const handleMouseEnter = () =>
+		headerData.media_type === "movie"
+			? dispatch(fetchDetailsMovie(headerData.id))
+			: dispatch(fetchDetailsTv(headerData.id));
 
 	return !selectedGenre ? (
 		<Header>
@@ -113,7 +118,7 @@ const HeaderContainer = ({ headerData, bg, children, ...restProps }) => {
 						<Header.ContainerInVideoHalf>
 							<Header.VideoLogo src={headerData.logo} alt={headerData.title} />
 							<Header.VideoDescription>{headerData.description}</Header.VideoDescription>
-							<Header.VideoButtonsContainer>
+							<Header.VideoButtonsContainer onMouseEnter={handleMouseEnter}>
 								<Button.Square onMouseDown={handlePlay}>
 									<GrPlayFill /> Play
 								</Button.Square>

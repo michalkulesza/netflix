@@ -2,6 +2,7 @@ import React, { useState, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { DetailsHeader, Button } from "../../components";
 import { setGlobalMute, setIsDetails } from "../../redux/actions/toggles";
+import { setPlayer } from "../../redux/actions/player";
 import { dislikeVideo, likeVideo, toggleVideoToList } from "../../redux/actions/user";
 
 import { GrPlayFill, GrClose } from "react-icons/gr";
@@ -38,6 +39,24 @@ const DetailsHeaderContainer = ({ item, scrolled }) => {
 		}
 	}, [scrolled]);
 
+	const handleCLickPlay = () => {
+		dispatch(
+			setPlayer({
+				type: item.media_type,
+				id: item.id,
+				title: item.name ? item.name : item.title,
+				src: "",
+				backdrop: item.backdrop_path_1280,
+				ep_title: "Title of the episode",
+				ep_number: 1,
+				ep_season: 6,
+				year: 2009,
+				ageRestriction: 12,
+				runtime: 112,
+			})
+		);
+	};
+
 	const handleClose = () => dispatch(setIsDetails(false));
 	const handleMute = () => dispatch(setGlobalMute(!globalMute));
 	const handleListClick = () => dispatch(toggleVideoToList(userID, item.id));
@@ -57,7 +76,7 @@ const DetailsHeaderContainer = ({ item, scrolled }) => {
 						<DetailsHeader.OverlayHalf>
 							<DetailsHeader.Logo src={headerData.logo} alt="Video Logo" />
 							<DetailsHeader.ButtonsContainer>
-								<Button.Square>
+								<Button.Square onMouseDown={handleCLickPlay}>
 									<GrPlayFill /> Play
 								</Button.Square>
 								<Button.Round
