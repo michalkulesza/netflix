@@ -1,17 +1,5 @@
 import React, { useState } from "react";
-import {
-	Main,
-	Container,
-	Title,
-	Input,
-	Error,
-	InputWrapper,
-	Label,
-	Button,
-	Redirect,
-	Text,
-	MainError,
-} from "./styles/form";
+import { Main, Container, Title, Input, Error, InputWrapper, Label, Redirect, Text, MainError } from "./styles/form";
 
 const Form = ({ children, ...restProps }) => {
 	return <Main {...restProps}>{children}</Main>;
@@ -42,10 +30,6 @@ Form.Input = function FormInput({ error, placeholder, value, ...restProps }) {
 			<Error>{error}</Error>
 		</>
 	);
-};
-
-Form.Button = ({ children, ...restProps }) => {
-	return <Button {...restProps}>{children}</Button>;
 };
 
 Form.Redirect = ({ children, ...restProps }) => {

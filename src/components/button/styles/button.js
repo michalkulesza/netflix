@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components/macro";
 import { Link } from "react-router-dom";
 import { respondTo } from "../../../styles/respondTo";
-import { LoadingBackgroundAnimation } from "../../../styles/animations";
+import { LoadingBackgroundAnimation, spinnerAnim } from "../../../styles/animations";
 
 export const Main = styled(Link)`
 	background-color: #e50914;
@@ -155,5 +155,22 @@ export const Clear = styled.button`
 				stroke: #fff;
 			}
 		}
+	}
+`;
+
+export const Form = styled.button`
+	background-color: #e50914;
+	border-radius: 4px;
+	margin: 24px 0 12px;
+	width: 100%;
+	max-width: 100%;
+	padding: 16px;
+	border: none;
+	color: #fff;
+	font-weight: 600;
+	cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
+
+	svg {
+		animation: ${spinnerAnim};
 	}
 `;

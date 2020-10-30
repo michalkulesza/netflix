@@ -1,5 +1,7 @@
 import React from "react";
-import { Main, Square, Round, Container, Label, Clear } from "./styles/button";
+import { Main, Square, Round, Container, Label, Clear, Form } from "./styles/button";
+
+import { ImSpinner8 } from "react-icons/im";
 
 const Button = ({ route, children, ...restProps }) => {
 	return (
@@ -34,6 +36,10 @@ Button.Clear = ({ size, padding, children, margin, ...restProps }) => {
 			{children}
 		</Clear>
 	);
+};
+
+Button.Form = ({ loading, children, ...restProps }) => {
+	return <Form {...restProps}>{loading ? <ImSpinner8 /> : children}</Form>;
 };
 
 export default Button;

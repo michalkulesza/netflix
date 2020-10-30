@@ -65,19 +65,6 @@ export const Error = styled.div`
 	margin-bottom: 10px;
 `;
 
-export const Button = styled.button`
-	background-color: #e50914;
-	border-radius: 4px;
-	margin: 24px 0 12px;
-	width: 100%;
-	max-width: 100%;
-	padding: 16px;
-	border: none;
-	color: #fff;
-	font-weight: 600;
-	cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
-`;
-
 export const Redirect = styled.div`
 	margin-top: 1em;
 	font-size: 0.9em;

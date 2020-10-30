@@ -1,16 +1,17 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { HeaderContainer, NavbarContainer, FooterContainer } from "../containers";
-import { Navbar, Form, Header } from "../components";
+import { Navbar, Form, Header, Button } from "../components";
 import { emailValidation, passwordValidation } from "../helpers/validators";
 import { SIGN_IN } from "../constants/routes";
 import { signupUser } from "../redux/actions/user";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import Background from "../res/home-bg.jpg";
 
-const SignUp = ({ history }) => {
+const SignUp = () => {
 	const dispatch = useDispatch();
+	const history = useHistory();
 	const [name, setName] = useState("");
 	const [nameError, setNameError] = useState(null);
 	const [email, setEmail] = useState("");
@@ -20,6 +21,7 @@ const SignUp = ({ history }) => {
 	const [secondPassword, setSecondPassword] = useState("");
 	const [secondPasswordError, setSecondPasswordError] = useState(null);
 	const [error, setError] = useState(null);
+	const authChange = useSelector(state => state.toggles.authChange);
 
 	const handleName = ({ target }) => {
 		setName(target.value);
@@ -43,11 +45,7 @@ const SignUp = ({ history }) => {
 
 	const handleSubmit = e => {
 		e.preventDefault();
-		dispatch(signupUser(email, password, name));
-		setName("");
-		setEmail("");
-		setPassword("");
-		setSecondPassword("");
+		dispatch(signupUser(email, password, name, history));
 	};
 
 	return (
@@ -92,7 +90,7 @@ const SignUp = ({ history }) => {
 								error={secondPasswordError}
 							/>
 							<Form.Error onMouseDown={() => setError(null)}>{error}</Form.Error>
-							<Form.Button
+							<Button.Form
 								disabled={
 									name === "" ||
 									email === "" ||
@@ -103,9 +101,10 @@ const SignUp = ({ history }) => {
 									passwordError ||
 									secondPasswordError
 								}
+								loading={authChange}
 							>
 								Sign Up
-							</Form.Button>
+							</Button.Form>
 							<Form.Redirect>
 								Already a Netflix user? <Link to={SIGN_IN}>Sign in</Link>.
 							</Form.Redirect>
