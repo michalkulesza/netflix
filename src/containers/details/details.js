@@ -16,7 +16,6 @@ const DetailsContainer = () => {
 	const [scrolled, setScrolled] = useState(0);
 	const [shouldRender, setRender] = useState(isDetails);
 
-	console.log(scrolled);
 	const handleCloseCallback = useCallback(() => {
 		const handleClose = () => {
 			dispatch(setIsDetails(false));

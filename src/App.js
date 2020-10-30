@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { HOME, SIGN_IN, SIGN_UP, BROWSE, SERIES, FILMS, LATEST, MYLIST, WATCH } from "./constants/routes";
-import { useLocation, Route, Switch, useHistory } from "react-router-dom";
+import { Route, Switch, useHistory } from "react-router-dom";
 import { Home, SignIn, SignUp, Browse, Latest, MyList, Page404, Watch } from "./pages";
 import { IfUserRedirect, ProtectedRoute } from "./helpers/protectedRoutes";
 import { useAuthListener, useFetchInitData, useKeyDownListener } from "./hooks/";
@@ -12,10 +12,9 @@ import { AnimatePresence } from "framer-motion";
 
 const App = () => {
 	const dispatch = useDispatch();
-	const location = useLocation();
 	const history = useHistory();
 	const { user } = useAuthListener();
-	const id = useLocation();
+	const id = history.location;
 	const { scrollbarWidth } = useSelector(state => state.misc);
 	useFetchInitData(id);
 	useKeyDownListener();
@@ -29,15 +28,21 @@ const App = () => {
 	return (
 		<>
 			<AnimatePresence exitBeforeEnter>
-				<Switch key={location.pathname}>
+				<Switch key={history.location.pathname}>
 					<IfUserRedirect exact path={HOME} ifUserRedirectTo={BROWSE} user={user}>
-						<Home />
+						<AnimationContainer>
+							<Home />
+						</AnimationContainer>
 					</IfUserRedirect>
 					<IfUserRedirect exact path={SIGN_IN} ifUserRedirectTo={BROWSE} user={user}>
-						<SignIn />
+						<AnimationContainer>
+							<SignIn />
+						</AnimationContainer>
 					</IfUserRedirect>
 					<IfUserRedirect exact path={SIGN_UP} ifUserRedirectTo={BROWSE} user={user}>
-						<SignUp />
+						<AnimationContainer>
+							<SignUp />
+						</AnimationContainer>
 					</IfUserRedirect>
 					<ProtectedRoute exact path={BROWSE} user={user}>
 						<AnimationContainer>
@@ -65,10 +70,14 @@ const App = () => {
 						</AnimationContainer>
 					</ProtectedRoute>
 					<Route path={WATCH}>
-						<Watch></Watch>
+						<AnimationContainer>
+							<Watch />
+						</AnimationContainer>
 					</Route>
 					<Route>
-						<Page404 />
+						<AnimationContainer>
+							<Page404 />
+						</AnimationContainer>
 					</Route>
 				</Switch>
 			</AnimatePresence>
