@@ -34,7 +34,7 @@ export const getUserData = userID => {
 	};
 };
 
-export const signupUser = (email, password, name, history, avatar = "avatar1") => {
+export const signupUser = (email, password, name, avatar = "avatar1") => {
 	return async dispatch => {
 		const initUserData = {
 			info: {
@@ -83,14 +83,21 @@ export const signupUser = (email, password, name, history, avatar = "avatar1") =
 
 export const signinUser = (email, password) => {
 	return async dispatch => {
+		dispatch({
+			type: AUTH_CHANGE,
+			payload: true,
+		});
 		firebase
 			.auth()
 			.signInWithEmailAndPassword(email, password)
-			.then(user => {
-				getUserData(user.user.uid);
-			})
 			.catch(err => {
 				dispatch(setError(err.message));
+			})
+			.finally(() => {
+				dispatch({
+					type: AUTH_CHANGE,
+					payload: false,
+				});
 			});
 	};
 };

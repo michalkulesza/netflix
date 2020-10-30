@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { HeaderContainer, NavbarContainer, FooterContainer } from "../containers";
 import { Navbar, Form, Header, Button } from "../components";
 import { emailValidation, passwordValidation } from "../helpers/validators";
@@ -11,7 +11,6 @@ import Background from "../res/home-bg.jpg";
 
 const SignUp = () => {
 	const dispatch = useDispatch();
-	const history = useHistory();
 	const [name, setName] = useState("");
 	const [nameError, setNameError] = useState(null);
 	const [email, setEmail] = useState("");
@@ -45,7 +44,7 @@ const SignUp = () => {
 
 	const handleSubmit = e => {
 		e.preventDefault();
-		dispatch(signupUser(email, password, name, history));
+		dispatch(signupUser(email, password, name));
 	};
 
 	return (
