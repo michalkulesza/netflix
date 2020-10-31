@@ -181,6 +181,9 @@ const ItemExpandedContainer = ({ isVisible, showVideo, position, videoFile, data
 							<Button.Round isLoading></Button.Round>
 							<Button.Round isLoading></Button.Round>
 						</ItemExpanded.Half>
+						<ItemExpanded.Info>
+							<p style={{ opacity: 0 }}>Loading...</p>
+						</ItemExpanded.Info>
 					</ItemExpanded.Main>
 				</>
 			)}
