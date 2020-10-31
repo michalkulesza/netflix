@@ -1,7 +1,8 @@
 import React, { useRef, useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { setGlobalMute } from "../redux/actions/toggles";
+import { setGlobalMute, setIsDetails } from "../redux/actions/toggles";
 import { fetchDetailsMovie, fetchDetailsTv } from "../redux/actions/fetch-details";
+import { setDetailsPosition } from "../redux/actions/misc";
 import { setPlayer } from "../redux/actions/player";
 import { Header, Button } from "../components";
 import { useCanHeaderPlay } from "../hooks";
@@ -21,10 +22,10 @@ const HeaderContainer = ({ headerData, bg, children }) => {
 	const dispatch = useDispatch();
 	const history = useHistory();
 	const canPlay = useCanHeaderPlay();
-	const { globalMute } = useSelector(state => state.toggles);
 	const { selectedGenre } = useSelector(state => state.genres);
-	const episodes = useSelector(state => state.fetchEpisodes.data);
+	const { globalMute } = useSelector(state => state.toggles);
 	const details = useSelector(state => state.fetchDetails);
+	const episodes = useSelector(state => state.fetchEpisodes.data);
 	const [videoEnded, setVideoEnded] = useState(false);
 	const [videoCanPlay, setVideoCanPlay] = useState(false);
 	const [posterIsVisible, setPosterIsVisible] = useState(true);
@@ -52,6 +53,12 @@ const HeaderContainer = ({ headerData, bg, children }) => {
 
 	const handleMute = () => {
 		dispatch(setGlobalMute(!globalMute));
+	};
+
+	const handleClickMoreDetails = ({ currentTarget }) => {
+		const elemPos = currentTarget.parentNode.parentNode.parentNode.parentNode.getBoundingClientRect();
+		dispatch(setDetailsPosition(elemPos.x, elemPos.y, elemPos.width, elemPos.height));
+		dispatch(setIsDetails(true));
 	};
 
 	const handlePlay = () => {
@@ -122,7 +129,7 @@ const HeaderContainer = ({ headerData, bg, children }) => {
 								<Button.Square onMouseDown={handlePlay}>
 									<GrPlayFill /> Play
 								</Button.Square>
-								<Button.Square iconScale="1.4" dark>
+								<Button.Square iconScale="1.4" dark onMouseDown={e => handleClickMoreDetails(e)}>
 									<GrCircleInformation /> More Info
 								</Button.Square>
 							</Header.VideoButtonsContainer>

@@ -13,7 +13,7 @@ export const fetchDetailsMovie = (id, dataCallback) => {
 				payload: response.data,
 			});
 
-			dataCallback(response.data);
+			dataCallback && dataCallback(response.data);
 		} catch (error) {
 			dispatch(setError("Whops! Something happend while getting movie details."));
 		}
@@ -38,13 +38,14 @@ export const fetchDetailsTv = (id, dataCallback, episodesCallback) => {
 							type: FETCH_EPISODES,
 							payload: responses[1].data,
 						});
-						dataCallback(response.data);
-						episodesCallback(responseEpisodes.data).catch();
+						dataCallback && dataCallback(response.data);
+						episodesCallback && episodesCallback(responseEpisodes.data);
 					})
 				)
 				.catch(() => dispatch(setError("Whops! Something happend while getting tv details.")));
 		} catch (error) {
 			dispatch(setError("Whops! Something happend while getting tv details."));
+			console.error(error);
 		}
 	};
 };
