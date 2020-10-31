@@ -4,7 +4,7 @@ import { Route, Switch, useHistory } from "react-router-dom";
 import { Home, SignIn, SignUp, Browse, Latest, MyList, Page404, Watch } from "./pages";
 import { IfUserRedirect, ProtectedRoute } from "./helpers/protectedRoutes";
 import { useAuthListener, useFetchInitData, useKeyDownListener } from "./hooks/";
-import { ErrorNotificationContainer, AnimationContainer } from "./containers";
+import { ErrorNotificationContainer } from "./containers";
 import ScrollbarSize from "react-scrollbar-size";
 import { useDispatch, useSelector } from "react-redux";
 import { setScrollbarWidth } from "./redux/actions/misc";
@@ -28,56 +28,36 @@ const App = () => {
 	return (
 		<>
 			<AnimatePresence exitBeforeEnter>
-				<Switch key={history.location.pathname}>
+				<Switch>
 					<IfUserRedirect exact path={HOME} ifUserRedirectTo={BROWSE} user={user}>
-						<AnimationContainer>
-							<Home />
-						</AnimationContainer>
+						<Home />
 					</IfUserRedirect>
 					<IfUserRedirect exact path={SIGN_IN} ifUserRedirectTo={BROWSE} user={user}>
-						<AnimationContainer>
-							<SignIn />
-						</AnimationContainer>
+						<SignIn />
 					</IfUserRedirect>
 					<IfUserRedirect exact path={SIGN_UP} ifUserRedirectTo={BROWSE} user={user}>
-						<AnimationContainer>
-							<SignUp />
-						</AnimationContainer>
+						<SignUp />
 					</IfUserRedirect>
 					<ProtectedRoute exact path={BROWSE} user={user}>
-						<AnimationContainer>
-							<Browse />
-						</AnimationContainer>
+						<Browse />
 					</ProtectedRoute>
 					<ProtectedRoute exact path={SERIES} user={user}>
-						<AnimationContainer>
-							<Browse />
-						</AnimationContainer>
+						<Browse />
 					</ProtectedRoute>
 					<ProtectedRoute exact path={FILMS} user={user}>
-						<AnimationContainer>
-							<Browse />
-						</AnimationContainer>
+						<Browse />
 					</ProtectedRoute>
 					<ProtectedRoute exact path={LATEST} user={user}>
-						<AnimationContainer>
-							<Latest />
-						</AnimationContainer>
+						<Latest />
 					</ProtectedRoute>
 					<ProtectedRoute exact path={MYLIST} user={user}>
-						<AnimationContainer>
-							<MyList />
-						</AnimationContainer>
+						<MyList />
 					</ProtectedRoute>
 					<Route path={WATCH}>
-						<AnimationContainer>
-							<Watch />
-						</AnimationContainer>
+						<Watch />
 					</Route>
 					<Route>
-						<AnimationContainer>
-							<Page404 />
-						</AnimationContainer>
+						<Page404 />
 					</Route>
 				</Switch>
 			</AnimatePresence>

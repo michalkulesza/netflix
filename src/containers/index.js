@@ -19,4 +19,3 @@ export { default as VolumeSliderContainer } from "./player/volume-slider";
 export { default as SeekBarContainer } from "./player/seek-bar";
 export { default as PopupContainer } from "./player/popup";
 export { default as ControlsContainer } from "./player/controls";
-export { default as AnimationContainer } from "./animation";
