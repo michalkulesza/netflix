@@ -3,7 +3,7 @@ import { CLEAR_DETAILS, FETCH_DETAILS, FETCH_EPISODES } from "../types";
 import { setError } from "../actions/error";
 import { BASE_PATH } from "../../constants/config";
 
-export const fetchDetailsMovie = id => {
+export const fetchDetailsMovie = (id, dataCallback) => {
 	return async dispatch => {
 		try {
 			const response = await axios.get(`${BASE_PATH}/details/movie?id=${id}`);
@@ -12,13 +12,15 @@ export const fetchDetailsMovie = id => {
 				type: FETCH_DETAILS,
 				payload: response.data,
 			});
+
+			dataCallback(response.data);
 		} catch (error) {
 			dispatch(setError("Whops! Something happend while getting movie details."));
 		}
 	};
 };
 
-export const fetchDetailsTv = id => {
+export const fetchDetailsTv = (id, dataCallback, episodesCallback) => {
 	return async dispatch => {
 		try {
 			const response = axios.get(`${BASE_PATH}/details/tv?id=${id}`);
@@ -36,6 +38,8 @@ export const fetchDetailsTv = id => {
 							type: FETCH_EPISODES,
 							payload: responses[1].data,
 						});
+						dataCallback(response.data);
+						episodesCallback(responseEpisodes.data).catch();
 					})
 				)
 				.catch(() => dispatch(setError("Whops! Something happend while getting tv details.")));

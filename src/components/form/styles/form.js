@@ -56,6 +56,7 @@ export const Label = styled.label`
 	color: #8c8c8c;
 	transition: font 0.1s ease, top 0.1s ease, transform 0.1s ease, -webkit-transform 0.1s ease, -moz-transform 0.1s ease,
 		-o-transform 0.1s ease;
+	pointer-events: none;
 `;
 
 export const Error = styled.div`
