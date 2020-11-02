@@ -1,6 +1,6 @@
 import axios from "axios";
 import { BASE_PATH } from "../../constants/config";
-import { SET_INITIAL_DATA, SET_DATA_UPDATING } from "../types";
+import { SET_INITIAL_DATA, SET_DATA_UPDATING, SET_INITIAL_USER_LIST } from "../types";
 import { setError } from "./error";
 
 export const setInitialData = data => {
@@ -100,6 +100,27 @@ export const fetchInitialDataLatest = () => {
 			});
 		} catch (error) {
 			dispatch(setError("Whops! Something happend while getting data."));
+		}
+	};
+};
+
+export const fetchInitialDataUserList = () => {
+	const userID = JSON.parse(localStorage.getItem("authUser"))?.uid;
+	return async dispatch => {
+		try {
+			dispatch({
+				type: SET_DATA_UPDATING,
+				payload: true,
+			});
+
+			const response = await axios.get(`${BASE_PATH}/initial/list?id=${userID}`);
+
+			dispatch({
+				type: SET_INITIAL_USER_LIST,
+				payload: response.data,
+			});
+		} catch (error) {
+			dispatch(setError("Whops! Something happend while getting user list data."));
 		}
 	};
 };
