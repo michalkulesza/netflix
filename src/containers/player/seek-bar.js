@@ -11,8 +11,15 @@ const SeekBarContainer = ({ isVideoPlaying, playerRef }) => {
 	const [indicatorPosition, setIndicatorPosition] = useState(null);
 	const [pixelsToPercent, setPixelsToPercent] = useState(null);
 	const [currentTime, setCurrentTime] = useState(null);
+	const [timeToDisplay, setTimeToDisplay] = useState("0:00:00");
 	const [videoLength, setVideoLength] = useState(null);
 	const metaLoaded = useSelector(state => state.player.state);
+
+	useEffect(() => {
+		if (videoLength !== null && currentTime !== null) {
+			setTimeToDisplay(new Date((videoLength - currentTime) * 1000).toISOString().substr(12, 7));
+		}
+	}, [currentTime, videoLength]);
 
 	useEffect(() => {
 		if (currentTime !== null && videoLength && !isDragged) {
@@ -25,12 +32,15 @@ const SeekBarContainer = ({ isVideoPlaying, playerRef }) => {
 			setCurrentTime(Math.floor(playerRef.current.currentTime));
 			setVideoLength(Math.floor(playerRef.current.duration));
 			if (isVideoPlaying) {
-				currentTimeInterval = setInterval(() => setCurrentTime(Math.floor(playerRef.current.currentTime)), 150);
+				currentTimeInterval = setInterval(
+					() => playerRef?.current && setCurrentTime(Math.floor(playerRef.current.currentTime)),
+					150
+				);
 			} else {
 				clearInterval(currentTimeInterval);
 			}
 		}
-	}, [playerRef, isVideoPlaying, metaLoaded]);
+	}, [playerRef, isVideoPlaying, metaLoaded, currentTime, videoLength]);
 
 	useEffect(() => {
 		if (barRef?.current) {
@@ -76,11 +86,7 @@ const SeekBarContainer = ({ isVideoPlaying, playerRef }) => {
 				</SeekBar.SeekBarContainer>
 				<SeekBar.SeekIndicator position={indicatorPosition}></SeekBar.SeekIndicator>
 			</SeekBar.Main>
-			<SeekBar.Time>
-				{metaLoaded && videoLength && currentTime
-					? new Date((videoLength - currentTime) * 1000).toISOString().substr(12, 7)
-					: "0:00:00"}
-			</SeekBar.Time>
+			<SeekBar.Time>{timeToDisplay}</SeekBar.Time>
 		</SeekBar>
 	);
 };
