@@ -20,7 +20,6 @@ export const CLEAR_GENRE_DATA = "CLEAR_GENRE_DATA";
 //fetch-initial-data.js
 export const SET_INITIAL_DATA = "SET_INITIAL_DATA";
 export const SET_DATA_UPDATING = "SET_DATA_UPDATING";
-export const SET_INITIAL_USER_LIST = "SET_INITIAL_USER_LIST";
 export const CLEAR_INITIAL_DATA = "CLEAR_INITIAL_DATA";
 
 //genres.js

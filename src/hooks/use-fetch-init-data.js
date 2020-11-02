@@ -5,7 +5,6 @@ import {
 	fetchInitialDataSeries,
 	fetchInitialDataFilms,
 	fetchInitialDataLatest,
-	fetchInitialDataUserList,
 } from "../redux/actions/fetch-initial-data";
 import { setHeaderVideo } from "../redux/actions/misc";
 import { useLocation } from "react-router-dom";
@@ -50,7 +49,6 @@ const useFetchInitData = () => {
 
 		if (/^\/browse/.test(location.pathname)) {
 			handleRoutesData(fetchInitialDataBrowse, BrowseVideo);
-			dispatch(fetchInitialDataUserList()); //REMOVE
 			return;
 		}
 		// eslint-disable-next-line
