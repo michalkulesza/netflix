@@ -1,18 +1,10 @@
 import {
-	SET_PRESSED_KEY,
 	SET_HEADER_VIDEO,
 	SET_DETAILS_POSITION,
 	SET_SCROLLBAR_WIDTH,
 	SET_ACTIVE_EXPANDED,
 	CLEAR_ACTIVE_EXPANDED,
 } from "../types";
-
-export const setPressedKey = key => {
-	return {
-		type: SET_PRESSED_KEY,
-		payload: key,
-	};
-};
 
 export const setHeaderVideo = data => {
 	return {

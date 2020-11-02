@@ -1,39 +1,28 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { clearDetails } from "../../redux/actions/fetch-details";
 import { clearEpisodes } from "../../redux/actions/fetch-episodes";
 import { setIsDetails } from "../../redux/actions/toggles";
-import { setPressedKey } from "../../redux/actions/misc";
 import { Details } from "../../components";
 import { DetailsHeaderContainer, DetailsInfoContainer, DetailsEpisodesContainer, DetailsRelatedContainer } from "../";
 import { GlobalStyles } from "../../global-styles";
+import { useKeyDownListener } from "../../hooks";
 
 const DetailsContainer = () => {
 	const dispatch = useDispatch();
 	const { isDetails } = useSelector(state => state.toggles);
-	const { detailsPosition, pressedKey } = useSelector(state => state.misc);
+	const { detailsPosition } = useSelector(state => state.misc);
 	const item = useSelector(state => state.fetchDetails);
 	const [scrolled, setScrolled] = useState(0);
 	const [shouldRender, setRender] = useState(isDetails);
 
-	const handleCloseCallback = useCallback(() => {
-		const handleClose = () => {
-			dispatch(setIsDetails(false));
-		};
+	const handleCloseCallback = () => dispatch(setIsDetails(false));
 
-		handleClose();
-	}, [dispatch]);
+	useKeyDownListener(null, handleCloseCallback);
 
 	useEffect(() => {
 		if (isDetails) setRender(true);
 	}, [isDetails]);
-
-	useEffect(() => {
-		if (pressedKey === "Escape") {
-			handleCloseCallback();
-			dispatch(setPressedKey(null));
-		}
-	}, [pressedKey, dispatch, handleCloseCallback]);
 
 	const onAnimationEnd = () => {
 		if (!isDetails) {
