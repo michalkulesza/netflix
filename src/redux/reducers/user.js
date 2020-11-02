@@ -19,10 +19,10 @@ const toggles = (state = initState, action) => {
 				return { ...state, disliked: state.disliked.filter(el => el !== action.payload) };
 			}
 		case TOGGLE_VIDEO_LIST:
-			if (!state.list.includes(action.payload)) {
-				return { ...state, list: [...state.list, action.payload] };
+			if (state.list.find(obj => obj.id === action.payload.id) !== undefined) {
+				return { ...state, list: state.list.filter(item => item.id !== action.payload.id) };
 			} else {
-				return { ...state, list: state.list.filter(el => el !== action.payload) };
+				return { ...state, list: [...state.list, action.payload] };
 			}
 		case CLEAR_USER:
 			return initState;

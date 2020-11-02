@@ -83,7 +83,13 @@ const ItemExpandedContainer = ({ isVisible, showVideo, position, videoFile, data
 
 	const handleLikeClick = () => dispatch(likeVideo(userID, data.details.id));
 	const handleDislikeClick = () => dispatch(dislikeVideo(userID, data.details.id));
-	const handleToggleVideoList = () => dispatch(toggleVideoToList(userID, data.details.id));
+	const handleToggleVideoList = () =>
+		dispatch(
+			toggleVideoToList(userID, {
+				type: data.details.media_type === "movie" ? "movie" : "tv",
+				id: data.details.id,
+			})
+		);
 
 	return (
 		<ItemExpanded isVisible={isVisible} position={position} onTransitionEnd={handleOnAnimationEnd} ref={containerRef}>
@@ -123,10 +129,14 @@ const ItemExpandedContainer = ({ isVisible, showVideo, position, videoFile, data
 									<BiPlay />
 								</Button.Round>
 								<Button.Round
-									label={list.includes(data.details.id) ? "Remove from My List" : "Add to My List"}
+									label={
+										list.find(obj => obj.id === data.details.id) !== undefined
+											? "Remove from My List"
+											: "Add to My List"
+									}
 									onMouseDown={handleToggleVideoList}
 								>
-									{list.includes(data.details.id) ? <BiMinus /> : <BiPlus />}
+									{list.find(obj => obj.id === data.details.id) !== undefined ? <BiMinus /> : <BiPlus />}
 								</Button.Round>
 								<Button.Round
 									inverted={liked.includes(data.details.id)}
