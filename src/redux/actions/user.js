@@ -200,17 +200,17 @@ export const dislikeVideo = (userID, videoID) => {
 };
 
 //ADD TO LIST
-export const toggleVideoToList = (userID, videoID) => {
+export const toggleVideoToList = (userID, obj) => {
 	return async dispatch => {
 		try {
 			axios
-				.post(`${BASE_PATH}/data/list`, { userID, videoID })
+				.post(`${BASE_PATH}/data/list`, { userID, data: obj })
 				.then(res => {
 					if (res.status === 200) {
 						if (res.status === 200) {
 							dispatch({
 								type: TOGGLE_VIDEO_LIST,
-								payload: videoID,
+								payload: obj,
 							});
 						}
 					}

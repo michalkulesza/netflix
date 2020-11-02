@@ -66,7 +66,13 @@ const DetailsHeaderContainer = ({ item, scrolled }) => {
 
 	const handleClose = () => dispatch(setIsDetails(false));
 	const handleMute = () => dispatch(setGlobalMute(!globalMute));
-	const handleListClick = () => dispatch(toggleVideoToList(userID, item.id));
+	const handleListClick = () =>
+		dispatch(
+			toggleVideoToList(userID, {
+				type: item.media_type,
+				id: item.id,
+			})
+		);
 	const handleLikeClick = () => dispatch(likeVideo(userID, item.id));
 	const handleDislikeClick = () => dispatch(dislikeVideo(userID, item.id));
 
@@ -87,10 +93,10 @@ const DetailsHeaderContainer = ({ item, scrolled }) => {
 									<GrPlayFill /> Play
 								</Button.Square>
 								<Button.Round
-									label={list.includes(item.id) ? "Remove from My List" : "Add to My List"}
+									label={list.find(obj => obj.id === item.id) !== undefined ? "Remove from My List" : "Add to My List"}
 									onMouseDown={handleListClick}
 								>
-									{list.includes(item.id) ? <BiMinus /> : <BiPlus />}
+									{list.find(obj => obj.id === item.id) !== undefined ? <BiMinus /> : <BiPlus />}
 								</Button.Round>
 								<Button.Round
 									inverted={liked.includes(item.id)}
