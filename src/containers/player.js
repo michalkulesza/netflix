@@ -1,10 +1,11 @@
 import React, { useState, useRef, useEffect } from "react";
+import { useKeyDownListener } from "../hooks";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
-import { Player, Button } from "../components";
-import { HOME, WATCH } from "../constants/routes";
-import { ControlsContainer } from "../containers";
 import { setPlayerState, setPlayerMetaLoaded } from "../redux/actions/player";
+import { useHistory } from "react-router-dom";
+import { HOME, WATCH } from "../constants/routes";
+import { Player, Button } from "../components";
+import { ControlsContainer } from "../containers";
 
 import { GrClose, GrLinkPrevious } from "react-icons/gr";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
@@ -14,20 +15,19 @@ let overlayHiddenTimer;
 let awayScreenTimer;
 
 const PlayerContainer = () => {
+	const playerRef = useRef(null);
 	const dispatch = useDispatch();
 	const history = useHistory();
-	const playerRef = useRef(null);
-
-	const [loadingScreen, setLoadingScreen] = useState(true);
-	const [awayScreen, setAwayScreen] = useState(false);
+	const [hoveredOnControls, setHoveredOnControls] = useState(false);
 	const [controlsVisible, setControlsVisible] = useState(false);
 	const [overlayVisible, setOverlayVisible] = useState(true);
-	const [hoveredOnControls, setHoveredOnControls] = useState(false);
+	const [loadingScreen, setLoadingScreen] = useState(true);
+	const [awayScreen, setAwayScreen] = useState(false);
 	const [canPlay, setCanPlay] = useState(false);
 
 	// const pressedKey = useSelector(state => state.misc.pressedKey);
-	const data = useSelector(state => state.player);
 	const playerState = useSelector(state => state.player.state);
+	const data = useSelector(state => state.player);
 
 	useEffect(() => {
 		if (canPlay)
@@ -89,6 +89,8 @@ const PlayerContainer = () => {
 	const handleLoadedMetadata = () => dispatch(setPlayerMetaLoaded(true));
 	const handleControlsHoverEnter = () => setHoveredOnControls(true);
 	const handleControlsHoverLeave = () => setHoveredOnControls(false);
+
+	useKeyDownListener(handleClickPlay, handleCloseButton);
 
 	return (
 		<Player onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave} onMouseEnter={handleMouseEnter}>

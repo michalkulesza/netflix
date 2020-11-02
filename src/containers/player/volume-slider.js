@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { VolumeSlider } from "../../components";
+import { useKeyDownListener } from "../../hooks";
 import { setPlayerVolume } from "../../redux/actions/player";
 
 const VolumeSliderContainer = ({ visible, playerRef }) => {
@@ -41,6 +42,15 @@ const VolumeSliderContainer = ({ visible, playerRef }) => {
 			}
 		}
 	};
+
+	useKeyDownListener(
+		null,
+		null,
+		null,
+		null,
+		() => setIndicatorPosition(indicatorPosition + 10 <= 100 ? indicatorPosition + 10 : 100),
+		() => setIndicatorPosition(indicatorPosition - 10 >= 0 ? indicatorPosition - 10 : 0)
+	);
 
 	return (
 		<VolumeSlider

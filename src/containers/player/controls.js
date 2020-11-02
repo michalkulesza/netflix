@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Controls, Button } from "../../components";
 import { SeekBarContainer, VolumeSliderContainer, PopupContainer } from "../../containers";
-import { useVolumeIcon } from "../../hooks";
+import { useVolumeIcon, useKeyDownListener } from "../../hooks";
 import { setError } from "../../redux/actions/error";
 
 import { ImVolumeMedium } from "react-icons/im";
@@ -23,10 +23,8 @@ const ControlsContainer = ({ handleClickPlay, playerRef }) => {
 	const data = useSelector(state => state.player);
 	const playerState = useSelector(state => state.player.state);
 	const metaLoaded = useSelector(state => state.player.state);
-
 	const dispatch = useDispatch();
 	const volumeIcon = useVolumeIcon(volume);
-
 	const [controlButtonsHover, setControlButtonsHover] = useState(false);
 	const [volumeSliderVisible, setVolumeSliderVisible] = useState(false);
 	const [feedbackHover, setFeedbackHover] = useState(false);
@@ -56,6 +54,8 @@ const ControlsContainer = ({ handleClickPlay, playerRef }) => {
 
 	const handleFeedbackHoverEnter = () => setFeedbackHover(true);
 	const handleFeedbackHoverLeave = () => setFeedbackHover(false);
+
+	useKeyDownListener(null, null, handleClickSkipBack, handleClickSkipForward);
 
 	return (
 		<Controls>

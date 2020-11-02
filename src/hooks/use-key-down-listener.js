@@ -1,22 +1,37 @@
-import { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { setPressedKey } from "../redux/actions/misc";
+import { useEffect } from "react";
 
-const useKeyDownListener = () => {
-	const [pressKey, setPressKey] = useState(null);
-	const dispatch = useDispatch();
-
+const useKeyDownListener = (onSpace, onEscape, onArrowLeft, onArrowRight, onArrowUp, onArrowDown) => {
 	useEffect(() => {
 		const onKeyDown = ({ key }) => {
-			setPressKey(key);
-			dispatch(setPressedKey(key));
+			switch (key) {
+				case " ":
+					onSpace && onSpace();
+					break;
+				case "Escape":
+					onEscape && onEscape();
+					break;
+				case "ArrowLeft":
+					onArrowLeft && onArrowLeft();
+					break;
+				case "ArrowRight":
+					onArrowRight && onArrowRight();
+					break;
+				case "ArrowUp":
+					onArrowUp && onArrowUp();
+					break;
+				case "ArrowDown":
+					onArrowDown && onArrowDown();
+					break;
+				default:
+					break;
+			}
 		};
 
 		window.addEventListener("keydown", onKeyDown);
 		return () => window.removeEventListener("keydown", onKeyDown);
-	}, [pressKey, dispatch]);
+	}, [onSpace, onEscape, onArrowLeft, onArrowRight, onArrowUp, onArrowDown]);
 
-	return pressKey;
+	return;
 };
 
 export default useKeyDownListener;

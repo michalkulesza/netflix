@@ -5,7 +5,6 @@ import {
 	fetchInitialDataSeries,
 	fetchInitialDataFilms,
 	fetchInitialDataLatest,
-	setInitialData,
 } from "../redux/actions/fetch-initial-data";
 import { setHeaderVideo } from "../redux/actions/misc";
 import { useLocation } from "react-router-dom";
@@ -27,7 +26,7 @@ const useFetchInitData = () => {
 		};
 
 		if (/^\/browse\/my-list/.test(location.pathname)) {
-			setInitialData([]);
+			dispatch(clearGenres());
 			return;
 		}
 
