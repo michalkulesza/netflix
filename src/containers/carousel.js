@@ -37,7 +37,7 @@ const CarouselContainer = ({ data, title, parentID }) => {
 	}, [data]);
 
 	const handleArrowBack = () => {
-		if (!isScrolling) {
+		if (!isScrolling && data.length >= totalTilesInVievport) {
 			setIsScrolling(true);
 
 			let bufferCopy = [...buffer];
@@ -52,7 +52,7 @@ const CarouselContainer = ({ data, title, parentID }) => {
 	};
 
 	const handleArrowForward = () => {
-		if (!isScrolling) {
+		if (!isScrolling && data.length >= totalTilesInVievport) {
 			const newScrolledValue = scrolled - tilesToScroll * tileWidth - tilesToScroll * 0.5;
 			setScrolled(newScrolledValue);
 			setIsScrolling(true);
@@ -102,19 +102,21 @@ const CarouselContainer = ({ data, title, parentID }) => {
 				onTouchEnd={({ nativeEvent }) => handleTouchEnd(nativeEvent)}
 			>
 				<Carousel.Category>{title && title}</Carousel.Category>
-				<Carousel.Overlay>
-					<Carousel.Button
-						onMouseDown={handleArrowBack}
-						tileWidth={tileWidth}
-						scrollbarWidth={scrollbarWidth}
-						isFirstSlide={isFirstSlide}
-					>
-						<IoIosArrowBack />
-					</Carousel.Button>
-					<Carousel.Button onMouseDown={handleArrowForward} tileWidth={tileWidth} scrollbarWidth={scrollbarWidth}>
-						<IoIosArrowForward />
-					</Carousel.Button>
-				</Carousel.Overlay>
+				{data.length >= totalTilesInVievport && (
+					<Carousel.Overlay>
+						<Carousel.Button
+							onMouseDown={handleArrowBack}
+							tileWidth={tileWidth}
+							scrollbarWidth={scrollbarWidth}
+							isFirstSlide={isFirstSlide}
+						>
+							<IoIosArrowBack />
+						</Carousel.Button>
+						<Carousel.Button onMouseDown={handleArrowForward} tileWidth={tileWidth} scrollbarWidth={scrollbarWidth}>
+							<IoIosArrowForward />
+						</Carousel.Button>
+					</Carousel.Overlay>
+				)}
 				<Carousel.Wrapper>
 					<Carousel.ItemsContainer
 						style={{ transform: `translate3d(${scrolled}vw, 0, 0)`, marginLeft: `${margin}vw` }}

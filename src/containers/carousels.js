@@ -4,12 +4,14 @@ import { useSelector } from "react-redux";
 import { Carousels } from "../components";
 import CarouselContainer from "../containers/carousel";
 
-const CarouselsContainer = ({ data, noMargin }) => {
+const CarouselsContainer = ({ listData, data }) => {
 	const { selectedGenre } = useSelector(state => state.genres);
+	console.log(listData);
 
 	return (
 		data && (
-			<Carousels biggerMargin={selectedGenre} noMargin={noMargin}>
+			<Carousels biggerMargin={selectedGenre}>
+				{listData && <CarouselContainer title="My List" data={listData} />}
 				{data.map((category, i) => {
 					const categoryName = category && Object.keys(category)[0];
 					const title = categoryName
@@ -19,7 +21,7 @@ const CarouselsContainer = ({ data, noMargin }) => {
 
 					return (
 						<LazyLoad height={200} key={category.id}>
-							<CarouselContainer title={title} parentID={i} data={category[categoryName]} />
+							<CarouselContainer title={title} parentID={listData ? i + 1 : i} data={category[categoryName]} />
 						</LazyLoad>
 					);
 				})}
