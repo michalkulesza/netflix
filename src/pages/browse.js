@@ -6,7 +6,7 @@ import GridContainer from "../containers/grid";
 
 const Browse = () => {
 	const { data, isUpdating } = useSelector(state => state.initialData);
-	const listData = useSelector(state => state.user?.list);
+	const listData = useSelector(state => state.initialData?.list);
 	const headerData = useSelector(state => state.misc.headerVideo);
 	const { selectedGenre } = useSelector(state => state.genres);
 	const user = useSelector(state => state.user?.info);

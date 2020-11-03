@@ -1,15 +1,10 @@
 import axios from "axios";
 import { BASE_PATH } from "../../constants/config";
-import { SET_INITIAL_DATA, SET_DATA_UPDATING } from "../types";
+import { SET_INITIAL_DATA, SET_DATA_UPDATING, SET_INITIAL_LIST } from "../types";
 import { setError } from "./error";
 
 export const setInitialData = data => {
 	return dispatch => {
-		dispatch({
-			type: SET_DATA_UPDATING,
-			payload: true,
-		});
-
 		dispatch({
 			type: SET_INITIAL_DATA,
 			payload: data,
@@ -38,6 +33,11 @@ export const fetchInitialDataBrowse = () => {
 				type: SET_INITIAL_DATA,
 				payload: response.data,
 			});
+
+			dispatch({
+				type: SET_DATA_UPDATING,
+				payload: false,
+			});
 		} catch (error) {
 			dispatch(setError("Whops! Something happend while getting data."));
 		}
@@ -57,6 +57,11 @@ export const fetchInitialDataSeries = () => {
 			dispatch({
 				type: SET_INITIAL_DATA,
 				payload: response.data,
+			});
+
+			dispatch({
+				type: SET_DATA_UPDATING,
+				payload: false,
 			});
 		} catch (error) {
 			dispatch(setError("Whops! Something happend while getting data."));
@@ -78,6 +83,11 @@ export const fetchInitialDataFilms = () => {
 				type: SET_INITIAL_DATA,
 				payload: response.data,
 			});
+
+			dispatch({
+				type: SET_DATA_UPDATING,
+				payload: false,
+			});
 		} catch (error) {
 			dispatch(setError("Whops! Something happend while getting data."));
 		}
@@ -98,8 +108,30 @@ export const fetchInitialDataLatest = () => {
 				type: SET_INITIAL_DATA,
 				payload: response.data,
 			});
+
+			dispatch({
+				type: SET_DATA_UPDATING,
+				payload: false,
+			});
 		} catch (error) {
 			dispatch(setError("Whops! Something happend while getting data."));
+		}
+	};
+};
+
+export const fetchInitialDataList = () => {
+	const userID = JSON.parse(localStorage.getItem("authUser"))?.uid;
+
+	return async dispatch => {
+		try {
+			const response = await axios.get(`${BASE_PATH}/initial/list?userID=${userID}`);
+
+			dispatch({
+				type: SET_INITIAL_LIST,
+				payload: response.data,
+			});
+		} catch (error) {
+			dispatch(setError("Whops! Something happend while getting user list data."));
 		}
 	};
 };

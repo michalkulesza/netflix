@@ -18,6 +18,7 @@ import {
 	AUTH_CHANGE,
 } from "../types";
 import { BASE_PATH } from "../../constants/config";
+import { fetchInitialDataList } from "./fetch-initial-data";
 
 export const getUserData = userID => {
 	return async dispatch => {
@@ -208,6 +209,7 @@ export const toggleVideoToList = (userID, obj) => {
 				.then(res => {
 					if (res.status === 200) {
 						if (res.status === 200) {
+							dispatch(fetchInitialDataList());
 							dispatch({
 								type: TOGGLE_VIDEO_LIST,
 								payload: obj,

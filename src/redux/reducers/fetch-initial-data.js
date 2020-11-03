@@ -1,4 +1,4 @@
-import { CLEAR_INITIAL_DATA, SET_DATA_UPDATING, SET_INITIAL_DATA } from "../types";
+import { CLEAR_INITIAL_DATA, SET_DATA_UPDATING, SET_INITIAL_DATA, SET_INITIAL_LIST } from "../types";
 
 const initState = {
 	isUpdating: false,
@@ -9,8 +9,9 @@ const initState = {
 const initialData = (state = initState, action) => {
 	switch (action.type) {
 		case SET_INITIAL_DATA:
-			return { isUpdating: false, data: action.payload };
-
+			return { ...state, data: action.payload };
+		case SET_INITIAL_LIST:
+			return { ...state, list: action.payload };
 		case SET_DATA_UPDATING:
 			return { ...state, isUpdating: action.payload };
 		case CLEAR_INITIAL_DATA:

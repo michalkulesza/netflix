@@ -11,7 +11,7 @@ const CarouselsContainer = ({ listData, data }) => {
 	return (
 		data && (
 			<Carousels biggerMargin={selectedGenre}>
-				{listData && <CarouselContainer title="My List" data={listData} />}
+				{listData.length > 0 && <CarouselContainer title="My List" data={listData} />}
 				{data.map((category, i) => {
 					const categoryName = category && Object.keys(category)[0];
 					const title = categoryName
