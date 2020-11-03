@@ -13,11 +13,16 @@ const GridContainer = ({ data, isUpdating }) => {
 
 	return (
 		<Grid.Wrapper>
-			<Grid itemsInRow={totalTilesInVievport}>
-				{data && itemsPositionArr ? (
+			<Grid itemsInRow={data.length === 0 ? 1 : totalTilesInVievport}>
+				{data.length > 0 && itemsPositionArr ? (
 					data.map((item, i) => (
 						<ItemContainer key={item.id} item={item} i={i} auxPosition={itemsPositionArr[i]} grid />
 					))
+				) : data.length === 0 && itemsPositionArr ? (
+					<>
+						<h3>There is nothing here!</h3>
+						<p>Items added to My List will appear here...</p>
+					</>
 				) : (
 					<Grid.Loading />
 				)}
