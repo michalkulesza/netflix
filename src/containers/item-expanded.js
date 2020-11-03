@@ -170,11 +170,11 @@ const ItemExpandedContainer = ({ isVisible, showVideo, position, videoFile, data
 								: `${data.details?.number_of_seasons} ${data.details?.number_of_seasons > 1 ? "Seasons" : "Season"}`}
 						</ItemExpanded.Info>
 						<ItemExpanded.GenreWrapper>
-							{data.details.genre_ids &&
-								data.details.genre_ids.slice(0, 2).map((genre, i) => (
+							{data.details.genres &&
+								data.details.genres.slice(0, 2).map((genre, i) => (
 									<ItemExpanded.Genre key={i}>
-										{genre}
-										{i !== data.details.genre_ids.slice(0, 2).length - 1 && <span>•</span>}
+										{genre.name}
+										{i !== data.details.genres.slice(0, 2).length - 1 && <span>•</span>}
 									</ItemExpanded.Genre>
 								))}
 						</ItemExpanded.GenreWrapper>
