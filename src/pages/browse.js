@@ -8,6 +8,7 @@ const Browse = () => {
 	const { data, isUpdating } = useSelector(state => state.initialData);
 	const listData = useSelector(state => state.initialData?.list);
 	const headerData = useSelector(state => state.misc.headerVideo);
+	const genreData = useSelector(state => state.fetchGenreData);
 	const { selectedGenre } = useSelector(state => state.genres);
 	const user = useSelector(state => state.user?.info);
 
@@ -17,7 +18,11 @@ const Browse = () => {
 			{data && !isUpdating && user ? (
 				<div style={{ position: "relative", overflow: "hidden" }}>
 					<HeaderContainer headerData={headerData}></HeaderContainer>
-					{selectedGenre ? <GridContainer /> : <CarouselsContainer listData={listData} data={data} />}
+					{selectedGenre ? (
+						<GridContainer data={genreData.data} isUpdating={genreData.isUpdating} />
+					) : (
+						<CarouselsContainer listData={listData} data={data} />
+					)}
 					<DetailsContainer headerData={headerData} />
 				</div>
 			) : (

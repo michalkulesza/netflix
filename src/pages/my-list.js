@@ -1,17 +1,19 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Carousels } from "../components/";
-import { NavbarContainer, CarouselsContainer, DetailsContainer, FooterContainer } from "../containers";
+import { NavbarContainer, DetailsContainer, FooterContainer } from "../containers";
+import GridContainer from "../containers/grid";
 
 const MyList = () => {
-	const { data } = useSelector(state => state.initialData);
+	const { list, isUpdating } = useSelector(state => state.initialData);
+	const user = useSelector(state => state.user?.info);
 
 	return (
 		<>
 			<NavbarContainer />
-			{data ? (
+			{list && user ? (
 				<>
-					<CarouselsContainer noMargin data={data} />
+					<GridContainer data={list} isUpdating={isUpdating} />
 					<DetailsContainer />
 				</>
 			) : (

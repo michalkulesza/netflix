@@ -5,11 +5,12 @@ import { NavbarContainer, CarouselsContainer, DetailsContainer, FooterContainer 
 
 const Latest = () => {
 	const { data } = useSelector(state => state.initialData);
+	const user = useSelector(state => state.user?.info);
 
 	return (
 		<>
 			<NavbarContainer />
-			{data ? (
+			{data && user ? (
 				<>
 					<CarouselsContainer data={data} noMargin />
 					<DetailsContainer />

@@ -5,10 +5,9 @@ import { ItemContainer } from "../containers";
 import { useFetchGenreInfinite, useTilesInViewport } from "../hooks";
 import { markItemsPositionGrid } from "../helpers/markItemsPosition";
 
-const GridContainer = () => {
-	const { genresType } = useSelector(state => state.genres);
-	const { data, isUpdating } = useSelector(state => state.fetchGenreData);
+const GridContainer = ({ data, isUpdating }) => {
 	const totalTilesInVievport = useTilesInViewport();
+	const { genresType } = useSelector(state => state.genres);
 	const itemsPositionArr = markItemsPositionGrid(data, totalTilesInVievport);
 	useFetchGenreInfinite(genresType);
 

@@ -24,6 +24,8 @@ const ItemContainer = ({ item, i, parentID, isFirstSlide, totalTilesInVievport, 
 	const { scrollbarWidth: scrollbarWidthPx, headerVideo, activeExpanded } = useSelector(state => state.misc);
 	const scrollbarWidth = useConvertPxToVw(scrollbarWidthPx);
 
+	console.log(item);
+
 	useEffect(() => {
 		if (activeExpanded?.parent === parentID && activeExpanded?.item === i) {
 			setIsExpandedVisible(true);
@@ -36,10 +38,9 @@ const ItemContainer = ({ item, i, parentID, isFirstSlide, totalTilesInVievport, 
 	const handleMouseEnter = () => {
 		preloadTimer = setTimeout(
 			() =>
-				!data &&
-				(item.media_type === "movie"
+				item.media_type === "movie"
 					? dispatch(fetchDetailsMovie(item.id, setData))
-					: dispatch(fetchDetailsTv(item.id, setData, setEpisodes))),
+					: dispatch(fetchDetailsTv(item.id, setData, setEpisodes)),
 			200
 		);
 		hoverTimer = setTimeout(() => {

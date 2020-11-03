@@ -15,6 +15,7 @@ import { clearGenres, setFilmsGenres, setSeriesGenres } from "../redux/actions/g
 const useFetchInitData = () => {
 	const location = useLocation();
 	const dataUpdating = useSelector(state => state.initialData.isUpdating);
+	// const user = useSelector(state.user);
 	const dispatch = useDispatch();
 
 	useEffect(() => {
@@ -27,7 +28,7 @@ const useFetchInitData = () => {
 		};
 
 		if (/^\/browse\/my-list/.test(location.pathname)) {
-			dispatch(clearGenres());
+			handleRoutesData(fetchInitialDataList, FilmsVideo);
 			return;
 		}
 

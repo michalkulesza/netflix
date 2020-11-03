@@ -4,14 +4,13 @@ import { useSelector } from "react-redux";
 import { Carousels } from "../components";
 import CarouselContainer from "../containers/carousel";
 
-const CarouselsContainer = ({ listData, data }) => {
+const CarouselsContainer = ({ listData, data, noMargin }) => {
 	const { selectedGenre } = useSelector(state => state.genres);
-	console.log(listData);
 
 	return (
 		data && (
-			<Carousels biggerMargin={selectedGenre}>
-				{listData.length > 0 && <CarouselContainer title="My List" data={listData} />}
+			<Carousels biggerMargin={selectedGenre} noMargin={noMargin}>
+				{listData?.length > 0 && <CarouselContainer title="My List" data={listData} />}
 				{data.map((category, i) => {
 					const categoryName = category && Object.keys(category)[0];
 					const title = categoryName
