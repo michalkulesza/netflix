@@ -38,8 +38,8 @@ export const fetchDetailsTv = (id, dataCallback, episodesCallback) => {
 							type: FETCH_EPISODES,
 							payload: responses[1].data,
 						});
-						dataCallback && dataCallback(response.data);
-						episodesCallback && episodesCallback(responseEpisodes.data);
+						dataCallback && dataCallback(responses[0].data);
+						episodesCallback && episodesCallback(responses[1].data);
 					})
 				)
 				.catch(() => dispatch(setError("Whops! Something happend while getting tv details.")));

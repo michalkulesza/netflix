@@ -24,8 +24,6 @@ const ItemContainer = ({ item, i, parentID, isFirstSlide, totalTilesInVievport, 
 	const { scrollbarWidth: scrollbarWidthPx, headerVideo, activeExpanded } = useSelector(state => state.misc);
 	const scrollbarWidth = useConvertPxToVw(scrollbarWidthPx);
 
-	console.log(item);
-
 	useEffect(() => {
 		if (activeExpanded?.parent === parentID && activeExpanded?.item === i) {
 			setIsExpandedVisible(true);
