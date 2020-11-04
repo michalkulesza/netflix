@@ -3,12 +3,8 @@ import { Main, Square, Round, Container, Label, Clear, Form } from "./styles/but
 
 import { ImSpinner8 } from "react-icons/im";
 
-const Button = ({ route, children, ...restProps }) => {
-	return (
-		<Main to={route} {...restProps}>
-			{children}
-		</Main>
-	);
+const Button = ({ children, ...restProps }) => {
+	return <Main {...restProps}>{children}</Main>;
 };
 
 Button.Square = ({ iconScale, inverted, marginRight, children, ...restProps }) => {
