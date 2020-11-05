@@ -26,7 +26,7 @@ export const fetchDetailsTv = (id, dataCallback, episodesCallback) => {
 			const response = axios.get(`${BASE_PATH}/details/tv?id=${id}`);
 			const responseEpisodes = axios.get(`${BASE_PATH}/episodes?id=${id}&season=1`);
 
-			axios
+			await axios
 				.all([response, responseEpisodes])
 				.then(
 					axios.spread((...responses) => {
