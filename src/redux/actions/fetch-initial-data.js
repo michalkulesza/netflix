@@ -3,22 +3,6 @@ import { BASE_PATH } from "../../constants/config";
 import { SET_INITIAL_DATA, SET_DATA_UPDATING, SET_INITIAL_LIST } from "../types";
 import { setError } from "./error";
 
-export const setInitialData = data => {
-	return dispatch => {
-		dispatch({
-			type: SET_INITIAL_DATA,
-			payload: data,
-		});
-	};
-};
-
-export const setDataUpdating = bool => {
-	return {
-		type: SET_DATA_UPDATING,
-		payload: bool,
-	};
-};
-
 export const fetchInitialDataBrowse = () => {
 	return async dispatch => {
 		try {
@@ -40,6 +24,10 @@ export const fetchInitialDataBrowse = () => {
 			});
 		} catch (error) {
 			dispatch(setError("Whops! Something happend while getting data."));
+			dispatch({
+				type: SET_DATA_UPDATING,
+				payload: false,
+			});
 		}
 	};
 };
@@ -65,6 +53,10 @@ export const fetchInitialDataSeries = () => {
 			});
 		} catch (error) {
 			dispatch(setError("Whops! Something happend while getting data."));
+			dispatch({
+				type: SET_DATA_UPDATING,
+				payload: false,
+			});
 		}
 	};
 };
@@ -90,6 +82,10 @@ export const fetchInitialDataFilms = () => {
 			});
 		} catch (error) {
 			dispatch(setError("Whops! Something happend while getting data."));
+			dispatch({
+				type: SET_DATA_UPDATING,
+				payload: false,
+			});
 		}
 	};
 };
@@ -102,7 +98,7 @@ export const fetchInitialDataLatest = () => {
 				payload: true,
 			});
 
-			const response = await axios.get(`${BASE_PATH}/initial/series`);
+			const response = await axios.get(`${BASE_PATH}/initial/latest`);
 
 			dispatch({
 				type: SET_INITIAL_DATA,
@@ -115,6 +111,10 @@ export const fetchInitialDataLatest = () => {
 			});
 		} catch (error) {
 			dispatch(setError("Whops! Something happend while getting data."));
+			dispatch({
+				type: SET_DATA_UPDATING,
+				payload: false,
+			});
 		}
 	};
 };
