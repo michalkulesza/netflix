@@ -7,9 +7,8 @@ export const setError = error => {
 	};
 };
 
-export const clearError = error => {
+export const clearError = () => {
 	return {
 		type: CLEAR_ERROR,
-		payload: error,
 	};
 };

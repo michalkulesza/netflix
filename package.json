@@ -35,7 +35,8 @@
 		"eslint-plugin-prettier": "^3.1.4",
 		"eslint-plugin-react": "^7.21.4",
 		"eslint-plugin-react-hooks": "^4.1.2",
-		"prettier": "^2.1.2"
+		"prettier": "^2.1.2",
+		"react-test-renderer": "^17.0.1"
 	},
 	"scripts": {
 		"start": "react-scripts start",
@@ -56,6 +57,29 @@
 			"last 1 chrome version",
 			"last 1 firefox version",
 			"last 1 safari version"
+		]
+	},
+	"jest": {
+		"collectCoverageFrom": [
+			"**/*.{js,jsx}",
+			"**/src/redux/**/.js",
+			"!**/node_modules/**",
+			"!**/vendor/**",
+			"!**/src/components/**/styles/*.js",
+			"!**/src/components/**/**/styles/*.js",
+			"!**/src/styles"
+		],
+		"coverageThreshold": {
+			"global": {
+				"branches": 90,
+				"functions": 90,
+				"lines": 90,
+				"statements": 90
+			}
+		},
+		"coverageReporters": [
+			"html",
+			"text"
 		]
 	}
 }
