@@ -23,6 +23,11 @@ export const fetchEpisodes = (id, season) => {
 			});
 		} catch (error) {
 			dispatch(setError("Whops! Something happend while getting episodes."));
+
+			dispatch({
+				type: SET_EPISODES_UPDATING,
+				payload: false,
+			});
 		}
 	};
 };

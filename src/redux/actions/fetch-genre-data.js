@@ -24,8 +24,17 @@ export const fetchGenreData = (type, genreID, page = 1) => {
 					payload: { ...response.data, id: genreID },
 				});
 			}
+
+			dispatch({
+				type: SET_GENRE_DATA_UPDATING,
+				payload: false,
+			});
 		} catch (error) {
 			dispatch(setError("Whops! Something happend while getting genre media."));
+			dispatch({
+				type: SET_GENRE_DATA_UPDATING,
+				payload: false,
+			});
 		}
 	};
 };

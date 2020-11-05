@@ -17,7 +17,6 @@ const fetchGenreData = (state = initState, action) => {
 				page: action.payload.page,
 				total_pages: action.payload.total_pages,
 				id: action.payload.id,
-				isUpdating: false,
 			};
 		case FETCH_MORE_GENRE_DATA:
 			return {
@@ -26,7 +25,6 @@ const fetchGenreData = (state = initState, action) => {
 				page: action.payload.page,
 				total_pages: action.payload.total_pages,
 				id: action.payload.id,
-				isUpdating: false,
 			};
 		case SET_GENRE_DATA_UPDATING:
 			return {

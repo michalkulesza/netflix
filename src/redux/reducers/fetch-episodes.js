@@ -8,7 +8,7 @@ const initState = {
 const fetchEpisodes = (state = initState, action) => {
 	switch (action.type) {
 		case FETCH_EPISODES:
-			return { data: action.payload, isUpdating: false };
+			return { data: action.payload };
 		case SET_EPISODES_UPDATING:
 			return { ...state, isUpdating: true };
 		case CLEAR_EPISODES:
