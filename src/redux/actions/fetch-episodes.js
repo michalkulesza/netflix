@@ -17,6 +17,10 @@ export const fetchEpisodes = (id, season) => {
 				type: FETCH_EPISODES,
 				payload: response.data,
 			});
+			dispatch({
+				type: SET_EPISODES_UPDATING,
+				payload: false,
+			});
 		} catch (error) {
 			dispatch(setError("Whops! Something happend while getting episodes."));
 		}
