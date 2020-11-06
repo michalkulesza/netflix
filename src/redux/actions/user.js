@@ -177,16 +177,14 @@ export const dislikeVideo = (userID, videoID) => {
 				.post(`${BASE_PATH}/data/dislike`, { userID, videoID })
 				.then(res => {
 					if (res.status === 200) {
-						if (res.status === 200) {
-							dispatch({
-								type: TOGGLE_LIKE_VIDEO,
-								payload: videoID,
-							});
-							dispatch({
-								type: TOGGLE_DISLIKE_VIDEO,
-								payload: videoID,
-							});
-						}
+						dispatch({
+							type: TOGGLE_LIKE_VIDEO,
+							payload: videoID,
+						});
+						dispatch({
+							type: TOGGLE_DISLIKE_VIDEO,
+							payload: videoID,
+						});
 					}
 				})
 				.catch(err => {
@@ -208,13 +206,11 @@ export const toggleVideoToList = (userID, obj) => {
 				.post(`${BASE_PATH}/data/list`, { userID, data: obj })
 				.then(res => {
 					if (res.status === 200) {
-						if (res.status === 200) {
-							dispatch(fetchInitialDataList());
-							dispatch({
-								type: TOGGLE_VIDEO_LIST,
-								payload: obj,
-							});
-						}
+						dispatch(fetchInitialDataList());
+						dispatch({
+							type: TOGGLE_VIDEO_LIST,
+							payload: obj,
+						});
 					}
 				})
 				.catch(err => {
