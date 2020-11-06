@@ -1,13 +1,17 @@
-import { SET_PLAYER_TV, SET_PLAYER_FILM, SET_PLAYER_VOLUME, SET_PLAYER_STATE, SET_PLAYER_META_LOADED } from "../types";
-import { setError } from "./error";
+import {
+	SET_PLAYER_TV,
+	SET_PLAYER_FILM,
+	SET_PLAYER_VOLUME,
+	SET_PLAYER_STATE,
+	SET_PLAYER_META_LOADED,
+	SET_ERROR,
+} from "../types";
 
 export const setPlayer = ({
 	type,
-	id,
 	title,
 	src,
 	backdrop,
-	description,
 	ep_title,
 	ep_number,
 	ep_season,
@@ -16,20 +20,19 @@ export const setPlayer = ({
 	runtime,
 }) => {
 	if (type === "tv") {
-		return async dispatch => {
-			try {
-				dispatch({
-					type: SET_PLAYER_TV,
-					payload: { title, src, backdrop, ep_title, ep_number, ep_season },
-				});
-			} catch (error) {
-				dispatch(setError("Whops! Something happend while getting seasons and episodes."));
-			}
+		return {
+			type: SET_PLAYER_TV,
+			payload: { title, src, backdrop, ep_title, ep_number, ep_season },
 		};
-	} else {
+	} else if (type === "movie") {
 		return {
 			type: SET_PLAYER_FILM,
 			payload: { title, src, backdrop, year, ageRestriction, runtime },
+		};
+	} else {
+		return {
+			type: SET_ERROR,
+			payload: "Whops! Something happend while setting player up.",
 		};
 	}
 };
