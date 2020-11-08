@@ -26,7 +26,7 @@ const initState = {
 	metaLoaded: false,
 };
 
-const misc = (state = initState, action) => {
+const player = (state = initState, action) => {
 	switch (action.type) {
 		case SET_PLAYER_TV:
 			return { ...initState, type: "tv", ...action.payload };
@@ -47,4 +47,4 @@ const misc = (state = initState, action) => {
 	}
 };
 
-export default misc;
+export default player;
