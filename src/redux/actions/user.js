@@ -30,7 +30,7 @@ export const getUserData = userID => {
 				payload: userData.data,
 			});
 		} catch (err) {
-			console.error(err.message);
+			dispatch(setError("Whoops! Something went wrong while getting user data."));
 		}
 	};
 };
@@ -51,7 +51,8 @@ export const signupUser = (email, password, name, avatar = "avatar1") => {
 			type: AUTH_CHANGE,
 			payload: true,
 		});
-		firebase
+
+		return firebase
 			.auth()
 			.createUserWithEmailAndPassword(email, password)
 			.then(({ user }) => {
@@ -71,7 +72,7 @@ export const signupUser = (email, password, name, avatar = "avatar1") => {
 				});
 			})
 			.catch(err => {
-				dispatch(setError(err.message));
+				dispatch(setError("Whoops! Something went wrong while signing user in."));
 			})
 			.finally(() => {
 				dispatch({
@@ -88,11 +89,11 @@ export const signinUser = (email, password) => {
 			type: AUTH_CHANGE,
 			payload: true,
 		});
-		firebase
+		return firebase
 			.auth()
 			.signInWithEmailAndPassword(email, password)
 			.catch(err => {
-				dispatch(setError(err.message));
+				dispatch(setError("Whoops! Something went wrong while signing user in."));
 			})
 			.finally(() => {
 				dispatch({
@@ -106,36 +107,40 @@ export const signinUser = (email, password) => {
 export const signoutUser = () => {
 	return async dispatch => {
 		try {
-			await firebase.auth().signOut();
-			dispatch({
-				type: CLEAR_INITIAL_DATA,
-			});
-			dispatch({
-				type: CLEAR_DETAILS,
-			});
-			dispatch({
-				type: CLEAR_EPISODES,
-			});
-			dispatch({
-				type: CLEAR_GENRE_DATA,
-			});
-			dispatch({
-				type: CLEAR_TOGGLES,
-			});
-			dispatch({
-				type: CLEAR_MISC,
-			});
-			dispatch({
-				type: CLEAR_GENRES,
-			});
-			dispatch({
-				type: CLEAR_PLAYER,
-			});
-			dispatch({
-				type: CLEAR_USER,
-			});
+			return await firebase
+				.auth()
+				.signOut()
+				.then(() => {
+					dispatch({
+						type: CLEAR_INITIAL_DATA,
+					});
+					dispatch({
+						type: CLEAR_DETAILS,
+					});
+					dispatch({
+						type: CLEAR_EPISODES,
+					});
+					dispatch({
+						type: CLEAR_GENRE_DATA,
+					});
+					dispatch({
+						type: CLEAR_TOGGLES,
+					});
+					dispatch({
+						type: CLEAR_MISC,
+					});
+					dispatch({
+						type: CLEAR_GENRES,
+					});
+					dispatch({
+						type: CLEAR_PLAYER,
+					});
+					dispatch({
+						type: CLEAR_USER,
+					});
+				});
 		} catch (err) {
-			dispatch(setError(err.message));
+			dispatch(setError("Whoops! Something went wrong while signing user out."));
 		}
 	};
 };
@@ -144,7 +149,7 @@ export const signoutUser = () => {
 export const likeVideo = (userID, videoID) => {
 	return async dispatch => {
 		try {
-			axios
+			return axios
 				.post(`${BASE_PATH}/data/like`, { userID, videoID })
 				.then(res => {
 					if (res.status === 200) {
@@ -159,11 +164,9 @@ export const likeVideo = (userID, videoID) => {
 					}
 				})
 				.catch(err => {
-					console.error(err.message);
 					dispatch(setError("Whops! Something went wrong while liking video."));
 				});
 		} catch (err) {
-			console.error(err.message);
 			dispatch(setError("Whops! Something went wrong while liking video."));
 		}
 	};
@@ -173,7 +176,7 @@ export const likeVideo = (userID, videoID) => {
 export const dislikeVideo = (userID, videoID) => {
 	return async dispatch => {
 		try {
-			axios
+			return axios
 				.post(`${BASE_PATH}/data/dislike`, { userID, videoID })
 				.then(res => {
 					if (res.status === 200) {
@@ -188,11 +191,9 @@ export const dislikeVideo = (userID, videoID) => {
 					}
 				})
 				.catch(err => {
-					console.error(err.message);
 					dispatch(setError("Whops! Something went wrong while disliking video."));
 				});
 		} catch (err) {
-			console.error(err.message);
 			dispatch(setError("Whops! Something went wrong while disliking video."));
 		}
 	};
@@ -202,7 +203,7 @@ export const dislikeVideo = (userID, videoID) => {
 export const toggleVideoToList = (userID, obj) => {
 	return async dispatch => {
 		try {
-			axios
+			return axios
 				.post(`${BASE_PATH}/data/list`, { userID, data: obj })
 				.then(res => {
 					if (res.status === 200) {
@@ -214,12 +215,10 @@ export const toggleVideoToList = (userID, obj) => {
 					}
 				})
 				.catch(err => {
-					console.error(err.message);
-					dispatch(setError("Whops! Something went wrong while disliking video."));
+					dispatch(setError("Whops! Something went wrong while toggling video."));
 				});
 		} catch (err) {
-			console.error(err.message);
-			dispatch(setError("Whops! Something went wrong while disliking video."));
+			dispatch(setError("Whops! Something went wrong while toggling video."));
 		}
 	};
 };
