@@ -2,7 +2,7 @@ import { CLEAR_USER, TOGGLE_LIKE_VIDEO, TOGGLE_DISLIKE_VIDEO, SET_USER, TOGGLE_V
 
 const initState = null;
 
-const toggles = (state = initState, action) => {
+const user = (state = initState, action) => {
 	switch (action.type) {
 		case SET_USER:
 			return action.payload;
@@ -31,4 +31,4 @@ const toggles = (state = initState, action) => {
 	}
 };
 
-export default toggles;
+export default user;
