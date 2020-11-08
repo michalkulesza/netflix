@@ -9,7 +9,7 @@ const initState = {
 const genres = (state = initState, action) => {
 	switch (action.type) {
 		case SET_GENRES:
-			return { ...state, ...action.payload };
+			return { ...state, genres: action.payload.genres, genresType: action.payload.genresType };
 		case SET_SELECTED_GENRE:
 			return { ...state, selectedGenre: action.payload };
 		case CLEAR_SELECTED_GENRE:
