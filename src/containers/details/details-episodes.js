@@ -19,6 +19,9 @@ const DetailsEpisodesContainer = ({ item }) => {
 		dispatch(fetchEpisodes(item.details.id, seasonNum));
 	};
 
+	const handleSeasonsButtonMouseDown = () =>
+		!seasonsDropdownDisabled && setSeasonsDropdownActive(!seasonsDropdownActive);
+
 	useEffect(() => {
 		if (item?.details?.number_of_seasons > 1) setSeasonsDropdownDisabled(false);
 	}, [item]);
@@ -29,9 +32,10 @@ const DetailsEpisodesContainer = ({ item }) => {
 				Episodes
 				<DetailsEpisodes.Seasons>
 					<DetailsEpisodes.SeasonsButton
-						onMouseDown={() => !seasonsDropdownDisabled && setSeasonsDropdownActive(!seasonsDropdownActive)}
+						onMouseDown={handleSeasonsButtonMouseDown}
 						seasonsDropdownActive={seasonsDropdownActive}
 						seasonsDropdownDisabled={seasonsDropdownDisabled}
+						data-testid="SeasonsButton"
 					>
 						<span>Season {selectedSeason}</span>
 						{seasonsDropdownActive && !seasonsDropdownDisabled ? (
