@@ -27,7 +27,6 @@ const DetailsHeaderContainer = ({ item, scrolled }) => {
 		if (VideoPlayer.current) {
 			if (scrolled < 200) {
 				if (VideoPlayer?.current?.paused) {
-					console.log("hey");
 					VideoPlayer.current.volume = 0.4;
 					placeholderTimer = setTimeout(() => {
 						setIsPlaceholder(false);
@@ -36,7 +35,6 @@ const DetailsHeaderContainer = ({ item, scrolled }) => {
 				}
 			} else {
 				if (!VideoPlayer?.current?.paused) {
-					console.log("ho");
 					clearTimeout(placeholderTimer);
 					clearTimeout(videoTimer);
 					VideoPlayer.current.pause();
@@ -64,7 +62,9 @@ const DetailsHeaderContainer = ({ item, scrolled }) => {
 		);
 	};
 
-	const handleClose = () => dispatch(setIsDetails(false));
+	const handleClose = () => {
+		dispatch(setIsDetails(false));
+	};
 	const handleMute = () => dispatch(setGlobalMute(!globalMute));
 	const handleListClick = () =>
 		dispatch(
@@ -89,12 +89,13 @@ const DetailsHeaderContainer = ({ item, scrolled }) => {
 						<DetailsHeader.OverlayHalf>
 							<DetailsHeader.Logo src={headerData.logo} alt="Video Logo" />
 							<DetailsHeader.ButtonsContainer>
-								<Button.Square onMouseDown={handleCLickPlay}>
+								<Button.Square onMouseDown={handleCLickPlay} data-testid="playButton">
 									<GrPlayFill /> Play
 								</Button.Square>
 								<Button.Round
 									label={list.find(obj => obj.id === item.id) !== undefined ? "Remove from My List" : "Add to My List"}
 									onMouseDown={handleListClick}
+									data-testid="listButton"
 								>
 									{list.find(obj => obj.id === item.id) !== undefined ? <BiMinus /> : <BiPlus />}
 								</Button.Round>
@@ -102,6 +103,7 @@ const DetailsHeaderContainer = ({ item, scrolled }) => {
 									inverted={liked.includes(item.id)}
 									label={liked.includes(item.id) ? "Remove like" : "I like this"}
 									onMouseDown={handleLikeClick}
+									data-testid="likeButton"
 								>
 									<BiLike />
 								</Button.Round>
@@ -109,21 +111,24 @@ const DetailsHeaderContainer = ({ item, scrolled }) => {
 									inverted={disliked.includes(item.id)}
 									label={disliked.includes(item.id) ? "Remove dislike" : "Not for me"}
 									onMouseDown={handleDislikeClick}
+									data-testid="dislikeButton"
 								>
 									<BiDislike />
 								</Button.Round>
 							</DetailsHeader.ButtonsContainer>
 						</DetailsHeader.OverlayHalf>
 						<DetailsHeader.OverlayHalf>
-							<Button.Round dark onMouseDown={handleClose}>
+							<Button.Round dark onMouseDown={handleClose} data-testid="closeButton">
 								<GrClose />
 							</Button.Round>
-							<Button.Round onMouseDown={handleMute}>{globalMute ? <GiSpeakerOff /> : <GiSpeaker />}</Button.Round>
+							<Button.Round onMouseDown={handleMute} data-testid="muteButton">
+								{globalMute ? <GiSpeakerOff /> : <GiSpeaker />}
+							</Button.Round>
 						</DetailsHeader.OverlayHalf>
 					</DetailsHeader.Overlay>
 				</>
 			) : (
-				<DetailsHeader.Loading />
+				<DetailsHeader.Loading data-testid="loading" />
 			)}
 		</DetailsHeader>
 	);
