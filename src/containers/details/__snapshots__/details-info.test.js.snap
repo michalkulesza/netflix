@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<DetailsInfoContainer/> with no props should match the snapshot 1`] = `"<div class=\\"details-info__Main-y9dbgt-0 hqPYPP\\"><div class=\\"details-info__Loading-y9dbgt-5 biRxZe\\"></div></div>"`;
+
+exports[`<DetailsInfoContainer/> with props should match the snapshot 1`] = `"<div class=\\"details-info__Main-y9dbgt-0 hqPYPP\\"><div class=\\"details-info__Half-y9dbgt-1 gkhROt\\"><div class=\\"details-info__Content-y9dbgt-2 dOFEgX\\"><p>96% Match</p> 2020 <span>18</span> 8 Seasons</div><div class=\\"details-info__Description-y9dbgt-3 cRzHom\\">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et, perspiciatis?</div></div><div class=\\"details-info__Half-y9dbgt-1 gkhROt\\"><div class=\\"details-info__Cast-y9dbgt-4 iYvcrP\\"><span>Cast:</span> Test, Test, Test</div><div class=\\"details-info__Cast-y9dbgt-4 iYvcrP\\"><span>Genres:</span> testGenre, testGenre</div></div></div>"`;
