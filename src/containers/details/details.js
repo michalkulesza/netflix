@@ -10,8 +10,8 @@ import { useKeyDownListener } from "../../hooks";
 
 const DetailsContainer = () => {
 	const dispatch = useDispatch();
-	const { isDetails } = useSelector(state => state.toggles);
-	const { detailsPosition } = useSelector(state => state.misc);
+	const isDetails = useSelector(state => state?.toggles?.isDetails);
+	const detailsPosition = useSelector(state => state?.misc?.detailsPosition);
 	const item = useSelector(state => state.fetchDetails);
 	const [scrolled, setScrolled] = useState(0);
 	const [shouldRender, setRender] = useState(isDetails);
@@ -38,7 +38,7 @@ const DetailsContainer = () => {
 
 	return shouldRender ? (
 		<Details.Container shouldRender={shouldRender} onScroll={e => handleScroll(e)}>
-			<Details.OverlayTrigger onMouseDown={handleCloseCallback} />
+			<Details.OverlayTrigger onMouseDown={handleCloseCallback} data-testid="overlay" />
 			<Details isDetails={isDetails} position={detailsPosition} onAnimationEnd={onAnimationEnd}>
 				<DetailsHeaderContainer item={item.details} scrolled={scrolled} />
 				<DetailsInfoContainer item={item} />
