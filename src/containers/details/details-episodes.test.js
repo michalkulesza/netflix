@@ -22,9 +22,6 @@ beforeEach(() => {
 	useEffect = jest.spyOn(React, "useEffect");
 	mockUseEffect();
 	mockUseEffect();
-
-	jest.spyOn(ReactRedux, "useSelector").mockImplementation(state => store.getState());
-	jest.spyOn(ReactRedux, "useDispatch").mockImplementation(() => store.dispatch);
 });
 
 describe("<DetailsEpisodesContainer/> with no props", () => {
@@ -75,6 +72,13 @@ describe("<DetailsEpisodesContainer/> with props", () => {
 					name: "Test",
 					overview: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vel, illo.",
 				},
+				{
+					id: 2,
+					episode_number: 9,
+					still_path_300: "/",
+					name: "Test2",
+					overview: "Vel, illo.",
+				},
 			],
 			isUpdating: false,
 		},
@@ -102,5 +106,15 @@ describe("<DetailsEpisodesContainer/> with props", () => {
 
 	it("should render list of seasons", () => {
 		expect(wrapper.find(DetailsEpisodes.Season).length).toBe(mockItem.details.number_of_seasons);
+	});
+
+	it("should render list of episodes", () => {
+		expect(wrapper.find(DetailsEpisode.Wrapper).length).toBe(store.getState().fetchEpisodes.data.length);
+	});
+
+	it("should display correct icon depending on clicked button", () => {
+		expect(wrapper.contains(<BiCaretDown />)).toBeTruthy();
+		wrapper.find(DetailsEpisodes.SeasonsButton).simulate("mouseDown");
+		expect(wrapper.contains(<BiCaretUp />)).toBeTruthy();
 	});
 });
