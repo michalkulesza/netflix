@@ -19,10 +19,10 @@ import {
 } from "react-icons/gr";
 
 const ControlsContainer = ({ handleClickPlay, playerRef }) => {
-	const volume = useSelector(state => state.player.volume);
+	const volume = useSelector(state => state.player?.volume);
 	const data = useSelector(state => state.player);
-	const playerState = useSelector(state => state.player.state);
-	const metaLoaded = useSelector(state => state.player.state);
+	const playerState = useSelector(state => state.player?.state);
+	const metaLoaded = useSelector(state => state.player?.metaLoaded);
 	const dispatch = useDispatch();
 	const volumeIcon = useVolumeIcon(volume);
 	const [controlButtonsHover, setControlButtonsHover] = useState(false);
@@ -57,7 +57,7 @@ const ControlsContainer = ({ handleClickPlay, playerRef }) => {
 
 	useKeyDownListener(null, null, handleClickSkipBack, handleClickSkipForward);
 
-	return (
+	return data ? (
 		<Controls>
 			<SeekBarContainer metaLoaded={metaLoaded} isVideoPlaying={playerState === "playing"} playerRef={playerRef} />
 			<Controls.ButtonsContainer>
@@ -119,7 +119,7 @@ const ControlsContainer = ({ handleClickPlay, playerRef }) => {
 				</Controls.Left>
 				<Controls.Middle>
 					<Controls.Title>
-						{data?.type === "film" ? (
+						{data.type === "film" ? (
 							data.title
 						) : (
 							<>
@@ -182,7 +182,7 @@ const ControlsContainer = ({ handleClickPlay, playerRef }) => {
 				</Controls.Right>
 			</Controls.ButtonsContainer>
 		</Controls>
-	);
+	) : null;
 };
 
 export default ControlsContainer;
