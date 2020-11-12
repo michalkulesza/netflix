@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<PopupContainer/> with no props should match the snapshot 1`] = `"<div class=\\"popup__Main-al6sl5-0 hIqMKL\\"><div class=\\"popup__Dialog-al6sl5-1 iSKUtS\\"></div></div>"`;
+
+exports[`<PopupContainer/> with no props should match the snapshot 2`] = `"<div class=\\"popup__Main-al6sl5-0 hIqMKL\\"><div class=\\"popup__Dialog-al6sl5-1 iSKUtS\\"><span>testElem</span><span>testElem</span><span>testElem</span></div></div>"`;
