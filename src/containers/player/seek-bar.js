@@ -13,7 +13,7 @@ const SeekBarContainer = ({ isVideoPlaying, playerRef }) => {
 	const [currentTime, setCurrentTime] = useState(null);
 	const [timeToDisplay, setTimeToDisplay] = useState("0:00:00");
 	const [videoLength, setVideoLength] = useState(null);
-	const metaLoaded = useSelector(state => state.player.state);
+	const metaLoaded = useSelector(state => state.player?.state);
 
 	useEffect(() => {
 		if (videoLength !== null && currentTime !== null) {
