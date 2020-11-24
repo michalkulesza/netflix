@@ -4,7 +4,7 @@ import * as actions from "./fetch-initial-data";
 import * as types from "../types";
 import axios from "axios";
 import MockAdapter from "axios-mock-adapter";
-import { BASE_PATH } from "../../constants/config";
+import { config } from "../../constants/config";
 
 const mock = new MockAdapter(axios);
 const middlewares = [thunk];
@@ -35,7 +35,7 @@ describe("fetchInitialDataBrowse action", () => {
 			},
 		];
 
-		mock.onGet(`${BASE_PATH}/initial/browse`).reply(200, mockData);
+		mock.onGet(`${config.BASE_PATH}/initial/browse`).reply(200, mockData);
 
 		return store.dispatch(actions.fetchInitialDataBrowse()).then(() => {
 			expect(store.getActions()).toEqual(expectedAction);
@@ -58,7 +58,7 @@ describe("fetchInitialDataBrowse action", () => {
 			},
 		];
 
-		mock.onGet(`${BASE_PATH}/initial/browse`).reply(400);
+		mock.onGet(`${config.BASE_PATH}/initial/browse`).reply(400);
 
 		return store.dispatch(actions.fetchInitialDataBrowse()).then(() => {
 			expect(store.getActions()).toEqual(expectedAction);
@@ -83,7 +83,7 @@ describe("fetchInitialDataSeries action", () => {
 			},
 		];
 
-		mock.onGet(`${BASE_PATH}/initial/series`).reply(200, mockData);
+		mock.onGet(`${config.BASE_PATH}/initial/series`).reply(200, mockData);
 
 		return store.dispatch(actions.fetchInitialDataSeries()).then(() => {
 			expect(store.getActions()).toEqual(expectedAction);
@@ -106,7 +106,7 @@ describe("fetchInitialDataSeries action", () => {
 			},
 		];
 
-		mock.onGet(`${BASE_PATH}/initial/series`).reply(400);
+		mock.onGet(`${config.BASE_PATH}/initial/series`).reply(400);
 
 		return store.dispatch(actions.fetchInitialDataSeries()).then(() => {
 			expect(store.getActions()).toEqual(expectedAction);
@@ -131,7 +131,7 @@ describe("fetchInitialDataFilms action", () => {
 			},
 		];
 
-		mock.onGet(`${BASE_PATH}/initial/films`).reply(200, mockData);
+		mock.onGet(`${config.BASE_PATH}/initial/films`).reply(200, mockData);
 
 		return store.dispatch(actions.fetchInitialDataFilms()).then(() => {
 			expect(store.getActions()).toEqual(expectedAction);
@@ -154,7 +154,7 @@ describe("fetchInitialDataFilms action", () => {
 			},
 		];
 
-		mock.onGet(`${BASE_PATH}/initial/films`).reply(400);
+		mock.onGet(`${config.BASE_PATH}/initial/films`).reply(400);
 
 		return store.dispatch(actions.fetchInitialDataFilms()).then(() => {
 			expect(store.getActions()).toEqual(expectedAction);
@@ -179,7 +179,7 @@ describe("fetchInitialDataLatest action", () => {
 			},
 		];
 
-		mock.onGet(`${BASE_PATH}/initial/latest`).reply(200, mockData);
+		mock.onGet(`${config.BASE_PATH}/initial/latest`).reply(200, mockData);
 
 		return store.dispatch(actions.fetchInitialDataLatest()).then(() => {
 			expect(store.getActions()).toEqual(expectedAction);
@@ -202,7 +202,7 @@ describe("fetchInitialDataLatest action", () => {
 			},
 		];
 
-		mock.onGet(`${BASE_PATH}/initial/latest`).reply(400);
+		mock.onGet(`${config.BASE_PATH}/initial/latest`).reply(400);
 
 		return store.dispatch(actions.fetchInitialDataLatest()).then(() => {
 			expect(store.getActions()).toEqual(expectedAction);
@@ -230,7 +230,7 @@ describe("fetchInitialDataList action", () => {
 			},
 		];
 
-		mock.onGet(`${BASE_PATH}/initial/list?userID=${userID}`).reply(200, mockData);
+		mock.onGet(`${config.BASE_PATH}/initial/list?userID=${userID}`).reply(200, mockData);
 
 		return store.dispatch(actions.fetchInitialDataList()).then(() => {
 			expect(store.getActions()).toEqual(expectedAction);
@@ -245,7 +245,7 @@ describe("fetchInitialDataList action", () => {
 			},
 		];
 
-		mock.onGet(`${BASE_PATH}/initial/list?userID=${userID}`).reply(400);
+		mock.onGet(`${config.BASE_PATH}/initial/list?userID=${userID}`).reply(400);
 
 		return store.dispatch(actions.fetchInitialDataList()).then(() => {
 			expect(store.getActions()).toEqual(expectedAction);

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { BASE_PATH } from "../../constants/config";
+import { config } from "../../constants/config";
 import { SET_INITIAL_DATA, SET_DATA_UPDATING, SET_INITIAL_LIST } from "../types";
 import { setError } from "./error";
 
@@ -11,7 +11,7 @@ export const fetchInitialDataBrowse = () => {
 				payload: true,
 			});
 
-			const response = await axios.get(`${BASE_PATH}/initial/browse`);
+			const response = await axios.get(`${config.BASE_PATH}/initial/browse`);
 
 			dispatch({
 				type: SET_INITIAL_DATA,
@@ -40,7 +40,7 @@ export const fetchInitialDataSeries = () => {
 				payload: true,
 			});
 
-			const response = await axios.get(`${BASE_PATH}/initial/series`);
+			const response = await axios.get(`${config.BASE_PATH}/initial/series`);
 
 			dispatch({
 				type: SET_INITIAL_DATA,
@@ -69,7 +69,7 @@ export const fetchInitialDataFilms = () => {
 				payload: true,
 			});
 
-			const response = await axios.get(`${BASE_PATH}/initial/films`);
+			const response = await axios.get(`${config.BASE_PATH}/initial/films`);
 
 			dispatch({
 				type: SET_INITIAL_DATA,
@@ -98,7 +98,7 @@ export const fetchInitialDataLatest = () => {
 				payload: true,
 			});
 
-			const response = await axios.get(`${BASE_PATH}/initial/latest`);
+			const response = await axios.get(`${config.BASE_PATH}/initial/latest`);
 
 			dispatch({
 				type: SET_INITIAL_DATA,
@@ -124,7 +124,7 @@ export const fetchInitialDataList = () => {
 
 	return async dispatch => {
 		try {
-			const response = await axios.get(`${BASE_PATH}/initial/list?userID=${userID}`);
+			const response = await axios.get(`${config.BASE_PATH}/initial/list?userID=${userID}`);
 
 			dispatch({
 				type: SET_INITIAL_LIST,

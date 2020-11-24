@@ -4,7 +4,7 @@ import * as actions from "./genres";
 import * as types from "../types";
 import axios from "axios";
 import MockAdapter from "axios-mock-adapter";
-import { BASE_PATH } from "../../constants/config";
+import { config } from "../../constants/config";
 
 let store;
 const mock = new MockAdapter(axios);
@@ -26,7 +26,7 @@ describe("setSeriesGenres action", () => {
 			},
 		];
 
-		mock.onGet(`${BASE_PATH}/genres/series`).reply(200, mockData);
+		mock.onGet(`${config.BASE_PATH}/genres/series`).reply(200, mockData);
 
 		return store.dispatch(actions.setSeriesGenres()).then(() => {
 			expect(store.getActions()).toEqual(expectedAction);
@@ -41,7 +41,7 @@ describe("setSeriesGenres action", () => {
 			},
 		];
 
-		mock.onGet(`${BASE_PATH}/genres/series`).reply(400);
+		mock.onGet(`${config.BASE_PATH}/genres/series`).reply(400);
 
 		return store.dispatch(actions.setSeriesGenres()).then(() => {
 			expect(store.getActions()).toEqual(expectedAction);
@@ -58,7 +58,7 @@ describe("setFilmsGenres action", () => {
 			},
 		];
 
-		mock.onGet(`${BASE_PATH}/genres/films`).reply(200, mockData);
+		mock.onGet(`${config.BASE_PATH}/genres/films`).reply(200, mockData);
 
 		return store.dispatch(actions.setFilmsGenres()).then(() => {
 			expect(store.getActions()).toEqual(expectedAction);
@@ -73,7 +73,7 @@ describe("setFilmsGenres action", () => {
 			},
 		];
 
-		mock.onGet(`${BASE_PATH}/genres/films`).reply(400);
+		mock.onGet(`${config.BASE_PATH}/genres/films`).reply(400);
 
 		return store.dispatch(actions.setFilmsGenres()).then(() => {
 			expect(store.getActions()).toEqual(expectedAction);

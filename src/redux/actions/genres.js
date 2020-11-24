@@ -1,12 +1,12 @@
 import { SET_GENRES, CLEAR_GENRES, SET_SELECTED_GENRE, CLEAR_SELECTED_GENRE } from "../types";
 import { setError } from "./error";
 import axios from "axios";
-import { BASE_PATH } from "../../constants/config";
+import { config } from "../../constants/config";
 
 export const setSeriesGenres = () => {
 	return async dispatch => {
 		try {
-			const response = await axios.get(`${BASE_PATH}/genres/series`);
+			const response = await axios.get(`${config.BASE_PATH}/genres/series`);
 
 			dispatch({
 				type: SET_GENRES,
@@ -21,7 +21,7 @@ export const setSeriesGenres = () => {
 export const setFilmsGenres = () => {
 	return async dispatch => {
 		try {
-			const response = await axios.get(`${BASE_PATH}/genres/films`);
+			const response = await axios.get(`${config.BASE_PATH}/genres/films`);
 
 			dispatch({
 				type: SET_GENRES,

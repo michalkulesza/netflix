@@ -1,5 +1,5 @@
 import axios from "axios";
-import { BASE_PATH } from "../../constants/config";
+import { config } from "../../constants/config";
 import { CLEAR_EPISODES, FETCH_EPISODES, SET_EPISODES_UPDATING } from "../types";
 import { setError } from "./error";
 
@@ -11,7 +11,7 @@ export const fetchEpisodes = (id, season) => {
 				payload: true,
 			});
 
-			const response = await axios.get(`${BASE_PATH}/episodes?id=${id}&season=${season}`);
+			const response = await axios.get(`${config.BASE_PATH}/episodes?id=${id}&season=${season}`);
 
 			dispatch({
 				type: FETCH_EPISODES,

@@ -6,14 +6,15 @@ import { setDetailsPosition } from "../redux/actions/misc";
 import { setPlayer } from "../redux/actions/player";
 import { Header, Button } from "../components";
 import { useCanHeaderPlay } from "../hooks";
-import { BASE_PATH } from "../constants/config";
+import { config } from "../constants/config";
+
 import { WATCH } from "../constants/routes";
 import { useHistory } from "react-router-dom";
 
 import { GiSpeaker, GiSpeakerOff } from "react-icons/gi";
 import { GrPlayFill, GrCircleInformation } from "react-icons/gr";
 import placeholder from "../res/images/placeholder_w.jpg";
-const videoPlayerSrc = `${BASE_PATH}/video/night`;
+const videoPlayerSrc = `${config.BASE_PATH}/video/night`;
 
 let posterTimer;
 

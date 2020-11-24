@@ -1,6 +1,7 @@
 {
 	"name": "netflix",
 	"version": "0.1.0",
+	"homepage": "https://5fbd19bf4527ee15c711d13a--xcxz-netflix.netlify.app/",
 	"private": true,
 	"dependencies": {
 		"axios": "^0.20.0",

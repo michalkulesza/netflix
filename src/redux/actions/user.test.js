@@ -4,7 +4,7 @@ import * as actions from "./user";
 import * as types from "../types";
 import axios from "axios";
 import MockAdapter from "axios-mock-adapter";
-import { BASE_PATH } from "../../constants/config";
+import { config } from "../../constants/config";
 import * as firebase from "../../firebase";
 
 const mock = new MockAdapter(axios);
@@ -57,7 +57,7 @@ describe("getUserData action", () => {
 			},
 		];
 
-		mock.onGet(`${BASE_PATH}/data/user?id=${userID}`).reply(200, mockData);
+		mock.onGet(`${config.BASE_PATH}/data/user?id=${userID}`).reply(200, mockData);
 
 		return store.dispatch(actions.getUserData(userID)).then(() => {
 			expect(store.getActions()).toEqual(expectedAction);
@@ -73,7 +73,7 @@ describe("getUserData action", () => {
 			},
 		];
 
-		mock.onGet(`${BASE_PATH}/data/user?id=${userID}`).reply(400);
+		mock.onGet(`${config.BASE_PATH}/data/user?id=${userID}`).reply(400);
 
 		return store.dispatch(actions.getUserData(userID)).then(() => {
 			expect(store.getActions()).toEqual(expectedAction);
@@ -265,7 +265,7 @@ describe("likeVideo action", () => {
 			},
 		];
 
-		mock.onPost(`${BASE_PATH}/data/like`).reply(200);
+		mock.onPost(`${config.BASE_PATH}/data/like`).reply(200);
 
 		return store.dispatch(actions.likeVideo(userID, videoID)).then(() => {
 			expect(store.getActions()).toEqual(expectedAction);
@@ -280,7 +280,7 @@ describe("likeVideo action", () => {
 			},
 		];
 
-		mock.onPost(`${BASE_PATH}/data/like`).reply(400);
+		mock.onPost(`${config.BASE_PATH}/data/like`).reply(400);
 
 		return store.dispatch(actions.likeVideo(userID, videoID)).then(() => {
 			expect(store.getActions()).toEqual(expectedAction);
@@ -301,7 +301,7 @@ describe("dislikeVideo action", () => {
 			},
 		];
 
-		mock.onPost(`${BASE_PATH}/data/dislike`).reply(200);
+		mock.onPost(`${config.BASE_PATH}/data/dislike`).reply(200);
 
 		return store.dispatch(actions.dislikeVideo(userID, videoID)).then(() => {
 			expect(store.getActions()).toEqual(expectedAction);
@@ -316,7 +316,7 @@ describe("dislikeVideo action", () => {
 			},
 		];
 
-		mock.onPost(`${BASE_PATH}/data/dislike`).reply(400);
+		mock.onPost(`${config.BASE_PATH}/data/dislike`).reply(400);
 
 		return store.dispatch(actions.dislikeVideo(userID, videoID)).then(() => {
 			expect(store.getActions()).toEqual(expectedAction);
@@ -333,7 +333,7 @@ describe("toggleVideoToList action", () => {
 			},
 		];
 
-		mock.onPost(`${BASE_PATH}/data/list`).reply(200);
+		mock.onPost(`${config.BASE_PATH}/data/list`).reply(200);
 
 		return store.dispatch(actions.toggleVideoToList(userID, mockData)).then(() => {
 			expect(store.getActions()).toEqual(expectedAction);
@@ -348,7 +348,7 @@ describe("toggleVideoToList action", () => {
 			},
 		];
 
-		mock.onPost(`${BASE_PATH}/data/list`).reply(400);
+		mock.onPost(`${config.BASE_PATH}/data/list`).reply(400);
 
 		return store.dispatch(actions.toggleVideoToList(userID, mockData)).then(() => {
 			expect(store.getActions()).toEqual(expectedAction);

@@ -4,7 +4,7 @@ import * as actions from "./fetch-genre-data";
 import * as types from "../types";
 import axios from "axios";
 import MockAdapter from "axios-mock-adapter";
-import { BASE_PATH } from "../../constants/config";
+import { config } from "../../constants/config";
 
 const mock = new MockAdapter(axios);
 const middlewares = [thunk];
@@ -38,7 +38,7 @@ describe("fetchEpisodes action", () => {
 			},
 		];
 
-		mock.onGet(`${BASE_PATH}/genre/${type}?genreID=${genreID}&page=${page}`).reply(200, mockData);
+		mock.onGet(`${config.BASE_PATH}/genre/${type}?genreID=${genreID}&page=${page}`).reply(200, mockData);
 
 		return store.dispatch(actions.fetchGenreData(type, genreID, page)).then(() => {
 			expect(store.getActions()).toEqual(expectedAction);
@@ -62,7 +62,7 @@ describe("fetchEpisodes action", () => {
 			},
 		];
 
-		mock.onGet(`${BASE_PATH}/genre/${type}?genreID=${genreID}&page=${page}`).reply(200, mockData);
+		mock.onGet(`${config.BASE_PATH}/genre/${type}?genreID=${genreID}&page=${page}`).reply(200, mockData);
 
 		return store.dispatch(actions.fetchGenreData(type, genreID, page)).then(() => {
 			expect(store.getActions()).toEqual(expectedAction);
@@ -85,7 +85,7 @@ describe("fetchEpisodes action", () => {
 			},
 		];
 
-		mock.onGet(`${BASE_PATH}/genre/${type}?genreID=${genreID}&page=${page}`).reply(400);
+		mock.onGet(`${config.BASE_PATH}/genre/${type}?genreID=${genreID}&page=${page}`).reply(400);
 
 		return store.dispatch(actions.fetchGenreData(type, genreID, page)).then(() => {
 			expect(store.getActions()).toEqual(expectedAction);

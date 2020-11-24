@@ -17,13 +17,13 @@ import {
 	TOGGLE_VIDEO_LIST,
 	AUTH_CHANGE,
 } from "../types";
-import { BASE_PATH } from "../../constants/config";
+import { config } from "../../constants/config";
 import { fetchInitialDataList } from "./fetch-initial-data";
 
 export const getUserData = userID => {
 	return async dispatch => {
 		try {
-			const userData = await axios.get(`${BASE_PATH}/data/user?id=${userID}`);
+			const userData = await axios.get(`${config.BASE_PATH}/data/user?id=${userID}`);
 
 			dispatch({
 				type: SET_USER,
@@ -150,7 +150,7 @@ export const likeVideo = (userID, videoID) => {
 	return async dispatch => {
 		try {
 			return axios
-				.post(`${BASE_PATH}/data/like`, { userID, videoID })
+				.post(`${config.BASE_PATH}/data/like`, { userID, videoID })
 				.then(res => {
 					if (res.status === 200) {
 						dispatch({
@@ -177,7 +177,7 @@ export const dislikeVideo = (userID, videoID) => {
 	return async dispatch => {
 		try {
 			return axios
-				.post(`${BASE_PATH}/data/dislike`, { userID, videoID })
+				.post(`${config.BASE_PATH}/data/dislike`, { userID, videoID })
 				.then(res => {
 					if (res.status === 200) {
 						dispatch({
@@ -204,7 +204,7 @@ export const toggleVideoToList = (userID, obj) => {
 	return async dispatch => {
 		try {
 			return axios
-				.post(`${BASE_PATH}/data/list`, { userID, data: obj })
+				.post(`${config.BASE_PATH}/data/list`, { userID, data: obj })
 				.then(res => {
 					if (res.status === 200) {
 						dispatch(fetchInitialDataList());

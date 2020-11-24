@@ -4,7 +4,7 @@ import * as actions from "./fetch-details";
 import * as types from "../types";
 import axios from "axios";
 import MockAdapter from "axios-mock-adapter";
-import { BASE_PATH } from "../../constants/config";
+import { config } from "../../constants/config";
 
 const mock = new MockAdapter(axios);
 const middlewares = [thunk];
@@ -30,7 +30,7 @@ describe("FetchDetailsMovie action", () => {
 
 	it("creates an action to fetch movie details", () => {
 		const callback = jest.fn();
-		mock.onGet(`${BASE_PATH}/details/movie?id=${id}`).reply(200, mockData);
+		mock.onGet(`${config.BASE_PATH}/details/movie?id=${id}`).reply(200, mockData);
 
 		return store.dispatch(actions.fetchDetailsMovie(id, callback)).then(() => {
 			expect(store.getActions()).toEqual(expectedSuccesfullAction);
@@ -39,7 +39,7 @@ describe("FetchDetailsMovie action", () => {
 
 	it("creates an action that succesfully fetches & calls a callback", () => {
 		const callback = jest.fn();
-		mock.onGet(`${BASE_PATH}/details/movie?id=${id}`).reply(200, mockData);
+		mock.onGet(`${config.BASE_PATH}/details/movie?id=${id}`).reply(200, mockData);
 
 		return store.dispatch(actions.fetchDetailsMovie(id, callback)).then(() => {
 			expect(callback).toHaveBeenCalledTimes(1);
@@ -47,7 +47,7 @@ describe("FetchDetailsMovie action", () => {
 	});
 
 	it("creates an action that fails to fetch and sets an error", () => {
-		mock.onGet(`${BASE_PATH}/details/movie?id=${id}`).reply(400);
+		mock.onGet(`${config.BASE_PATH}/details/movie?id=${id}`).reply(400);
 		const expectedFailedAction = [
 			{
 				payload: "Whops! Something happend while getting movie details.",
@@ -85,9 +85,9 @@ describe("FetchDetailsTv action", () => {
 
 	it("creates an action to fetch tv details", () => {
 		mock
-			.onGet(`${BASE_PATH}/details/tv?id=${id}`)
+			.onGet(`${config.BASE_PATH}/details/tv?id=${id}`)
 			.reply(200, mockData)
-			.onGet(`${BASE_PATH}/episodes?id=${id}&season=1`)
+			.onGet(`${config.BASE_PATH}/episodes?id=${id}&season=1`)
 			.reply(200, mockData);
 
 		return store.dispatch(actions.fetchDetailsTv(id)).then(() => {
@@ -100,9 +100,9 @@ describe("FetchDetailsTv action", () => {
 		const callback2 = jest.fn();
 
 		mock
-			.onGet(`${BASE_PATH}/details/tv?id=${id}`)
+			.onGet(`${config.BASE_PATH}/details/tv?id=${id}`)
 			.reply(200, mockData)
-			.onGet(`${BASE_PATH}/episodes?id=${id}&season=1`)
+			.onGet(`${config.BASE_PATH}/episodes?id=${id}&season=1`)
 			.reply(200, mockData);
 
 		return store.dispatch(actions.fetchDetailsTv(id, callback1, callback2)).then(() => {
@@ -120,9 +120,9 @@ describe("FetchDetailsTv action", () => {
 		];
 
 		mock
-			.onGet(`${BASE_PATH}/details/tv?id=${id}`)
+			.onGet(`${config.BASE_PATH}/details/tv?id=${id}`)
 			.reply(400)
-			.onGet(`${BASE_PATH}/episodes?id=${id}&season=1`)
+			.onGet(`${config.BASE_PATH}/episodes?id=${id}&season=1`)
 			.reply(400);
 
 		return store.dispatch(actions.fetchDetailsTv(id)).then(() => {
