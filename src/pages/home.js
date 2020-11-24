@@ -17,7 +17,7 @@ const Home = () => {
 		<>
 			<NavbarContainer>
 				<Navbar.Logo />
-				<Button route={SIGN_IN}>Sign In</Button>
+				<Button to={SIGN_IN}>Sign In</Button>
 			</NavbarContainer>
 			<HeaderContainer bg={Background}>
 				<Header.Inner>
