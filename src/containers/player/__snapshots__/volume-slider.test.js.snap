@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<VolumeSliderContainer/> with no props should match the snapshot 1`] = `"<div class=\\"seek-bar__Container-sc-33ruba-0 ecXbym\\"><div class=\\"seek-bar__Main-sc-33ruba-3 jIuMwp\\"><div class=\\"seek-bar__SeekBarContainer-sc-33ruba-5 dGZLvR\\"><div class=\\"seek-bar__SeekBarTotal-sc-33ruba-2 jvKjIW\\"></div></div><div class=\\"seek-bar__SeekIndicator-sc-33ruba-1 dKhQVr\\"></div></div><div class=\\"seek-bar__Time-sc-33ruba-4 cmA-DKU\\">0:00:00</div></div>"`;
+
+exports[`<VolumeSliderContainer/> with props should match the snapshot 1`] = `"<div class=\\"seek-bar__Container-sc-33ruba-0 ecXbym\\"><div class=\\"seek-bar__Main-sc-33ruba-3 jIuMwp\\"><div class=\\"seek-bar__SeekBarContainer-sc-33ruba-5 dGZLvR\\"><div class=\\"seek-bar__SeekBarTotal-sc-33ruba-2 jvKjIW\\"></div></div><div class=\\"seek-bar__SeekIndicator-sc-33ruba-1 fNxdrf\\"></div></div><div class=\\"seek-bar__Time-sc-33ruba-4 cmA-DKU\\">0:01:30</div></div>"`;
