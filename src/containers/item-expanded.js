@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { dislikeVideo, likeVideo, toggleVideoToList } from "../redux/actions/user";
 import { setIsDetails, setGlobalMute } from "../redux/actions/toggles";
 import { setPlayer } from "../redux/actions/player";
-import { setDetailsPosition } from "../redux/actions/misc";
+import { setActiveExpanded, setDetailsPosition } from "../redux/actions/misc";
 import { useHistory } from "react-router-dom";
 import { ItemExpanded, Button } from "../components";
 import { WATCH } from "../constants/routes";
@@ -49,6 +49,7 @@ const ItemExpandedContainer = ({ isVisible, showVideo, position, videoFile, data
 		const elemPos = currentTarget.parentNode.parentNode.parentNode.parentNode.getBoundingClientRect();
 		dispatch(setDetailsPosition(elemPos.x, elemPos.y, elemPos.width, elemPos.height));
 		dispatch(setIsDetails(true));
+		dispatch(setActiveExpanded(null));
 	};
 
 	const handleVideoCanPlayThrough = () => setVideoCanPlay(true);
@@ -77,6 +78,7 @@ const ItemExpandedContainer = ({ isVisible, showVideo, position, videoFile, data
 					runtime: data.details.runtime,
 				})
 			);
+			dispatch(setActiveExpanded(null));
 			history.push(WATCH);
 		}
 	};

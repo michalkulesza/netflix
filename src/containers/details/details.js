@@ -40,7 +40,7 @@ const DetailsContainer = () => {
 		<Details.Container shouldRender={shouldRender} onScroll={e => handleScroll(e)}>
 			<Details.OverlayTrigger onMouseDown={handleCloseCallback} data-testid="overlay" />
 			<Details isDetails={isDetails} position={detailsPosition} onAnimationEnd={onAnimationEnd}>
-				<DetailsHeaderContainer item={item.details} scrolled={scrolled} />
+				<DetailsHeaderContainer item={item?.details} scrolled={scrolled} />
 				<DetailsInfoContainer item={item} />
 				<DetailsEpisodesContainer item={item} />
 				<DetailsRelatedContainer item={item} />
