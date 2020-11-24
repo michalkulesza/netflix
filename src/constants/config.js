@@ -1,1 +1,1 @@
-export const BASE_PATH = "http://localhost:8888";
+export const BASE_PATH = "https://xcxz-netflix.herokuapp.com";

@@ -1,5 +1,6 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { DetailsHeader, Button } from "../../components";
 import { setGlobalMute, setIsDetails } from "../../redux/actions/toggles";
 import { setPlayer } from "../../redux/actions/player";
@@ -9,7 +10,7 @@ import { GrPlayFill, GrClose } from "react-icons/gr";
 import { GiSpeaker, GiSpeakerOff } from "react-icons/gi";
 import { BiPlus, BiMinus, BiLike, BiDislike } from "react-icons/bi";
 import placeholder from "../../res/images/placeholder_w.jpg";
-import { useEffect } from "react";
+import { WATCH } from "../../constants/routes";
 
 let videoTimer;
 let placeholderTimer;
@@ -17,6 +18,7 @@ let placeholderTimer;
 const DetailsHeaderContainer = ({ item, scrolled }) => {
 	const VideoPlayer = useRef(null);
 	const dispatch = useDispatch();
+	const history = useHistory();
 	const [isPlaceholder, setIsPlaceholder] = useState(true);
 	const globalMute = useSelector(state => state.toggles.globalMute);
 	const headerData = useSelector(state => state.misc.headerVideo);
@@ -42,6 +44,11 @@ const DetailsHeaderContainer = ({ item, scrolled }) => {
 				}
 			}
 		}
+
+		return () => {
+			clearTimeout(placeholderTimer);
+			clearTimeout(videoTimer);
+		};
 	}, [scrolled]);
 
 	const handleCLickPlay = () => {
@@ -50,7 +57,7 @@ const DetailsHeaderContainer = ({ item, scrolled }) => {
 				type: item.media_type,
 				id: item.id,
 				title: item.name ? item.name : item.title,
-				src: "",
+				src: headerData?.src,
 				backdrop: item.backdrop_path_1280,
 				ep_title: "Title of the episode",
 				ep_number: 1,
@@ -60,6 +67,7 @@ const DetailsHeaderContainer = ({ item, scrolled }) => {
 				runtime: 112,
 			})
 		);
+		history.push(WATCH);
 	};
 
 	const handleClose = () => {

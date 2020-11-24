@@ -33,6 +33,12 @@ const ItemContainer = ({ item, i, parentID, isFirstSlide, totalTilesInVievport, 
 		}
 	}, [activeExpanded, i, parentID]);
 
+	const clearTimers = () => {
+		clearTimeout(preloadTimer);
+		clearTimeout(hoverTimer);
+		clearTimeout(videoTimer);
+	};
+
 	const handleMouseEnter = () => {
 		preloadTimer = setTimeout(
 			() =>
@@ -45,13 +51,13 @@ const ItemContainer = ({ item, i, parentID, isFirstSlide, totalTilesInVievport, 
 			dispatch(setActiveExpanded(parentID, i));
 			videoTimer = setTimeout(() => setShowVideo(true), 2000);
 		}, 500);
+
+		return () => clearTimers();
 	};
 
 	const handleMouseLeave = () => {
 		dispatch(setActiveExpanded(null, null));
-		clearTimeout(hoverTimer);
-		clearTimeout(preloadTimer);
-		clearTimeout(videoTimer);
+		clearTimers();
 	};
 
 	return item ? (
