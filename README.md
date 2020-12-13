@@ -4,7 +4,6 @@
 </h4>
 
 <br>
-<center></center>
 <center><img  src="https://forthebadge.com/images/badges/uses-badges.svg"  alt="For the badge"></center>
 
 ---
