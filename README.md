@@ -4,15 +4,8 @@
 </h4>
 
 <br>
-<<<<<<< HEAD
-<center></center>
 <center><img  src="https://forthebadge.com/images/badges/uses-badges.svg"  alt="For the badge"></center>
-=======
 
-<p  align="center">
-
-<img  src="https://forthebadge.com/images/badges/uses-badges.svg"  alt="For the badge"> </p>
->>>>>>> 00f40e3789f4d7cc3d15925b3cc726e36f4514e4
 
 ---
 
@@ -23,13 +16,9 @@
 </p>
 
 <p  align="center">
-<<<<<<< HEAD
 <br>
 <center><a  href="https://xcxz-netflix.netlify.app/">SEE LIVE VERSION</center>
-=======
 
-<a  href="https://xcxz-netflix.netlify.app/">SEE LIVE VERSION
->>>>>>> 00f40e3789f4d7cc3d15925b3cc726e36f4514e4
 
 </a>
 
@@ -92,11 +81,8 @@
 
 - Loading placeholders and animations
 
-<<<<<<< HEAD
 - Lazyloading for improved loading times
 
-=======
->>>>>>> 00f40e3789f4d7cc3d15925b3cc726e36f4514e4
 ## License
 
 > MIT
